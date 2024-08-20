@@ -102,7 +102,7 @@ export class MainInstace {
   s0_Z3_Rock_3_art_1__01: Entity
   s0_Z3_Rock_4_art_5__01: Entity
   s0_Z3_Rock_4_art_4__01: Entity
-  // s0_WaterFall_01_Art_01: Entity
+  s0_WaterFall_01_Art_01: Entity
   s0_Z3_Prop_Fence_Art_3__01: Entity
   s0_Z3_Prop_Fence_Art_4__01: Entity
   s0_tree_03_low_1__01: Entity
@@ -1372,16 +1372,16 @@ export class MainInstace {
     Transform.getMutable(this.s0_Z3_Rock_4_art_4__01).parent = this.s0_Z3_COG_01
 
     // // s0_WaterFall_01_Art_01 //out of boundaries
-    // this.s0_WaterFall_01_Art_01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_01, {
-    //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
-    // })
-    // Transform.create(this.s0_WaterFall_01_Art_01, {
-    //   position: Vector3.create(-38.5, -48.82, 278.49),
-    //   rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
-    //   scale: Vector3.create(1, 1.5479, 1)
-    // })
-    // Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
+    this.s0_WaterFall_01_Art_01 = engine.addEntity()
+    GltfContainer.create(this.s0_WaterFall_01_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
+    })
+    Transform.create(this.s0_WaterFall_01_Art_01, {
+      position: Vector3.create(-38.5, -48.82, 278.49),
+      rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
+      scale: Vector3.create(1, 1.5479, 1)
+    })
+    Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
 
     // s0_Z3_Prop_Fence_Art_3__01
     this.s0_Z3_Prop_Fence_Art_3__01 = engine.addEntity()
