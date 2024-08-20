@@ -4,8 +4,6 @@ import { GameController } from '../controllers/gameController'
 import { EntityAction } from '~system/EngineApi'
 
 export class MainInstace {
-  // Debug Floor
-  debugFloor: Entity
   s0_Z1_Out_IslandBase2_Art_01: Entity
   s0_Det_Ladybug_code_Art_1__01: Entity
   s0_Det_Ladybug_Art_1__01: Entity
@@ -121,16 +119,12 @@ export class MainInstace {
   s0_Z3_Rock_3_art_4__01: Entity
   s0_Z3_Prop_Stairs02_Art_3__01: Entity
   s0_Z3_Prop_Fence_Art_11__01: Entity
+  s0_Main_Island_art_01: Entity = engine.addEntity()
+  //DEFER LOADING
+  s0_Z3_Str_Lamp_Art_1__01: Entity = engine.addEntity()
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
-    //debug floor
-    this.debugFloor = engine.addEntity()
-    Transform.create(this.debugFloor, {
-      position: Vector3.create(111.18, 90, 82.91),
-      scale: Vector3.create(100, 1, 100)
-    })
-    MeshCollider.setBox(this.debugFloor)
     // Z1_Out_IslandBase2_Art
     this.s0_Z1_Out_IslandBase2_Art_01 = engine.addEntity()
     GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_01, {
@@ -1585,5 +1579,19 @@ export class MainInstace {
       scale: Vector3.create(1.251684, 1.272235, 1.210179)
     })
     Transform.getMutable(this.s0_Z3_Prop_Fence_Art_11__01).parent = this.s0_Z3_COG_01
+    this.DEFER_LOADING()
+  }
+  DEFER_LOADING() {
+    console.log('onSceneReadyObservable called. loading non critical values', 'Main_Island_art')
+    // Main_Island_art
+    GltfContainer.create(this.s0_Main_Island_art_01, {
+      src: 'assets/scene/models/unity_assets/s0_Main_Island_art_01.glb'
+    })
+    Transform.create(this.s0_Main_Island_art_01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Main_Island_art_01).parent = this.s0_Z3_COG_01
   }
 }
