@@ -8,7 +8,7 @@ export function main() {
     utils.timers.setTimeout(() => {
         void movePlayerTo({
           // 117.37,124.0051,85.24 4.89,0.88,252.67
-          newRelativePosition: Vector3.create(117.37,124.0051,85.24),
+          newRelativePosition: Vector3.create(181.89,69.53,150.97),
           cameraTarget: Vector3.create(31.12, 1.06, 53.56)
         })
       }, 2000)

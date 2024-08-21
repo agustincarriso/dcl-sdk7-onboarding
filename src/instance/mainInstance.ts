@@ -100,7 +100,7 @@ export class MainInstace {
   s0_Z3_Rock_3_art_1__01: Entity
   s0_Z3_Rock_4_art_5__01: Entity
   s0_Z3_Rock_4_art_4__01: Entity
-  s0_WaterFall_01_Art_01: Entity
+  // s0_WaterFall_01_Art_01: Entity
   s0_Z3_Prop_Fence_Art_3__01: Entity
   s0_Z3_Prop_Fence_Art_4__01: Entity
   s0_tree_03_low_1__01: Entity
@@ -120,8 +120,74 @@ export class MainInstace {
   s0_Z3_Prop_Stairs02_Art_3__01: Entity
   s0_Z3_Prop_Fence_Art_11__01: Entity
   s0_Main_Island_art_01: Entity = engine.addEntity()
-  //DEFER LOADING
+  s0_Z3_Rock_3_art_12__01: Entity = engine.addEntity()
+  s0_Z1_Out_IslandBase_Art_189__01: Entity = engine.addEntity()
   s0_Z3_Str_Lamp_Art_1__01: Entity = engine.addEntity()
+  s0_Z3_Rock_1_art_12__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_33__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs03_Art_14__01: Entity = engine.addEntity()
+  s0_Z3_Env_Mountain_Low_Art_10__01: Entity = engine.addEntity()
+  s0_Z3_Env_Mountain_Low_Art_9__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_28__01: Entity = engine.addEntity()
+  s0_Z1_Out_IslandBase_Art_186__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_26__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_25__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_24__01: Entity = engine.addEntity()
+  s0_Z3_Rock_1_art_10__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_31__01: Entity = engine.addEntity()
+  s0_Z3_Env_Mountain_Low_Art_8__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs03_Art_16__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs03_Art_15__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs03_Art_17__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Fence_Art_25__01: Entity = engine.addEntity()
+  s0_Z3_Rock_1_art_9__01: Entity = engine.addEntity()
+  s0_Z3_Rock_4_art_23__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_34__01: Entity = engine.addEntity()
+  s0_Z3_Rock_4_art_20__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_28__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs02_Art_10__01: Entity = engine.addEntity()
+  s0_Z3_Quest_BoxMat_art_3__01: Entity = engine.addEntity()
+  s0_Z3_Rock_4_art_21__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_29__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_30__01: Entity = engine.addEntity()
+  s0_tree_01_low_36__01: Entity = engine.addEntity()
+  s0_tree_02_low_72__01: Entity = engine.addEntity()
+  s0_tree_02_low_58__01: Entity = engine.addEntity()
+  s0_tree_02_low_73__01: Entity = engine.addEntity()
+  s0_tree_02_low_59__01: Entity = engine.addEntity()
+  s0_tree_02_low_77__01: Entity = engine.addEntity()
+  s0_tree_02_low_76__01: Entity = engine.addEntity()
+  s0_tree_01_low_43__01: Entity = engine.addEntity()
+  s0_tree_01_low_44__01: Entity = engine.addEntity()
+  s0_tree_02_low_79__01: Entity = engine.addEntity()
+  s0_tree_02_low_78__01: Entity = engine.addEntity()
+  s0_tree_02_low_84__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_31__01: Entity = engine.addEntity()
+  s0_Z3_Rock_4_art_26__01: Entity = engine.addEntity()
+  s0_Z3_Rock_4_art_25__01: Entity = engine.addEntity()
+  s0_Z3_Quest_BoxTri_art_3__01: Entity = engine.addEntity()
+  s0_Z3_Prop_Stairs02_Art_11__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_36__01: Entity = engine.addEntity()
+  s0_Z3_Rock_2_art_35__01: Entity = engine.addEntity()
+  s0_Z3_Stones_2_art_23__01: Entity = engine.addEntity()
+  s0_tree_02_low_81__01: Entity = engine.addEntity()
+  s0_tree_02_low_80__01: Entity = engine.addEntity()
+  s0_tree_01_low_45__01: Entity = engine.addEntity()
+  s0_WaterFall_02_Art_01: Entity = engine.addEntity()
+  s0_tree_02_low_83__01: Entity = engine.addEntity()
+  s0_tree_02_low_82__01: Entity = engine.addEntity()
+  s0_tree_01_low_46__01: Entity = engine.addEntity()
+  s0_Z3_Str_Dancing_Station_Art_01: Entity = engine.addEntity()
+  s0_EmoteZone_01: Entity = engine.addEntity()
+  s0_tick_1_01: Entity
+  s0_tick_2_01: Entity
+  s0_tick_3_01: Entity
+  s0_smallislands_01: Entity
+  s0_Bridge_Platform_Art_3__01: Entity
+  s0_Bridge_Platform_Art_2__01: Entity
+  s0_Bridge_Platform_Art_1__01: Entity
+  s0_Bridge_Platform_Art_01: Entity
+  s0_Z3_Str_Wereable_Station_Art_01: Entity
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -1366,16 +1432,16 @@ export class MainInstace {
     Transform.getMutable(this.s0_Z3_Rock_4_art_4__01).parent = this.s0_Z3_COG_01
 
     // // s0_WaterFall_01_Art_01 //out of boundaries
-    this.s0_WaterFall_01_Art_01 = engine.addEntity()
-    GltfContainer.create(this.s0_WaterFall_01_Art_01, {
-      src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
-    })
-    Transform.create(this.s0_WaterFall_01_Art_01, {
-      position: Vector3.create(-38.5, -48.82, 278.49),
-      rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
-      scale: Vector3.create(1, 1.5479, 1)
-    })
-    Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
+    // this.s0_WaterFall_01_Art_01 = engine.addEntity()
+    // GltfContainer.create(this.s0_WaterFall_01_Art_01, {
+    //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
+    // })
+    // Transform.create(this.s0_WaterFall_01_Art_01, {
+    //   position: Vector3.create(-38.5, -48.82, 278.49),
+    //   rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
+    //   scale: Vector3.create(1, 1.5479, 1)
+    // })
+    // Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
 
     // s0_Z3_Prop_Fence_Art_3__01
     this.s0_Z3_Prop_Fence_Art_3__01 = engine.addEntity()
@@ -1579,9 +1645,8 @@ export class MainInstace {
       scale: Vector3.create(1.251684, 1.272235, 1.210179)
     })
     Transform.getMutable(this.s0_Z3_Prop_Fence_Art_11__01).parent = this.s0_Z3_COG_01
-    this.DEFER_LOADING()
-  }
-  DEFER_LOADING() {
+
+    //DEFER_LOADING
     console.log('onSceneReadyObservable called. loading non critical values', 'Main_Island_art')
     // Main_Island_art
     GltfContainer.create(this.s0_Main_Island_art_01, {
@@ -1593,5 +1658,768 @@ export class MainInstace {
       scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_Main_Island_art_01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_3_art (12)
+    GltfContainer.create(this.s0_Z3_Rock_3_art_12__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_3_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_3_art_12__01, {
+      position: Vector3.create(154.62, 68.94, 154.68),
+      rotation: Quaternion.create(-0.08939721, 0.8494771, 0.07567111, 0.5144615),
+      scale: Vector3.create(1.211787, 1.211787, 1.211787)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_3_art_12__01).parent = this.s0_Z3_COG_01
+    // Z1_Out_IslandBase_Art (189)¿
+    GltfContainer.create(this.s0_Z1_Out_IslandBase_Art_189__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase_Art_189__01.glb'
+    })
+    Transform.create(this.s0_Z1_Out_IslandBase_Art_189__01, {
+      position: Vector3.create(212.1419, 64, 131.2289),
+      rotation: Quaternion.create(0, -0.7082617, 0, 0.70595),
+      scale: Vector3.create(0.1198232, 0.1442395, 0.1812038)
+    })
+    Transform.getMutable(this.s0_Z1_Out_IslandBase_Art_189__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_1_art (12)
+    GltfContainer.create(this.s0_Z3_Rock_1_art_12__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_1_art_11__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_1_art_12__01, {
+      position: Vector3.create(208.3835, 64.28, 132.334),
+      rotation: Quaternion.create(0, 0.06130404, 0, 0.9981192),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_1_art_12__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_2_art (33)
+    GltfContainer.create(this.s0_Z3_Rock_2_art_33__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_33__01, {
+      position: Vector3.create(213.0146, 64.77, 127.0058),
+      rotation: Quaternion.create(0, -0.9935821, 0, -0.1131134),
+      scale: Vector3.create(1.077553, 1.077553, 1.077553)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_33__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Stairs03_Art (14)
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
+      position: Vector3.create(212.3836, 67.383, 132.7915),
+      rotation: Quaternion.create(-0.05257276, 0.6781474, 0.04408246, 0.7317168),
+      scale: Vector3.create(0.589233, 0.589233, 0.6497013)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_14__01).parent = this.s0_Z3_COG_01
+    // Z3_Env_Mountain_Low_Art (10)
+    GltfContainer.create(this.s0_Z3_Env_Mountain_Low_Art_10__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Env_Mountain_Low_Art_10__01.glb'
+    })
+    Transform.create(this.s0_Z3_Env_Mountain_Low_Art_10__01, {
+      position: Vector3.create(211.9249, 60.758, 151.3174),
+      rotation: Quaternion.create(0, -0.5946434, 0, 0.8039896),
+      scale: Vector3.create(0.2456171, 0.245617, 0.2456171)
+    })
+    Transform.getMutable(this.s0_Z3_Env_Mountain_Low_Art_10__01).parent = this.s0_Z3_COG_01
+    // Z3_Env_Mountain_Low_Art (9)
+    GltfContainer.create(this.s0_Z3_Env_Mountain_Low_Art_9__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Env_Mountain_Low_Art_10__01.glb'
+    })
+    Transform.create(this.s0_Z3_Env_Mountain_Low_Art_9__01, {
+      position: Vector3.create(235.9233, 64.933, 142.5481),
+      rotation: Quaternion.create(0, 0.3518605, 0, 0.9360524),
+      scale: Vector3.create(0.1281433, 0.1281433, 0.1281433)
+    })
+    Transform.getMutable(this.s0_Z3_Env_Mountain_Low_Art_9__01).parent = this.s0_Z3_COG_01
+    // Z3_Stones_2_art (28)
+    GltfContainer.create(this.s0_Z3_Stones_2_art_28__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_28__01, {
+      position: Vector3.create(202.5701, 64.536, 141.6531),
+      rotation: Quaternion.create(0, -0.1879164, 0, 0.982185),
+      scale: Vector3.create(0.5451291, 0.5451291, 0.5451291)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_28__01).parent = this.s0_Z3_COG_01
+    // Z1_Out_IslandBase_Art (186)
+    GltfContainer.create(this.s0_Z1_Out_IslandBase_Art_186__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase_Art_189__01.glb'
+    })
+    Transform.create(this.s0_Z1_Out_IslandBase_Art_186__01, {
+      position: Vector3.create(211.4, 63.29, 131.3507),
+      rotation: Quaternion.create(0, -0.7082617, 0, 0.70595),
+      scale: Vector3.create(0.09153531, 0.1442395, -0.1981825)
+    })
+    Transform.getMutable(this.s0_Z1_Out_IslandBase_Art_186__01).parent = this.s0_Z3_COG_01
+    // Z3_Stones_2_art (26)
+    this.s0_Z3_Stones_2_art_26__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Stones_2_art_26__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_26__01, {
+      position: Vector3.create(201.8501, 64.559, 142.5211),
+      rotation: Quaternion.create(0, 0.4932317, 0, 0.869898),
+      scale: Vector3.create(0.8476401, 0.84764, 0.8476401)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_26__01).parent = this.s0_Z3_COG_01
+    // Z3_Stones_2_art (25)
+    this.s0_Z3_Stones_2_art_25__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Stones_2_art_25__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_25__01, {
+      position: Vector3.create(205.0161, 64.536, 141.7511),
+      rotation: Quaternion.create(0, 0.01234137, 0, 0.9999239),
+      scale: Vector3.create(0.545129, 0.5451291, 0.545129)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_25__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Stones_2_art (24)
+    this.s0_Z3_Stones_2_art_24__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Stones_2_art_24__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_24__01, {
+      position: Vector3.create(206.2241, 64.536, 141.2121),
+      rotation: Quaternion.create(0, -0.9774786, 0, 0.2110346),
+      scale: Vector3.create(0.5451291, 0.5451291, 0.5451291)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_24__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_1_art (10)
+
+    GltfContainer.create(this.s0_Z3_Rock_1_art_10__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_1_art_11__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_1_art_10__01, {
+      position: Vector3.create(204.3261, 64.63499, 142.9231),
+      rotation: Quaternion.create(0, 0.2062869, 0, 0.9784916),
+      scale: Vector3.create(0.65838, 0.65838, 0.65838)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_1_art_10__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_2_art (31)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_31__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_31__01, {
+      position: Vector3.create(202.7241, 64.845, 142.7541),
+      rotation: Quaternion.create(0, -0.9900247, 0, -0.1408944),
+      scale: Vector3.create(-0.484333, 0.41538, 0.4153799)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_31__01).parent = this.s0_Z3_COG_01
+    // Z3_Env_Mountain_Low_Art (8)
+
+    GltfContainer.create(this.s0_Z3_Env_Mountain_Low_Art_8__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Env_Mountain_Low_Art_10__01.glb'
+    })
+    Transform.create(this.s0_Z3_Env_Mountain_Low_Art_8__01, {
+      position: Vector3.create(214.368, 63.41, 143.4479),
+      rotation: Quaternion.create(0, -0.6470218, 0, 0.7624714),
+      scale: Vector3.create(0.1710182, 0.1710182, 0.1710182)
+    })
+    Transform.getMutable(this.s0_Z3_Env_Mountain_Low_Art_8__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Prop_Stairs03_Art (16)
+
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_16__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_16__01, {
+      position: Vector3.create(213.8911, 68.073, 132.8966),
+      rotation: Quaternion.create(-0.05257276, 0.6781474, 0.04408246, 0.7317168),
+      scale: Vector3.create(0.589233, 0.589233, 0.6497013)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_16__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Stairs03_Art (15)
+
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_15__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_15__01, {
+      position: Vector3.create(209.2941, 66, 132.565),
+      rotation: Quaternion.create(-0.05257276, 0.6781474, 0.04408246, 0.7317168),
+      scale: Vector3.create(0.589233, 0.589233, 0.6497013)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_15__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Prop_Stairs03_Art (17)
+
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_17__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_17__01, {
+      position: Vector3.create(210.8017, 66.68799, 132.6701),
+      rotation: Quaternion.create(-0.05257276, 0.6781474, 0.04408246, 0.7317168),
+      scale: Vector3.create(0.589233, 0.589233, 0.6497013)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_17__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Fence_Art (25)
+
+    GltfContainer.create(this.s0_Z3_Prop_Fence_Art_25__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Fence_Art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Fence_Art_25__01, {
+      position: Vector3.create(218.04, 68.77, 125.87),
+      rotation: Quaternion.create(-0.01471912, 0.8331946, 0.003384584, 0.5527737),
+      scale: Vector3.create(0.740853, 0.740853, -0.6122104)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Fence_Art_25__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_1_art (9)
+
+    GltfContainer.create(this.s0_Z3_Rock_1_art_9__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_1_art_11__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_1_art_9__01, {
+      position: Vector3.create(208.5201, 64.28, 129.5102),
+      rotation: Quaternion.create(0, 0.7691315, 0, 0.6390904),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_1_art_9__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_4_art (23)
+
+    GltfContainer.create(this.s0_Z3_Rock_4_art_23__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_4_art_3__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_4_art_23__01, {
+      position: Vector3.create(155.5343, 65.757, 110.3461),
+      rotation: Quaternion.create(0, 0.6233831, 0, 0.7819167),
+      scale: Vector3.create(0.7139001, 0.57482, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_4_art_23__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_2_art (34)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_34__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_34__01, {
+      position: Vector3.create(158.74, 65.45, 112.98),
+      rotation: Quaternion.create(0, -0.8600142, 0, 0.5102703),
+      scale: Vector3.create(0.3594771, 0.3594771, 0.3594771)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_34__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_4_art (20)
+
+    GltfContainer.create(this.s0_Z3_Rock_4_art_20__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_4_art_3__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_4_art_20__01, {
+      position: Vector3.create(157.2419, 66.41599, 116.034),
+      rotation: Quaternion.create(0, -0.1962901, 0, 0.9805459),
+      scale: Vector3.create(0.7139001, 0.57482, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_4_art_20__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_2_art (28)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_28__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_28__01, {
+      position: Vector3.create(158.4294, 65.45, 112.3735),
+      rotation: Quaternion.create(0, -0.7429489, 0, -0.6693481),
+      scale: Vector3.create(0.3594771, 0.3594771, 0.3594771)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_28__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Stairs02_Art (10)
+
+    GltfContainer.create(this.s0_Z3_Prop_Stairs02_Art_10__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs02_Art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs02_Art_10__01, {
+      position: Vector3.create(179.3299, 67.77914, 146.2965),
+      rotation: Quaternion.create(0.02742634, -0.905489, 0.07525457, 0.4167424),
+      scale: Vector3.create(0.756205, 1.012941, -0.75151)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs02_Art_10__01).parent = this.s0_Z3_COG_01
+    // Z3_Quest_BoxMat_art (3)
+
+    GltfContainer.create(this.s0_Z3_Quest_BoxMat_art_3__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Quest_BoxMat_art_3__01.glb'
+    })
+    Animator.create(this.s0_Z3_Quest_BoxMat_art_3__01, {
+      states: [{ clip: 'Box_02_Anim' }, { clip: 'Box_02_Static' }]
+    })
+    Transform.create(this.s0_Z3_Quest_BoxMat_art_3__01, {
+      position: Vector3.create(181.981, 69.778, 151.457),
+      rotation: Quaternion.create(0.01691751, -0.5336378, 0.0008390199, -0.8455436),
+      scale: Vector3.create(0.1720035, 0.1720035, 0.1720035)
+    })
+    Transform.getMutable(this.s0_Z3_Quest_BoxMat_art_3__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_4_art (21)
+
+    GltfContainer.create(this.s0_Z3_Rock_4_art_21__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_4_art_3__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_4_art_21__01, {
+      position: Vector3.create(178.09, 67.9, 151.71),
+      rotation: Quaternion.create(0.006462086, -0.9924242, 0.01565726, 0.1216853),
+      scale: Vector3.create(0.68929, 0.68929, 0.68929)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_4_art_21__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Stones_2_art (29)
+
+    GltfContainer.create(this.s0_Z3_Stones_2_art_29__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_29__01, {
+      position: Vector3.create(176.8049, 67.9, 151.4244),
+      rotation: Quaternion.create(-0.004560137, -0.9577522, 0.01631288, 0.2870956),
+      scale: Vector3.create(0.67779, 0.67779, 0.67779)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_29__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_2_art (30)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_30__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_30__01, {
+      position: Vector3.create(177.7684, 68.14859, 150.3806),
+      rotation: Quaternion.create(0.001589979, 0.820996, -0.01686352, -0.5706827),
+      scale: Vector3.create(0.3594771, 0.3594771, 0.3594771)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_30__01).parent = this.s0_Z3_COG_01
+
+    // tree_01_low (36)
+
+    GltfContainer.create(this.s0_tree_01_low_36__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_01_low_2__01.glb'
+    })
+    Transform.create(this.s0_tree_01_low_36__01, {
+      position: Vector3.create(152.5932, 73.987, 175.4607),
+      rotation: Quaternion.create(-0.04839908, 0.2493305, 0.03204292, 0.9666774),
+      scale: Vector3.create(0.423418, 0.423418, 0.423418)
+    })
+    Transform.getMutable(this.s0_tree_01_low_36__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (72)
+
+    GltfContainer.create(this.s0_tree_02_low_72__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_72__01, {
+      position: Vector3.create(153.2513, 74.337, 177.0125),
+      rotation: Quaternion.create(0, -0.8815752, 0, -0.4720436),
+      scale: Vector3.create(0.7356974, 0.7356974, 0.7356974)
+    })
+    Transform.getMutable(this.s0_tree_02_low_72__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (58)
+
+    GltfContainer.create(this.s0_tree_02_low_58__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_58__01, {
+      position: Vector3.create(151.38, 74.08, 176.81),
+      rotation: Quaternion.create(0, 0.1712118, 0, -0.9852343),
+      scale: Vector3.create(0.5340133, 0.5340133, 0.5340133)
+    })
+    Transform.getMutable(this.s0_tree_02_low_58__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (73)
+
+    GltfContainer.create(this.s0_tree_02_low_73__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_73__01, {
+      position: Vector3.create(141.4435, 80.69, 87.32304),
+      rotation: Quaternion.create(0, -0.885258, 0, 0.4651004),
+      scale: Vector3.create(0.5261371, 0.5261371, 0.5261371)
+    })
+    Transform.getMutable(this.s0_tree_02_low_73__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (59)
+
+    GltfContainer.create(this.s0_tree_02_low_59__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_59__01, {
+      position: Vector3.create(141.2173, 80.506, 88.41279),
+      rotation: Quaternion.create(0, -0.7196492, 0, -0.694338),
+      scale: Vector3.create(0.3819018, 0.3819018, 0.3819018)
+    })
+    Transform.getMutable(this.s0_tree_02_low_59__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (77)
+
+    GltfContainer.create(this.s0_tree_02_low_77__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_77__01, {
+      position: Vector3.create(185.6171, 72.67031, 89.53943),
+      rotation: Quaternion.create(-0.002946104, -0.01354656, -0.01588215, -0.9997778),
+      scale: Vector3.create(0.5340133, 0.5340133, 0.5340134)
+    })
+    Transform.getMutable(this.s0_tree_02_low_77__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (76)
+
+    GltfContainer.create(this.s0_tree_02_low_76__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_76__01, {
+      position: Vector3.create(187.4253, 72.98783, 89.05113),
+      rotation: Quaternion.create(0.0141527, -0.953422, -0.007786125, -0.3012069),
+      scale: Vector3.create(0.7356975, 0.7356974, 0.7356974)
+    })
+    Transform.getMutable(this.s0_tree_02_low_76__01).parent = this.s0_Z3_COG_01
+    // tree_01_low (43)
+
+    GltfContainer.create(this.s0_tree_01_low_43__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_01_low_2__01.glb'
+    })
+    Transform.create(this.s0_tree_01_low_43__01, {
+      position: Vector3.create(186.2607, 72.60842, 87.84151),
+      rotation: Quaternion.create(-0.04549899, 0.4226004, 0.05607864, 0.9034346),
+      scale: Vector3.create(0.423418, 0.423418, 0.423418)
+    })
+    Transform.getMutable(this.s0_tree_01_low_43__01).parent = this.s0_Z3_COG_01
+
+    // tree_01_low (44)
+
+    GltfContainer.create(this.s0_tree_01_low_44__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_01_low_2__01.glb'
+    })
+    Transform.create(this.s0_tree_01_low_44__01, {
+      position: Vector3.create(102.43, 78.73, 169.28),
+      rotation: Quaternion.create(-0.04549899, 0.4226004, 0.05607864, 0.9034346),
+      scale: Vector3.create(0.423418, 0.423418, -0.3921994)
+    })
+    Transform.getMutable(this.s0_tree_01_low_44__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (79)
+
+    GltfContainer.create(this.s0_tree_02_low_79__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_79__01, {
+      position: Vector3.create(100.847, 79.02801, 169.49),
+      rotation: Quaternion.create(0.0141527, -0.953422, -0.007786125, -0.3012069),
+      scale: Vector3.create(-0.6814545, 0.7356974, 0.7356974)
+    })
+    Transform.getMutable(this.s0_tree_02_low_79__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (78)
+
+    GltfContainer.create(this.s0_tree_02_low_78__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_78__01, {
+      position: Vector3.create(101.83, 78.79301, 170.99),
+      rotation: Quaternion.create(-0.002946104, -0.01354656, -0.01588215, -0.9997778),
+      scale: Vector3.create(-0.4946405, 0.5340133, 0.5340134)
+    })
+    Transform.getMutable(this.s0_tree_02_low_78__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (84)
+
+    GltfContainer.create(this.s0_tree_02_low_84__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_84__01, {
+      position: Vector3.create(144.38, 78.28, 90.9),
+      rotation: Quaternion.create(0, -0.994014, 0, 0.1092531),
+      scale: Vector3.create(1.1883, 1.1883, 1.1883)
+    })
+    Transform.getMutable(this.s0_tree_02_low_84__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Stones_2_art (31)
+
+    GltfContainer.create(this.s0_Z3_Stones_2_art_31__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_31__01, {
+      position: Vector3.create(166.2518, 67.97604, 169.0748),
+      rotation: Quaternion.create(0.001622778, 0.4854141, 0.01004922, 0.8742252),
+      scale: Vector3.create(0.67779, 0.6777899, 0.67779)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_31__01).parent = this.s0_Z3_COG_01
+    // Z3_Rock_4_art (26)
+
+    GltfContainer.create(this.s0_Z3_Rock_4_art_26__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_4_art_3__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_4_art_26__01, {
+      position: Vector3.create(165.9962, 68.01357, 170.774),
+      rotation: Quaternion.create(0.01017501, -0.7671711, 0.0002987393, 0.6413618),
+      scale: Vector3.create(0.68929, 0.68929, 0.6892899)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_4_art_26__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_4_art (25)
+
+    GltfContainer.create(this.s0_Z3_Rock_4_art_25__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_4_art_3__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_4_art_25__01, {
+      position: Vector3.create(161.4029, 67.99108, 166.7252),
+      rotation: Quaternion.create(0.01017501, -0.7671711, 0.0002987393, 0.6413618),
+      scale: Vector3.create(0.68929, 0.68929, 0.6892899)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_4_art_25__01).parent = this.s0_Z3_COG_01
+    // Z3_Quest_BoxTri_art (3)
+
+    GltfContainer.create(this.s0_Z3_Quest_BoxTri_art_3__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Quest_BoxTri_art_3__01.glb'
+    })
+    Animator.create(this.s0_Z3_Quest_BoxTri_art_3__01, {
+      states: [
+        {
+          clip: 'Box_01_Anim'
+        },
+        {
+          clip: 'Box_01_Static'
+        }
+      ]
+    })
+    Transform.create(this.s0_Z3_Quest_BoxTri_art_3__01, {
+      position: Vector3.create(161.35, 70.48, 171.47),
+      rotation: Quaternion.create(-0.08285215, -0.3634197, -0.006515909, 0.9279113),
+      scale: Vector3.create(0.1720034, 0.1720035, 0.1720034)
+    })
+    Transform.getMutable(this.s0_Z3_Quest_BoxTri_art_3__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Stairs02_Art (11)
+
+    GltfContainer.create(this.s0_Z3_Prop_Stairs02_Art_11__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs02_Art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs02_Art_11__01, {
+      position: Vector3.create(166.3977, 68.32661, 168.2689),
+      rotation: Quaternion.create(0.02096506, 0.9395424, -0.09750051, 0.3275887),
+      scale: Vector3.create(0.756205, 1.012941, -0.7515101)
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs02_Art_11__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_2_art (36)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_36__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_36__01, {
+      position: Vector3.create(165.6915, 68.31629, 169.6171),
+      rotation: Quaternion.create(-0.003915887, -0.2687367, -0.009396045, -0.9631599),
+      scale: Vector3.create(0.3594771, 0.3594771, 0.3594771)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_36__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Rock_2_art (35)
+
+    GltfContainer.create(this.s0_Z3_Rock_2_art_35__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Rock_2_art_33__01.glb'
+    })
+    Transform.create(this.s0_Z3_Rock_2_art_35__01, {
+      position: Vector3.create(162.2049, 68.29691, 166.7295),
+      rotation: Quaternion.create(-0.008128874, 0.9997261, 0.006127074, -0.02107305),
+      scale: Vector3.create(0.3594771, 0.3594771, 0.3594771)
+    })
+    Transform.getMutable(this.s0_Z3_Rock_2_art_35__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Stones_2_art (23)
+
+    GltfContainer.create(this.s0_Z3_Stones_2_art_23__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Stones_2_art_1__01.glb'
+    })
+    Transform.create(this.s0_Z3_Stones_2_art_23__01, {
+      position: Vector3.create(162.4607, 67.95438, 165.9784),
+      rotation: Quaternion.create(-0.0003536752, 0.6454959, 0.01017322, 0.7636958),
+      scale: Vector3.create(0.67779, 0.6777899, 0.67779)
+    })
+    Transform.getMutable(this.s0_Z3_Stones_2_art_23__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (81)
+
+    GltfContainer.create(this.s0_tree_02_low_81__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_81__01, {
+      position: Vector3.create(228.47, 77.30701, 131.68),
+      rotation: Quaternion.create(0, 0.7649515, 0, -0.644088),
+      scale: Vector3.create(0.2490197, 0.2490197, 0.2490197)
+    })
+    Transform.getMutable(this.s0_tree_02_low_81__01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (80)
+
+    GltfContainer.create(this.s0_tree_02_low_80__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_80__01, {
+      position: Vector3.create(228.52, 77.426, 132.55),
+      rotation: Quaternion.create(0, -0.371183, 0, -0.9285598),
+      scale: Vector3.create(0.3430684, 0.3430684, 0.3430684)
+    })
+    Transform.getMutable(this.s0_tree_02_low_80__01).parent = this.s0_Z3_COG_01
+
+    // tree_01_low (45)
+
+    GltfContainer.create(this.s0_tree_01_low_45__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_01_low_2__01.glb'
+    })
+    Transform.create(this.s0_tree_01_low_45__01, {
+      position: Vector3.create(229.18, 77.26301, 132.13),
+      rotation: Quaternion.create(-0.05766755, -0.4310675, -0.006608698, 0.9004509),
+      scale: Vector3.create(0.1974471, 0.1974471, 0.1974471)
+    })
+    Transform.getMutable(this.s0_tree_01_low_45__01).parent = this.s0_Z3_COG_01
+
+    // WaterFall_02_Art
+
+    GltfContainer.create(this.s0_WaterFall_02_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_WaterFall_02_Art_01.glb'
+    })
+    Transform.create(this.s0_WaterFall_02_Art_01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_WaterFall_02_Art_01).parent = this.s0_Z3_COG_01
+
+    // tree_02_low (83)
+
+    GltfContainer.create(this.s0_tree_02_low_83__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_83__01, {
+      position: Vector3.create(198.29, 71.233, 158.5),
+      rotation: Quaternion.create(-0.002946104, -0.01354656, -0.01588215, -0.9997778),
+      scale: Vector3.create(-0.4946405, 0.5340133, 0.5340134)
+    })
+    Transform.getMutable(this.s0_tree_02_low_83__01).parent = this.s0_Z3_COG_01
+    // tree_02_low (82)
+
+    GltfContainer.create(this.s0_tree_02_low_82__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_02_low_72__01.glb'
+    })
+    Transform.create(this.s0_tree_02_low_82__01, {
+      position: Vector3.create(197.307, 71.468, 157),
+      rotation: Quaternion.create(0.0141527, -0.953422, -0.007786125, -0.3012069),
+      scale: Vector3.create(-0.6814545, 0.7356974, 0.7356974)
+    })
+    Transform.getMutable(this.s0_tree_02_low_82__01).parent = this.s0_Z3_COG_01
+
+    // tree_01_low (46)
+
+    GltfContainer.create(this.s0_tree_01_low_46__01, {
+      src: 'assets/scene/models/unity_assets/s0_tree_01_low_2__01.glb'
+    })
+    Transform.create(this.s0_tree_01_low_46__01, {
+      position: Vector3.create(198.89, 71.17, 156.79),
+      rotation: Quaternion.create(-0.04549899, 0.4226004, 0.05607864, 0.9034346),
+      scale: Vector3.create(0.423418, 0.423418, -0.3921994)
+    })
+    Transform.getMutable(this.s0_tree_01_low_46__01).parent = this.s0_Z3_COG_01
+
+    // Z3_Str_Dancing_Station_Art
+
+    Transform.create(this.s0_Z3_Str_Dancing_Station_Art_01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 0, 0, 1),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Str_Dancing_Station_Art_01).parent = this.s0_Z3_COG_01
+
+    //DEFER_LOADING
+    console.log('onSceneReadyObservable called. loading non critical values', 'EmoteZone')
+    // EmoteZone
+    GltfContainer.create(this.s0_EmoteZone_01, { src: 'assets/scene/models/unity_assets/s0_EmoteZone_01.glb' })
+    Transform.create(this.s0_EmoteZone_01, {
+      position: Vector3.create(160.517, 66.56356, 104.0188),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_EmoteZone_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
+    // tick_1
+    this.s0_tick_1_01 = engine.addEntity()
+    GltfContainer.create(this.s0_tick_1_01, { src: 'assets/scene/models/unity_assets/s0_tick_1_01.glb' })
+    Transform.create(this.s0_tick_1_01, {
+      position: Vector3.create(157.366, 66.76084, 104.8572),
+      rotation: Quaternion.create(5.825006e-17, -0.0475723, 5.825006e-17, -0.9988678),
+      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
+    })
+    Transform.getMutable(this.s0_tick_1_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
+
+    // tick_2
+    this.s0_tick_2_01 = engine.addEntity()
+    GltfContainer.create(this.s0_tick_2_01, { src: 'assets/scene/models/unity_assets/s0_tick_2_01.glb' })
+    Transform.create(this.s0_tick_2_01, {
+      position: Vector3.create(157.5212, 66.75648, 105.5075),
+      rotation: Quaternion.create(4.757887e-17, -0.2023015, 4.757888e-17, -0.9793233),
+      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
+    })
+    Transform.getMutable(this.s0_tick_2_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
+    // tick_3
+    this.s0_tick_3_01 = engine.addEntity()
+    GltfContainer.create(this.s0_tick_3_01, { src: 'assets/scene/models/unity_assets/s0_tick_3_01.glb' })
+    Transform.create(this.s0_tick_3_01, {
+      position: Vector3.create(157.8082, 66.75357, 106.1788),
+      rotation: Quaternion.create(4.433242e-17, -0.2454148, 4.433243e-17, -0.9694182),
+      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
+    })
+    Transform.getMutable(this.s0_tick_3_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
+    // smallislands
+    this.s0_smallislands_01 = engine.addEntity()
+    GltfContainer.create(this.s0_smallislands_01, { src: 'assets/scene/models/unity_assets/s0_smallislands_01.glb' })
+    Transform.create(this.s0_smallislands_01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_smallislands_01).parent = this.s0_Z3_COG_01
+    // Bridge_Platform_Art (3)
+    this.s0_Bridge_Platform_Art_3__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Bridge_Platform_Art_3__01, {
+      src: 'assets/scene/models/unity_assets/s0_Bridge_Platform_Art_3__01.glb'
+    })
+    Transform.create(this.s0_Bridge_Platform_Art_3__01, {
+      position: Vector3.create(168.26, 66.849, 134.67),
+      rotation: Quaternion.create(0, 0.7432014, 0, -0.6690679),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Bridge_Platform_Art_3__01).parent = this.s0_Z3_COG_01
+
+    // Bridge_Platform_Art (2)
+    this.s0_Bridge_Platform_Art_2__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Bridge_Platform_Art_2__01, {
+      src: 'assets/scene/models/unity_assets/s0_Bridge_Platform_Art_3__01.glb'
+    })
+    Transform.create(this.s0_Bridge_Platform_Art_2__01, {
+      position: Vector3.create(169.719, 64.919, 120.528),
+      rotation: Quaternion.create(-0.02635495, 0.6681669, -0.02930534, 0.7429668),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Bridge_Platform_Art_2__01).parent = this.s0_Z3_COG_01
+    // Bridge_Platform_Art (1)
+    this.s0_Bridge_Platform_Art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Bridge_Platform_Art_1__01, {
+      src: 'assets/scene/models/unity_assets/s0_Bridge_Platform_Art_3__01.glb'
+    })
+    Transform.create(this.s0_Bridge_Platform_Art_1__01, {
+      position: Vector3.create(183.5, 64.579, 116.67),
+      rotation: Quaternion.create(-0.01036501, 0.9585552, -0.004272395, 0.2846865),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Bridge_Platform_Art_1__01).parent = this.s0_Z3_COG_01
+
+    // Bridge_Platform_Art
+    this.s0_Bridge_Platform_Art_01 = engine.addEntity()
+    GltfContainer.create(this.s0_Bridge_Platform_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_Bridge_Platform_Art_3__01.glb'
+    })
+    Transform.create(this.s0_Bridge_Platform_Art_01, {
+      position: Vector3.create(195.492, 63.979, 124.528),
+      rotation: Quaternion.create(0.00123994, 0.2876681, 0.01104244, -0.9576657),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Bridge_Platform_Art_01).parent = this.s0_Z3_COG_01
+    // Z3_Str_Wereable_Station_Art
+    this.s0_Z3_Str_Wereable_Station_Art_01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Wereable_Station_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Wereable_Station_Art_01.glb'
+    })
+    Animator.create(this.s0_Z3_Str_Wereable_Station_Art_01, {
+      states: [{ clip: 'TakeWEA' }]
+    })
+    Transform.create(this.s0_Z3_Str_Wereable_Station_Art_01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    Transform.getMutable(this.s0_Z3_Str_Wereable_Station_Art_01).parent = this.s0_Z3_COG_01
   }
 }
