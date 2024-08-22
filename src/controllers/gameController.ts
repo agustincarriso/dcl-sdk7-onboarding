@@ -1,5 +1,5 @@
 import { movePlayerTo } from '~system/RestrictedActions'
-import { cleanUpScene } from '../cleanupScene'
+import { cleanUpScene } from '../utils/cleanupScene'
 import { MainInstace } from '../instance/mainInstance'
 import { Vector3 } from '@dcl/sdk/math'
 
