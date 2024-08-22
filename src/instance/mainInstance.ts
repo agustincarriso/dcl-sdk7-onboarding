@@ -124,6 +124,7 @@ export class MainInstace {
   s0_Z3_Env_Rocks_Source_art_9__01: Entity
   s0_Z3_Prop_Stairs02_Art_1__01: Entity
   s0_Z3_Env_Rocks_Source_art_10__01: Entity
+  s0_Z3_Prop_Stairs03_Art_01: Entity
   s0_Z3_Prop_Fence_Art_10__01: Entity
   s0_Z3_Rock_3_art_4__01: Entity
   s0_Z3_Prop_Stairs02_Art_3__01: Entity
@@ -131,7 +132,6 @@ export class MainInstace {
   s0_Main_Island_art_01: Entity = engine.addEntity()
   s0_Z3_Rock_3_art_12__01: Entity = engine.addEntity()
   s0_Z1_Out_IslandBase_Art_189__01: Entity = engine.addEntity()
-  s0_Z3_Str_Lamp_Art_1__01: Entity = engine.addEntity()
   s0_Z3_Rock_1_art_12__01: Entity = engine.addEntity()
   s0_Z3_Rock_2_art_33__01: Entity = engine.addEntity()
   s0_Z3_Prop_Stairs03_Art_14__01: Entity = engine.addEntity()
@@ -385,6 +385,91 @@ export class MainInstace {
   s0_Det_Firefly_art_19__01: Entity
   s0_Det_Firefly_art_20__01: Entity
   s0_Det_Firefly_art_21__01: Entity
+  s0_Z3_Str_Lamp_Art_1__01: Entity
+  s0_Z3_Str_Lamp_Art_2__01: Entity
+  s0_Z3_Str_Lamp_Art_3__01: Entity
+  s0_Z3_Str_Lamp_Art_4__01: Entity
+  s0_Z3_Str_Lamp_Art_5__01: Entity
+  s0_grass_orange_art_1__01: Entity
+  s0_Dto_Bird_Art_1__01: Entity
+  s0_Dto_Bird_Art_2__01: Entity
+  s0_Dto_Bird_Art_4__01: Entity
+  s0_Z1_Out_IslandBase2_Art_1__01: Entity
+  s0_Z1_Out_IslandBase2_Art_2__01: Entity
+  s0_Z1_Out_IslandBase2_Art_3__01: Entity
+  s0_rocks_collider_01: Entity
+  s0_rocs_cpllider_2__01: Entity
+  s0_rocs_cpllider_3__01: Entity
+  s0_rocs_cpllider_4__01: Entity
+  s0_rocs_cpllider_5__01: Entity
+  s0_rocs_cpllider_6__01: Entity
+  s0_rocs_cpllider_7__01: Entity
+  s0_rocs_cpllider_8__01: Entity
+  s0_rocs_cpllider_9__01: Entity
+  s0_rocs_cpllider_10__01: Entity
+  s0_MeshBaker_0__01: Entity
+  s0_rocs_cpllider_11__01: Entity
+  s0_rocs_cpllider_12__01: Entity
+  s0_rocs_cpllider_14__01: Entity
+  s0_rocs_cpllider_15__01: Entity
+  s0_rocs_cpllider_16__01: Entity
+  s0_rocs_cpllider_17__01: Entity
+  s0_rocs_cpllider_19__01: Entity
+  s0_rocs_cpllider_20__01: Entity
+  s0_rocs_cpllider_21__01: Entity
+  s0_rocs_cpllider_22__01: Entity
+  s0_rocs_cpllider_23__01: Entity
+  s0_rocs_cpllider_24__01: Entity
+  s0_rocs_cpllider_25__01: Entity
+  s0_rocs_cpllider_27__01: Entity
+  s0_rocs_cpllider_28__01: Entity
+  s0_rocs_cpllider_29__01: Entity
+  s0_rocs_cpllider_31__01: Entity
+  s0_rocs_cpllider_32__01: Entity
+  s0_rocs_cpllider_33__01: Entity
+  s0_rocs_cpllider_34__01: Entity
+  s0_rocs_cpllider_35__01: Entity
+  s0_rocs_cpllider_36__01: Entity
+  s0_rocs_cpllider_37__01: Entity
+  s0_rocs_cpllider_38__01: Entity
+  s0_rocs_cpllider_39__01: Entity
+  s0_rocs_cpllider_41__01: Entity
+  s0_rocs_cpllider_42__01: Entity
+  s0_rocs_cpllider_43__01: Entity
+  s0_rocs_cpllider_44__01: Entity
+  s0_rocs_cpllider_45__01: Entity
+  s0_rocs_cpllider_46__01: Entity
+  s0_rocs_cpllider_47__01: Entity
+  s0_rocs_cpllider_48__01: Entity
+  s0_rocs_cpllider_49__01: Entity
+  s0_rocs_cpllider_50__01: Entity
+  s0_rocs_cpllider_51__01: Entity
+  s0_rocs_cpllider_52__01: Entity
+  s0_rocs_cpllider_53__01: Entity
+  s0_rocs_cpllider_54__01: Entity
+  s0_rocs_cpllider_55__01: Entity
+  s0_rocs_cpllider_56__01: Entity
+  s0_rocs_cpllider_57__01: Entity
+  s0_rocs_cpllider_58__01: Entity
+  s0_rocs_cpllider_59__01: Entity
+  s0_rocs_cpllider_60__01: Entity
+  s0_rocs_cpllider_61__01: Entity
+  s0_rocs_cpllider_62__01: Entity
+  s0_rocs_cpllider_63__01: Entity
+  s0_rocs_cpllider_64__01: Entity
+  s0_rocs_cpllider_65__01: Entity
+  s0_rocs_cpllider_66__01: Entity
+  s0_rocs_cpllider_67__01: Entity
+  s0_rocs_cpllider_68__01: Entity
+  s0_rocs_cpllider_26__01: Entity
+  s0_rocs_cpllider_18__01: Entity
+  s0_rocs_cpllider_30__01: Entity
+  s0_rocs_cpllider_40__01: Entity
+  s0_rocs_cpllider_69__01: Entity
+  s0_rocs_cpllider_70__01: Entity
+  s0_rocs_cpllider_13__01: Entity
+  s0_rocs_cpllider_71__01: Entity
+  s0_rocs_cpllider_39__01_flag: Entity
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -1798,6 +1883,17 @@ export class MainInstace {
       scale: Vector3.create(0.84586, 0.84586, 0.84586)
     })
     Transform.getMutable(this.s0_Z3_Env_Rocks_Source_art_10__01).parent = this.s0_Z3_COG_01
+    // Z3_Prop_Stairs03_Art
+    this.s0_Z3_Prop_Stairs03_Art_01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_01,{
+      position: Vector3.create(157.4125, 69.3552, 155.8273),
+      rotation: Quaternion.create(0.02343011, 0.7645672, 0.02817995, -0.6435013),
+      scale: Vector3.create(1, 1, 1),
+    })
+    Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_01).parent = this.s0_Z3_COG_01
     // Z3_Prop_Fence_Art (10)
     this.s0_Z3_Prop_Fence_Art_10__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Fence_Art_10__01, {
@@ -1897,7 +1993,7 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Z3_Rock_2_art_33__01).parent = this.s0_Z3_COG_01
     // Z3_Prop_Stairs03_Art (14)
-    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_14__01, { 
       src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
     })
     Transform.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
@@ -3020,7 +3116,7 @@ export class MainInstace {
     // Transform.getMutable(this.s0_WaterFall_01_Art_1__01).parent = this.s0_Z3_COG_01
     // WaterFall_01_Art (2)
     // this.s0_WaterFall_01_Art_2__01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_2__01, {
+    // GltfContainer.create(this.s0_WaterFall_01_Art_2__01, { 
     //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
     // })
     // Animator.create(this.s0_WaterFall_01_Art_2__01, {
@@ -3043,7 +3139,7 @@ export class MainInstace {
       scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_1__01).parent = this.s0_Z3_COG_01
-
+ 
     // Z3_Prop_Stairs03_Art (2)
     this.s0_Z3_Prop_Stairs03_Art_2__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_2__01, {
@@ -3079,10 +3175,10 @@ export class MainInstace {
       scale: Vector3.create(0.6879829, 0.6879828, 0.6879829)
     })
     Transform.getMutable(this.s0_Z3_Rock_2_art_37__01).parent = this.s0_Z3_COG_01
-    // Z3_Prop_Stairs03_Art (5)
+    //Z3_Prop_Stairs03_Art (5)
     this.s0_Z3_Prop_Stairs03_Art_5__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_5__01, {
-      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb' 
     })
     Transform.create(this.s0_Z3_Prop_Stairs03_Art_5__01, {
       position: Vector3.create(130.1413, 74.70654, 141.3221),
@@ -4833,7 +4929,1149 @@ export class MainInstace {
     })
     Animator.getClip(this.s0_Det_Firefly_art_21__01, 'TakeFirefly').playing = true
     Transform.getMutable(this.s0_Det_Firefly_art_21__01).parent = this.s0_Fireflys_01
+    // ToDo:
+    // s0_Fireflys_01.addComponent(new dclTime()).atDayNight(
+    //   () => {
+    //     s0_Fireflys_01.getComponent(Transform).position = new Vector3(
+    //       89.9,
+    //       -21.5,
+    //       137.5
+    //     );
+    //   },
+    //   () => {}
+    // );
     //DEFER_LOADING
     console.log('onSceneReadyObservable called. loading non critical values', 'COG laps')
+    // Crear entidad Z3_Str_Lamp_Art (1)
+    this.s0_Z3_Str_Lamp_Art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Lamp_Art_1__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Str_Lamp_Art_1__01, {
+      position: Vector3.create(124.85, 75.29, 123.76),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    // Z3_Str_Lamp_Art (2)
+    this.s0_Z3_Str_Lamp_Art_2__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Lamp_Art_2__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Str_Lamp_Art_2__01, {
+      position: Vector3.create(136.87, 70.57, 149.46),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+
+    // Z3_Str_Lamp_Art (3)
+    this.s0_Z3_Str_Lamp_Art_3__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Lamp_Art_3__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Str_Lamp_Art_3__01, {
+      position: Vector3.create(159.85, 67.76, 161.82),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+
+    // Z3_Str_Lamp_Art (4)
+    this.s0_Z3_Str_Lamp_Art_4__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Lamp_Art_4__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Str_Lamp_Art_4__01, {
+      position: Vector3.create(164.19, 66.77, 137.21),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    // Z3_Str_Lamp_Art (5)
+    this.s0_Z3_Str_Lamp_Art_5__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z3_Str_Lamp_Art_5__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+    })
+    Transform.create(this.s0_Z3_Str_Lamp_Art_5__01, {
+      position: Vector3.create(158.51, 64.78, 108.98),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+
+    // grass_orange_art (1)
+    this.s0_grass_orange_art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_grass_orange_art_1__01, {
+      src: 'assets/scene/models/unity_assets/s0_grass_orange_art_01.glb'
+    })
+    Transform.create(this.s0_grass_orange_art_1__01, {
+      position: Vector3.create(224.711, 68.396, 126.606),
+      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      scale: Vector3.create(1, 1, 1)
+    })
+    // Dto_Bird_Art (1)
+    this.s0_Dto_Bird_Art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Dto_Bird_Art_1__01, {
+      src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+    })
+    Transform.create(this.s0_Dto_Bird_Art_1__01, {
+      position: Vector3.create(145.2148, 75.4785, 152.0894),
+      rotation: Quaternion.create(-0.4299748, 0.4893725, -0.5435354, -0.5293445),
+      scale: Vector3.create(100, 100, 100)
+    })
+
+    // Dto_Bird_Art (2)
+    this.s0_Dto_Bird_Art_2__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Dto_Bird_Art_2__01, {
+      src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+    })
+    Transform.create(this.s0_Dto_Bird_Art_2__01, {
+      position: Vector3.create(145.2547, 75.4576, 151.6969),
+      rotation: Quaternion.create(-0.4094036, 0.6543568, -0.4787436, -0.4183428),
+      scale: Vector3.create(100, 100, 100)
+    })
+
+    // Dto_Bird_Art (4)
+    this.s0_Dto_Bird_Art_4__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Dto_Bird_Art_4__01, {
+      src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+    })
+    Transform.create(this.s0_Dto_Bird_Art_4__01, {
+      position: Vector3.create(169.3856, 74.6725, 172.9483),
+      rotation: Quaternion.create(0.5141044, 0.391908, -0.2141115, 0.7322986),
+      scale: Vector3.create(100, 100, 100)
+    })
+    // Z1_Out_IslandBase2_Art (1)
+    this.s0_Z1_Out_IslandBase2_Art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+    })
+    Transform.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
+      position: Vector3.create(127.33, 70.41, 93.55),
+      rotation: Quaternion.create(0, 0.8832645, 0, 0.4688751),
+      scale: Vector3.create(0.391064, 0.3483358, 0.3483358)
+    })
+
+    // Z1_Out_IslandBase2_Art (2)
+    this.s0_Z1_Out_IslandBase2_Art_2__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+    })
+    Transform.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
+      position: Vector3.create(133.34, 69.26, 102.31),
+      rotation: Quaternion.create(0, 0.7877673, 0, 0.6159729),
+      scale: Vector3.create(0.4586008, 0.3483358, 0.3483358)
+    })
+
+    // Z1_Out_IslandBase2_Art (3)
+    this.s0_Z1_Out_IslandBase2_Art_3__01 = engine.addEntity()
+    GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
+      src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+    })
+    Transform.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
+      position: Vector3.create(138.39, 66.78, 113.38),
+      rotation: Quaternion.create(0, 0.7490135, 0, 0.6625547),
+      scale: Vector3.create(0.4586008, 0.2889167, 0.2987502)
+    })
+    // rocks_collider
+    this.s0_rocks_collider_01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocks_collider_01)
+    Material.setPbrMaterial(this.s0_rocks_collider_01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocks_collider_01, {
+      position: Vector3.create(227.76, 70.86, 133.28),
+      rotation: Quaternion.create(0, -0.3821518, 0, 0.9240996),
+      scale: Vector3.create(5.972198, 5.287653, 16.83422)
+    })
+
+    // rocs_cpllider (2)
+    this.s0_rocs_cpllider_2__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_2__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_2__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_2__01, {
+      position: Vector3.create(151.55, 69.2, 161.75),
+      rotation: Quaternion.create(0, -0.1608564, 0, 0.9869778),
+      scale: Vector3.create(3.659563, 3.881162, 3.523804)
+    })
+
+    // rocs_cpllider (3)
+    this.s0_rocs_cpllider_3__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_3__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_3__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_3__01, {
+      position: Vector3.create(153.04, 69.2, 153.49),
+      rotation: Quaternion.create(0, -0.04607068, 0, 0.9989382),
+      scale: Vector3.create(5.742586, 3.881162, 3.523804)
+    })
+
+    // rocs_cpllider (4)
+    this.s0_rocs_cpllider_4__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_4__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_4__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_4__01, {
+      position: Vector3.create(125.35, 74.11, 146.23),
+      rotation: Quaternion.create(0, -0.4737928, 0, 0.8806365),
+      scale: Vector3.create(8.880683, 9.46693, 3.063447)
+    })
+    // d rocs_cpllider (5)
+    this.s0_rocs_cpllider_5__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_5__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_5__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_5__01, {
+      position: Vector3.create(133.37, 74.11, 140.86),
+      rotation: Quaternion.create(0, -0.4737928, 0, 0.8806365),
+      scale: Vector3.create(8.827507, 9.46693, 6.00023)
+    })
+
+    // d rocs_cpllider (6)
+    this.s0_rocs_cpllider_6__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_6__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_6__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_6__01, {
+      position: Vector3.create(120.43, 76.16, 115.21),
+      rotation: Quaternion.create(0.08354763, -0.4663683, -0.1552895, 0.8668366),
+      scale: Vector3.create(6.91228, 5.842043, 2.39999)
+    })
+
+    // d rocs_cpllider (7)
+    this.s0_rocs_cpllider_7__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_7__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_7__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_7__01, {
+      position: Vector3.create(106.09, 75.87, 122.67),
+      rotation: Quaternion.create(0.1086393, -0.5086884, -0.1367391, 0.8430516),
+      scale: Vector3.create(8.40257, 5.842043, 3.594408)
+    })
+
+    // d rocs_cpllider (8)
+    this.s0_rocs_cpllider_8__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_8__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_8__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_8__01, {
+      position: Vector3.create(127.25, 79.93, 95.65),
+      rotation: Quaternion.create(0, 0, 0, 1),
+      scale: Vector3.create(11.08922, 14.0951, 5.367865)
+    })
+    // d rocs_cpllider (9)
+    this.s0_rocs_cpllider_9__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_9__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_9__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_9__01, {
+      position: Vector3.create(86.76, 79.87, 117.34),
+      rotation: Quaternion.create(0, 0.4529223, 0, 0.89155),
+      scale: Vector3.create(10.18574, 14.25381, 5.367865)
+    })
+
+    // d rocs_cpllider (10)
+    this.s0_rocs_cpllider_10__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_10__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_10__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_10__01, {
+      position: Vector3.create(165.13, 69.2, 131.48),
+      rotation: Quaternion.create(0, -0.04607068, 0, 0.9989382),
+      scale: Vector3.create(1.357777, 5.54154, 3.523804)
+    })
+
+    // d MeshBaker (0)
+    this.s0_MeshBaker_0__01 = engine.addEntity()
+    Transform.create(this.s0_MeshBaker_0__01, {
+      position: Vector3.create(0, 0, 0),
+      rotation: Quaternion.create(0, 0, 0, 1),
+      scale: Vector3.create(1, 1, 1)
+    })
+
+    // d rocs_cpllider (11)
+    this.s0_rocs_cpllider_11__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_11__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_11__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_11__01, {
+      position: Vector3.create(128.48, 76.08, 104.76),
+      rotation: Quaternion.create(0, 0, 0, 1),
+      scale: Vector3.create(3.60668, 4.544869, 3.61637)
+    })
+
+    // d rocs_cpllider (12)
+    this.s0_rocs_cpllider_12__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_12__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_12__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_12__01, {
+      position: Vector3.create(96.52, 76.14, 121.15),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(3.58785, 4.544869, 3.095247)
+    })
+    // d rocs_cpllider (14)
+    this.s0_rocs_cpllider_14__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_14__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_14__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_14__01, {
+      position: Vector3.create(99.24, 78.98, 161.14),
+      rotation: Quaternion.create(0, -0.2007625, 0, 0.97964),
+      scale: Vector3.create(6.600458, 14.78488, 9.580785)
+    })
+
+    // d rocs_cpllider (15)
+    this.s0_rocs_cpllider_15__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_15__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_15__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_15__01, {
+      position: Vector3.create(92.58, 77.46, 157.38),
+      rotation: Quaternion.create(0, 0.2084154, 0, 0.9780404),
+      scale: Vector3.create(2.958795, 3.520592, 2.830627)
+    })
+
+    // d rocs_cpllider (16)
+    this.s0_rocs_cpllider_16__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_16__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_16__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_16__01, {
+      position: Vector3.create(91, 79.58, 123.18),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(2.171245, 8.133953, 2.046934)
+    })
+
+    // d rocs_cpllider (17)
+    this.s0_rocs_cpllider_17__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_17__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_17__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_17__01, {
+      position: Vector3.create(89.09, 79.58, 139.02),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(2.171245, 8.133953, 2.046934)
+    })
+    // d rocs_cpllider (19)
+    this.s0_rocs_cpllider_19__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_19__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_19__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_19__01, {
+      position: Vector3.create(93.26, 79.58, 120.02),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(0.9336354, 8.726162, 0.8801818)
+    })
+
+    // d rocs_cpllider (20)
+    this.s0_rocs_cpllider_20__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_20__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_20__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_20__01, {
+      position: Vector3.create(136.22, 78.89, 112.24),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(1.758708, 6.588502, 1.658017)
+    })
+
+    // d rocs_cpllider (21)
+    this.s0_rocs_cpllider_21__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_21__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_21__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_21__01, {
+      position: Vector3.create(128.24, 77.77, 117.43),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(0.976347, 4.948742, 0.920448)
+    })
+
+    // d rocs_cpllider (22)
+    this.s0_rocs_cpllider_22__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_22__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_22__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_22__01, {
+      position: Vector3.create(127.44, 79.7, 100.25),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(0.976347, 9.349163, 0.920448)
+    })
+
+    // d rocs_cpllider (23)
+    this.s0_rocs_cpllider_23__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_23__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_23__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_23__01, {
+      position: Vector3.create(139.85, 75.79, 122.31),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(0.976347, 9.886102, 0.920448)
+    })
+    // d rocs_cpllider (24)
+    this.s0_rocs_cpllider_24__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_24__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_24__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_24__01, {
+      position: Vector3.create(128.98, 75.58, 157.4),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(1.747856, 9.886102, 1.254479)
+    })
+
+    // d rocs_cpllider (25)
+    this.s0_rocs_cpllider_25__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_25__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_25__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_25__01, {
+      position: Vector3.create(145.27, 75.58, 151.28),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(1.211354, 12.26569, 1.142)
+    })
+
+    // d rocs_cpllider (27)
+    this.s0_rocs_cpllider_27__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_27__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_27__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_27__01, {
+      position: Vector3.create(161.9, 72.14, 151.14),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(2.394881, 8.71661, 1.815871)
+    })
+
+    // d rocs_cpllider (28)
+    this.s0_rocs_cpllider_28__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_28__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_28__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_28__01, {
+      position: Vector3.create(160.08, 71.01, 146.25),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.255037, 8.71661, 1.140476)
+    })
+    // Crear y añadir la entidad rocs_cpllider (29)
+    this.s0_rocs_cpllider_29__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_29__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_29__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_29__01, {
+      position: Vector3.create(158.38, 71.01, 141.35),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.255037, 8.71661, 1.140476)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (31)
+    this.s0_rocs_cpllider_31__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_31__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_31__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_31__01, {
+      position: Vector3.create(185.1, 71.59, 151.18),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.025415, 6.228628, 0.8636022)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (32)
+    this.s0_rocs_cpllider_32__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_32__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_32__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_32__01, {
+      position: Vector3.create(176.39, 67.87, 117.1),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(0.9107001, 5.531822, 1.008131)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (33)
+    this.s0_rocs_cpllider_33__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_33__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_33__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_33__01, {
+      position: Vector3.create(156.16, 67.87, 104.84),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.016888, 6.176833, 1.125679)
+    })
+    // Crear y añadir la entidad rocs_cpllider (34)
+    this.s0_rocs_cpllider_34__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_34__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_34__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_34__01, {
+      position: Vector3.create(172.56, 68.76, 106.22),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(2.167564, 8.470908, 2.047485)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (35)
+    this.s0_rocs_cpllider_35__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_35__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_35__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_35__01, {
+      position: Vector3.create(172.22, 68.19, 97.53),
+      rotation: Quaternion.create(0, -0.09614008, 0, 0.9953678),
+      scale: Vector3.create(14.58263, 6.686003, 2.190407)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (36)
+    this.s0_rocs_cpllider_36__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_36__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_36__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_36__01, {
+      position: Vector3.create(193.91, 68.18, 133.9),
+      rotation: Quaternion.create(0, 0.2901744, 0, 0.9569738),
+      scale: Vector3.create(3.165077, 8.470908, 20.08356)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (37)
+    this.s0_rocs_cpllider_37__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_37__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_37__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_37__01, {
+      position: Vector3.create(204.27, 68.17, 139.27),
+      rotation: Quaternion.create(0, 0.7967511, 0, 0.6043076),
+      scale: Vector3.create(3.556106, 8.470908, 16.37513)
+    })
+    // Crear y añadir la entidad rocs_cpllider (38)
+    this.s0_rocs_cpllider_38__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_38__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_38__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_38__01, {
+      position: Vector3.create(218.48, 71.77, 136.42),
+      rotation: Quaternion.create(0, 0.5254294, 0, 0.8508373),
+      scale: Vector3.create(2.167564, 8.470908, 7.571206)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (39)
+    this.s0_rocs_cpllider_39__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_39__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_39__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_39__01, {
+      position: Vector3.create(115.43, 74.79, 121.7),
+      rotation: Quaternion.create(0.07956963, -0.5118146, -0.1342298, 0.8448058),
+      scale: Vector3.create(16.17335, 5.842043, 11.53943)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (41)
+    this.s0_rocs_cpllider_41__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_41__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_41__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_41__01, {
+      position: Vector3.create(180.01, 69.12, 141.63),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.400409, 6.228628, 0.972723)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (42)
+    this.s0_rocs_cpllider_42__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_42__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_42__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_42__01, {
+      position: Vector3.create(174.04, 69.12, 138.42),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.839717, 6.228628, 1.438852)
+    })
+    // Crear y añadir la entidad rocs_cpllider (43)
+    this.s0_rocs_cpllider_43__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_43__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_43__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_43__01, {
+      position: Vector3.create(183.07, 65.28, 102.03),
+      rotation: Quaternion.create(0, -0.279962, 0, 0.9600111),
+      scale: Vector3.create(2.252681, 1.62426, 1.616059)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (44)
+    this.s0_rocs_cpllider_44__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_44__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_44__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_44__01, {
+      position: Vector3.create(174.51, 65.28, 119.08),
+      rotation: Quaternion.create(0, 0.1216332, 0, 0.9925751),
+      scale: Vector3.create(2.252681, 1.62426, 1.616059)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (45)
+    this.s0_rocs_cpllider_45__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_45__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_45__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_45__01, {
+      position: Vector3.create(173.48, 65.28, 121.4),
+      rotation: Quaternion.create(0, -0.09667323, 0, 0.9953162),
+      scale: Vector3.create(2.252681, 1.62426, 1.616059)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (46)
+    this.s0_rocs_cpllider_46__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_46__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_46__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_46__01, {
+      position: Vector3.create(212.43, 68.17, 136.42),
+      rotation: Quaternion.create(0, 0.9995559, 0, 0.02979986),
+      scale: Vector3.create(6.307292, 8.470908, 6.963791)
+    })
+    // Crear y añadir la entidad rocs_cpllider (47)
+    this.s0_rocs_cpllider_47__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_47__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_47__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_47__01, {
+      position: Vector3.create(210.94, 68.17, 124.37),
+      rotation: Quaternion.create(0, 0.989961, 0, -0.1413406),
+      scale: Vector3.create(8.018058, 8.470908, 8.63751)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (48)
+    this.s0_rocs_cpllider_48__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_48__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_48__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_48__01, {
+      position: Vector3.create(219.401, 68.98, 124.731),
+      rotation: Quaternion.create(0, 0.5254294, 0, 0.8508373),
+      scale: Vector3.create(2.167564, 0.7621515, -2.000813)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (49)
+    this.s0_rocs_cpllider_49__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_49__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_49__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_49__01, {
+      position: Vector3.create(220.41, 68.98, 122.06),
+      rotation: Quaternion.create(0, 0.7440606, 0, 0.6681122),
+      scale: Vector3.create(2.167564, 0.7621515, -2.000813)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (50)
+    this.s0_rocs_cpllider_50__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_50__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_50__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_50__01, {
+      position: Vector3.create(227.826, 68.98, 125.677),
+      rotation: Quaternion.create(0, 0.7440606, 0, 0.6681122),
+      scale: Vector3.create(0.6881659, 0.686192, -1.145054)
+    })
+    // Crear y añadir la entidad rocs_cpllider (51)
+    this.s0_rocs_cpllider_51__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_51__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_51__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_51__01, {
+      position: Vector3.create(230.34, 68.98, 124.84),
+      rotation: Quaternion.create(0, 0.942215, 0, -0.3350088),
+      scale: Vector3.create(1.173116, 1.169752, -3.066941)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (52)
+    this.s0_rocs_cpllider_52__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_52__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_52__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_52__01, {
+      position: Vector3.create(221.744, 68.98, 133.043),
+      rotation: Quaternion.create(0, 0.858773, 0, -0.5123563),
+      scale: Vector3.create(0.5544061, 0.6952867, -1.277473)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (53)
+    this.s0_rocs_cpllider_53__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_53__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_53__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_53__01, {
+      position: Vector3.create(217.079, 68.73, 133.385),
+      rotation: Quaternion.create(0, 0.7271808, 0, -0.6864461),
+      scale: Vector3.create(0.7531052, 0.6952867, -1.277473)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (54)
+    this.s0_rocs_cpllider_54__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_54__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_54__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_54__01, {
+      position: Vector3.create(217.62, 68.73, 129.7),
+      rotation: Quaternion.create(0, 0.7271808, 0, -0.6864461),
+      scale: Vector3.create(0.7531052, 0.6952867, -1.277473)
+    })
+    // Crear y añadir la entidad rocs_cpllider (55)
+    this.s0_rocs_cpllider_55__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_55__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_55__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_55__01, {
+      position: Vector3.create(168.38, 65.28, 113.99),
+      rotation: Quaternion.create(0, 0.1216332, 0, 0.9925751),
+      scale: Vector3.create(2.252681, 1.62426, 1.616059)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (56)
+    this.s0_rocs_cpllider_56__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_56__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_56__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_56__01, {
+      position: Vector3.create(207.86, 63.59, 132.42),
+      rotation: Quaternion.create(0, 0.9242535, 0, -0.3817793),
+      scale: Vector3.create(1.02846, 2.5594, 2.10404)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (57)
+    this.s0_rocs_cpllider_57__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_57__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_57__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_57__01, {
+      position: Vector3.create(208.515, 63.59, 129.671),
+      rotation: Quaternion.create(0, 0.4634653, 0, -0.8861151),
+      scale: Vector3.create(1.02846, 2.5594, 2.10404)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (58)
+    this.s0_rocs_cpllider_58__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_58__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_58__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_58__01, {
+      position: Vector3.create(177.84, 68.064, 151.05),
+      rotation: Quaternion.create(0, -0.25961, 0, 0.9657135),
+      scale: Vector3.create(2.394881, 0.7649479, 1.815871)
+    })
+    // Crear y añadir la entidad rocs_cpllider (59)
+    this.s0_rocs_cpllider_59__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_59__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_59__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_59__01, {
+      position: Vector3.create(181.78, 67.4, 147.09),
+      rotation: Quaternion.create(0, -0.25961, 0, 0.9657135),
+      scale: Vector3.create(2.394881, 0.7649479, 1.815871)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (60)
+    this.s0_rocs_cpllider_60__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_60__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_60__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_60__01, {
+      position: Vector3.create(161.669, 68.1, 167.448),
+      rotation: Quaternion.create(-0.04246606, -0.04025478, -0.02082746, 0.9980693),
+      scale: Vector3.create(2.394881, 0.7649479, 2.678772)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (61)
+    this.s0_rocs_cpllider_61__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_61__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_61__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_61__01, {
+      position: Vector3.create(166.17, 70.72, 171.84),
+      rotation: Quaternion.create(-0.04521223, -0.1966567, -0.01389256, 0.979331),
+      scale: Vector3.create(2.635087, 7.912211, 5.563635)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (62)
+    this.s0_rocs_cpllider_62__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_62__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_62__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_62__01, {
+      position: Vector3.create(128.3, 70.82, 152.71),
+      rotation: Quaternion.create(0, -0.4622014, 0, 0.886775),
+      scale: Vector3.create(3.57562, 4.114032, 2.836349)
+    })
+    // Crear y añadir la entidad rocs_cpllider (63)
+    this.s0_rocs_cpllider_63__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_63__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_63__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_63__01, {
+      position: Vector3.create(121.49, 74.35, 139.78),
+      rotation: Quaternion.create(0, -0.5163307, 0, 0.8563893),
+      scale: Vector3.create(2.014391, 3.766124, 1.812869)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (64)
+    this.s0_rocs_cpllider_64__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_64__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_64__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_64__01, {
+      position: Vector3.create(127.21, 74.647, 135.38),
+      rotation: Quaternion.create(0, -0.4470413, 0, 0.8945134),
+      scale: Vector3.create(2.014391, 3.766124, 1.812869)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (65)
+    this.s0_rocs_cpllider_65__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_65__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_65__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_65__01, {
+      position: Vector3.create(116.64, 74.97, 138.48),
+      rotation: Quaternion.create(0, -0.8658221, 0, 0.5003521),
+      scale: Vector3.create(2.719831, 3.766124, 1.812869)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (66)
+    this.s0_rocs_cpllider_66__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_66__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_66__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_66__01, {
+      position: Vector3.create(110.38, 74.97, 135.49),
+      rotation: Quaternion.create(0, -0.8658221, 0, 0.5003521),
+      scale: Vector3.create(2.005739, 3.766124, 1.812869)
+    })
+    // Crear y añadir la entidad rocs_cpllider (67)
+    this.s0_rocs_cpllider_67__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_67__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_67__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_67__01, {
+      position: Vector3.create(101.89, 79.58, 160.32),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(2.171245, 8.133953, 2.046934)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (68)
+    this.s0_rocs_cpllider_68__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_68__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_68__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_68__01, {
+      position: Vector3.create(172.11, 67.33, 134.86),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.839717, 2.213467, 2.070808)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (26)
+    this.s0_rocs_cpllider_26__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_26__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_26__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_26__01, {
+      position: Vector3.create(136.77, 76.02, 114.82),
+      rotation: Quaternion.create(0, -0.1399946, 0, 0.9901523),
+      scale: Vector3.create(1.758708, 2.222829, 2.357203)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (18)
+    this.s0_rocs_cpllider_18__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_18__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_18__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_18__01, {
+      position: Vector3.create(135.98, 76.1, 105.69),
+      rotation: Quaternion.create(0, 0.2546728, 0, 0.9670273),
+      scale: Vector3.create(2.550864, 2.562943, 2.823565)
+    })
+    // Crear y añadir la entidad rocs_cpllider (30)
+    this.s0_rocs_cpllider_30__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_30__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_30__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_30__01, {
+      position: Vector3.create(88.19, 78.13, 129.06),
+      rotation: Quaternion.create(0.01778599, 0.2838045, -0.01053478, 0.9586594),
+      scale: Vector3.create(3.986028, 12.66707, 9.129698)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (40)
+    this.s0_rocs_cpllider_40__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_40__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_40__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_40__01, {
+      position: Vector3.create(91.617, 77.63, 146.263),
+      rotation: Quaternion.create(0, 0.2084154, 0, 0.9780404),
+      scale: Vector3.create(1.659674, 2.086972, 1.848239)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (69)
+    this.s0_rocs_cpllider_69__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_69__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_69__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_69__01, {
+      position: Vector3.create(122.41, 75.66, 113.72),
+      rotation: Quaternion.create(-0.006644766, -0.4737461, 0.01235062, 0.8805498),
+      scale: Vector3.create(2.519308, 2.62705, 2.39999)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (70)
+    this.s0_rocs_cpllider_70__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_70__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_70__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_70__01, {
+      position: Vector3.create(164.43, 67.48, 134.73),
+      rotation: Quaternion.create(0, -0.06156798, 0, 0.9981029),
+      scale: Vector3.create(1.839717, 2.213467, 2.070808)
+    })
+    // Crear y añadir la entidad rocs_cpllider (13)
+    this.s0_rocs_cpllider_13__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_13__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_13__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_13__01, {
+      position: Vector3.create(138.23, 69.64, 140.29),
+      rotation: Quaternion.create(0, -0.4737928, 0, 0.8806365),
+      scale: Vector3.create(5.004588, 5.367096, 3.401716)
+    })
+
+    // Crear y añadir la entidad rocs_cpllider (71)
+    this.s0_rocs_cpllider_71__01 = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_71__01)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_71__01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_71__01, {
+      position: Vector3.create(134.29, 70.38, 136.53),
+      rotation: Quaternion.create(0, -0.1163439, 0, 0.993209),
+      scale: Vector3.create(3.37059, 3.614739, 2.291056)
+    })
+    //WORKAROUND PORTAL PLAYERS FALL THROUGH PORTAL PLATFORM,
+    //For some reason that particular collider is failing to load as an asset bundle
+    //node_Z3_Quest_Portal_Art/node_Z3_Quest_Portal_collider
+    //can remove this when this branch gets merged
+    //https://play.decentraland.org/?explorer-branch=test/remove-gpu-meshes&ENABLE_AB-NEW-CDN&realm=dclonboarding.dcl.eth
+    //this PR should fix them and avoid future headaches with the colliders
+    //
+    // Crear y añadir la entidad rocs_cpllider (39.b.flat)
+    this.s0_rocs_cpllider_39__01_flag = engine.addEntity()
+    MeshCollider.setBox(this.s0_rocs_cpllider_39__01_flag)
+    Material.setPbrMaterial(this.s0_rocs_cpllider_39__01_flag, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
+    Transform.create(this.s0_rocs_cpllider_39__01_flag, {
+      position: Vector3.create(105, 79.3, 103),
+      rotation: Quaternion.fromEulerDegrees(0, 30, 0),
+      scale: Vector3.create(23, 1, 30)
+    })
   }
 }
