@@ -4,11 +4,4 @@ import * as utils from '@dcl-sdk/utils'
 import { movePlayerTo } from '~system/RestrictedActions'
 export function main() {
   const gameController = new GameController()
-  utils.timers.setTimeout(() => {
-    void movePlayerTo({
-      // 117.37,124.0051,85.24 4.89,0.88,252.67
-      newRelativePosition: Vector3.create(164.25,68.78,158.85), 
-      cameraTarget: Vector3.create(31.12, 1.06, 53.56)
-    })
-  }, 1000) 
 } 
