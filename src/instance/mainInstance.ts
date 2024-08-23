@@ -11,6 +11,8 @@ import {
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
+import * as npc from 'dcl-npc-toolkit'
+import { openDialogWindow } from 'dcl-npc-toolkit'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
@@ -39,7 +41,7 @@ export class MainInstace {
   s0_Cable_03_ON_01: Entity
   s0_Cable_04_OFF_01: Entity
   s0_Cable_04_ON_01: Entity
-  s0_NPC_Robot_Art_1__01: Entity
+  s0_NPC_Robot_Art_1__01: Entity = engine.addEntity()
   s0_Puzlemachines_01: Entity
   s0_Cables_01: Entity
   s0_Puzle_machines_01: Entity
@@ -764,41 +766,75 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Cable_04_ON_01).parent = this.s0_Cables_Art_01
 
-    //NPC_Robot_Art (1)
-    this.s0_NPC_Robot_Art_1__01 = engine.addEntity()
-    Transform.create(this.s0_NPC_Robot_Art_1__01, {
-      position: Vector3.create(218.95, 68.67, 127.08),
-      rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
-      scale: Vector3.create(1, 1, 1)
-    })
-    GltfContainer.create(this.s0_NPC_Robot_Art_1__01, {
-      src: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb'
-    })
-    Animator.create(this.s0_NPC_Robot_Art_1__01, {
+    //  NPC_Robot_Art
+
+    Animator.createOrReplace(this.s0_NPC_Robot_Art_1__01, {
       states: [
         {
-          clip: 'Robot_On'
+          clip: 'Robot_On',
+          playing: false,
+          loop: false
         },
         {
-          clip: 'Robot_off'
+          clip: 'Robot_off',
+          playing: false,
+          loop: false
         },
         {
-          clip: 'Walk_End'
+          clip: 'Walk_End',
+          playing: false,
+          loop: false
         },
         {
-          clip: 'Walk_Loop'
+          clip: 'Walk_Loop',
+          playing: false,
+          loop: false
         },
         {
-          clip: 'Walk_Start'
+          clip: 'Walk_Start',
+          playing: false,
+          loop: false
         },
         {
-          clip: 'Robot_Idle'
+          clip: 'Robot_Idle',
+          playing: true,
+          loop: true
         },
         {
-          clip: 'Talk'
+          clip: 'Talk',
+          playing: false,
+          loop: false
         }
       ]
     })
+
+    this.s0_NPC_Robot_Art_1__01 = npc.create(
+      {
+        position: Vector3.create(218.95, 68.67, 127.08),
+        rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
+        scale: Vector3.create(1, 1, 1)
+      },
+      {
+        type: npc.NPCType.CUSTOM,
+        model: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
+        onActivate: () => {
+          console.log('npc activated')
+          openDialogWindow(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborDialog, 0)
+          Animator.playSingleAnimation(this.s0_NPC_Robot_Art_1__01, 'Talk')
+        },
+        onWalkAway: () => {
+          console.log('walked away')
+        },
+        hoverText: 'Talk',
+        idleAnim: 'Robot_Idle',
+        faceUser: true,
+        portrait: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png',
+        reactDistance: 14,
+        onlyClickTrigger: true
+      }
+    )
+    MeshCollider.setBox(this.s0_NPC_Robot_Art_1__01)
+
     //Puzle machines
     this.s0_Puzlemachines_01 = engine.addEntity()
     Transform.create(this.s0_Puzlemachines_01, {
@@ -1888,10 +1924,10 @@ export class MainInstace {
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_01, {
       src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
     })
-    Transform.create(this.s0_Z3_Prop_Stairs03_Art_01,{
+    Transform.create(this.s0_Z3_Prop_Stairs03_Art_01, {
       position: Vector3.create(157.4125, 69.3552, 155.8273),
       rotation: Quaternion.create(0.02343011, 0.7645672, 0.02817995, -0.6435013),
-      scale: Vector3.create(1, 1, 1),
+      scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_01).parent = this.s0_Z3_COG_01
     // Z3_Prop_Fence_Art (10)
@@ -1993,7 +2029,7 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Z3_Rock_2_art_33__01).parent = this.s0_Z3_COG_01
     // Z3_Prop_Stairs03_Art (14)
-    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_14__01, { 
+    GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
       src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
     })
     Transform.create(this.s0_Z3_Prop_Stairs03_Art_14__01, {
@@ -3116,7 +3152,7 @@ export class MainInstace {
     // Transform.getMutable(this.s0_WaterFall_01_Art_1__01).parent = this.s0_Z3_COG_01
     // WaterFall_01_Art (2)
     // this.s0_WaterFall_01_Art_2__01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_2__01, { 
+    // GltfContainer.create(this.s0_WaterFall_01_Art_2__01, {
     //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
     // })
     // Animator.create(this.s0_WaterFall_01_Art_2__01, {
@@ -3139,7 +3175,7 @@ export class MainInstace {
       scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_Z3_Prop_Stairs03_Art_1__01).parent = this.s0_Z3_COG_01
- 
+
     // Z3_Prop_Stairs03_Art (2)
     this.s0_Z3_Prop_Stairs03_Art_2__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_2__01, {
@@ -3178,7 +3214,7 @@ export class MainInstace {
     //Z3_Prop_Stairs03_Art (5)
     this.s0_Z3_Prop_Stairs03_Art_5__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_5__01, {
-      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb' 
+      src: 'assets/scene/models/unity_assets/s0_Z3_Prop_Stairs03_Art_01.glb'
     })
     Transform.create(this.s0_Z3_Prop_Stairs03_Art_5__01, {
       position: Vector3.create(130.1413, 74.70654, 141.3221),
