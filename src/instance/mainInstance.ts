@@ -773,8 +773,8 @@ export class MainInstace {
 
     this.s0_NPC_Robot_Art_1__01 = npc.create(
       {
-        position: Vector3.create(110.37, 0.88, 85.24),
-        rotation: Quaternion.create(0, 180, 0, -0.8192798),
+        position: Vector3.create(218.95, 68.67, 127.08),
+        rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
         scale: Vector3.create(1, 1, 1)
       },
       {
@@ -783,6 +783,7 @@ export class MainInstace {
         onActivate: () => {
           console.log('npc activated')
           openDialogWindow(this.s0_NPC_Robot_Art_1__01, this.gameController.dialog.toborDialog, 0)
+          // Animator.playSingleAnimation(this.s0_NPC_Robot_Art_1__01, 'Talk')
         },
         onWalkAway: () => {
           console.log('walked away')
@@ -801,34 +802,38 @@ export class MainInstace {
       states: [
         {
           clip: 'Robot_On',
-          playing: true,
-          loop: true
+          playing: false,
+          loop: false
         },
         {
           clip: 'Robot_off',
-          playing: true,
-          loop: true
+          playing: false,
+          loop: false
         },
         {
           clip: 'Walk_End',
-          playing: true,
-          loop: true
+          playing: false,
+          loop: false
         },
         {
           clip: 'Walk_Loop',
-          playing: true,
-          loop: true
+          playing: false,
+          loop: false
         },
         {
           clip: 'Walk_Start',
+          playing: false,
+          loop: false
+        },
+        {
+          clip: 'Robot_Idle',
           playing: true,
           loop: true
         },
         {
-          clip: 'Robot_Idle'
-        },
-        {
-          clip: 'Talk'
+          clip: 'Talk',
+          playing: false,
+          loop: false
         }
       ]
     })

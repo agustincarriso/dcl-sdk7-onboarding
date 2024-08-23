@@ -2,6 +2,7 @@ import { followPath, type Dialog } from 'dcl-npc-toolkit'
 import { GameController } from './controllers/gameController'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
+import { Animator } from '@dcl/sdk/ecs'
 
 const talkingTrebor: ImageData = {
   path: 'images/UI_NPC_Character_Robot_Talking.png'
@@ -9,13 +10,12 @@ const talkingTrebor: ImageData = {
 const happyTrebor: ImageData = {
   path: 'images/UI_NPC_Character_Robot_Happy.png'
 }
-const point1 = Vector3.create(103.24, 0.88, 85.36)
-const point2 = Vector3.create(99.7, 0.88, 90.04)
-const point3 = Vector3.create(102.87, 0.88, 102.99)
+const point1 = Vector3.create(216.93, 70.42, 131.14)
+const point2 = Vector3.create(201.84, 64.88, 126.75)
 
-const pathArray = [point1, point2, point3]
+const pathArray = [point1, point2]
 let pathData: FollowPathData = {
-  totalDuration: 3,
+  totalDuration: 5,
   path: pathArray
 }
 export class Dialogs {
@@ -28,7 +28,8 @@ export class Dialogs {
     this.gameController = gameController
     this.toborDialog = [
       {
-        text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.'
+        text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
+        fontSize: 18
       },
       {
         text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>'
@@ -39,6 +40,7 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           followPath(this.gameController.mainInstance.s0_NPC_Robot_Art_1__01, pathData), console.log('path on going')
+          Animator.playSingleAnimation(this.gameController.mainInstance.s0_NPC_Robot_Art_1__01, 'Walk_Start')
         }
       },
       {
