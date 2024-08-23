@@ -23,5 +23,9 @@
     "singleQuote": true,
     "printWidth": 120,
     "trailingComma": "none"
+  },
+  "dependencies": {
+    "dcl-npc-toolkit": "^1.4.0",
+    "dcl-ui-toolkit": "^0.10.0"
   }
 }

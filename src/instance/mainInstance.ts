@@ -1,6 +1,20 @@
-import { Animator, engine, Entity, GltfContainer, Material, MeshCollider, MeshRenderer, Transform } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  engine,
+  Entity,
+  GltfContainer,
+  InputAction,
+  Material,
+  MeshCollider,
+  MeshRenderer,
+  pointerEventsSystem,
+  Transform
+} from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
+import * as npc from 'dcl-npc-toolkit'
+import { openDialogWindow } from 'dcl-npc-toolkit'
+import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
@@ -29,7 +43,7 @@ export class MainInstace {
   s0_Cable_03_ON_01: Entity
   s0_Cable_04_OFF_01: Entity
   s0_Cable_04_ON_01: Entity
-  s0_NPC_Robot_Art_1__01: Entity
+  s0_NPC_Robot_Art_1__01 = engine.addEntity()
   s0_Puzlemachines_01: Entity
   s0_Cables_01: Entity
   s0_Puzle_machines_01: Entity
@@ -344,32 +358,60 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Cable_04_ON_01).parent = this.s0_Cables_Art_01
 
-    //NPC_Robot_Art (1)
-    this.s0_NPC_Robot_Art_1__01 = engine.addEntity()
-    Transform.create(this.s0_NPC_Robot_Art_1__01, {
-      position: Vector3.create(218.95, 68.67, 127.08),
-      rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
-      scale: Vector3.create(1, 1, 1)
-    })
-    GltfContainer.create(this.s0_NPC_Robot_Art_1__01, {
-      src: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb'
-    })
-    Animator.create(this.s0_NPC_Robot_Art_1__01, {
+    //  NPC_Robot_Art
+
+    this.s0_NPC_Robot_Art_1__01 = npc.create(
+      {
+        position: Vector3.create(110.37, 0.88, 85.24),
+        rotation: Quaternion.create(0, 180, 0, -0.8192798),
+        scale: Vector3.create(1, 1, 1)
+      },
+      {
+        type: npc.NPCType.CUSTOM,
+        model: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
+        onActivate: () => {
+          console.log('npc activated')
+          openDialogWindow(this.s0_NPC_Robot_Art_1__01, this.gameController.dialog.toborDialog, 0)
+        },
+        onWalkAway: () => {
+          console.log('walked away')
+        },
+        hoverText: 'Talk',
+        idleAnim: 'Robot_Idle',
+        faceUser: true,
+        portrait: 'images/UI_NPC_Character_Robot_Idle.png',
+        reactDistance: 1,
+        onlyClickTrigger: true
+      }
+    )
+
+    MeshCollider.setBox(this.s0_NPC_Robot_Art_1__01)
+    Animator.createOrReplace(this.s0_NPC_Robot_Art_1__01, {
       states: [
         {
-          clip: 'Robot_On'
+          clip: 'Robot_On',
+          playing: true,
+          loop: true
         },
         {
-          clip: 'Robot_off'
+          clip: 'Robot_off',
+          playing: true,
+          loop: true
         },
         {
-          clip: 'Walk_End'
+          clip: 'Walk_End',
+          playing: true,
+          loop: true
         },
         {
-          clip: 'Walk_Loop'
+          clip: 'Walk_Loop',
+          playing: true,
+          loop: true
         },
         {
-          clip: 'Walk_Start'
+          clip: 'Walk_Start',
+          playing: true,
+          loop: true
         },
         {
           clip: 'Robot_Idle'
@@ -379,6 +421,7 @@ export class MainInstace {
         }
       ]
     })
+
     //Puzle machines
     this.s0_Puzlemachines_01 = engine.addEntity()
     Transform.create(this.s0_Puzlemachines_01, {
