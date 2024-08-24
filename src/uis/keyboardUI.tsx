@@ -46,17 +46,17 @@ export class KeyBoardUI {
             this.isVisible = false
           }}
         ></UiEntity>
-             <Label
-            uiTransform={{
-              positionType: 'absolute',
-              position: { left: '40%', bottom: '8%' }
-            }}
-            value={this.pressanykey}
-            fontSize={30}
-            font="sans-serif"
-            color={Color4.White()}
-            textAlign="bottom-center"
-          />
+        <Label
+          uiTransform={{
+            positionType: 'absolute',
+            position: { left: '40%', bottom: '8%' }
+          }}
+          value={this.pressanykey}
+          fontSize={30}
+          font="sans-serif"
+          color={Color4.White()}
+          textAlign="bottom-center"
+        />
       </UiEntity>
     )
   }

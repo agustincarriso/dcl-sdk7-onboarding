@@ -39,8 +39,8 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.mainInstance.s0_NPC_Robot_Art_1__01, pathData), console.log('path on going')
-          Animator.playSingleAnimation(this.gameController.mainInstance.s0_NPC_Robot_Art_1__01, 'Walk_Start')
+          followPath(this.gameController.island_1.s0_NPC_Robot_Art_1__01, pathData), console.log('path on going')
+          Animator.playSingleAnimation(this.gameController.island_1.s0_NPC_Robot_Art_1__01, 'Walk_Start')
         }
       },
       {
