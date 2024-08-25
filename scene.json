@@ -418,5 +418,8 @@
   "featureToggles": {
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
-  }
+  },
+  "worldConfiguration": {
+		"name": "codingcave.dcl.eth"
+	}
 }
