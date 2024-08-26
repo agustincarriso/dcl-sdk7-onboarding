@@ -5,21 +5,19 @@ import { Vector3 } from '@dcl/sdk/math'
 import { UIController } from './uiController'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import * as utils from '@dcl-sdk/utils'
-import { Dialogs } from '../npc_dialogs'
 import { Island_1 } from '../instance/island_1'
+import { Dialogs } from '../jsonData/npc_dialogs'
 
 export class GameController {
   mainInstance: MainInstace
   uiController: UIController
   keyBoardUI: KeyBoardUI
   dialogs: Dialogs
-  island_1 : Island_1
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.uiController = new UIController(this)
-    this.keyBoardUI = new KeyBoardUI(this)
+    this.keyBoardUI = new KeyBoardUI(this) 
     this.dialogs = new Dialogs(this)
-    this.island_1 = new Island_1(this)
     this.keyBoardUI.isVisible = true
     utils.timers.setTimeout(() => {
       movePlayerTo({

@@ -1,8 +1,8 @@
 import { followPath, type Dialog } from 'dcl-npc-toolkit'
-import { GameController } from './controllers/gameController'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
 import { Animator } from '@dcl/sdk/ecs'
+import { GameController } from '../controllers/gameController'
 import { CLICKME } from './textsTutorialBubble'
 
 const talkingTrebor: ImageData = {
@@ -19,7 +19,7 @@ let pathData: FollowPathData = {
   totalDuration: 5, 
   path: pathArray,
   onReachedPointCallback: () => { 
-    console.log('halfWay') 
+    console.log('halfWay')
   },
   onFinishCallback: () => {
     console.log('Ruta completada')
@@ -29,7 +29,7 @@ export class Dialogs {
   public toborDialog: Dialog[]
   public bezierDialog: Dialog[]
   public matDialog: Dialog[]
-  public toborBubbles: Dialog[]
+  public toborBubbles: Dialog[] 
 
   gameController: GameController
   constructor(gameController: GameController) {
@@ -47,8 +47,9 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.island_1.s0_NPC_Robot_Art_1__01, pathData), console.log('path on going')
-          Animator.playSingleAnimation(this.gameController.island_1.s0_NPC_Robot_Art_1__01, 'Walk_Start')
+          followPath(this.gameController.mainInstance.island_1.s0_NPC_Robot_Art_1__01, pathData),
+            console.log('path on going')
+          Animator.playSingleAnimation(this.gameController.mainInstance.island_1.s0_NPC_Robot_Art_1__01, 'Walk_Start')
         }
       },
       {
@@ -65,9 +66,8 @@ export class Dialogs {
     ]
     this.toborBubbles = [
       {
-        text: CLICKME,
-        portrait:happyTrebor
-      },
+        text: CLICKME
+      }
     ]
     this.bezierDialog = [
       {
