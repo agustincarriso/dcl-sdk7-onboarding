@@ -292,8 +292,8 @@ export class MainInstace {
   s0_Z3_Stones_2_art_35__01: Entity
   s0_Z3_Rock_3_art_44__01: Entity
   s0_Det_Butterfly_chunk02_Art_01: Entity
-  s0_Fence_Art_01: Entity
-  s0_Fence_Art_02: Entity
+  // s0_Fence_Art_01: Entity
+  // s0_Fence_Art_02: Entity
   s0_Landscape_2_Art_1__01: Entity
   s0_fog_01_art_1__01: Entity
   s0_fog_01_art_2__01: Entity
@@ -1642,9 +1642,13 @@ export class MainInstace {
         {
           clip: 'Bridge Off'
         },
-        { clip: 'Bridge Animation' }
+        { clip: 'Bridge Animation',
+          playing : false,
+          loop: false
+         }
       ]
     })
+    Animator.playSingleAnimation(this.s0_Z3_Str_Bridge_Art_1__01,'Bridge Animation')
     // s0_Z3_Env_Rocks_Source_art_1__01
     this.s0_Z3_Env_Rocks_Source_art_1__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Env_Rocks_Source_art_1__01, {
@@ -2852,8 +2856,9 @@ export class MainInstace {
       src: 'assets/scene/models/unity_assets/s0_Z3_Str_Bridge_Art_1__01.glb'
     })
     Animator.create(this.s0_Z3_Str_Bridge_Art_01, {
-      states: [{ clip: 'Bridge On' }, { clip: 'Bridge Off' }, { clip: 'Bridge Animation' }]
+      states: [{ clip: 'Bridge On' }, { clip: 'Bridge Off' }, { clip: 'Bridge Animation', playing: false, loop: false }]
     })
+    Animator.playSingleAnimation(this.s0_Z3_Str_Bridge_Art_01,'Bridge Animation')
     Transform.create(this.s0_Z3_Str_Bridge_Art_01, {
       position: Vector3.create(189.42, 63.11, 120.55),
       rotation: Quaternion.create(0.02953282, 0.9578906, 0.002688589, 0.285598),
@@ -3648,24 +3653,24 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Det_Butterfly_chunk02_Art_01).parent = this.s0_Z3_COG_01
 
-    // Fence_Art
-    this.s0_Fence_Art_01 = engine.addEntity()
-    GltfContainer.create(this.s0_Fence_Art_01, { src: 'assets/scene/models/unity_assets/s0_Fence_Art_01.glb' })
-    Transform.create(this.s0_Fence_Art_01, {
-      position: Vector3.create(149.38, 71.407, 157.04),
-      rotation: Quaternion.create(0, 0.7635284, 0, -0.6457744),
-      scale: Vector3.create(1, 1, 1)
-    })
-    Transform.getMutable(this.s0_Fence_Art_01).parent = this.s0_Z3_COG_01
-    // Fence_Art.z0
-    this.s0_Fence_Art_02 = engine.addEntity()
-    GltfContainer.create(this.s0_Fence_Art_02, { src: 'assets/scene/models/unity_assets/s0_Fence_Art_01.glb' })
-    Transform.create(this.s0_Fence_Art_02, {
-      position: Vector3.create(216, 68.4, 131.5),
-      rotation: Quaternion.fromEulerDegrees(0, 270, 0),
-      scale: Vector3.create(1, 1, 1)
-    })
-    Transform.getMutable(this.s0_Fence_Art_02).parent = this.s0_Z3_COG_01
+    // // Fence_Art
+    // this.s0_Fence_Art_01 = engine.addEntity()
+    // GltfContainer.create(this.s0_Fence_Art_01, { src: 'assets/scene/models/unity_assets/s0_Fence_Art_01.glb' })
+    // Transform.create(this.s0_Fence_Art_01, {
+    //   position: Vector3.create(149.38, 71.407, 157.04),
+    //   rotation: Quaternion.create(0, 0.7635284, 0, -0.6457744),
+    //   scale: Vector3.create(1, 1, 1)
+    // })
+    // Transform.getMutable(this.s0_Fence_Art_01).parent = this.s0_Z3_COG_01
+    // // Fence_Art.z0
+    // this.s0_Fence_Art_02 = engine.addEntity()
+    // GltfContainer.create(this.s0_Fence_Art_02, { src: 'assets/scene/models/unity_assets/s0_Fence_Art_01.glb' })
+    // Transform.create(this.s0_Fence_Art_02, {
+    //   position: Vector3.create(216, 68.4, 131.5),
+    //   rotation: Quaternion.fromEulerDegrees(0, 270, 0),
+    //   scale: Vector3.create(1, 1, 1)
+    // })
+    // Transform.getMutable(this.s0_Fence_Art_02).parent = this.s0_Z3_COG_01
 
     // COG_Landscape_Planes
     this.s0_COG_Landscape_Planes_01 = engine.addEntity()
