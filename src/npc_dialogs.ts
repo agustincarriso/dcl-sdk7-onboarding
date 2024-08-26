@@ -3,6 +3,7 @@ import { GameController } from './controllers/gameController'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
 import { Animator } from '@dcl/sdk/ecs'
+import { CLICKME } from './textsTutorialBubble'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -15,13 +16,20 @@ const point2 = Vector3.create(201.84, 64.88, 126.75)
 
 const pathArray = [point1, point2]
 let pathData: FollowPathData = {
-  totalDuration: 5,
-  path: pathArray
+  totalDuration: 5, 
+  path: pathArray,
+  onReachedPointCallback: () => { 
+    console.log('halfWay') 
+  },
+  onFinishCallback: () => {
+    console.log('Ruta completada')
+  }
 }
 export class Dialogs {
   public toborDialog: Dialog[]
   public bezierDialog: Dialog[]
   public matDialog: Dialog[]
+  public toborBubbles: Dialog[]
 
   gameController: GameController
   constructor(gameController: GameController) {
@@ -54,6 +62,12 @@ export class Dialogs {
         text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
         portrait: happyTrebor
       }
+    ]
+    this.toborBubbles = [
+      {
+        text: CLICKME,
+        portrait:happyTrebor
+      },
     ]
     this.bezierDialog = [
       {

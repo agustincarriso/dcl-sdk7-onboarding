@@ -1,6 +1,6 @@
 import { GameController } from './gameController'
 import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import { NpcUtilsUi } from 'dcl-npc-toolkit'
+import { NpcUtilsUi, openDialogWindow } from 'dcl-npc-toolkit'
 import Canvas from '../uis/canvas/Canvas'
 import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 
