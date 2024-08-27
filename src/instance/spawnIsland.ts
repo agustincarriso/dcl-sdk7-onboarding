@@ -17,7 +17,7 @@ import { openDialogWindow } from 'dcl-npc-toolkit'
 import { createDialogBubble, next, openBubble } from 'dcl-npc-toolkit/dist/bubble'
 import { FloorCircleTargeter } from '../imports/components/targeter'
 
-export class Island_1 {
+export class SpawnIsland {
   s0_NPC_Robot_Art_1__01: Entity
   gameController: GameController
   npcChild: Entity = engine.addEntity()
@@ -36,8 +36,8 @@ export class Island_1 {
         onActivate: () => {
           console.log('npc activated')
           Animator.getClip(this.s0_NPC_Robot_Art_1__01, 'Robot_Idle').playing = true
-          createDialogBubble(this.s0_NPC_Robot_Art_1__01, 2.2)
-          openBubble(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborBubbles, 0)
+          // createDialogBubble(this.s0_NPC_Robot_Art_1__01, 2.2)
+          // openBubble(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborBubbles, 0)
         },
         onWalkAway: () => { 
           console.log('walked away')
@@ -47,7 +47,7 @@ export class Island_1 {
         faceUser: true,
         portrait: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png',
         reactDistance: 10,
-        onlyClickTrigger: false
+        onlyClickTrigger: true
       }
     )
     this.targeterCircle = new FloorCircleTargeter(
@@ -117,7 +117,7 @@ export class Island_1 {
         openDialogWindow(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborDialog, 0)
         Animator.stopAllAnimations(this.s0_NPC_Robot_Art_1__01)
         Animator.getClip(this.s0_NPC_Robot_Art_1__01, 'Talk').playing = true
-        npc.closeBubble(this.s0_NPC_Robot_Art_1__01)
+        // npc.closeBubble(this.s0_NPC_Robot_Art_1__01)
         this.targeterCircle.showCircle(false)
       }
     })

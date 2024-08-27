@@ -5,7 +5,7 @@ import { Vector3 } from '@dcl/sdk/math'
 import { UIController } from './uiController'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import * as utils from '@dcl-sdk/utils'
-import { Island_1 } from '../instance/island_1'
+import { SpawnIsland } from '../instance/spawnIsland'
 import { Dialogs } from '../jsonData/npc_dialogs'
 
 export class GameController {

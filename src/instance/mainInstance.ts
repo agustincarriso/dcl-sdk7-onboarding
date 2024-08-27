@@ -19,7 +19,7 @@ import { GameController } from '../controllers/gameController'
 import * as npc from 'dcl-npc-toolkit'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
-import { Island_1 } from './island_1'
+import { SpawnIsland } from './spawnIsland'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
@@ -479,7 +479,7 @@ export class MainInstace {
   s0_rocs_cpllider_13__01: Entity
   s0_rocs_cpllider_71__01: Entity
   s0_rocs_cpllider_39__01_flag: Entity
-  island_1:Island_1
+  spawnIsland:SpawnIsland
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -5718,7 +5718,7 @@ export class MainInstace {
       rotation: Quaternion.fromEulerDegrees(0, 30, 0),
       scale: Vector3.create(23, 1, 30)
     })
-    this.island_1 = new Island_1(this.gameController)
+    this.spawnIsland = new SpawnIsland(this.gameController)
     this.DEFER_LOADING()
   }
   DEFER_LOADING() {
