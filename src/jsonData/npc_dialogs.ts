@@ -53,7 +53,7 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           followPath(this.gameController.spawnIsland.tobor.entity, pathData),
-            console.log('path on going')
+          console.log('path on going')
           Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
           Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
           Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true

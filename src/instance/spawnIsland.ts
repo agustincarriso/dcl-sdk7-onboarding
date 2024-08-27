@@ -9,6 +9,7 @@ import {
   MeshCollider,
   PBPointerEvents_Info,
   PointerEvents,
+  pointerEventsSystem,
   PointerEventType,
   Rotate,
   Transform
@@ -43,11 +44,8 @@ export class SpawnIsland {
         openBubble(this.tobor.entity, this.gameController.dialogs.toborBubbles, 0)
       },
       () => {
-        openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
-        Animator.stopAllAnimations(this.tobor.entity)
-        Animator.getClip(this.tobor.entity, 'Talk').playing = true
-        npc.closeBubble(this.tobor.entity)
-        this.targeterCircle.showCircle(false)
+        PointerEvents.deleteFrom(this.tobor.npcChild)
+        this.startInteractQuest()
       }
     )
     Animator.createOrReplace(this.tobor.entity, {
@@ -143,11 +141,9 @@ export class SpawnIsland {
       ) {
       }
     })
-    this.spawnRobot()
     this.respawnTrigger()
     this.activeCables(false)
   }
-  spawnRobot() {}
   respawnTrigger() {
     const triggerPos = Vector3.create(160, 10, 160)
     const triggerEnt = engine.addEntity()
@@ -173,34 +169,21 @@ export class SpawnIsland {
         'assets/scene/models/unity_assets/s0_Cable_01_OFF_01.glb'
     }
   }
-  startSpawnIsland() {
-    this.wasdtrigger()
-  }
-  wasdtrigger() {
-    let obstacletrigger = engine.addEntity()
-    Transform.create(obstacletrigger, {
-      position: Transform.getMutable(this.tobor.entity).position,
-      rotation: Transform.getMutable(this.tobor.entity).rotation,
-      scale: Vector3.create(1, 1, 1)
-    })
-    utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(10, 6, 10) }], () => {
-      engine.removeEntity(obstacletrigger)
-      this.startInteractQuest()
-    })
-  }
   startInteractQuest() {
-
+    openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
+    Animator.stopAllAnimations(this.tobor.entity)
+    Animator.getClip(this.tobor.entity, 'Talk').playing = true
+    npc.closeBubble(this.tobor.entity)
+    this.targeterCircle.showCircle(false)
   }
-  startMoveQuest() {
-
-  }
+  startMoveQuest() {}
   jumpquest() {
-    Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0,0,0)
-    Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0,0,0)
+    Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0, 0, 0)
+    Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0, 0, 0)
     let obstacletrigger = engine.addEntity()
     let triggerPosition = Transform.get(this.gameController.mainInstance.s0_tree_fall_art_01).position
     Transform.create(obstacletrigger, {
-      position: addInPlace(triggerPosition,Vector3.create(-2, 0, 3)), 
+      position: addInPlace(triggerPosition, Vector3.create(-2, 0, 3))
     })
     utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(3, 9, 10) }], () => {
       engine.removeEntity(obstacletrigger)
@@ -208,8 +191,5 @@ export class SpawnIsland {
       console.log('jump tree')
     })
   }
-  completeJumpQuest(){
- 
-  }
-
+  completeJumpQuest() {}
 }
