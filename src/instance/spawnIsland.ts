@@ -16,49 +16,35 @@ import { GameController } from '../controllers/gameController'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { createDialogBubble, next, openBubble } from 'dcl-npc-toolkit/dist/bubble'
 import { FloorCircleTargeter } from '../imports/components/targeter'
+import { NPC } from '../npc.class'
 
 export class SpawnIsland {
-  s0_NPC_Robot_Art_1__01: Entity
+  s0_NPC_Robot_Art_1__01: NPC
   gameController: GameController
-  npcChild: Entity = engine.addEntity()
   targeterCircle: FloorCircleTargeter
   constructor(gameController: GameController) {
     this.gameController = gameController
-    this.s0_NPC_Robot_Art_1__01 = npc.create(
-      {
-        position: Vector3.create(218.95, 68.67, 127.08),
-        rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
-        scale: Vector3.create(1.1, 1.1, 1.1)
-      },
-      {
-        type: npc.NPCType.CUSTOM,
-        model: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
-        onActivate: () => {
-          console.log('npc activated')
-          Animator.getClip(this.s0_NPC_Robot_Art_1__01, 'Robot_Idle').playing = true
-          // createDialogBubble(this.s0_NPC_Robot_Art_1__01, 2.2)
-          // openBubble(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborBubbles, 0)
-        },
-        onWalkAway: () => { 
-          console.log('walked away')
-        },
-        hoverText: 'Talk',
-        idleAnim: 'Robot_Idle',
-        faceUser: true,
-        portrait: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png',
-        reactDistance: 10,
-        onlyClickTrigger: true
-      }
+    this.s0_NPC_Robot_Art_1__01 = new NPC(
+    Vector3.create(218.95, 68.67, 127.08),
+    Vector3.create(1.1, 1.1, 1.1),
+    Quaternion.create(0, 0.5733939, 0, -0.8192798),
+    'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
+    14,
+    ()=>{
+      console.log('npc activated')
+      Animator.getClip(this.s0_NPC_Robot_Art_1__01.entity, 'Robot_Idle').playing = true
+      createDialogBubble(this.s0_NPC_Robot_Art_1__01.entity, 2.2)
+      openBubble(this.s0_NPC_Robot_Art_1__01.entity, this.gameController.dialogs.toborBubbles, 0)
+    },
+    ()=>{
+      openDialogWindow(this.s0_NPC_Robot_Art_1__01.entity, this.gameController.dialogs.toborDialog, 0)
+      Animator.stopAllAnimations(this.s0_NPC_Robot_Art_1__01.entity)
+      Animator.getClip(this.s0_NPC_Robot_Art_1__01.entity, 'Talk').playing = true
+      npc.closeBubble(this.s0_NPC_Robot_Art_1__01.entity)
+      this.targeterCircle.showCircle(false)
+    }
     )
-    this.targeterCircle = new FloorCircleTargeter(
-      Vector3.create(0, 0, 0),
-      Vector3.create(0, 0, 0),
-      Quaternion.create(0, 0, 0),
-      this.s0_NPC_Robot_Art_1__01
-    )
-    this.targeterCircle.showCircle(true)
-    this.targeterCircle.setCircleScale(0.4)
-    Animator.createOrReplace(this.s0_NPC_Robot_Art_1__01, {
+    Animator.createOrReplace(this.s0_NPC_Robot_Art_1__01.entity, {
       states: [
         {
           clip: 'Robot_On',
@@ -97,29 +83,14 @@ export class SpawnIsland {
         }
       ]
     })
-
-    Transform.create(this.npcChild, { parent: this.s0_NPC_Robot_Art_1__01 })
-    Transform.getMutable(this.npcChild).scale = Vector3.create(2, 2, 2)
-    MeshCollider.setBox(this.npcChild)
-    PointerEvents.createOrReplace(this.npcChild, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_POINTER,
-            showFeedback: true
-          }
-        }
-      ]
-    })
-    engine.addSystem(() => {
-      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.npcChild)) {
-        openDialogWindow(this.s0_NPC_Robot_Art_1__01, this.gameController.dialogs.toborDialog, 0)
-        Animator.stopAllAnimations(this.s0_NPC_Robot_Art_1__01)
-        Animator.getClip(this.s0_NPC_Robot_Art_1__01, 'Talk').playing = true
-        // npc.closeBubble(this.s0_NPC_Robot_Art_1__01)
-        this.targeterCircle.showCircle(false)
-      }
-    })
+    this.s0_NPC_Robot_Art_1__01.activateBillBoard(true)
+    this.targeterCircle = new FloorCircleTargeter(
+      Vector3.create(0, 0, 0),
+      Vector3.create(0, 0, 0),
+      Quaternion.create(0, 0, 0),
+      this.s0_NPC_Robot_Art_1__01.entity
+    )
+    this.targeterCircle.showCircle(true)
+    this.targeterCircle.setCircleScale(0.4)
   }
 }

@@ -1,7 +1,7 @@
 import { followPath, type Dialog } from 'dcl-npc-toolkit'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
-import { Animator } from '@dcl/sdk/ecs'
+import { Animator, Transform } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { CLICKME } from './textsTutorialBubble'
 
@@ -10,6 +10,9 @@ const talkingTrebor: ImageData = {
 }
 const happyTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Happy.png'
+}
+const IdleTrebor: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
 }
 const point1 = Vector3.create(216.93, 70.42, 131.14)
 const point2 = Vector3.create(201.84, 64.88, 126.75)
@@ -37,19 +40,22 @@ export class Dialogs {
     this.toborDialog = [
       {
         text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
-        fontSize: 18
+        fontSize: 18,
+        portrait: IdleTrebor
       },
       {
-        text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>'
+        text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>',
+        portrait: IdleTrebor
       },
       {
         text: 'Follow me to get started.  It should only take 5 minutes of your time.',
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01, pathData),
+          followPath(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.entity, pathData),
             console.log('path on going')
-          Animator.playSingleAnimation(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01, 'Walk_Start')
+          Animator.playSingleAnimation(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.entity, 'Walk_Start')
+          this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.activateBillBoard(false)
         }
       },
       {
