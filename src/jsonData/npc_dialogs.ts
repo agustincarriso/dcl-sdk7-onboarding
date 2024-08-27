@@ -52,10 +52,13 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.entity, pathData),
+          followPath(this.gameController.spawnIsland.tobor.entity, pathData),
             console.log('path on going')
-          Animator.playSingleAnimation(this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.entity, 'Walk_Start')
-          this.gameController.mainInstance.spawnIsland.s0_NPC_Robot_Art_1__01.activateBillBoard(false)
+          Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
+          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
+          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
+          this.gameController.spawnIsland.tobor.activateBillBoard(false)
+          this.gameController.spawnIsland.jumpquest()
         }
       },
       {

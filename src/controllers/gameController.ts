@@ -10,20 +10,16 @@ import { Dialogs } from '../jsonData/npc_dialogs'
 
 export class GameController {
   mainInstance: MainInstace
+  spawnIsland: SpawnIsland
   uiController: UIController
   keyBoardUI: KeyBoardUI
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
+    this.spawnIsland = new SpawnIsland(this)
     this.uiController = new UIController(this)
     this.keyBoardUI = new KeyBoardUI(this) 
     this.dialogs = new Dialogs(this)
     this.keyBoardUI.isVisible = true
-    utils.timers.setTimeout(() => {
-      movePlayerTo({
-        newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051),
-        cameraTarget: Vector3.create(219.13, 70.73, 125.91)
-      })
-    }, 5000)
 }
 }

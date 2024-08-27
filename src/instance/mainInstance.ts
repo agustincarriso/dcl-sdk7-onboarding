@@ -322,19 +322,19 @@ export class MainInstace {
   s0_fog_01_art_22__01: Entity
   s0_fog_01_art_23__01: Entity
   s0_fog_01_art_24__01: Entity
-  s0_COG_Cable_cap_01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_1__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_2__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_3__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_4__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_5__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_6__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_7__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_8__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_9__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_10__01: Entity = engine.addEntity()// DEFER_MOVE
-  s0_Cable_cap_Art_11__01: Entity = engine.addEntity()// DEFER_MOVE
+  s0_COG_Cable_cap_01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_1__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_2__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_3__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_4__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_5__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_6__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_7__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_8__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_9__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_10__01: Entity = engine.addEntity() // DEFER_MOVE
+  s0_Cable_cap_Art_11__01: Entity = engine.addEntity() // DEFER_MOVE
   s0_Cable_cap_Art_12__01: Entity
   s0_Cable_cap_Art_13__01: Entity
   s0_Cable_cap_Art_14__01: Entity
@@ -479,7 +479,7 @@ export class MainInstace {
   s0_rocs_cpllider_13__01: Entity
   s0_rocs_cpllider_71__01: Entity
   s0_rocs_cpllider_39__01_flag: Entity
-  spawnIsland:SpawnIsland
+
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -3668,7 +3668,18 @@ export class MainInstace {
       scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_Fence_Art_02).parent = this.s0_Z3_COG_01
-
+    PointerEvents.create(this.s0_Fence_Art_02, {
+      pointerEvents: [
+        {
+          eventType: PointerEventType.PET_DOWN,
+          eventInfo: {
+            button: InputAction.IA_POINTER,
+            showFeedback: true,
+            hoverText: 'Talk to Tobor First'
+          }
+        }
+      ]
+    })
     // COG_Landscape_Planes
     this.s0_COG_Landscape_Planes_01 = engine.addEntity()
     Transform.create(this.s0_COG_Landscape_Planes_01, {
@@ -5718,7 +5729,6 @@ export class MainInstace {
       rotation: Quaternion.fromEulerDegrees(0, 30, 0),
       scale: Vector3.create(23, 1, 30)
     })
-    this.spawnIsland = new SpawnIsland(this.gameController)
     this.DEFER_LOADING()
   }
   DEFER_LOADING() {
@@ -5841,284 +5851,286 @@ export class MainInstace {
         scale: Vector3.create(1, 1, 1)
       })
       Transform.getMutable(this.s0_Chunk_05_art_01).parent = this.s0_Z3_COG_01
-          // --> DEFER_LOADING
-    console.log('onSceneReadyObservable called. loading non critical values', 'COG cables')
-    // COG_Cable_cap
-    this.s0_COG_Cable_cap_01 = engine.addEntity()
-    Transform.create(this.s0_COG_Cable_cap_01, {
-      position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 0, 0, 1),
-      scale: Vector3.create(1, 1, 1)
-    })
+      // --> DEFER_LOADING
+      console.log('onSceneReadyObservable called. loading non critical values', 'COG cables')
+      // COG_Cable_cap
+      this.s0_COG_Cable_cap_01 = engine.addEntity()
+      Transform.create(this.s0_COG_Cable_cap_01, {
+        position: Vector3.create(0, 0, 0),
+        rotation: Quaternion.create(0, 0, 0, 1),
+        scale: Vector3.create(1, 1, 1)
+      })
 
-    // Cable_cap_Art
-    this.s0_Cable_cap_Art_01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_01, { src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb' })
-    Transform.create(this.s0_Cable_cap_Art_01, {
-      position: Vector3.create(194.334, 63.359, 119.553),
-      rotation: Quaternion.create(-0.6632667, 0.6632667, -0.2451068, 0.2451067),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art
+      this.s0_Cable_cap_Art_01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_01, {
+        position: Vector3.create(194.334, 63.359, 119.553),
+        rotation: Quaternion.create(-0.6632667, 0.6632667, -0.2451068, 0.2451067),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (1)
-    this.s0_Cable_cap_Art_1__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_1__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_1__01, {
-      position: Vector3.create(195.904, 64.13739, 120.864),
-      rotation: Quaternion.create(0.4384536, 0.8292188, 0.1620282, 0.3064335),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_1__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (1)
+      this.s0_Cable_cap_Art_1__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_1__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_1__01, {
+        position: Vector3.create(195.904, 64.13739, 120.864),
+        rotation: Quaternion.create(0.4384536, 0.8292188, 0.1620282, 0.3064335),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_1__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (2)
-    this.s0_Cable_cap_Art_2__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_2__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_2__01, {
-      position: Vector3.create(201.356, 64.077, 122.285),
-      rotation: Quaternion.create(-0.6988948, 0.7152245, -3.054966e-8, -3.126345e-8),
-      scale: Vector3.create(0.07613528, 0.07613528, 0.07613528)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_2__01).parent = this.s0_COG_Cable_cap_01
-    // Cable_cap_Art (3)
-    this.s0_Cable_cap_Art_3__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_3__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_3__01, {
-      position: Vector3.create(189.1353, 63.77288, 115.6139),
-      rotation: Quaternion.create(0.7539702, 0.5792547, 0.2524149, 0.1796653),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_3__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (2)
+      this.s0_Cable_cap_Art_2__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_2__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_2__01, {
+        position: Vector3.create(201.356, 64.077, 122.285),
+        rotation: Quaternion.create(-0.6988948, 0.7152245, -3.054966e-8, -3.126345e-8),
+        scale: Vector3.create(0.07613528, 0.07613528, 0.07613528)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_2__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (3)
+      this.s0_Cable_cap_Art_3__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_3__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_3__01, {
+        position: Vector3.create(189.1353, 63.77288, 115.6139),
+        rotation: Quaternion.create(0.7539702, 0.5792547, 0.2524149, 0.1796653),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_3__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (4)
-    this.s0_Cable_cap_Art_4__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_4__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_4__01, {
-      position: Vector3.create(187.4233, 64.73728, 114.1308),
-      rotation: Quaternion.create(-0.4493738, 0.8001497, -0.2350269, 0.3202906),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_4__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (4)
+      this.s0_Cable_cap_Art_4__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_4__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_4__01, {
+        position: Vector3.create(187.4233, 64.73728, 114.1308),
+        rotation: Quaternion.create(-0.4493738, 0.8001497, -0.2350269, 0.3202906),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_4__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (5)
-    this.s0_Cable_cap_Art_5__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_5__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_5__01, {
-      position: Vector3.create(166.623, 65.755, 98.867),
-      rotation: Quaternion.create(0.003740964, -0.06435917, -0.7190195, 0.6919935),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_5__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (5)
+      this.s0_Cable_cap_Art_5__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_5__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_5__01, {
+        position: Vector3.create(166.623, 65.755, 98.867),
+        rotation: Quaternion.create(0.003740964, -0.06435917, -0.7190195, 0.6919935),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_5__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (6)
-    this.s0_Cable_cap_Art_6__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_6__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_6__01, {
-      position: Vector3.create(159.1846, 65.17431, 108.1971),
-      rotation: Quaternion.create(0.5903078, 0.719475, 0.3113926, 0.1921646),
-      scale: Vector3.create(0.0928479, 0.1694833, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_6__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (6)
+      this.s0_Cable_cap_Art_6__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_6__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_6__01, {
+        position: Vector3.create(159.1846, 65.17431, 108.1971),
+        rotation: Quaternion.create(0.5903078, 0.719475, 0.3113926, 0.1921646),
+        scale: Vector3.create(0.0928479, 0.1694833, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_6__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (7)
-    this.s0_Cable_cap_Art_7__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_7__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_7__01, {
-      position: Vector3.create(165.313, 64.984, 121.5),
-      rotation: Quaternion.create(-0.04135002, 0.8410586, -0.5385682, -0.02924232),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_7__01).parent = this.s0_COG_Cable_cap_01
-    // Cable_cap_Art (8)
-    this.s0_Cable_cap_Art_8__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_8__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_8__01, {
-      position: Vector3.create(165.332, 64.713, 122.934),
-      rotation: Quaternion.create(-0.650785, 0.001526064, -0.07112417, -0.755922),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_8__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (7)
+      this.s0_Cable_cap_Art_7__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_7__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_7__01, {
+        position: Vector3.create(165.313, 64.984, 121.5),
+        rotation: Quaternion.create(-0.04135002, 0.8410586, -0.5385682, -0.02924232),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_7__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (8)
+      this.s0_Cable_cap_Art_8__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_8__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_8__01, {
+        position: Vector3.create(165.332, 64.713, 122.934),
+        rotation: Quaternion.create(-0.650785, 0.001526064, -0.07112417, -0.755922),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_8__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (9)
-    this.s0_Cable_cap_Art_9__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_9__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_9__01, {
-      position: Vector3.create(164.535, 66.302, 133.493),
-      rotation: Quaternion.create(-0.04013818, 0.627962, -0.7769762, 0.01899437),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_9__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (9)
+      this.s0_Cable_cap_Art_9__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_9__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_9__01, {
+        position: Vector3.create(164.535, 66.302, 133.493),
+        rotation: Quaternion.create(-0.04013818, 0.627962, -0.7769762, 0.01899437),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_9__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (10)
-    this.s0_Cable_cap_Art_10__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_10__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_10__01, {
-      position: Vector3.create(164.7958, 67.0889, 135.3394),
-      rotation: Quaternion.create(0.0645291, 0.8061044, 0.5767986, -0.1154786),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_10__01).parent = this.s0_COG_Cable_cap_01
+      // Cable_cap_Art (10)
+      this.s0_Cable_cap_Art_10__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_10__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_10__01, {
+        position: Vector3.create(164.7958, 67.0889, 135.3394),
+        rotation: Quaternion.create(0.0645291, 0.8061044, 0.5767986, -0.1154786),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_10__01).parent = this.s0_COG_Cable_cap_01
 
-    // Cable_cap_Art (11)
-    this.s0_Cable_cap_Art_11__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Cable_cap_Art_11__01, {
-      src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
-    })
-    Transform.create(this.s0_Cable_cap_Art_11__01, {
-      position: Vector3.create(166.5, 67.085, 141.886),
-      rotation: Quaternion.create(-0.1638656, 0.7515974, -0.6057308, -0.2033214),
-      scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
-    })
-    Transform.getMutable(this.s0_Cable_cap_Art_11__01).parent = this.s0_COG_Cable_cap_01
-        //DEFER_LOADING
-        console.log('onSceneReadyObservable called. loading non critical values', 'COG laps')
-        // Crear entidad Z3_Str_Lamp_Art (1)
-        this.s0_Z3_Str_Lamp_Art_1__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z3_Str_Lamp_Art_1__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
-        })
-        Transform.create(this.s0_Z3_Str_Lamp_Art_1__01, {
-          position: Vector3.create(124.85, 75.29, 123.76),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-        // Z3_Str_Lamp_Art (2)
-        this.s0_Z3_Str_Lamp_Art_2__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z3_Str_Lamp_Art_2__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
-        })
-        Transform.create(this.s0_Z3_Str_Lamp_Art_2__01, {
-          position: Vector3.create(136.87, 70.57, 149.46),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-    
-        // Z3_Str_Lamp_Art (3)
-        this.s0_Z3_Str_Lamp_Art_3__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z3_Str_Lamp_Art_3__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
-        })
-        Transform.create(this.s0_Z3_Str_Lamp_Art_3__01, {
-          position: Vector3.create(159.85, 67.76, 161.82),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-    
-        // Z3_Str_Lamp_Art (4)
-        this.s0_Z3_Str_Lamp_Art_4__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z3_Str_Lamp_Art_4__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
-        })
-        Transform.create(this.s0_Z3_Str_Lamp_Art_4__01, {
-          position: Vector3.create(164.19, 66.77, 137.21),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-        // Z3_Str_Lamp_Art (5)
-        this.s0_Z3_Str_Lamp_Art_5__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z3_Str_Lamp_Art_5__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
-        })
-        Transform.create(this.s0_Z3_Str_Lamp_Art_5__01, {
-          position: Vector3.create(158.51, 64.78, 108.98),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-    
-        // grass_orange_art (1)
-        this.s0_grass_orange_art_1__01 = engine.addEntity()
-        GltfContainer.create(this.s0_grass_orange_art_1__01, {
-          src: 'assets/scene/models/unity_assets/s0_grass_orange_art_01.glb'
-        })
-        Transform.create(this.s0_grass_orange_art_1__01, {
-          position: Vector3.create(224.711, 68.396, 126.606),
-          rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-          scale: Vector3.create(1, 1, 1)
-        })
-        // Dto_Bird_Art (1)
-        this.s0_Dto_Bird_Art_1__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Dto_Bird_Art_1__01, {
-          src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
-        })
-        Transform.create(this.s0_Dto_Bird_Art_1__01, {
-          position: Vector3.create(145.2148, 75.4785, 152.0894),
-          rotation: Quaternion.create(-0.4299748, 0.4893725, -0.5435354, -0.5293445),
-          scale: Vector3.create(100, 100, 100)
-        })
-    
-        // Dto_Bird_Art (2)
-        this.s0_Dto_Bird_Art_2__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Dto_Bird_Art_2__01, {
-          src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
-        })
-        Transform.create(this.s0_Dto_Bird_Art_2__01, {
-          position: Vector3.create(145.2547, 75.4576, 151.6969),
-          rotation: Quaternion.create(-0.4094036, 0.6543568, -0.4787436, -0.4183428),
-          scale: Vector3.create(100, 100, 100)
-        })
-    
-        // Dto_Bird_Art (4)
-        this.s0_Dto_Bird_Art_4__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Dto_Bird_Art_4__01, {
-          src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
-        })
-        Transform.create(this.s0_Dto_Bird_Art_4__01, {
-          position: Vector3.create(169.3856, 74.6725, 172.9483),
-          rotation: Quaternion.create(0.5141044, 0.391908, -0.2141115, 0.7322986),
-          scale: Vector3.create(100, 100, 100)
-        })
-        // Z1_Out_IslandBase2_Art (1)
-        this.s0_Z1_Out_IslandBase2_Art_1__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
-        })
-        Transform.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
-          position: Vector3.create(127.33, 70.41, 93.55),
-          rotation: Quaternion.create(0, 0.8832645, 0, 0.4688751),
-          scale: Vector3.create(0.391064, 0.3483358, 0.3483358)
-        })
-    
-        // Z1_Out_IslandBase2_Art (2)
-        this.s0_Z1_Out_IslandBase2_Art_2__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
-        })
-        Transform.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
-          position: Vector3.create(133.34, 69.26, 102.31),
-          rotation: Quaternion.create(0, 0.7877673, 0, 0.6159729),
-          scale: Vector3.create(0.4586008, 0.3483358, 0.3483358)
-        })
-    
-        // Z1_Out_IslandBase2_Art (3)
-        this.s0_Z1_Out_IslandBase2_Art_3__01 = engine.addEntity()
-        GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
-          src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
-        })
-        Transform.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
-          position: Vector3.create(138.39, 66.78, 113.38),
-          rotation: Quaternion.create(0, 0.7490135, 0, 0.6625547),
-          scale: Vector3.create(0.4586008, 0.2889167, 0.2987502)
-        })
+      // Cable_cap_Art (11)
+      this.s0_Cable_cap_Art_11__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Cable_cap_Art_11__01, {
+        src: 'assets/scene/models/unity_assets/s0_Cable_cap_Art_01.glb'
+      })
+      Transform.create(this.s0_Cable_cap_Art_11__01, {
+        position: Vector3.create(166.5, 67.085, 141.886),
+        rotation: Quaternion.create(-0.1638656, 0.7515974, -0.6057308, -0.2033214),
+        scale: Vector3.create(0.0928479, 0.0928479, 0.0928479)
+      })
+      Transform.getMutable(this.s0_Cable_cap_Art_11__01).parent = this.s0_COG_Cable_cap_01
+      //DEFER_LOADING
+      console.log('onSceneReadyObservable called. loading non critical values', 'COG laps')
+      // Crear entidad Z3_Str_Lamp_Art (1)
+      this.s0_Z3_Str_Lamp_Art_1__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z3_Str_Lamp_Art_1__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+      })
+      Transform.create(this.s0_Z3_Str_Lamp_Art_1__01, {
+        position: Vector3.create(124.85, 75.29, 123.76),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+      // Z3_Str_Lamp_Art (2)
+      this.s0_Z3_Str_Lamp_Art_2__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z3_Str_Lamp_Art_2__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+      })
+      Transform.create(this.s0_Z3_Str_Lamp_Art_2__01, {
+        position: Vector3.create(136.87, 70.57, 149.46),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+
+      // Z3_Str_Lamp_Art (3)
+      this.s0_Z3_Str_Lamp_Art_3__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z3_Str_Lamp_Art_3__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+      })
+      Transform.create(this.s0_Z3_Str_Lamp_Art_3__01, {
+        position: Vector3.create(159.85, 67.76, 161.82),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+
+      // Z3_Str_Lamp_Art (4)
+      this.s0_Z3_Str_Lamp_Art_4__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z3_Str_Lamp_Art_4__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+      })
+      Transform.create(this.s0_Z3_Str_Lamp_Art_4__01, {
+        position: Vector3.create(164.19, 66.77, 137.21),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+      // Z3_Str_Lamp_Art (5)
+      this.s0_Z3_Str_Lamp_Art_5__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z3_Str_Lamp_Art_5__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z3_Str_Lamp_Art_01.glb'
+      })
+      Transform.create(this.s0_Z3_Str_Lamp_Art_5__01, {
+        position: Vector3.create(158.51, 64.78, 108.98),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+
+      // grass_orange_art (1)
+      this.s0_grass_orange_art_1__01 = engine.addEntity()
+      GltfContainer.create(this.s0_grass_orange_art_1__01, {
+        src: 'assets/scene/models/unity_assets/s0_grass_orange_art_01.glb'
+      })
+      Transform.create(this.s0_grass_orange_art_1__01, {
+        position: Vector3.create(224.711, 68.396, 126.606),
+        rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+        scale: Vector3.create(1, 1, 1)
+      })
+      // Dto_Bird_Art (1)
+      this.s0_Dto_Bird_Art_1__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Dto_Bird_Art_1__01, {
+        src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+      })
+      Transform.create(this.s0_Dto_Bird_Art_1__01, {
+        position: Vector3.create(145.2148, 75.4785, 152.0894),
+        rotation: Quaternion.create(-0.4299748, 0.4893725, -0.5435354, -0.5293445),
+        scale: Vector3.create(100, 100, 100)
+      })
+
+      // Dto_Bird_Art (2)
+      this.s0_Dto_Bird_Art_2__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Dto_Bird_Art_2__01, {
+        src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+      })
+      Transform.create(this.s0_Dto_Bird_Art_2__01, {
+        position: Vector3.create(145.2547, 75.4576, 151.6969),
+        rotation: Quaternion.create(-0.4094036, 0.6543568, -0.4787436, -0.4183428),
+        scale: Vector3.create(100, 100, 100)
+      })
+
+      // Dto_Bird_Art (4)
+      this.s0_Dto_Bird_Art_4__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Dto_Bird_Art_4__01, {
+        src: 'assets/scene/models/unity_assets/s0_Dto_Bird_Art_6__01.glb'
+      })
+      Transform.create(this.s0_Dto_Bird_Art_4__01, {
+        position: Vector3.create(169.3856, 74.6725, 172.9483),
+        rotation: Quaternion.create(0.5141044, 0.391908, -0.2141115, 0.7322986),
+        scale: Vector3.create(100, 100, 100)
+      })
+      // Z1_Out_IslandBase2_Art (1)
+      this.s0_Z1_Out_IslandBase2_Art_1__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+      })
+      Transform.create(this.s0_Z1_Out_IslandBase2_Art_1__01, {
+        position: Vector3.create(127.33, 70.41, 93.55),
+        rotation: Quaternion.create(0, 0.8832645, 0, 0.4688751),
+        scale: Vector3.create(0.391064, 0.3483358, 0.3483358)
+      })
+
+      // Z1_Out_IslandBase2_Art (2)
+      this.s0_Z1_Out_IslandBase2_Art_2__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+      })
+      Transform.create(this.s0_Z1_Out_IslandBase2_Art_2__01, {
+        position: Vector3.create(133.34, 69.26, 102.31),
+        rotation: Quaternion.create(0, 0.7877673, 0, 0.6159729),
+        scale: Vector3.create(0.4586008, 0.3483358, 0.3483358)
+      })
+
+      // Z1_Out_IslandBase2_Art (3)
+      this.s0_Z1_Out_IslandBase2_Art_3__01 = engine.addEntity()
+      GltfContainer.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
+        src: 'assets/scene/models/unity_assets/s0_Z1_Out_IslandBase2_Art_01.glb'
+      })
+      Transform.create(this.s0_Z1_Out_IslandBase2_Art_3__01, {
+        position: Vector3.create(138.39, 66.78, 113.38),
+        rotation: Quaternion.create(0, 0.7490135, 0, 0.6625547),
+        scale: Vector3.create(0.4586008, 0.2889167, 0.2987502)
+      })
     })
   }
 }
