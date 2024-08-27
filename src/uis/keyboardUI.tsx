@@ -2,41 +2,41 @@ import { UiCanvasInformation, engine } from '@dcl/sdk/ecs';
 import ReactEcs, { Label, UiEntity } from '@dcl/sdk/react-ecs';
 import { GameController } from '../controllers/gameController';
 import { Color4 } from '@dcl/sdk/math';
-import * as utils from '@dcl-sdk/utils'
+import * as utils from '@dcl-sdk/utils';
+
 export class KeyBoardUI {
   image: string = 'assets/ui/UI_Keyboard.png';
   IMAGE_SCALE: number = 0.7;
   isVisible: boolean = false;
   pressanykey: string = 'Press left click to Continue...';
   gameController: GameController;
-  currentBackgroundColor: Color4 = Color4.Black(); // Estado inicial del color
+  currentBackgroundColor: Color4 = Color4.create(0, 0, 0, 1); // Negro con alpha 1
+  isFadingOut: boolean = false; // Bandera para controlar el estado de fade out
 
   constructor(gameController: GameController) {
     this.gameController = gameController;
   }
 
-  // Función para iniciar el efecto de fade out cambiando los valores RGB
+  // Función para iniciar el efecto de fade out
   startFadeOut() {
-    let fadeInterval = 50; // Tiempo entre cada cambio de color en milisegundos
-    let fadeDuration = 2000; // Duración total del fade out en milisegundos
-    let steps = fadeDuration / fadeInterval; // Número de pasos para el fade out
-    let stepValue = 1 / steps; // Incremento para cada componente RGB en cada paso
-    let r = 0
-    let g = 0
-    let b = 0
+    if (this.isFadingOut) return; // Si ya está haciendo fade out, no hacer nada
+
+    this.isFadingOut = true; // Marcar que el fade out ha comenzado
+    let fadeInterval = 62; // Ajuste para que coincida con el ejemplo proporcionado
+    let stepValue = 0.05;  // Decremento de alpha para cada paso
+    let alpha = 1; // Valor inicial de alpha
+
     let interval = utils.timers.setInterval(() => {
-      // Incrementar los valores RGB para acercarse a blanco
-      r += stepValue;
-      g += stepValue;
-      b += stepValue;
-      this.currentBackgroundColor = Color4.create(r,g,b)
-      // Asegurar que los valores no superen 1
-      if (this.currentBackgroundColor.r >= 1) {
-        r = 1;
-        g = 1;
-        b = 1;
+      // Decrementar el valor de alpha para hacer transparente
+      alpha -= stepValue;
+      this.currentBackgroundColor = Color4.create(0, 0, 0, alpha);
+
+      // Asegurar que alpha no sea menor que 0
+      if (alpha <= 0) {
+        alpha = 0;
         utils.timers.clearInterval(interval); // Detener el intervalo
         this.isVisible = false; // Ocultar UI después del fade out
+        this.isFadingOut = false; // Restablecer bandera al finalizar
       }
 
       // Forzar la actualización del UI
@@ -61,7 +61,7 @@ export class KeyBoardUI {
       >
         <UiEntity
           uiTransform={{
-            flexDirection: 'row',
+            flexDirection: 'row',  
             width: '70%',
             height: '70%',
             justifyContent: 'center',
@@ -83,7 +83,7 @@ export class KeyBoardUI {
             position: { left: '40%', bottom: '8%' },
           }}
           value={this.pressanykey}
-          fontSize={30}
+          fontSize={30} 
           font="sans-serif"
           color={Color4.White()}
           textAlign="bottom-center"

@@ -1,8 +1,9 @@
 import { followPath, type Dialog } from 'dcl-npc-toolkit'
-import { GameController } from './controllers/gameController'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
-import { Animator } from '@dcl/sdk/ecs'
+import { Animator, Transform } from '@dcl/sdk/ecs'
+import { GameController } from '../controllers/gameController'
+import { CLICKME } from './textsTutorialBubble'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -10,18 +11,28 @@ const talkingTrebor: ImageData = {
 const happyTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Happy.png'
 }
+const IdleTrebor: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
+}
 const point1 = Vector3.create(216.93, 70.42, 131.14)
 const point2 = Vector3.create(201.84, 64.88, 126.75)
 
 const pathArray = [point1, point2]
 let pathData: FollowPathData = {
-  totalDuration: 5,
-  path: pathArray
+  totalDuration: 5, 
+  path: pathArray,
+  onReachedPointCallback: () => { 
+    console.log('halfWay')
+  },
+  onFinishCallback: () => {
+    console.log('Ruta completada')
+  }
 }
 export class Dialogs {
   public toborDialog: Dialog[]
   public bezierDialog: Dialog[]
   public matDialog: Dialog[]
+  public toborBubbles: Dialog[] 
 
   gameController: GameController
   constructor(gameController: GameController) {
@@ -29,18 +40,25 @@ export class Dialogs {
     this.toborDialog = [
       {
         text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
-        fontSize: 18
+        fontSize: 18,
+        portrait: IdleTrebor
       },
       {
-        text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>'
+        text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>',
+        portrait: IdleTrebor
       },
       {
         text: 'Follow me to get started.  It should only take 5 minutes of your time.',
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.island_1.s0_NPC_Robot_Art_1__01, pathData), console.log('path on going')
-          Animator.playSingleAnimation(this.gameController.island_1.s0_NPC_Robot_Art_1__01, 'Walk_Start')
+          followPath(this.gameController.spawnIsland.tobor.entity, pathData),
+          console.log('path on going')
+          Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
+          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
+          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
+          this.gameController.spawnIsland.tobor.activateBillBoard(false)
+          this.gameController.spawnIsland.jumpquest()
         }
       },
       {
@@ -53,6 +71,11 @@ export class Dialogs {
       {
         text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
         portrait: happyTrebor
+      }
+    ]
+    this.toborBubbles = [
+      {
+        text: CLICKME
       }
     ]
     this.bezierDialog = [
