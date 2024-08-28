@@ -175,9 +175,12 @@ export class SpawnIsland {
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
     npc.closeBubble(this.tobor.entity)
     this.targeterCircle.showCircle(false)
+    this.gameController.uiController.widgetTasksBox.showTick(true)
   }
   startMoveQuest() {}
   jumpquest() {
+    this.gameController.uiController.widgetTasksBox.setText(1,0)
+    this.gameController.uiController.widgetTasksBox.showTasks(true)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0, 0, 0)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0, 0, 0)
     let obstacletrigger = engine.addEntity()
@@ -191,5 +194,11 @@ export class SpawnIsland {
       console.log('jump tree')
     })
   }
-  completeJumpQuest() {}
+  completeJumpQuest() {
+    this.gameController.uiController.widgetTasksBox.showTick(true)
+    utils.timers.setTimeout(()=>{
+      this.gameController.uiController.widgetTasksBox.setText(2,0)
+      this.gameController.uiController.widgetTasksBox.showTasks(true)
+    },1500)
+  }
 }
