@@ -25,9 +25,7 @@ import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
 import { BubbleTalk } from '../imports/bubble'
 import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
-import { pathArray2} from '../jsonData/npc_dialogs'
-
-
+import { pathArray2 } from '../jsonData/npc_dialogs'
 
 export class SpawnIsland {
   tobor: NPC
@@ -55,7 +53,7 @@ export class SpawnIsland {
         console.log('npc activated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
-      () => {  
+      () => {
         PointerEvents.deleteFrom(this.tobor.npcChild)
         this.bubbleTalk.closeBubbleInTime()
         this.startInteractQuest()
@@ -179,7 +177,7 @@ export class SpawnIsland {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = ''
     } else if (bActive === false) {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_ON_01).src = ''
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src =
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = 
         'assets/scene/models/unity_assets/s0_Cable_01_OFF_01.glb'
     }
   }
@@ -187,13 +185,13 @@ export class SpawnIsland {
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
-    npc.closeBubble(this.tobor.entity)
     this.targeterCircle.showCircle(false)
     this.gameController.uiController.widgetTasksBox.showTick(true)
   }
   startMoveQuest() {}
   jumpquest() {
-    this.gameController.uiController.widgetTasksBox.setText(1,0)
+    this.gameController.uiController.popUpControls.spaceContainerVisible = true
+    this.gameController.uiController.widgetTasksBox.setText(1, 0)
     this.gameController.uiController.widgetTasksBox.showTasks(true)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0, 0, 0)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0, 0, 0)
@@ -211,10 +209,11 @@ export class SpawnIsland {
     })
   }
   completeJumpQuest() {
+    this.gameController.uiController.popUpControls.spaceContainerVisible = false
     this.gameController.uiController.widgetTasksBox.showTick(true)
-    utils.timers.setTimeout(()=>{
-      this.gameController.uiController.widgetTasksBox.setText(2,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasksBox.setText(2, 0)
       this.gameController.uiController.widgetTasksBox.showTasks(true)
-    },1500)
+    }, 1500)
   }
 }

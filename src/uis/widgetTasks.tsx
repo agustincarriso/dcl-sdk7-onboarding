@@ -50,7 +50,7 @@ export class WidgetTasksBox {
       this.checkImageVisible = true
     }
   }
-  initialize(): ReactEcs.JSX.Element {
+  widgetTask(): ReactEcs.JSX.Element {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
     return (
       <UiEntity

@@ -51,6 +51,7 @@ export class FloorCircleTargeter {
     if (bShow === true) {
       GltfContainer.getMutable(this.floorCircleEntity).src = 'assets/scene/models/glb_assets/target_position.glb'
     } else {
+      console.log('circle removed')
       GltfContainer.getMutable(this.floorCircleEntity).src = ''
     }
   }
