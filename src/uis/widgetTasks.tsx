@@ -2,6 +2,8 @@ import { engine, UiCanvasInformation } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { Label, ReactEcs, UiEntity } from '@dcl/sdk/react-ecs'
 import { GameController } from '../controllers/gameController'
+import { getTaskTexts, Objectives } from '../jsonData/tasksTexts'
+import { UIController } from '../controllers/uiController'
 
 export enum TaskType {
   Multiple = 0,
@@ -9,27 +11,45 @@ export enum TaskType {
 }
 export class WidgetTasksBox {
   auxcontainer: Color4 = Color4.create(0, 0, 0, 0.5)
+  auxcontainerVisible: boolean = false
   checkImage: string = 'assets/ui/UI_Tasks_Tick.png'
+  checkImageVisible: boolean = false
   checkBoxImage: string = 'assets/ui/UI_Tasks_Box.png'
+  checkBoxImageVisible: boolean = false
   taskId: number = 0
   textUI: string = ''
+  textUIVisible: boolean = false
   infoUI: string = ''
-  gameController: GameController
-  constructor(gameController: GameController) {
-    this.gameController = gameController
+  infoUIVisible: boolean = false
+  currentTask: Objectives
+  uiController: UIController
+  constructor(uiController: UIController) {
+    this.uiController = uiController
+    this.currentTask = {
+      text: { en: '' },
+      missionInfo: { en: '' },
+      fontSize: 0,
+      vAlign: '',
+      completed: false
+    }
   }
-  setText() {}
-  setNextText() {}
-  showTick() {}
-  updadeMissionInfo() {}
-  hideTasks() {}
-  showTasks() {}
-  setOtherTask(taskId: number) {}
-  setOtherTaskDelay(taskId: number, time: number) {}
-  resetTasks(questId: number) {}
-  setVisibility(visibility: boolean) {}
-  setPaddingY(padding: string) {}
-  setPaddingX(padding: string) {}
+  setText(taskId: number, dialogId: number) {
+    this.currentTask = getTaskTexts(taskId, dialogId)
+    this.textUI = this.currentTask?.text?.en
+    this.infoUI = this.currentTask?.missionInfo?.en
+  }
+  showTasks(visible: boolean) {
+    this.auxcontainerVisible = visible
+    this.checkBoxImageVisible =visible 
+    this.textUIVisible = visible
+    this.infoUIVisible = visible
+    this.checkImageVisible = false
+  }
+  showTick(visible = true) {
+    if (visible) {
+      this.checkImageVisible = true
+    }
+  }
   initialize(): ReactEcs.JSX.Element {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
     return (
@@ -40,7 +60,8 @@ export class WidgetTasksBox {
           height: canvasInfo.height * 0.118,
           justifyContent: 'flex-end',
           positionType: 'absolute',
-          position: { top: '14%', right: '2.5%' } 
+          position: { top: '14%', right: '2.5%' },
+          display: this.auxcontainerVisible ? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -48,24 +69,24 @@ export class WidgetTasksBox {
           color: this.auxcontainer
         }}
       >
-        {/* Level */}
+        {/* Text UI */}
         <Label
           uiTransform={{
             positionType: 'absolute',
-            position: { left: '3%', top: '6.5%' },
+            position: { left: '3%', top: '6.5%' }
           }}
-          value={'<b>Talk with the robot</b>'}
-          fontSize={canvasInfo.height * 0.02} 
+          value={"<b>"+`${this.textUI}`+"</b>"}
+          fontSize={canvasInfo.height * 0.02}
           font="sans-serif"
           color={Color4.White()}
         />
-        {/* Level */}
+        {/* Info UI */}
         <Label
           uiTransform={{
             positionType: 'absolute',
-            position: { left: '13%', top: '35%' },
+            position: { left: '13%', top: '35%' }
           }}
-          value={'Get close to the robot. Click to <br>interact with it'}
+          value={this.infoUI}
           textAlign="middle-left"
           fontSize={canvasInfo.height * 0.02}
           font="sans-serif"
@@ -77,7 +98,8 @@ export class WidgetTasksBox {
             positionType: 'absolute',
             width: canvasInfo.height * 0.03,
             height: canvasInfo.height * 0.03,
-            position: { top: '40%', left: '5%' }
+            position: { top: '40%', left: '5%' },
+            display: this.checkBoxImageVisible ? 'flex' : 'none'
           }}
           uiBackground={{
             textureMode: 'stretch',
@@ -88,7 +110,8 @@ export class WidgetTasksBox {
             uiTransform={{
               positionType: 'absolute',
               width: '100%',
-              height: '100%'
+              height: '100%',
+              display: this.checkImageVisible ? 'flex' : 'none'
             }}
             uiBackground={{
               textureMode: 'stretch',

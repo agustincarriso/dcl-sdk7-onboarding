@@ -23,7 +23,7 @@ export class NPC {
   constructor(
     position: Vector3,
     scale: Vector3,
-    rotation: Quaternion,
+    rotation: Quaternion, 
     GLTF: string,
     reactDistance: number,
     onActivate: () => void = () => {},

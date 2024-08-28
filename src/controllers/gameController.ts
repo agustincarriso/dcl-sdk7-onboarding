@@ -11,18 +11,16 @@ import { WidgetTasksBox } from '../uis/widgetTasks'
 
 export class GameController {
   mainInstance: MainInstace
-  spawnIsland: SpawnIsland
   uiController: UIController
+  spawnIsland: SpawnIsland
   keyBoardUI: KeyBoardUI
   dialogs: Dialogs
-  WidgetTasksBox : WidgetTasksBox
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
     this.uiController = new UIController(this)
-    this.keyBoardUI = new KeyBoardUI(this) 
+    this.keyBoardUI = new KeyBoardUI(this)
     this.dialogs = new Dialogs(this)
-    this.WidgetTasksBox = new WidgetTasksBox(this)
     this.keyBoardUI.isVisible = true
-}
+  }
 }
