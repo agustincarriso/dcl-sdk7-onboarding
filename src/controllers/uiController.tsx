@@ -12,7 +12,8 @@ export class UIController {
     this.uiComponent = () => (
         [
             NpcUtilsUi(),
-            this.gameController.keyBoardUI.mainUi()
+            this.gameController.keyBoardUI.mainUi(),
+            this.gameController.WidgetTasksBox.initialize()
         ]
     )
     ReactEcsRenderer.setUiRenderer(this.uiComponent)

@@ -17,7 +17,7 @@ export class ArrowTargeter {
     Transform.getMutable(this.arrowEntity).position = position
   }
 
-  setArrowHeight(height: number) {
+  setArrowHeight(height: number) { 
     Transform.getMutable(this.arrowEntity).position.y = height
   }
 
