@@ -196,5 +196,9 @@ export class SpawnIsland {
   }
   completeJumpQuest() {
     this.gameController.uiController.widgetTasksBox.showTick(true)
+    utils.timers.setTimeout(()=>{
+      this.gameController.uiController.widgetTasksBox.setText(2,0)
+      this.gameController.uiController.widgetTasksBox.showTasks(true)
+    },1500)
   }
 }
