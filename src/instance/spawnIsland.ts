@@ -55,7 +55,7 @@ export class SpawnIsland {
         console.log('npc activated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
-      () => {
+      () => {  
         PointerEvents.deleteFrom(this.tobor.npcChild)
         this.bubbleTalk.closeBubbleInTime()
         this.startInteractQuest()

@@ -16,7 +16,7 @@ const IdleTrebor: ImageData = {
 }
 export const point1 = Vector3.create(215.989, 69.987, 131.326)
 export const point2 = Vector3.create(208.9, 66.2, 131.11)
-export const point3 = Vector3.create(202.11, 64.88, 126.65)
+export const point3 = Vector3.create(201.87, 64.04, 126.35)
 
 export const pathArray1 = [point1, point2]
 export const pathArray2 = [point2, point3]
