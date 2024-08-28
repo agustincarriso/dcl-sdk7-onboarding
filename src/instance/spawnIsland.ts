@@ -18,19 +18,33 @@ import { Vector3, Quaternion } from '@dcl/sdk/math'
 import * as npc from 'dcl-npc-toolkit'
 import { GameController } from '../controllers/gameController'
 import { openDialogWindow } from 'dcl-npc-toolkit'
-import { createDialogBubble, next, openBubble } from 'dcl-npc-toolkit/dist/bubble'
 import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
 import { NPC } from '../npc.class'
 import * as utils from '@dcl-sdk/utils'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
+import { BubbleTalk } from '../imports/bubble'
+import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
+import { pathArray2} from '../jsonData/npc_dialogs'
+
+
 
 export class SpawnIsland {
   tobor: NPC
   gameController: GameController
   targeterCircle: FloorCircleTargeter
+  bubbleTalk: BubbleTalk
+  pathData2: FollowPathData
   constructor(gameController: GameController) {
     this.gameController = gameController
+    this.pathData2 = {
+      totalDuration: 2,
+      path: pathArray2,
+      onFinishCallback: () => {
+        this.targeterCircle.showCircle(true)
+      }
+    }
+
     this.tobor = new NPC(
       Vector3.create(218.95, 68.67, 127.08),
       Vector3.create(1.1, 1.1, 1.1),
@@ -40,11 +54,10 @@ export class SpawnIsland {
       () => {
         console.log('npc activated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
-        createDialogBubble(this.tobor.entity, 2.2)
-        openBubble(this.tobor.entity, this.gameController.dialogs.toborBubbles, 0)
       },
       () => {
         PointerEvents.deleteFrom(this.tobor.npcChild)
+        this.bubbleTalk.closeBubbleInTime()
         this.startInteractQuest()
       }
     )
@@ -88,6 +101,7 @@ export class SpawnIsland {
       ]
     })
     this.tobor.activateBillBoard(true)
+    this.bubbleTalk = new BubbleTalk(this.tobor.npcChild)
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0, 0),
       Vector3.create(0, 0, 0),
@@ -190,6 +204,8 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(3, 9, 10) }], () => {
       engine.removeEntity(obstacletrigger)
+      this.bubbleTalk.closeBubbleInTime()
+      npc.followPath(this.gameController.spawnIsland.tobor.entity, this.pathData2)
       this.completeJumpQuest()
       console.log('jump tree')
     })
