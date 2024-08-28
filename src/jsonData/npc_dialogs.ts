@@ -3,7 +3,7 @@ import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Vector3 } from '@dcl/sdk/math'
 import { Animator, Transform } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
-import { CLICKME } from './textsTutorialBubble'
+import { CLICKME, JUMP } from './textsTutorialBubble'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -14,29 +14,30 @@ const happyTrebor: ImageData = {
 const IdleTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
 }
-const point1 = Vector3.create(216.93, 70.42, 131.14)
-const point2 = Vector3.create(201.84, 64.88, 126.75)
+export const point1 = Vector3.create(215.989, 69.987, 131.326)
+export const point2 = Vector3.create(208.9, 66.2, 131.11)
+export const point3 = Vector3.create(202.11, 64.88, 126.65)
 
-const pathArray = [point1, point2]
-let pathData: FollowPathData = {
-  totalDuration: 5, 
-  path: pathArray,
-  onReachedPointCallback: () => { 
-    console.log('halfWay')
-  },
-  onFinishCallback: () => {
-    console.log('Ruta completada')
-  }
-}
+export const pathArray1 = [point1, point2]
+export const pathArray2 = [point2, point3]
+
 export class Dialogs {
   public toborDialog: Dialog[]
   public bezierDialog: Dialog[]
   public matDialog: Dialog[]
-  public toborBubbles: Dialog[] 
-
+  public toborBubbles: Dialog[]
+  public pathData1: FollowPathData
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
+    this.pathData1 = {
+      totalDuration: 5,
+      path: pathArray1,
+      onFinishCallback: () => {
+        console.log('Ruta completada')
+        this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
+      }
+    }
     this.toborDialog = [
       {
         text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
@@ -52,8 +53,7 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.spawnIsland.tobor.entity, pathData),
-          console.log('path on going')
+          followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
           Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
           Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
           Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
