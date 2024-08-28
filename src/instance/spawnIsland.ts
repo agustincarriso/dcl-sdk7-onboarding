@@ -26,11 +26,13 @@ import { addInPlace } from '../utils/addInPlace'
 import { BubbleTalk } from '../imports/bubble'
 import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
 import { pathArray2 } from '../jsonData/npc_dialogs'
+import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 
 export class SpawnIsland {
   tobor: NPC
   gameController: GameController
   targeterCircle: FloorCircleTargeter
+  questIndicator: QuestIndicator
   bubbleTalk: BubbleTalk
   pathData2: FollowPathData
   constructor(gameController: GameController) {
@@ -106,6 +108,8 @@ export class SpawnIsland {
       Quaternion.create(0, 0, 0),
       this.tobor.entity
     )
+    this.questIndicator = new QuestIndicator(this.tobor.entity)
+    this.questIndicator.hide()
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
@@ -137,7 +141,7 @@ export class SpawnIsland {
     })
     engine.addSystem(() => {
       if (
-        inputSystem.isTriggered(
+        inputSystem.isTriggered(  
           InputAction.IA_POINTER,
           PointerEventType.PET_DOWN,
           this.gameController.mainInstance.s0_Fence_Art_02
@@ -214,6 +218,10 @@ export class SpawnIsland {
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasksBox.setText(2, 0)
       this.gameController.uiController.widgetTasksBox.showTasks(true)
-    }, 1500)
+      this.dialogAtPilar()
+    }, 1500) 
+  }
+  dialogAtPilar() {
+    this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
   }
 }
