@@ -187,7 +187,6 @@ export class SpawnIsland {
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
-    npc.closeBubble(this.tobor.entity)
     this.targeterCircle.showCircle(false)
     this.gameController.uiController.widgetTasksBox.showTick(true)
   }
