@@ -3,18 +3,18 @@ import ReactEcs, { Label, UiEntity } from '@dcl/sdk/react-ecs';
 import { GameController } from '../controllers/gameController';
 import { Color4 } from '@dcl/sdk/math';
 import * as utils from '@dcl-sdk/utils';
+import { UIController } from '../controllers/uiController';
 
 export class KeyBoardUI {
   image: string = 'assets/ui/UI_Keyboard.png';
   IMAGE_SCALE: number = 0.7;
   isVisible: boolean = false;
   pressanykey: string = 'Press left click to Continue...';
-  gameController: GameController;
   currentBackgroundColor: Color4 = Color4.create(0, 0, 0, 1); // Negro con alpha 1
   isFadingOut: boolean = false; // Bandera para controlar el estado de fade out
-
-  constructor(gameController: GameController) {
-    this.gameController = gameController;
+  uiController: UIController
+  constructor(uiController: UIController) {
+    this.uiController = uiController
   }
 
   // Función para iniciar el efecto de fade out
@@ -74,6 +74,7 @@ export class KeyBoardUI {
             texture: { src: this.image },
           }}
           onMouseDown={() => {
+            this.uiController.widgetTasksBox.showTasks(true)
             this.startFadeOut(); // Iniciar el fade out al hacer clic
           }}
         ></UiEntity>

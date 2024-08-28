@@ -13,14 +13,12 @@ export class GameController {
   mainInstance: MainInstace
   uiController: UIController
   spawnIsland: SpawnIsland
-  keyBoardUI: KeyBoardUI
+
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
     this.uiController = new UIController(this)
-    this.keyBoardUI = new KeyBoardUI(this)
     this.dialogs = new Dialogs(this)
-    this.keyBoardUI.isVisible = true
   }
 }

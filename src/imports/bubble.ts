@@ -20,8 +20,8 @@ export class BubbleTalk {
     this.text = CLICKME
     this.centerEntity = engine.addEntity()
     Transform.create(this.centerEntity, {
-      position: Vector3.create(0, 0.8, 0),
-      scale: Vector3.create(0.4, 0.4, 0.4),
+      position: Vector3.create(0, 0.9, 0),
+      scale: Vector3.create(0.25, 0.25, 0.25),
       parent: entity
     })
     GltfContainer.create(this.centerEntity, { src: 'assets/scene/models/glb_assets/s0_centerbubble_01.glb' })
@@ -54,7 +54,7 @@ export class BubbleTalk {
     this.active = true
     TextShape.getMutable(this.textEntity).text = text
     const startScale = Vector3.create(0, 0, 0)
-    const endScale = Vector3.create(1, 1, 1)
+    const endScale = Vector3.create(0.7, 0.7, 0.7)
     const duration = 500
 
     this.animateEntity(this.centerEntity, startScale, endScale, duration)
@@ -76,7 +76,7 @@ export class BubbleTalk {
     if (!this.active) return
 
     this.active = false
-    const startScale = Vector3.create(1, 1, 1)
+    const startScale = Vector3.create(0.7, 0.7, 0.7) 
     const endScale = Vector3.create(0, 0, 0)
     const duration = 500
 
