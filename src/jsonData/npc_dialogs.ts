@@ -141,12 +141,16 @@ export class Dialogs {
                       this.toborDialog,
                       3
                     )
+                    utils.timers.setTimeout(() => {
+                      this.gameController.uiController.widgetTasksBox.setText(3, 0)
+                      this.gameController.uiController.widgetTasksBox.showTick(false)
+                    }, 2000);
                   }
                 })
                 console.log('tobor on pilar')
               }
             }
-          })
+          }) 
         }
       },
 

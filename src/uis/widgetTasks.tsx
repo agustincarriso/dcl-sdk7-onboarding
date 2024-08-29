@@ -48,6 +48,8 @@ export class WidgetTasksBox {
   showTick(visible = true) {
     if (visible) {
       this.checkImageVisible = true
+    }else{
+      this.checkImageVisible = false
     }
   }
   widgetTask(): ReactEcs.JSX.Element {
