@@ -14,6 +14,11 @@ export class Popup {
   isVisible: boolean = true
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = 'Objectives'
+  headerText2: string = '<b>Help Mat with the meshes</b>'
+  headerText3: string = '<b>Help Kit with the connection</b>'
+  headerText4: string = '<b>Show Bezier your moves</b>'
+  buttonRightImage: string = 'assets/ui/UI_button_red_version_2.png'
+  buttonRightText: string = '<b>OK</b>'
   uiController: UIController
   constructor(uiController: UIController) {
     this.uiController = uiController
@@ -73,6 +78,109 @@ export class Popup {
           font="sans-serif"
           color={Color4.Gray()}
         />
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: canvasInfo.height * 0.3,
+            height: canvasInfo.height * 0.05,
+            position: { top: '32%', left: '15%' }
+          }}
+          uiBackground={{
+            textureMode: 'center',
+            texture: { src: this.backgroundBig },
+            color: lightGray
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'relative',
+              margin: { left: '11%', top: '2%', bottom: '2%', right: '10%' }
+            }}
+            value={this.headerText4}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.016}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+        </UiEntity>
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: canvasInfo.height * 0.3,
+            height: canvasInfo.height * 0.05,
+            position: { top: '44%', left: '15%' }
+          }}
+          uiBackground={{
+            textureMode: 'center',
+            texture: { src: this.backgroundBig },
+            color: lightGray
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'relative',
+              margin: { left: '11%', top: '2%', bottom: '2%', right: '10%' }
+            }}
+            value={this.headerText2}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.016}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+        </UiEntity>
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: canvasInfo.height * 0.3,
+            height: canvasInfo.height * 0.05,
+            position: { top: '56%', left: '15%' }
+          }}
+          uiBackground={{
+            textureMode: 'center',
+            texture: { src: this.backgroundBig },
+            color: lightGray
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'relative',
+              margin: { left: '11%', top: '2%', bottom: '2%', right: '10%' }
+            }}
+            value={this.headerText4}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.016}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+        </UiEntity>
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: canvasInfo.height * 0.14,
+            height: canvasInfo.height * 0.06,
+            position: { bottom: '13%', left: '35%' }
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.buttonRightImage }
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: {bottom: '20%', left: '37%', top:'20%'},
+            }}
+            value={this.buttonRightText}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.018}
+            font="sans-serif"
+            color={Color4.White()}
+          />
+        </UiEntity>
       </UiEntity>
     )
   }

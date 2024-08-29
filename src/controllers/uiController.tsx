@@ -23,7 +23,7 @@ export class UIController {
     this.popUpUI = new Popup(this)
     this.uiComponent = () => [NpcUtilsUi(), this.keyBoardUI.mainUi(), this.widgetTasksBox.widgetTask(),this.popUpControls.spaceUI(),this.popUpUI.popupUI()]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
-    this.keyBoardUI.isVisible = true
+    this.keyBoardUI.isVisible = false
     this.widgetTasksBox.setText(0, 0)
   }
 }
