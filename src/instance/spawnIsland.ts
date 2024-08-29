@@ -29,6 +29,7 @@ import { BubbleTalk } from '../imports/bubble'
 import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
 import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
+import { AudioManager } from '../imports/components/audio/audio.manager'
 
 export class SpawnIsland {
   tobor: NPC
@@ -152,6 +153,7 @@ export class SpawnIsland {
     })
     this.respawnTrigger()
     this.activeCables(false)
+    this.startSpawnIsland()
   }
   respawnTrigger() {
     const triggerPos = Vector3.create(160, 10, 160)
@@ -166,6 +168,11 @@ export class SpawnIsland {
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     })
+  }
+  startSpawnIsland() {
+    //Start ambiental sound
+    // AudioManager.instance().playMainAmbience(true)
+    AudioManager.instance().play('waterfall', { volume: 1, loop: true, position: Vector3.create(226.94, 70, 130.37) })
   }
   activeCables(bActive: boolean) {
     if (bActive === true) {
@@ -196,7 +203,7 @@ export class SpawnIsland {
     let triggerPosition = Transform.get(this.gameController.mainInstance.s0_tree_fall_art_01).position
     Transform.create(obstacletrigger, {
       position: addInPlace(triggerPosition, Vector3.create(-2, 0, 3))
-    }) 
+    })
     utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(3, 9, 10) }], () => {
       engine.removeEntity(obstacletrigger)
       this.bubbleTalk.closeBubbleInTime()
@@ -218,33 +225,32 @@ export class SpawnIsland {
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
   }
-  onCloseRewardUI(){
-  this.activateBridge()
-  this.activatePilar()
-  Animator.stopAllAnimations(this.tobor.entity)
-  Animator.getClip(this.tobor.entity,'Robot_Idle').playing = true
+  onCloseRewardUI() {
+    this.activateBridge()
+    this.activatePilar()
+    Animator.stopAllAnimations(this.tobor.entity)
+    Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
   }
   activatePilar() {
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').speed = 3
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').shouldReset = false
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').loop = false
-    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim')
-      utils.timers.setTimeout(()=>{
-        this.activeCables(true)
-    },4000)
-
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim')
+    utils.timers.setTimeout(() => {
+      this.activeCables(true)
+    }, 4000)
   }
   activateBridge() {
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').speed = 3
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').shouldReset = false
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').loop = false
-    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation')
-      utils.timers.setTimeout(()=>{
-        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').speed = 1
-        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').shouldReset = false
-        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').loop = false
-        Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On')
-    },1200)
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation')
+    utils.timers.setTimeout(() => {
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').speed = 1
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').shouldReset = false
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').loop = false
+      Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On')
+    }, 1200)
   }
 
   followPath(): void {

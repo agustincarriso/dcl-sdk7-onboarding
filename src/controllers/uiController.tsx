@@ -26,6 +26,5 @@ export class UIController {
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true
     this.widgetTasksBox.setText(0, 0)
-
   }
 }
