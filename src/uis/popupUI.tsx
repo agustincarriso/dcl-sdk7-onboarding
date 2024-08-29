@@ -350,7 +350,7 @@ export class Popup {
         }else{
           this.takeControlCameraEscVisible = false
           this.takeControlCameraVisible = true
-        }
+        } 
       }
     })
   }
@@ -362,5 +362,6 @@ export class Popup {
     this.isVisible = false
     this.takeControlCameraEscVisible = false
     this.takeControlCameraVisible = false
+    this.uiController.gameController.spawnIsland.onCloseRewardUI()
   }
 }

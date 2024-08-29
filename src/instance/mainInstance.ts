@@ -1506,11 +1506,14 @@ export class MainInstace {
     Animator.create(this.s0_Z3_Quest_Pillar_Art_4__01, {
       states: [
         {
-          clip: 'Portal_Activate'
+          clip: 'Pillar_Anim'
         },
         {
-          clip: 'Portal_On'
-        }
+          clip: 'Pillar_ON'
+        },
+        {
+          clip: 'Pillar_OFF'
+        },
       ]
     })
     // Z3_COG

@@ -218,6 +218,33 @@ export class SpawnIsland {
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
   }
+  onCloseRewardUI(){
+  this.activateBridge()
+  this.activatePilar()
+  }
+  activatePilar() {
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim')
+      utils.timers.setTimeout(()=>{
+        this.activeCables(true)
+    },4000)
+
+  }
+  activateBridge() {
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge Animation')
+      utils.timers.setTimeout(()=>{
+        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').speed = 1
+        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').shouldReset = false
+        Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On').loop = false
+        Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01,'Bridge On')
+    },1200)
+  }
+
   followPath(): void {
     Tween.createOrReplace(this.tobor.entity, {
       mode: Tween.Mode.Rotate({
