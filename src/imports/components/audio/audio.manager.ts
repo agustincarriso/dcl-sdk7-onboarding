@@ -62,9 +62,9 @@ export class AudioManager {
             return;
         }
 
-        // if (AudioSource.getMutable(this.audio.portal_ambiental.entity).playing) {
+        if (AudioSource.getMutable(this.audio.portal_ambiental.entity).playing) {
             this.audio.portal_ambiental.stopSmooth(2000);
-        // }
+        }
 
         this.audio.island_ambiental.playGlobal({ volume: 0 });
         this.audio.island_ambiental.setVolumeSmooth(0.4, 2000);

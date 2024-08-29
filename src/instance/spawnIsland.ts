@@ -30,6 +30,7 @@ import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
 import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
+import { activateSoundPillar1 } from '../imports/components/audio/sounds'
 
 export class SpawnIsland {
   tobor: NPC
@@ -171,7 +172,7 @@ export class SpawnIsland {
   }
   startSpawnIsland() {
     //Start ambiental sound
-    // AudioManager.instance().playMainAmbience(true)
+    AudioManager.instance().playMainAmbience(true)
     AudioManager.instance().play('waterfall', { volume: 1, loop: true, position: Vector3.create(226.94, 70, 130.37) })
   }
   activeCables(bActive: boolean) {
@@ -186,6 +187,7 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
+    AudioManager.instance().playOnce("tobor_talk", { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
@@ -232,15 +234,19 @@ export class SpawnIsland {
     Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
   }
   activatePilar() {
+    AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').speed = 3
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').shouldReset = false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim').loop = false
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01, 'Pillar_Anim')
     utils.timers.setTimeout(() => {
+      AudioManager.instance().playTowerActivated(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
+      activateSoundPillar1(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
       this.activeCables(true)
-    }, 4000)
+    }, 3000)
   }
   activateBridge() {
+    AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').speed = 3
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').shouldReset = false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').loop = false

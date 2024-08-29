@@ -17,6 +17,7 @@ import {
 import { GameController } from '../controllers/gameController'
 import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
+import { AudioManager } from '../imports/components/audio/audio.manager'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -135,6 +136,7 @@ export class Dialogs {
                     )
                   ) {
                     console.log('CLICKED')
+                    AudioManager.instance().playOnce("tobor_talk", { volume: 0.6, parent: this.gameController.spawnIsland.tobor.entity })
                     this.gameController.spawnIsland.targeterCircle.showCircle(false)
                     this.gameController.spawnIsland.questIndicator.hide()
                     openDialogWindow(
