@@ -129,7 +129,7 @@ export class Dialogs {
                   if (
                     inputSystem.isTriggered(
                       InputAction.IA_POINTER,
-                      PointerEventType.PET_DOWN,
+                      PointerEventType.PET_DOWN, 
                       this.gameController.spawnIsland.tobor.npcChild
                     )
                   ) {
@@ -137,7 +137,7 @@ export class Dialogs {
                     this.gameController.spawnIsland.targeterCircle.showCircle(false)
                     this.gameController.spawnIsland.questIndicator.hide()
                     openDialogWindow(
-                      this.gameController.spawnIsland.tobor.npcChild,
+                      this.gameController.spawnIsland.tobor.entity,
                       this.toborDialog,
                       3
                     )
