@@ -138,7 +138,7 @@ export class Dialogs {
                     this.gameController.spawnIsland.questIndicator.hide()
                     openDialogWindow(
                       this.gameController.spawnIsland.tobor.npcChild,
-                      this.gameController.dialogs.toborDialog,
+                      this.toborDialog,
                       3
                     )
                   }
