@@ -1,4 +1,4 @@
-import { engine, UiCanvasInformation } from '@dcl/sdk/ecs'
+import { engine, PointerLock, UiCanvasInformation } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { Label, ReactEcs, UiEntity } from '@dcl/sdk/react-ecs'
 import { UIController } from '../controllers/uiController'
@@ -11,7 +11,8 @@ export enum POPUP_STATE {
 }
 export class Popup {
   backgroundBig: string = 'assets/ui/UI_Pop_Up_Base.png'
-  isVisible: boolean = true
+  backgroundBlack: string = 'assets/ui/UI_Tasks_Base_P.png'
+  isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = '<b>Objectives</b>'
   headerText2: string = '<b>Help Mat with the meshes</b>'
@@ -24,6 +25,10 @@ export class Popup {
   ESCLeft: string = 'assets/ui/UI_EscKey.png'
   takecontrol: string = 'or the right-click mouse \nbutton to take control'
   mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
+  takecontrolCameraImageText: string = 'Click to take control \nof the camera'
+  takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
+  takeControlCameraEscVisible: boolean = false
+  takeControlCameraVisible: boolean = false
   uiController: UIController
   constructor(uiController: UIController) {
     this.uiController = uiController
@@ -43,7 +48,7 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0,0,0,0)
+          color: Color4.create(0, 0, 0, 0)
         }}
       >
         <UiEntity
@@ -66,7 +71,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { left: '0%', top: '7%' },
-              margin: {left: '30%',right:'30%'}
+              margin: { left: '30%', right: '30%' }
             }}
             value={this.titleBig}
             textAlign="middle-left"
@@ -92,7 +97,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { left: '0%', top: '18%' },
-              margin: {left: '37%',right:'37%'}
+              margin: { left: '37%', right: '37%' }
             }}
             value={this.headerText1}
             textAlign="middle-center"
@@ -106,7 +111,7 @@ export class Popup {
               width: '75%',
               height: canvasInfo.height * 0.06,
               position: { top: '32%', left: '0%' },
-              margin: {left: '13%',right:'13%'}
+              margin: { left: '13%', right: '13%' }
             }}
             uiBackground={{
               textureMode: 'center',
@@ -133,7 +138,7 @@ export class Popup {
               width: '75%',
               height: canvasInfo.height * 0.06,
               position: { top: '44%', left: '0%' },
-              margin: {left: '13%',right:'13%'}
+              margin: { left: '13%', right: '13%' }
             }}
             uiBackground={{
               textureMode: 'center',
@@ -160,7 +165,7 @@ export class Popup {
               width: '75%',
               height: canvasInfo.height * 0.06,
               position: { top: '56%', left: '0%' },
-              margin: {left: '13%',right:'13%'}
+              margin: { left: '13%', right: '13%' }
             }}
             uiBackground={{
               textureMode: 'center',
@@ -198,7 +203,7 @@ export class Popup {
               uiTransform={{
                 positionType: 'absolute',
                 position: { bottom: '20%', left: '0%', top: '20%' },
-                margin:{left:'38%',right:'38%'}
+                margin: { left: '38%', right: '38%' }
               }}
               value={this.buttonRightText}
               textAlign="middle-center"
@@ -213,11 +218,12 @@ export class Popup {
             positionType: 'absolute',
             width: '90%',
             height: canvasInfo.height * 0.114,
-            position: { bottom: '10%', left: '5%' }
+            position: { bottom: '10%', left: '5%' },
+            display: this.takeControlCameraEscVisible ? 'flex' : 'none'
           }}
           uiBackground={{
             textureMode: 'stretch',
-            texture: { src: 'assets/ui/UI_Tasks_Base_P.png' },
+            texture: { src: this.backgroundBlack },
             color: Color4.create(0, 0, 0, 0.5)
           }}
         >
@@ -262,7 +268,7 @@ export class Popup {
               positionType: 'absolute',
               width: canvasInfo.height * 0.05,
               height: canvasInfo.height * 0.05,
-              position: { bottom: '24%', right: '4%' },
+              position: { bottom: '24%', right: '4%' }
             }}
             uiBackground={{
               textureMode: 'stretch',
@@ -275,7 +281,8 @@ export class Popup {
             positionType: 'absolute',
             width: canvasInfo.height * 0.045,
             height: canvasInfo.height * 0.061,
-            position: { bottom: '20%', left: '45%' }
+            position: { bottom: '20%', left: '45%' },
+            display: this.takeControlCameraEscVisible ? 'flex' : 'none'
           }}
           uiBackground={{
             textureMode: 'stretch',
@@ -284,5 +291,63 @@ export class Popup {
         ></UiEntity>
       </UiEntity>
     )
+  }
+  controlUI(): ReactEcs.JSX.Element {
+    const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
+    return (
+      <UiEntity
+        uiTransform={{
+          flexDirection: 'row',
+          width: canvasInfo.width * 0.22,
+          height: canvasInfo.height * 0.13,
+          justifyContent: 'flex-end',
+          positionType: 'absolute',
+          position: { bottom: '1%', right: '36.5%' },
+          display: this.takeControlCameraVisible ? 'flex' : 'none'
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          texture: { src: this.backgroundBlack },
+          color: Color4.create(0, 0, 0, 0.5)
+        }}
+      >
+        {/* Text UI */}
+        <Label
+          uiTransform={{
+            positionType: 'absolute',
+            position: { right: '22%', top: '35%' }
+          }}
+          value={this.takecontrolCameraImageText}
+          fontSize={canvasInfo.height * 0.02}
+          font="sans-serif"
+          color={Color4.White()}
+        />
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: '50%',
+            height: canvasInfo.height * 0.1,
+            position: { top: '20%', left: '10%' }
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.takecontrolCameraImage }
+          }}
+        ></UiEntity>
+      </UiEntity>
+    )
+  }
+  switchControl(){
+    PointerLock.onChange(engine.CameraEntity, (pointerLock) => {
+      if (!pointerLock) return
+      console.log('Pointer lock changed', pointerLock.isPointerLocked)
+      if(pointerLock.isPointerLocked){
+        this.takeControlCameraEscVisible = true
+        this.takeControlCameraVisible = false
+      }else{
+        this.takeControlCameraEscVisible = false
+        this.takeControlCameraVisible = true
+      }
+    })
   }
 }

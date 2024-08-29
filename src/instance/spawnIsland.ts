@@ -11,6 +11,7 @@ import {
   PointerEvents,
   pointerEventsSystem,
   PointerEventType,
+  PointerLock,
   Rotate,
   Transform
 } from '@dcl/sdk/ecs'
@@ -113,6 +114,7 @@ export class SpawnIsland {
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
+    this.onFocusScreen()
   }
   loadTagData() {
     PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Fence_Art_02, {
@@ -224,4 +226,8 @@ export class SpawnIsland {
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
   }
+  private onFocusScreen(locked = true) {
+
+  }
 }
+
