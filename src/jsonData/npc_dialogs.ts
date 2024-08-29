@@ -68,7 +68,7 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.spawnIsland.tobor.activateBillBoard(false)
-          this.gameController.spawnIsland.jumpquest()
+
           Tween.createOrReplace(this.gameController.spawnIsland.tobor.entity, {
             mode: Tween.Mode.Rotate({
               start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
@@ -102,12 +102,13 @@ export class Dialogs {
           let tween = 0
           engine.addSystem(() => {
             const tweenCompleted = tweenSystem.tweenCompleted(this.gameController.spawnIsland.tobor.entity)
-            if (tweenCompleted) {
+            if (tweenCompleted) { 
               tween = tween + 1
               if (tween === 3) {
                 console.log('finished')
                 this.gameController.spawnIsland.tobor.activateBillBoard(true)
                 this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
+                this.gameController.spawnIsland.jumpquest()
               }
               if (tween === 5) {
                 this.gameController.spawnIsland.tobor.activateBillBoard(true)

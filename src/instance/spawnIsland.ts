@@ -196,7 +196,7 @@ export class SpawnIsland {
     let triggerPosition = Transform.get(this.gameController.mainInstance.s0_tree_fall_art_01).position
     Transform.create(obstacletrigger, {
       position: addInPlace(triggerPosition, Vector3.create(-2, 0, 3))
-    })
+    }) 
     utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(3, 9, 10) }], () => {
       engine.removeEntity(obstacletrigger)
       this.bubbleTalk.closeBubbleInTime()
@@ -221,6 +221,8 @@ export class SpawnIsland {
   onCloseRewardUI(){
   this.activateBridge()
   this.activatePilar()
+  Animator.stopAllAnimations(this.tobor.entity)
+  Animator.getClip(this.tobor.entity,'Robot_Idle').playing = true
   }
   activatePilar() {
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01,'Pillar_Anim').speed = 3
