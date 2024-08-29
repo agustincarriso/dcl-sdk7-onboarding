@@ -164,6 +164,7 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false)
+          this.gameController.uiController.popUpUI.show()
         }
       }
     ]

@@ -2,7 +2,7 @@ import { GameController } from './gameController'
 import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { NpcUtilsUi, openDialogWindow } from 'dcl-npc-toolkit'
 import Canvas from '../uis/canvas/Canvas'
-import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
+import { PointerLock, UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 import { WidgetTasksBox } from '../uis/widgetTasks'
 import { PopUpControls } from '../uis/popUpControls'
 import { KeyBoardUI } from '../uis/keyboardUI'
@@ -14,6 +14,7 @@ export class UIController {
   public popUpControls: PopUpControls
   public keyBoardUI: KeyBoardUI
   public popUpUI: Popup
+  public pointerLock: boolean = false
   uiComponent: () => ReactEcs.JSX.Element[]
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -25,5 +26,6 @@ export class UIController {
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true
     this.widgetTasksBox.setText(0, 0)
+
   }
 }

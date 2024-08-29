@@ -197,6 +197,9 @@ export class Popup {
               textureMode: 'stretch',
               texture: { src: this.buttonRightImage }
             }}
+            onMouseDown={() => {
+              this.hide()
+            }}
           >
             {/* Text UI */}
             <Label
@@ -337,17 +340,27 @@ export class Popup {
       </UiEntity>
     )
   }
-  switchControl(){
+  onFocusScreen(){
     PointerLock.onChange(engine.CameraEntity, (pointerLock) => {
       if (!pointerLock) return
-      console.log('Pointer lock changed', pointerLock.isPointerLocked)
-      if(pointerLock.isPointerLocked){
-        this.takeControlCameraEscVisible = true
-        this.takeControlCameraVisible = false
-      }else{
-        this.takeControlCameraEscVisible = false
-        this.takeControlCameraVisible = true
+      if (this.isVisible === true){
+        if (pointerLock.isPointerLocked === true){
+          this.takeControlCameraEscVisible = true
+          this.takeControlCameraVisible = false
+        }else{
+          this.takeControlCameraEscVisible = false
+          this.takeControlCameraVisible = true
+        }
       }
     })
+  }
+  show() {
+    this.isVisible = true
+    this.onFocusScreen()
+  }
+  hide() {
+    this.isVisible = false
+    this.takeControlCameraEscVisible = false
+    this.takeControlCameraVisible = false
   }
 }

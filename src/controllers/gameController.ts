@@ -13,7 +13,6 @@ export class GameController {
   mainInstance: MainInstace
   uiController: UIController
   spawnIsland: SpawnIsland
-
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
@@ -21,4 +20,5 @@ export class GameController {
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
   }
+  
 }
