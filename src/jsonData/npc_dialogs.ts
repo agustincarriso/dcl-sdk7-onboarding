@@ -1,9 +1,10 @@
 import { followPath, type Dialog } from 'dcl-npc-toolkit'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { Animator, EasingFunction, Transform, Tween } from '@dcl/sdk/ecs'
+import { Animator, EasingFunction, Transform, Tween, TweenSequence, engine, tweenSystem } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
+import * as utils from '@dcl-sdk/utils'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -54,25 +55,52 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
+          this.gameController.spawnIsland.tobor.activateBillBoard(false)
+          this.gameController.spawnIsland.jumpquest()
+          //followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
           Tween.createOrReplace(this.gameController.spawnIsland.tobor.entity, {
             mode: Tween.Mode.Rotate({
               start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
               end: Quaternion.fromEulerDegrees(0, -240, 0)
             }),
-            duration: 3000,
+            duration: 400,
             easingFunction: EasingFunction.EF_LINEAR
           })
-          // Transform.getMutable(this.gameController.spawnIsland.tobor.entity).rotation = Quaternion.fromEulerDegrees(
-          //   0,
-          //   -240,
-          //   0
-          // )
-          //Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
-          // Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
-          // Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
-          this.gameController.spawnIsland.tobor.activateBillBoard(false)
-          this.gameController.spawnIsland.jumpquest()
+          utils.timers.setTimeout(() => {}, 500)
+
+          TweenSequence.create(this.gameController.spawnIsland.tobor.entity, {
+            sequence: [
+              {
+                duration: 1500,
+                easingFunction: EasingFunction.EF_LINEAR,
+                mode: Tween.Mode.Move({
+                  start: Vector3.create(218.95, 68.67, 127.08),
+                  end: point1
+                })
+              },
+              {
+                duration: 1500,
+                easingFunction: EasingFunction.EF_LINEAR,
+                mode: Tween.Mode.Move({
+                  start: point1,
+                  end: point2
+                })
+              }
+            ]
+          })
+          let tween = 0
+          engine.addSystem(() => {
+            const tweenCompleted = tweenSystem.tweenCompleted(this.gameController.spawnIsland.tobor.entity)
+            if (tweenCompleted) {
+              tween = tween + 1
+              console.log('finished', tween)
+              if (tween === 3) {
+                console.log('finished')
+                this.gameController.spawnIsland.tobor.activateBillBoard(true)
+                this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
+              }
+            }
+          })
         }
       },
       {
