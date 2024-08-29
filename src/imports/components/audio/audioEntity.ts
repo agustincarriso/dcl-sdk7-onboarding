@@ -160,7 +160,7 @@ export class AudioEntity {
     }
     playGlobal(options?: Omit<Omit<PlayAudioOptions, "position">, "parent">) {
         const opt = engine.addEntity()
-        Transform.create(opt, { parent: engine.PlayerEntity })
+        Transform.createOrReplace(opt, { parent: engine.PlayerEntity })
         this.play()
     }
     playOnceGlobal(options?: Omit<Omit<Omit<PlayAudioOptions, "loop">, "position">, "parent">) {
