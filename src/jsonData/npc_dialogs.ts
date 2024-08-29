@@ -1,9 +1,22 @@
-import { followPath, type Dialog } from 'dcl-npc-toolkit'
+import { followPath, openDialogWindow, type Dialog } from 'dcl-npc-toolkit'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
-import { Vector3 } from '@dcl/sdk/math'
-import { Animator, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import {
+  Animator,
+  EasingFunction,
+  InputAction,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  Tween,
+  TweenSequence,
+  engine,
+  inputSystem,
+  tweenSystem
+} from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
-import { CLICKME, JUMP } from './textsTutorialBubble'
+import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
+import * as utils from '@dcl-sdk/utils'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -31,10 +44,11 @@ export class Dialogs {
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.pathData1 = {
-      totalDuration: 5,
+      totalDuration: 3,
       path: pathArray1,
       onFinishCallback: () => {
         console.log('Ruta completada')
+        this.gameController.spawnIsland.tobor.activateBillBoard(true)
         this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
       }
     }
@@ -53,24 +67,104 @@ export class Dialogs {
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
-          Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
-          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
-          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
           this.gameController.spawnIsland.tobor.activateBillBoard(false)
           this.gameController.spawnIsland.jumpquest()
+          Tween.createOrReplace(this.gameController.spawnIsland.tobor.entity, {
+            mode: Tween.Mode.Rotate({
+              start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
+              end: Quaternion.fromEulerDegrees(0, -240, 0)
+            }),
+            duration: 400,
+            easingFunction: EasingFunction.EF_LINEAR
+          })
+          utils.timers.setTimeout(() => {}, 500)
+
+          TweenSequence.create(this.gameController.spawnIsland.tobor.entity, {
+            sequence: [
+              {
+                duration: 1500,
+                easingFunction: EasingFunction.EF_LINEAR,
+                mode: Tween.Mode.Move({
+                  start: Vector3.create(218.95, 68.67, 127.08),
+                  end: point1
+                })
+              },
+              {
+                duration: 1500,
+                easingFunction: EasingFunction.EF_LINEAR,
+                mode: Tween.Mode.Move({
+                  start: point1,
+                  end: point2
+                })
+              }
+            ]
+          })
+          let tween = 0
+          engine.addSystem(() => {
+            const tweenCompleted = tweenSystem.tweenCompleted(this.gameController.spawnIsland.tobor.entity)
+            if (tweenCompleted) {
+              tween = tween + 1
+              if (tween === 3) {
+                console.log('finished')
+                this.gameController.spawnIsland.tobor.activateBillBoard(true)
+                this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
+              }
+              if (tween === 5) {
+                this.gameController.spawnIsland.tobor.activateBillBoard(true)
+                this.gameController.spawnIsland.targeterCircle.showCircle(true)
+                this.gameController.spawnIsland.dialogAtPilar()
+                PointerEvents.createOrReplace(this.gameController.spawnIsland.tobor.npcChild, {
+                  pointerEvents: [
+                    {
+                      eventType: PointerEventType.PET_DOWN,
+                      eventInfo: {
+                        button: InputAction.IA_POINTER,
+                        showFeedback: true,
+                        hoverText: 'Talk'
+                      }
+                    }
+                  ]
+                })
+                engine.addSystem(() => {
+                  if (
+                    inputSystem.isTriggered(
+                      InputAction.IA_POINTER,
+                      PointerEventType.PET_DOWN, 
+                      this.gameController.spawnIsland.tobor.npcChild
+                    )
+                  ) {
+                    console.log('CLICKED')
+                    this.gameController.spawnIsland.targeterCircle.showCircle(false)
+                    this.gameController.spawnIsland.questIndicator.hide()
+                    openDialogWindow(
+                      this.gameController.spawnIsland.tobor.entity,
+                      this.toborDialog,
+                      3
+                    )
+                  }
+                })
+                console.log('tobor on pilar')
+              }
+            }
+          })
         }
       },
+
       {
         text: 'For your first day in the metaverse we have <b>a few quick tasks</b> for you to do so you can get the hang of what Decentraland is all about.',
-        isEndOfDialog: true
+        portrait: talkingTrebor
       },
       {
-        text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.'
+        text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.',
+        portrait: talkingTrebor
       },
       {
         text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
-        portrait: happyTrebor
+        portrait: happyTrebor,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false)
+        }
       }
     ]
     this.toborBubbles = [

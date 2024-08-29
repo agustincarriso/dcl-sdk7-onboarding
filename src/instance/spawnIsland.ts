@@ -1,19 +1,20 @@
 import {
   Animator,
   BackgroundTextureMode,
+  EasingFunction,
   engine,
   Entity,
   GltfContainer,
   InputAction,
   inputSystem,
-  MeshCollider,
-  PBPointerEvents_Info,
   PointerEvents,
-  pointerEventsSystem,
   PointerEventType,
   PointerLock,
   Rotate,
-  Transform
+  Transform,
+  Tween,
+  TweenSequence,
+  tweenSystem
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import * as npc from 'dcl-npc-toolkit'
@@ -26,7 +27,7 @@ import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
 import { BubbleTalk } from '../imports/bubble'
 import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
-import { pathArray2 } from '../jsonData/npc_dialogs'
+import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 
 export class SpawnIsland {
@@ -35,17 +36,8 @@ export class SpawnIsland {
   targeterCircle: FloorCircleTargeter
   questIndicator: QuestIndicator
   bubbleTalk: BubbleTalk
-  pathData2: FollowPathData
   constructor(gameController: GameController) {
     this.gameController = gameController
-    this.pathData2 = {
-      totalDuration: 2,
-      path: pathArray2,
-      onFinishCallback: () => {
-        this.targeterCircle.showCircle(true)
-      }
-    }
-
     this.tobor = new NPC(
       Vector3.create(218.95, 68.67, 127.08),
       Vector3.create(1.1, 1.1, 1.1),
@@ -114,7 +106,6 @@ export class SpawnIsland {
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
-    this.onFocusScreen()
   }
   loadTagData() {
     PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Fence_Art_02, {
@@ -143,7 +134,7 @@ export class SpawnIsland {
     })
     engine.addSystem(() => {
       if (
-        inputSystem.isTriggered(  
+        inputSystem.isTriggered(
           InputAction.IA_POINTER,
           PointerEventType.PET_DOWN,
           this.gameController.mainInstance.s0_Fence_Art_02
@@ -183,7 +174,7 @@ export class SpawnIsland {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = ''
     } else if (bActive === false) {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_ON_01).src = ''
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = 
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src =
         'assets/scene/models/unity_assets/s0_Cable_01_OFF_01.glb'
     }
   }
@@ -209,7 +200,8 @@ export class SpawnIsland {
     utils.triggers.addTrigger(obstacletrigger, 1, 1, [{ type: 'box', scale: Vector3.create(3, 9, 10) }], () => {
       engine.removeEntity(obstacletrigger)
       this.bubbleTalk.closeBubbleInTime()
-      npc.followPath(this.gameController.spawnIsland.tobor.entity, this.pathData2)
+      this.gameController.spawnIsland.tobor.activateBillBoard(false)
+      this.followPath()
       this.completeJumpQuest()
       console.log('jump tree')
     })
@@ -219,15 +211,35 @@ export class SpawnIsland {
     this.gameController.uiController.widgetTasksBox.showTick(true)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasksBox.setText(2, 0)
-      this.gameController.uiController.widgetTasksBox.showTasks(true) 
+      this.gameController.uiController.widgetTasksBox.showTasks(true)
       this.dialogAtPilar()
-    }, 1500) 
+    }, 1500)
   }
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
   }
-  private onFocusScreen(locked = true) {
+  followPath(): void {
+    Tween.createOrReplace(this.tobor.entity, {
+      mode: Tween.Mode.Rotate({
+        start: Quaternion.create(0, 0, 0),
+        end: Quaternion.fromEulerDegrees(0, 30, 0)
+      }),
+      duration: 400,
+      easingFunction: EasingFunction.EF_LINEAR
+    })
+    utils.timers.setTimeout(() => {}, 500)
 
+    TweenSequence.createOrReplace(this.tobor.entity, {
+      sequence: [
+        {
+          duration: 1500,
+          easingFunction: EasingFunction.EF_LINEAR,
+          mode: Tween.Mode.Move({
+            start: point2,
+            end: point3
+          })
+        }
+      ]
+    })
   }
 }
-
