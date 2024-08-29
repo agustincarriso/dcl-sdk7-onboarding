@@ -219,7 +219,7 @@ export class SpawnIsland {
     this.gameController.uiController.widgetTasksBox.showTick(true)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasksBox.setText(2, 0)
-      this.gameController.uiController.widgetTasksBox.showTasks(true)
+      this.gameController.uiController.widgetTasksBox.showTasks(true) 
       this.dialogAtPilar()
     }, 1500) 
   }
