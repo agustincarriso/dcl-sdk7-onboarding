@@ -106,7 +106,6 @@ export class SpawnIsland {
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
-    this.onFocusScreen()
   }
   loadTagData() {
     PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Fence_Art_02, {
@@ -212,9 +211,9 @@ export class SpawnIsland {
     this.gameController.uiController.widgetTasksBox.showTick(true)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasksBox.setText(2, 0)
-      this.gameController.uiController.widgetTasksBox.showTasks(true) 
+      this.gameController.uiController.widgetTasksBox.showTasks(true)
       this.dialogAtPilar()
-    }, 1500) 
+    }, 1500)
   }
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
@@ -242,7 +241,5 @@ export class SpawnIsland {
         }
       ]
     })
-  private onFocusScreen(locked = true) {
   }
 }
-
