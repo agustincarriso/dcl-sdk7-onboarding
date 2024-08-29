@@ -1,7 +1,19 @@
-import { followPath, type Dialog } from 'dcl-npc-toolkit'
+import { followPath, openDialogWindow, type Dialog } from 'dcl-npc-toolkit'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { Animator, EasingFunction, Transform, Tween, TweenSequence, engine, tweenSystem } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  EasingFunction,
+  InputAction,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  Tween,
+  TweenSequence,
+  engine,
+  inputSystem,
+  tweenSystem
+} from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
@@ -57,7 +69,6 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.spawnIsland.tobor.activateBillBoard(false)
           this.gameController.spawnIsland.jumpquest()
-          //followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
           Tween.createOrReplace(this.gameController.spawnIsland.tobor.entity, {
             mode: Tween.Mode.Rotate({
               start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
@@ -93,16 +104,52 @@ export class Dialogs {
             const tweenCompleted = tweenSystem.tweenCompleted(this.gameController.spawnIsland.tobor.entity)
             if (tweenCompleted) {
               tween = tween + 1
-              console.log('finished', tween)
               if (tween === 3) {
                 console.log('finished')
                 this.gameController.spawnIsland.tobor.activateBillBoard(true)
                 this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
               }
+              if (tween === 5) {
+                this.gameController.spawnIsland.tobor.activateBillBoard(true)
+                this.gameController.spawnIsland.targeterCircle.showCircle(true)
+                this.gameController.spawnIsland.dialogAtPilar()
+                PointerEvents.createOrReplace(this.gameController.spawnIsland.tobor.npcChild, {
+                  pointerEvents: [
+                    {
+                      eventType: PointerEventType.PET_DOWN,
+                      eventInfo: {
+                        button: InputAction.IA_POINTER,
+                        showFeedback: true,
+                        hoverText: 'Talk'
+                      }
+                    }
+                  ]
+                })
+                engine.addSystem(() => {
+                  if (
+                    inputSystem.isTriggered(
+                      InputAction.IA_POINTER,
+                      PointerEventType.PET_DOWN,
+                      this.gameController.spawnIsland.tobor.npcChild
+                    )
+                  ) {
+                    console.log('CLICKED')
+                    this.gameController.spawnIsland.targeterCircle.showCircle(false)
+                    this.gameController.spawnIsland.questIndicator.hide()
+                    openDialogWindow(
+                      this.gameController.spawnIsland.tobor.npcChild,
+                      this.gameController.dialogs.toborDialog,
+                      3
+                    )
+                  }
+                })
+                console.log('tobor on pilar')
+              }
             }
           })
         }
       },
+
       {
         text: 'For your first day in the metaverse we have <b>a few quick tasks</b> for you to do so you can get the hang of what Decentraland is all about.',
         portrait: talkingTrebor
