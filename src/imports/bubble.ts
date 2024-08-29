@@ -45,38 +45,59 @@ export class BubbleTalk {
 
   openBubble(text: string, farMode: boolean): void {
     if (this.active) return
-    if (farMode) {
-      this.farMode()
-    } else {
-      this.defaultMode()
-    }
-
     this.active = true
     TextShape.getMutable(this.textEntity).text = text
-    const startScale = Vector3.create(0, 0, 0)
-    const endScale = Vector3.create(0.7, 0.7, 0.7)
-    const duration = 500
+    if (farMode === true) {
+      this.farMode()
 
-    this.animateEntity(this.centerEntity, startScale, endScale, duration)
-    this.animateEntity(
-      this.textEntity,
-      Vector3.multiply(startScale, this.textScaleFactor),
-      Vector3.multiply(endScale, this.textScaleFactor),
-      duration
-    )
-    this.animateEntity(
-      this.titleEntity,
-      Vector3.multiply(startScale, this.titleScaleFactor),
-      Vector3.multiply(endScale, this.titleScaleFactor),
-      duration
-    )
+      const startScale = Vector3.create(0, 0, 0)
+      const endScale = Vector3.create(0.7, 0.7, 0.7)
+      const duration = 500
+
+      this.animateEntity(this.centerEntity, startScale, endScale, duration)
+      this.animateEntity(
+        this.textEntity,
+        Vector3.multiply(startScale, this.textScaleFactor),
+        Vector3.multiply(endScale, this.textScaleFactor),
+        duration
+      )
+      this.animateEntity(
+        this.titleEntity,
+        Vector3.multiply(startScale, this.titleScaleFactor),
+        Vector3.multiply(endScale, this.titleScaleFactor),
+        duration
+      )
+
+      console.log('Bubble in farMode')
+    } else {
+      const startScale = Vector3.create(0, 0, 0)
+      const endScale = Vector3.create(0.25, 0.25, 0.25)
+      const duration = 500
+
+      this.animateEntity(this.centerEntity, startScale, endScale, duration)
+      this.animateEntity(
+        this.textEntity,
+        Vector3.multiply(startScale, this.textScaleFactor),
+        Vector3.create(1, 1, 1),
+        duration
+      )
+      this.animateEntity(
+        this.titleEntity,
+        Vector3.multiply(startScale, this.titleScaleFactor),
+        Vector3.create(1, 1, 1),
+        duration
+      )
+      this.defaultMode()
+      console.log('bubble in defaultMode')
+    }
+    console.log('thing')
   }
 
   closeBubbleInTime(): void {
     if (!this.active) return
 
     this.active = false
-    const startScale = Vector3.create(0.7, 0.7, 0.7) 
+    const startScale = Vector3.create(0.7, 0.7, 0.7)
     const endScale = Vector3.create(0, 0, 0)
     const duration = 500
 
@@ -113,9 +134,12 @@ export class BubbleTalk {
   farMode(): void {
     Transform.getMutable(this.textEntity).position = Vector3.create(0, 0.8, -0.04)
     TextShape.getMutable(this.textEntity).textAlign = 1
+    TextShape.getMutable(this.textEntity).fontSize = 2.3
   }
   defaultMode() {
-    Transform.getMutable(this.textEntity).position = Vector3.create(-0.8, 0.8, -0.04)
-    TextShape.getMutable(this.textEntity).textAlign = 3
-  }
+    Transform.getMutable(this.textEntity).position = Vector3.create(-0.16, 0.8, -0.04)
+    TextShape.getMutable(this.textEntity).textAlign = 1
+    Transform.getMutable(this.centerEntity).scale = Vector3.create(0.25, 0.25, 0.25)
+    TextShape.getMutable(this.textEntity).fontSize = 1.9
+  } 
 }

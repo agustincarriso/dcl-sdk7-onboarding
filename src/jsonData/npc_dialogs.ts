@@ -1,9 +1,9 @@
 import { followPath, type Dialog } from 'dcl-npc-toolkit'
 import { FollowPathData, ImageData } from 'dcl-npc-toolkit/dist/types'
-import { Vector3 } from '@dcl/sdk/math'
-import { Animator, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Animator, EasingFunction, Transform, Tween } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
-import { CLICKME, JUMP } from './textsTutorialBubble'
+import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -31,10 +31,11 @@ export class Dialogs {
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.pathData1 = {
-      totalDuration: 5,
+      totalDuration: 3,
       path: pathArray1,
       onFinishCallback: () => {
         console.log('Ruta completada')
+        this.gameController.spawnIsland.tobor.activateBillBoard(true)
         this.gameController.spawnIsland.bubbleTalk.openBubble(JUMP, true)
       }
     }
@@ -54,23 +55,41 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           followPath(this.gameController.spawnIsland.tobor.entity, this.pathData1), console.log('path on going')
-          Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
-          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
-          Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
+          Tween.createOrReplace(this.gameController.spawnIsland.tobor.entity, {
+            mode: Tween.Mode.Rotate({
+              start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
+              end: Quaternion.fromEulerDegrees(0, -240, 0)
+            }),
+            duration: 3000,
+            easingFunction: EasingFunction.EF_LINEAR
+          })
+          // Transform.getMutable(this.gameController.spawnIsland.tobor.entity).rotation = Quaternion.fromEulerDegrees(
+          //   0,
+          //   -240,
+          //   0
+          // )
+          //Animator.stopAllAnimations(this.gameController.spawnIsland.tobor.entity)
+          // Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').playing = true
+          // Animator.getClip(this.gameController.spawnIsland.tobor.entity, 'Walk_Loop').loop = true
           this.gameController.spawnIsland.tobor.activateBillBoard(false)
           this.gameController.spawnIsland.jumpquest()
         }
       },
       {
         text: 'For your first day in the metaverse we have <b>a few quick tasks</b> for you to do so you can get the hang of what Decentraland is all about.',
-        isEndOfDialog: true
+        portrait: talkingTrebor
       },
       {
-        text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.'
+        text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.',
+        portrait: talkingTrebor
       },
       {
         text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
-        portrait: happyTrebor
+        portrait: happyTrebor,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false)
+        }
       }
     ]
     this.toborBubbles = [

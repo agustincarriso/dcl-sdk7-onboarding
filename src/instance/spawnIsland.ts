@@ -42,6 +42,41 @@ export class SpawnIsland {
       path: pathArray2,
       onFinishCallback: () => {
         this.targeterCircle.showCircle(true)
+        PointerEvents.createOrReplace(this.tobor.npcChild, {
+          pointerEvents: [
+            {
+              eventType: PointerEventType.PET_DOWN,
+              eventInfo: {
+                button: InputAction.IA_POINTER,
+                showFeedback: true,
+                hoverText: 'Talk'
+              }
+            }
+          ]
+        })
+        engine.addSystem(() => {
+          if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.tobor.npcChild)) {
+            console.log('CLICKED')
+            this.targeterCircle.showCircle(false)
+            this.questIndicator.hide()
+            openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 3)
+          }
+        })
+        // pointerEventsSystem.onPointerDown(
+        //   {
+        //     entity: this.tobor.npcChild,
+        //     opts: {
+        //       button: InputAction.IA_POINTER,
+        //       hoverText: 'Talk'
+        //     }
+        //   },
+        //   () => {
+        //     console.log('CLICKED')
+        //     this.targeterCircle.showCircle(false)
+        //     this.questIndicator.hide()
+        //     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 3)
+        //   }
+        // )
       }
     }
 
@@ -141,7 +176,7 @@ export class SpawnIsland {
     })
     engine.addSystem(() => {
       if (
-        inputSystem.isTriggered(  
+        inputSystem.isTriggered(
           InputAction.IA_POINTER,
           PointerEventType.PET_DOWN,
           this.gameController.mainInstance.s0_Fence_Art_02
@@ -181,7 +216,7 @@ export class SpawnIsland {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = ''
     } else if (bActive === false) {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_ON_01).src = ''
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = 
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src =
         'assets/scene/models/unity_assets/s0_Cable_01_OFF_01.glb'
     }
   }
@@ -219,7 +254,7 @@ export class SpawnIsland {
       this.gameController.uiController.widgetTasksBox.setText(2, 0)
       this.gameController.uiController.widgetTasksBox.showTasks(true)
       this.dialogAtPilar()
-    }, 1500) 
+    }, 1500)
   }
   dialogAtPilar() {
     this.questIndicator.updateStatus(IndicatorState.EXCLAMATION)
