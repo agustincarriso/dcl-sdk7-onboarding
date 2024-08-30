@@ -1118,9 +1118,9 @@ export class MainInstace {
     })
     // NPC_Raccoon_Art
     this.s0_NPC_Raccoon_Art_01 = engine.addEntity()
-    GltfContainer.create(this.s0_NPC_Raccoon_Art_01, {
-      src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon_Art_01.glb'
-    })
+    // GltfContainer.create(this.s0_NPC_Raccoon_Art_01, {
+    //   src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon_Art_01.glb'
+    // })
     Animator.create(this.s0_NPC_Raccoon_Art_01, {
       states: [
         {

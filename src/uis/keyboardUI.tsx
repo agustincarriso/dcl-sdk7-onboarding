@@ -4,6 +4,7 @@ import { GameController } from '../controllers/gameController';
 import { Color4 } from '@dcl/sdk/math';
 import * as utils from '@dcl-sdk/utils';
 import { UIController } from '../controllers/uiController';
+import { AudioManager } from '../imports/components/audio/audio.manager';
 
 export class KeyBoardUI {
   image: string = 'assets/ui/UI_Keyboard.png';
@@ -37,7 +38,8 @@ export class KeyBoardUI {
         utils.timers.clearInterval(interval); // Detener el intervalo
         this.isVisible = false; // Ocultar UI después del fade out
         this.isFadingOut = false; // Restablecer bandera al finalizar
-      }
+        AudioManager.instance().playOnce("pop_up_close", { volume: 0.2, parent: this.uiController.gameController.spawnIsland.tobor.entity })
+      } 
 
       // Forzar la actualización del UI
     }, fadeInterval);
