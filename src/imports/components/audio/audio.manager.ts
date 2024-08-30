@@ -46,7 +46,7 @@ export class AudioManager {
 
     private static instanceRef: AudioManager;
     static instance(): AudioManager {
-        return this.instanceRef || (this.instanceRef = new this());
+        return this.instanceRef || (this.instanceRef = new this()); 
     }
     private constructor() {
         Object.keys(this.audio).forEach((key) => {
@@ -57,6 +57,7 @@ export class AudioManager {
 
     playMainAmbience(bSmooth: boolean = false) {
         if (!bSmooth) {
+
             this.stopAllAmbience();
             this.audio.island_ambiental.playGlobal({ volume: 0.4 });
             return;
@@ -148,6 +149,7 @@ export class AudioManager {
     }
     playOnce(name: string, options?: Omit<PlayAudioOptions, "loop">) {
         if (!this.audio[name]) {
+            console.log("AudioManager: play: " + name + " not found")
             return;
         }
         this.audio[name].playOnce(options);

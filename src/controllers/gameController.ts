@@ -8,6 +8,7 @@ import * as utils from '@dcl-sdk/utils'
 import { SpawnIsland } from '../instance/spawnIsland'
 import { Dialogs } from '../jsonData/npc_dialogs'
 import { WidgetTasksBox } from '../uis/widgetTasks'
+import { onEnterScene } from '@dcl/sdk/src/players'
 
 export class GameController {
   mainInstance: MainInstace
@@ -20,5 +21,4 @@ export class GameController {
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
   }
-  
 }
