@@ -42,7 +42,7 @@ export class NPC {
         model : GLTF,
         faceUser: true,
         onActivate: () => {},
-        onWalkAway: () => {}
+        onWalkAway: () => {},
       }
     )
     utils.triggers.addTrigger(

@@ -57,15 +57,18 @@ export class Dialogs {
       {
         text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
         fontSize: 18,
-        portrait: IdleTrebor
+        portrait: IdleTrebor,
+        typeSpeed: 30,
       },
       {
         text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>',
-        portrait: IdleTrebor
+        portrait: IdleTrebor,
+        typeSpeed: 30
       },
       {
         text: 'Follow me to get started.  It should only take 5 minutes of your time.',
         portrait: talkingTrebor,
+        typeSpeed: 30,
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.spawnIsland.tobor.activateBillBoard(false)
@@ -140,7 +143,7 @@ export class Dialogs {
                     this.gameController.spawnIsland.targeterCircle.showCircle(false)
                     this.gameController.spawnIsland.questIndicator.hide()
                     openDialogWindow(
-                      this.gameController.spawnIsland.tobor.entity,
+                      this.gameController.spawnIsland.tobor.entity, 
                       this.toborDialog,
                       3
                     )
@@ -159,16 +162,19 @@ export class Dialogs {
 
       {
         text: 'For your first day in the metaverse we have <b>a few quick tasks</b> for you to do so you can get the hang of what Decentraland is all about.',
-        portrait: talkingTrebor
+        portrait: talkingTrebor,
+        typeSpeed: 30
       },
       {
         text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.',
-        portrait: talkingTrebor
+        portrait: talkingTrebor,
+        typeSpeed: 30
       },
       {
         text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
         portrait: happyTrebor,
         isEndOfDialog: true,
+        typeSpeed: 30,
         triggeredByNext: () => {
           this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false)
           this.gameController.uiController.popUpUI.show()
