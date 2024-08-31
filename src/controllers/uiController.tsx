@@ -7,6 +7,7 @@ import { WidgetTasksBox } from '../uis/widgetTasks'
 import { PopUpControls } from '../uis/popUpControls'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import { Popup } from '../uis/popupUI'
+import { EmoteUI } from '../uis/emoteUI'
 
 export class UIController {
   public gameController: GameController
@@ -14,6 +15,7 @@ export class UIController {
   public popUpControls: PopUpControls
   public keyBoardUI: KeyBoardUI
   public popUpUI: Popup
+  public emoteUI: EmoteUI
   public pointerLock: boolean = false
   uiComponent: () => ReactEcs.JSX.Element[]
   constructor(gameController: GameController) {
@@ -22,7 +24,17 @@ export class UIController {
     this.popUpControls = new PopUpControls(this)
     this.keyBoardUI = new KeyBoardUI(this)
     this.popUpUI = new Popup(this)
-    this.uiComponent = () => [NpcUtilsUi(), this.keyBoardUI.mainUi(), this.widgetTasksBox.widgetTask(),this.popUpControls.spaceUI(),this.popUpUI.popupUI(),this.popUpUI.controlUI()]
+    this.emoteUI = new EmoteUI(this)
+
+    this.uiComponent = () => [
+      NpcUtilsUi(),
+      this.keyBoardUI.mainUi(),
+      this.widgetTasksBox.widgetTask(),
+      this.popUpControls.spaceUI(),
+      this.popUpUI.popupUI(),
+      this.popUpUI.controlUI(),
+      this.emoteUI.spaceUI()
+    ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true
     this.widgetTasksBox.setText(0, 0)

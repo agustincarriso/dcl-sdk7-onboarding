@@ -3,11 +3,11 @@ import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Label, UiEntity } from '@dcl/sdk/react-ecs'
 import { UIController } from '../controllers/uiController'
 
-export class PopUpControls {
+export class EmoteUI {
   spaceContainer: string = 'assets/ui/UI_Tasks_Base_P.png'
   spaceContainerVisible: boolean = false
-  spaceImage: string = 'assets/ui/UI_Space.png'
-  spaceText: string = '<b>Jump</b>'
+  spaceImage: string = 'assets/ui/UI_B.png'
+  spaceText: string = '<b>Press B to dance</b>'
   uiController: UIController
   constructor(uiController: UIController) {
     this.uiController = uiController
@@ -45,7 +45,7 @@ export class PopUpControls {
         <UiEntity
           uiTransform={{
             positionType: 'absolute',
-            width: canvasInfo.height * 0.17,
+            width: canvasInfo.height * 0.08,
             height: canvasInfo.height * 0.07,
             position: { top: '23%', left: '15%' }
           }}

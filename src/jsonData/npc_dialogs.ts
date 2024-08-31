@@ -18,6 +18,21 @@ import { GameController } from '../controllers/gameController'
 import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
 import { AudioManager } from '../imports/components/audio/audio.manager'
+import {
+  SECOND_ISLAND_0,
+  SECOND_ISLAND_1,
+  SECOND_ISLAND_2,
+  SECOND_ISLAND_3,
+  SECOND_ISLAND_4,
+  SECOND_ISLAND_5,
+  SECOND_ISLAND_6,
+  START_ISLAND_0,
+  START_ISLAND_1,
+  START_ISLAND_2,
+  START_ISLAND_3,
+  START_ISLAND_4,
+  START_ISLAND_5
+} from './textsTutorialPopups'
 
 const talkingTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
@@ -25,9 +40,22 @@ const talkingTrebor: ImageData = {
 const happyTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Happy.png'
 }
-const IdleTrebor: ImageData = {
+const idleTrebor: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
 }
+const idleBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Idle.png'
+}
+const talkingBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Talking.png'
+}
+const surprisedBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Sourprised.png'
+}
+const happyBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Happy.png'
+}
+
 export const point1 = Vector3.create(215.989, 69.987, 131.326)
 export const point2 = Vector3.create(208.9, 66.2, 131.11)
 export const point3 = Vector3.create(201.87, 64.04, 126.35)
@@ -55,16 +83,16 @@ export class Dialogs {
     }
     this.toborDialog = [
       {
-        text: 'Welcome to Decentraland! The metaverse <b>owned and created</b> by people like you. My name is Tobor.',
+        text: START_ISLAND_0,
         fontSize: 18,
-        portrait: IdleTrebor
+        portrait: idleTrebor
       },
       {
-        text: 'Decentraland is a place to <b>socialise with friends, play games,</b> and <b>so much more!</b>',
-        portrait: IdleTrebor
+        text: START_ISLAND_1,
+        portrait: idleTrebor
       },
       {
-        text: 'Follow me to get started.  It should only take 5 minutes of your time.',
+        text: START_ISLAND_2,
         portrait: talkingTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
@@ -103,7 +131,7 @@ export class Dialogs {
           let tween = 0
           engine.addSystem(() => {
             const tweenCompleted = tweenSystem.tweenCompleted(this.gameController.spawnIsland.tobor.entity)
-            if (tweenCompleted) { 
+            if (tweenCompleted) {
               tween = tween + 1
               if (tween === 3) {
                 console.log('finished')
@@ -131,42 +159,41 @@ export class Dialogs {
                   if (
                     inputSystem.isTriggered(
                       InputAction.IA_POINTER,
-                      PointerEventType.PET_DOWN, 
+                      PointerEventType.PET_DOWN,
                       this.gameController.spawnIsland.tobor.npcChild
                     )
                   ) {
                     console.log('CLICKED')
-                    AudioManager.instance().playOnce("tobor_talk", { volume: 0.6, parent: this.gameController.spawnIsland.tobor.entity })
+                    AudioManager.instance().playOnce('tobor_talk', {
+                      volume: 0.6,
+                      parent: this.gameController.spawnIsland.tobor.entity
+                    })
                     this.gameController.spawnIsland.targeterCircle.showCircle(false)
                     this.gameController.spawnIsland.questIndicator.hide()
-                    openDialogWindow(
-                      this.gameController.spawnIsland.tobor.entity,
-                      this.toborDialog,
-                      3
-                    )
+                    openDialogWindow(this.gameController.spawnIsland.tobor.entity, this.toborDialog, 3)
                     utils.timers.setTimeout(() => {
                       this.gameController.uiController.widgetTasksBox.setText(3, 0)
                       this.gameController.uiController.widgetTasksBox.showTick(false)
-                    }, 2000);
+                    }, 2000)
                   }
                 })
                 console.log('tobor on pilar')
               }
             }
-          }) 
+          })
         }
       },
 
       {
-        text: 'For your first day in the metaverse we have <b>a few quick tasks</b> for you to do so you can get the hang of what Decentraland is all about.',
+        text: START_ISLAND_3,
         portrait: talkingTrebor
       },
       {
-        text: '<b>Head over the bridge</b> to meet my friends. They will teach you everything you need to know.',
+        text: START_ISLAND_4,
         portrait: talkingTrebor
       },
       {
-        text: 'You might meet other newbies here too! Press <b>enter</b> to chat with them.',
+        text: START_ISLAND_5,
         portrait: happyTrebor,
         isEndOfDialog: true,
         triggeredByNext: () => {
@@ -182,26 +209,37 @@ export class Dialogs {
     ]
     this.bezierDialog = [
       {
-        text: "I'm Bezier, I love making friends in Decentraland."
+        text: SECOND_ISLAND_0,
+        portrait: idleBezier
       },
       {
-        text: 'It’s easy to make friends at Decentraland’s <b>events and parties.</b>'
+        text: SECOND_ISLAND_1,
+        portrait: talkingBezier
       },
       {
-        text: 'Let me teach you how to express yourself so you can party in Decentraland.'
+        text: SECOND_ISLAND_2,
+        portrait: surprisedBezier,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.secondIsland.startEmoteQuest()
+        }
       },
       {
-        text: 'Well done! You really know how to party.',
+        text: SECOND_ISLAND_3,
+        portrait: surprisedBezier,
         isEndOfDialog: true
       },
       {
-        text: 'Your next task is to talk to my friend Mat. He’s across the bridge on the next island.'
+        text: SECOND_ISLAND_4,
+        portrait: happyBezier
       },
       {
-        text: 'But first, let me give you this NFT emote!'
+        text: SECOND_ISLAND_5,
+        portrait: happyBezier
       },
       {
-        text: 'You can find Mat on the next island.'
+        text: SECOND_ISLAND_6,
+        portrait: talkingBezier
       }
     ]
     this.matDialog = [

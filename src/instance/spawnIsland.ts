@@ -165,7 +165,7 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
-        newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051),
+        newRelativePosition: Vector3.create(161.127, 65.7368, 108.0051),
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     })
@@ -187,7 +187,7 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    AudioManager.instance().playOnce("tobor_talk", { volume: 0.6, parent: this.tobor.entity })
+    AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true

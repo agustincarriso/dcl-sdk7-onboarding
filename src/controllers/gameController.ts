@@ -9,15 +9,18 @@ import { SpawnIsland } from '../instance/spawnIsland'
 import { Dialogs } from '../jsonData/npc_dialogs'
 import { WidgetTasksBox } from '../uis/widgetTasks'
 import { onEnterScene } from '@dcl/sdk/src/players'
+import { SecondIsland } from '../instance/questEmote'
 
 export class GameController {
   mainInstance: MainInstace
   uiController: UIController
   spawnIsland: SpawnIsland
+  secondIsland: SecondIsland
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
+    this.secondIsland = new SecondIsland(this)
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
   }
