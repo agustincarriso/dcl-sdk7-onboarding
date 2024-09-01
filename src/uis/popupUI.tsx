@@ -130,6 +130,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
+              textWrap='nowrap'
             />
           </UiEntity>
           <UiEntity
@@ -149,7 +150,7 @@ export class Popup {
             {/* Text UI */}
             <Label
               uiTransform={{
-                positionType: 'absolute',
+                positionType: 'relative',
                 margin: { left: '18%', top: '2%', bottom: '2%', right: '18%' }
               }}
               value={this.headerText2}
@@ -157,6 +158,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
+              textWrap='nowrap'
             />
           </UiEntity>
           <UiEntity
@@ -176,7 +178,7 @@ export class Popup {
             {/* Text UI */}
             <Label
               uiTransform={{
-                positionType: 'absolute',
+                positionType: 'relative',
                 margin: { left: '18%', top: '2%', bottom: '2%', right: '18%' }
               }}
               value={this.headerText3}
@@ -184,6 +186,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
+              textWrap='nowrap'
             />
           </UiEntity>
           <UiEntity
@@ -198,6 +201,7 @@ export class Popup {
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
+              this.uiController.gameController.spawnIsland.onCloseRewardUI()
               this.hide()
             }}
           >
@@ -362,6 +366,5 @@ export class Popup {
     this.isVisible = false
     this.takeControlCameraEscVisible = false
     this.takeControlCameraVisible = false
-    this.uiController.gameController.spawnIsland.onCloseRewardUI()
   }
 }
