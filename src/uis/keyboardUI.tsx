@@ -5,6 +5,7 @@ import { Color4 } from '@dcl/sdk/math';
 import * as utils from '@dcl-sdk/utils';
 import { UIController } from '../controllers/uiController';
 import { AudioManager } from '../imports/components/audio/audio.manager';
+import { TaskType } from './widgetTask';
 
 export class KeyBoardUI {
   image: string = 'assets/ui/UI_Keyboard.png';
@@ -76,7 +77,7 @@ export class KeyBoardUI {
             texture: { src: this.image },
           }}
           onMouseDown={() => {
-            this.uiController.widgetTasksBox.showTasks(true)
+            this.uiController.widgetTasks.showTasks(true, TaskType.Simple)
             this.startFadeOut(); // Iniciar el fade out al hacer clic
           }}
         ></UiEntity>

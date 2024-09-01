@@ -148,8 +148,8 @@ export class Dialogs {
                       3
                     )
                     utils.timers.setTimeout(() => {
-                      this.gameController.uiController.widgetTasksBox.setText(3, 0)
-                      this.gameController.uiController.widgetTasksBox.showTick(false)
+                      this.gameController.uiController.widgetTasks.setText(3, 0)
+                      this.gameController.uiController.widgetTasks.showTick(false,0)
                     }, 2000);
                   }
                 })

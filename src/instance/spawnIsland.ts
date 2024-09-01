@@ -31,6 +31,7 @@ import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
+import { TaskType } from '../uis/widgetTask'
 
 export class SpawnIsland {
   tobor: NPC
@@ -192,13 +193,13 @@ export class SpawnIsland {
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
     this.targeterCircle.showCircle(false)
-    this.gameController.uiController.widgetTasksBox.showTick(true)
+    this.gameController.uiController.widgetTasks.showTick(true,0)
   }
   startMoveQuest() {}
   jumpquest() {
     this.gameController.uiController.popUpControls.spaceContainerVisible = true
-    this.gameController.uiController.widgetTasksBox.setText(1, 0)
-    this.gameController.uiController.widgetTasksBox.showTasks(true)
+    this.gameController.uiController.widgetTasks.setText(1, 0)
+    this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Simple)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0, 0, 0)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0, 0, 0)
     let obstacletrigger = engine.addEntity()
@@ -217,10 +218,10 @@ export class SpawnIsland {
   }
   completeJumpQuest() {
     this.gameController.uiController.popUpControls.spaceContainerVisible = false
-    this.gameController.uiController.widgetTasksBox.showTick(true)
+    this.gameController.uiController.widgetTasks.showTick(true,0)
     utils.timers.setTimeout(() => {
-      this.gameController.uiController.widgetTasksBox.setText(2, 0)
-      this.gameController.uiController.widgetTasksBox.showTasks(true)
+      this.gameController.uiController.widgetTasks.setText(2, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Simple)
       this.dialogAtPilar()
     }, 1500)
   }
@@ -232,6 +233,7 @@ export class SpawnIsland {
     this.activatePilar()
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
+    this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Multiple)
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
@@ -246,6 +248,7 @@ export class SpawnIsland {
     }, 3000)
   }
   activateBridge() {
+    PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').speed = 3
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').shouldReset = false
