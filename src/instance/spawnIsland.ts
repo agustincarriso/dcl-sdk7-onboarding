@@ -7,6 +7,8 @@ import {
   GltfContainer,
   InputAction,
   inputSystem,
+  Material,
+  MeshRenderer,
   PointerEvents,
   PointerEventType,
   PointerLock,
@@ -16,7 +18,7 @@ import {
   TweenSequence,
   tweenSystem
 } from '@dcl/sdk/ecs'
-import { Vector3, Quaternion } from '@dcl/sdk/math'
+import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import * as npc from 'dcl-npc-toolkit'
 import { GameController } from '../controllers/gameController'
 import { openDialogWindow } from 'dcl-npc-toolkit'
@@ -39,6 +41,7 @@ export class SpawnIsland {
   targeterCircle: FloorCircleTargeter
   questIndicator: QuestIndicator
   bubbleTalk: BubbleTalk
+  arrows: Entity[]
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.tobor = new NPC(
@@ -108,6 +111,7 @@ export class SpawnIsland {
     this.questIndicator.hide()
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
+    this.arrows = []
     this.loadTagData()
   }
   loadTagData() {
@@ -188,18 +192,18 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    AudioManager.instance().playOnce("tobor_talk", { volume: 0.6, parent: this.tobor.entity })
+    AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Talk').playing = true
     this.targeterCircle.showCircle(false)
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
   }
   startMoveQuest() {}
   jumpquest() {
     this.gameController.uiController.popUpControls.spaceContainerVisible = true
     this.gameController.uiController.widgetTasks.setText(1, 0)
-    this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Simple)
+    this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).scale = Vector3.create(0, 0, 0)
     Transform.getMutable(this.gameController.mainInstance.s0_Fence_Art_02).position = Vector3.create(0, 0, 0)
     let obstacletrigger = engine.addEntity()
@@ -218,10 +222,10 @@ export class SpawnIsland {
   }
   completeJumpQuest() {
     this.gameController.uiController.popUpControls.spaceContainerVisible = false
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.setText(2, 0)
-      this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Simple)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
       this.dialogAtPilar()
     }, 1500)
   }
@@ -233,7 +237,7 @@ export class SpawnIsland {
     this.activatePilar()
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
-    this.gameController.uiController.widgetTasks.showTasks(true,TaskType.Multiple)
+    this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Multiple)
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
@@ -246,8 +250,9 @@ export class SpawnIsland {
       activateSoundPillar1(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
       this.activeCables(true)
     }, 3000)
-  }
+  } 
   activateBridge() {
+    this.getBridgeArrow()
     PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge Animation').speed = 3
@@ -260,6 +265,39 @@ export class SpawnIsland {
       Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').loop = false
       Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On')
     }, 1200)
+  }
+  getBridgeArrow() {
+    let zOffset = 1.85
+    let scale = 0.3
+    const xOffsets = [-2.3, -0.6, 0.7, 2.3, -2.3, -0.6, 0.7, 2.3]
+    for (let i = 0; i < 9; i++) {
+      const arrow = engine.addEntity()
+      MeshRenderer.setPlane(arrow)
+      Transform.create(arrow, { parent: this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01 })
+      Material.setPbrMaterial(arrow, {
+        texture: Material.Texture.Common({
+          src: 'assets/textures/arrow2.png'
+        }),
+        albedoColor: Color4.Yellow(),
+        emissiveColor: Color4.Yellow(),
+        emissiveIntensity: 5,
+        alphaTexture: Material.Texture.Common({
+          src: 'assets/textures/arrow2.png'
+        })
+      })
+      if (i == 4) zOffset = -1.85
+
+      if (i == 8) {
+        Transform.getMutable(arrow).position = Vector3.create(-7, 1.6, 0)
+        Transform.getMutable(arrow).scale = Vector3.create(1,1,1)
+        Transform.getMutable(arrow).rotation = Quaternion.create(0.5,0.5,-0.5,0.5)
+      } else {
+        Transform.getMutable(arrow).position = Vector3.create(xOffsets[i], 1.4, zOffset)
+        Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale),
+        Transform.getMutable(arrow).rotation = Quaternion.create(0.5,0.5,-0.5,0.5)
+      }
+      this.arrows.push(arrow)
+    }
   }
 
   followPath(): void {
