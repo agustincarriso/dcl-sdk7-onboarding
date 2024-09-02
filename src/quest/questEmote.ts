@@ -1,4 +1,4 @@
-import { Animator, AvatarEmoteCommand, Entity, GltfContainer, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import { Animator, AvatarEmoteCommand, Entity, GltfContainer, PBAvatarEmoteCommand, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
@@ -17,6 +17,7 @@ export class QuestEmote {
   questIndicator: QuestIndicator
   bubbleTalk: sideBubbleTalk
   emoteMoves: number = 0
+  currentEmote: string
   lastState: boolean = false
   tick1: Entity
   tick2: Entity
@@ -69,6 +70,7 @@ export class QuestEmote {
         }
       ]
     })
+    this.currentEmote = ''
     this.bezier.activateBillBoard(true)
     this.bubbleTalk = new sideBubbleTalk(this.bezier.npcChild)
     this.bubbleTalk.closeBubbleInTime()
@@ -113,6 +115,8 @@ export class QuestEmote {
     console.log('emoteQuest')
     AvatarEmoteCommand.onChange(engine.PlayerEntity, (emote) => {
       if (!emote) return
+      if (this.currentEmote === emote.emoteUrn) return
+      this.currentEmote = emote?.emoteUrn
       console.log('Emote played: ', emote.emoteUrn)
       this.emoteMoves++
       this.checkEmoteMoves()
