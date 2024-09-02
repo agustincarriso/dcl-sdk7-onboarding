@@ -295,7 +295,7 @@ export class MainInstace {
   s0_Det_Butterfly_chunk02_Art_01: Entity
   s0_Fence_Art_01: Entity
   s0_Fence_Art_02: Entity
-  s0_Landscape_2_Art_1__01: Entity
+  // s0_Landscape_2_Art_1__01: Entity
   s0_fog_01_art_1__01: Entity
   s0_fog_01_art_2__01: Entity
   s0_COG_Landscape_Planes_01: Entity
@@ -3692,16 +3692,16 @@ export class MainInstace {
     })
 
     // Landscape_2_Art (1)
-    this.s0_Landscape_2_Art_1__01 = engine.addEntity()
-    GltfContainer.create(this.s0_Landscape_2_Art_1__01, {
-      src: 'assets/scene/models/unity_assets/s0_Landscape_2_Art_1__01.glb'
-    })
-    Transform.create(this.s0_Landscape_2_Art_1__01, {
-      position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
-    })
-    Transform.getMutable(this.s0_Landscape_2_Art_1__01).parent = this.s0_COG_Landscape_Planes_01
+    // this.s0_Landscape_2_Art_1__01 = engine.addEntity()
+    // GltfContainer.create(this.s0_Landscape_2_Art_1__01, {
+    //   src: 'assets/scene/models/unity_assets/s0_Landscape_2_Art_1__01.glb'
+    // })
+    // Transform.create(this.s0_Landscape_2_Art_1__01, {
+    //   position: Vector3.create(0, 0, 0),
+    //   rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+    //   scale: Vector3.create(1, 1, 1)
+    // })
+    // Transform.getMutable(this.s0_Landscape_2_Art_1__01).parent = this.s0_COG_Landscape_Planes_01
 
     // fog_01_art (1)
     this.s0_fog_01_art_1__01 = engine.addEntity()
