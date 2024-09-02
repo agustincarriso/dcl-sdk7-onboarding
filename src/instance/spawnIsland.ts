@@ -28,12 +28,12 @@ import * as utils from '@dcl-sdk/utils'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
 import { BubbleTalk } from '../imports/bubble'
-import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
-import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
+import { JUMP } from '../jsonData/textsTutorialBubble'
+import { point1, point2, point3 } from '../jsonData/npcData'
 
 export class SpawnIsland {
   tobor: NPC
@@ -199,7 +199,87 @@ export class SpawnIsland {
     this.targeterCircle.showCircle(false)
     this.gameController.uiController.widgetTasks.showTick(true, 0)
   }
-  startMoveQuest() {}
+  startMoveQuest() {
+    this.tobor.activateBillBoard(false)
+
+    Tween.createOrReplace(this.tobor.entity, {
+      mode: Tween.Mode.Rotate({
+        start: Quaternion.create(0, 0.5733939, 0, -0.8192798),
+        end: Quaternion.fromEulerDegrees(0, -240, 0)
+      }),
+      duration: 400,
+      easingFunction: EasingFunction.EF_LINEAR
+    })
+    utils.timers.setTimeout(() => {}, 500)
+
+    TweenSequence.create(this.tobor.entity, {
+      sequence: [
+        {
+          duration: 1500,
+          easingFunction: EasingFunction.EF_LINEAR,
+          mode: Tween.Mode.Move({
+            start: Vector3.create(218.95, 68.67, 127.08),
+            end: point1
+          })
+        },
+        {
+          duration: 1500,
+          easingFunction: EasingFunction.EF_LINEAR,
+          mode: Tween.Mode.Move({
+            start: point1,
+            end: point2
+          })
+        }
+      ]
+    })
+    let tween = 0
+    engine.addSystem(() => {
+      const tweenCompleted = tweenSystem.tweenCompleted(this.tobor.entity)
+      if (tweenCompleted) {
+        tween = tween + 1
+        if (tween === 3) {
+          console.log('finished')
+          this.tobor.activateBillBoard(true)
+          this.bubbleTalk.openBubble(JUMP, true)
+          this.jumpquest()
+        }
+        if (tween === 5) {
+          this.tobor.activateBillBoard(true)
+          this.targeterCircle.showCircle(true)
+          this.dialogAtPilar()
+          PointerEvents.createOrReplace(this.tobor.npcChild, {
+            pointerEvents: [
+              {
+                eventType: PointerEventType.PET_DOWN,
+                eventInfo: {
+                  button: InputAction.IA_POINTER,
+                  showFeedback: true,
+                  hoverText: 'Talk'
+                }
+              }
+            ]
+          })
+          engine.addSystem(() => {
+            if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.tobor.npcChild)) {
+              console.log('CLICKED')
+              AudioManager.instance().playOnce('tobor_talk', {
+                volume: 0.6,
+                parent: this.tobor.entity
+              })
+              this.targeterCircle.showCircle(false)
+              this.questIndicator.hide()
+              openDialogWindow(this.gameController.spawnIsland.tobor.entity, this.gameController.dialogs.toborDialog, 3)
+              utils.timers.setTimeout(() => {
+                this.gameController.uiController.widgetTasks.setText(3, 0)
+                this.gameController.uiController.widgetTasks.showTick(false, 0)
+              }, 2000)
+            }
+          })
+          console.log('tobor on pilar')
+        }
+      }
+    })
+  }
   jumpquest() {
     this.gameController.uiController.popUpControls.spaceContainerVisible = true
     this.gameController.uiController.widgetTasks.setText(1, 0)
@@ -250,7 +330,7 @@ export class SpawnIsland {
       activateSoundPillar1(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)
       this.activeCables(true)
     }, 3000)
-  } 
+  }
   activateBridge() {
     this.getBridgeArrow()
     PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
@@ -289,12 +369,12 @@ export class SpawnIsland {
 
       if (i == 8) {
         Transform.getMutable(arrow).position = Vector3.create(-7, 1.6, 0)
-        Transform.getMutable(arrow).scale = Vector3.create(1,1,1)
-        Transform.getMutable(arrow).rotation = Quaternion.create(0.5,0.5,-0.5,0.5)
+        Transform.getMutable(arrow).scale = Vector3.create(1, 1, 1)
+        Transform.getMutable(arrow).rotation = Quaternion.create(0.5, 0.5, -0.5, 0.5)
       } else {
         Transform.getMutable(arrow).position = Vector3.create(xOffsets[i], 1.4, zOffset)
-        Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale),
-        Transform.getMutable(arrow).rotation = Quaternion.create(0.5,0.5,-0.5,0.5)
+        ;(Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale)),
+          (Transform.getMutable(arrow).rotation = Quaternion.create(0.5, 0.5, -0.5, 0.5))
       }
       this.arrows.push(arrow)
     }

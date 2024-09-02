@@ -113,6 +113,7 @@ export class BubbleTalk {
       Vector3.multiply(endScale, this.textScaleFactor),
       duration
     )
+
     this.animateEntity(
       this.centerEntity,
       Vector3.multiply(startScale, Transform.getMutable(this.centerEntity).scale),
@@ -141,5 +142,5 @@ export class BubbleTalk {
     TextShape.getMutable(this.textEntity).textAlign = 1
     Transform.getMutable(this.centerEntity).scale = Vector3.create(0.25, 0.25, 0.25)
     TextShape.getMutable(this.textEntity).fontSize = 1.9
-  } 
+  }
 }
