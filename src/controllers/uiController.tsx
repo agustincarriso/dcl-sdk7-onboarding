@@ -29,7 +29,8 @@ export class UIController {
       this.popUpUI.popupUI(),
       this.popUpUI.controlUI(),
       this.popUpControls.emoteUI(),
-      this.widgetTasks.widgetTask()
+      this.widgetTasks.widgetTask(),
+      this.popUpUI.popupUIEmote()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true

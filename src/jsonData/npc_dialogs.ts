@@ -1,7 +1,15 @@
 import { followPath, openDialogWindow, type Dialog } from 'dcl-npc-toolkit'
 import { GameController } from '../controllers/gameController'
 import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
-import { IdleTrebor, happyTrebor, talkingTrebor } from './npcData'
+import {
+  IdleTrebor,
+  happyBezier,
+  happyTrebor,
+  idleBezier,
+  surprisedBezier,
+  talkingBezier,
+  talkingTrebor
+} from './npcData'
 import {
   SECOND_ISLAND_0,
   SECOND_ISLAND_1,
@@ -83,26 +91,41 @@ export class Dialogs {
     ]
     this.bezierDialog = [
       {
-        text: SECOND_ISLAND_0
+        text: SECOND_ISLAND_0,
+        portrait: idleBezier
       },
       {
-        text: SECOND_ISLAND_1
+        text: SECOND_ISLAND_1,
+        portrait: talkingBezier
       },
       {
-        text: SECOND_ISLAND_2
+        text: SECOND_ISLAND_2,
+        portrait: surprisedBezier,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questEmote.startEmoteQuest()
+        }
       },
       {
         text: SECOND_ISLAND_3,
+        portrait: surprisedBezier
+      },
+      {
+        text: SECOND_ISLAND_4,
+        portrait: happyBezier
+      },
+      {
+        text: SECOND_ISLAND_5,
+        portrait: happyBezier,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questEmote.completeEmoteQuest()
+        }
+      },
+      {
+        text: SECOND_ISLAND_6,
+        portrait: talkingBezier,
         isEndOfDialog: true
-      },
-      {
-        text: SECOND_ISLAND_4
-      },
-      {
-        text: SECOND_ISLAND_5
-      },
-      {
-        text: SECOND_ISLAND_6
       }
     ]
     this.matDialog = [

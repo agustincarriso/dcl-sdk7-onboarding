@@ -21,15 +21,15 @@ export const point3 = Vector3.create(201.87, 64.04, 126.35)
 
 // BEZIER DATA
 
+export const idleBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Idle.png'
+}
 export const talkingBezier: ImageData = {
-  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Talking.png'
-}
-export const happyBezier: ImageData = {
-  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Happy.png'
-}
-export const IdleBezier: ImageData = {
-  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Talking.png'
 }
 export const surprisedBezier: ImageData = {
-  path: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png'
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Sourprised.png'
+}
+export const happyBezier: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Fox_Happy.png'
 }

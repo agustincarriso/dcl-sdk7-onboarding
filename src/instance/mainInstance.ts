@@ -68,8 +68,6 @@ export class MainInstace {
   s0_tube_03_OFF_01: Entity
   s0_tube_03_ON_01: Entity
   s0_En_DanceZone_01: Entity
-  s0_En_Npc1_01: Entity
-  s0_NPC_FoxAnim_Art_01: Entity
   s0_En_Npc2_01: Entity
   s0_NPC_Raccoon_Art_01: Entity
   s0_En_Npc3_01: Entity
@@ -197,9 +195,6 @@ export class MainInstace {
   s0_tree_01_low_46__01: Entity = engine.addEntity()
   s0_Z3_Str_Dancing_Station_Art_01: Entity = engine.addEntity()
   s0_EmoteZone_01: Entity = engine.addEntity() // DEFER_MOVE
-  s0_tick_1_01: Entity
-  s0_tick_2_01: Entity
-  s0_tick_3_01: Entity
   s0_smallislands_01: Entity
   s0_Bridge_Platform_Art_3__01: Entity
   s0_Bridge_Platform_Art_2__01: Entity
@@ -1057,52 +1052,6 @@ export class MainInstace {
       rotation: Quaternion.create(0, 0.8192798, 0, 0.5733939),
       scale: Vector3.create(1, 1, 1)
     })
-    // En_Npc1
-    this.s0_En_Npc1_01 = engine.addEntity()
-    MeshCollider.setCylinder(this.s0_En_Npc1_01)
-    Transform.create(this.s0_En_Npc1_01, {
-      position: Vector3.create(160.0233, 66.64076, 104.139),
-      rotation: Quaternion.create(0, 0.3281288, 0, 0.944633),
-      scale: Vector3.create(0.7227439, 1.299883, 0.7050315)
-    })
-    Material.setPbrMaterial(this.s0_En_Npc1_01, {
-      albedoColor: Color4.create(1, 1, 1, 0),
-      metallic: 0,
-      roughness: 0.5
-    })
-    // NPC_FoxAnim_Art
-    this.s0_NPC_FoxAnim_Art_01 = engine.addEntity()
-    Transform.create(this.s0_NPC_FoxAnim_Art_01, {
-      position: Vector3.create(0, -1.12, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1.76666, 0.915751, 1.756506)
-    })
-    GltfContainer.create(this.s0_NPC_FoxAnim_Art_01, {
-      src: 'assets/scene/models/unity_assets/s0_NPC_FoxAnim_Art_01.glb'
-    })
-    Transform.getMutable(this.s0_NPC_FoxAnim_Art_01).parent = this.s0_En_Npc1_01
-    Animator.create(this.s0_NPC_FoxAnim_Art_01, {
-      states: [
-        {
-          clip: 'Idle'
-        },
-        {
-          clip: 'Talk'
-        },
-        {
-          clip: 'Hi'
-        },
-        {
-          clip: 'Celebrate'
-        },
-        {
-          clip: 'Bye'
-        },
-        {
-          clip: 'Dance'
-        }
-      ]
-    })
     // En_Npc2
     this.s0_En_Npc2_01 = engine.addEntity()
     MeshRenderer.setCylinder(this.s0_En_Npc2_01)
@@ -1513,7 +1462,7 @@ export class MainInstace {
         },
         {
           clip: 'Pillar_OFF'
-        },
+        }
       ]
     })
     // Z3_COG
@@ -2649,34 +2598,6 @@ export class MainInstace {
       scale: Vector3.create(1, 1, 1)
     })
     Transform.getMutable(this.s0_EmoteZone_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
-    // tick_1
-    this.s0_tick_1_01 = engine.addEntity()
-    GltfContainer.create(this.s0_tick_1_01, { src: 'assets/scene/models/unity_assets/s0_tick_1_01.glb' })
-    Transform.create(this.s0_tick_1_01, {
-      position: Vector3.create(157.366, 66.76084, 104.8572),
-      rotation: Quaternion.create(5.825006e-17, -0.0475723, 5.825006e-17, -0.9988678),
-      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
-    })
-    Transform.getMutable(this.s0_tick_1_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
-
-    // tick_2
-    this.s0_tick_2_01 = engine.addEntity()
-    GltfContainer.create(this.s0_tick_2_01, { src: 'assets/scene/models/unity_assets/s0_tick_2_01.glb' })
-    Transform.create(this.s0_tick_2_01, {
-      position: Vector3.create(157.5212, 66.75648, 105.5075),
-      rotation: Quaternion.create(4.757887e-17, -0.2023015, 4.757888e-17, -0.9793233),
-      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
-    })
-    Transform.getMutable(this.s0_tick_2_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
-    // tick_3
-    this.s0_tick_3_01 = engine.addEntity()
-    GltfContainer.create(this.s0_tick_3_01, { src: 'assets/scene/models/unity_assets/s0_tick_3_01.glb' })
-    Transform.create(this.s0_tick_3_01, {
-      position: Vector3.create(157.8082, 66.75357, 106.1788),
-      rotation: Quaternion.create(4.433242e-17, -0.2454148, 4.433243e-17, -0.9694182),
-      scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
-    })
-    Transform.getMutable(this.s0_tick_3_01).parent = this.s0_Z3_Str_Dancing_Station_Art_01
     // smallislands
     this.s0_smallislands_01 = engine.addEntity()
     GltfContainer.create(this.s0_smallislands_01, { src: 'assets/scene/models/unity_assets/s0_smallislands_01.glb' })
