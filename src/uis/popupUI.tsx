@@ -24,7 +24,7 @@ export class Popup {
   takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
   mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
   // Tobor
-  isVisible: boolean = true
+  isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = '<b>Objectives</b>'
   headerText2: string = '<b>Help Mat with the meshes</b>'
@@ -33,7 +33,7 @@ export class Popup {
   buttonRightText: string = '<b>OK</b>'
   // Bezier
   emoteTitleBig = '<b>Congratulations!</b>'
-  emoteVisible: boolean = true
+  emoteVisible: boolean = false
   emoteHeaderText1: string = '<b>YOU GOT A NEW EMOTE</b>'
   emoteImage: string = 'assets/ui/emote_icon.png'
   imageText: string = "<b>Bezier's dance</b>"
