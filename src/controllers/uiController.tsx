@@ -22,7 +22,8 @@ export class UIController {
     this.keyBoardUI = new KeyBoardUI(this)
     this.popUpUI = new Popup(this)
     this.widgetTasks = new  WidgetTasks(this)
-    this.uiComponent = () => [NpcUtilsUi(),this.popUpControls.spaceUI(),this.keyBoardUI.mainUi(),this.popUpUI.popupUI(),this.popUpUI.controlUI(), this.widgetTasks.widgetTask()]
+    // this.uiComponent = () => [NpcUtilsUi(),this.popUpControls.spaceUI(),this.keyBoardUI.mainUi(),this.popUpUI.popupUI(),this.popUpUI.controlUI(), this.widgetTasks.widgetTask()]
+    this.uiComponent = () => [this.popUpUI.popupUIEmote()]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true
   }

@@ -173,7 +173,7 @@ export class SpawnIsland {
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051),
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
-    })
+    },)
   }
   startSpawnIsland() {
     //Start ambiental sound
