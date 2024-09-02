@@ -68,6 +68,7 @@ export class MainInstace {
   s0_tube_03_OFF_01: Entity
   s0_tube_03_ON_01: Entity
   s0_En_DanceZone_01: Entity
+  s0_En_Npc1_01: Entity
   s0_En_Npc2_01: Entity
   s0_NPC_Raccoon_Art_01: Entity
   s0_En_Npc3_01: Entity
@@ -1052,6 +1053,19 @@ export class MainInstace {
       rotation: Quaternion.create(0, 0.8192798, 0, 0.5733939),
       scale: Vector3.create(1, 1, 1)
     })
+       // En_Npc1
+       this.s0_En_Npc1_01 = engine.addEntity()
+       MeshCollider.setCylinder(this.s0_En_Npc1_01)
+       Transform.create(this.s0_En_Npc1_01, {
+         position: Vector3.create(160.0233, 66.64076, 104.139),
+         rotation: Quaternion.create(0, 0.3281288, 0, 0.944633),
+         scale: Vector3.create(0.7227439, 1.299883, 0.7050315)
+       })
+       Material.setPbrMaterial(this.s0_En_Npc1_01, {
+         albedoColor: Color4.create(1, 1, 1, 0),
+         metallic: 0,
+         roughness: 0.5
+       })
     // En_Npc2
     this.s0_En_Npc2_01 = engine.addEntity()
     MeshRenderer.setCylinder(this.s0_En_Npc2_01)
