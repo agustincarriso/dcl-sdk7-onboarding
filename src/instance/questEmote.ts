@@ -24,7 +24,7 @@ import { openDialogWindow } from 'dcl-npc-toolkit'
 import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
 import { NPC } from '../npc.class'
 import * as utils from '@dcl-sdk/utils'
-import { movePlayerTo } from '~system/RestrictedActions'
+import { movePlayerTo, triggerSceneEmote } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
 import { BubbleTalk, sideBubbleTalk } from '../imports/bubble'
 import { FollowPathData } from 'dcl-npc-toolkit/dist/types'
@@ -32,7 +32,7 @@ import { pathArray2, point2, point3 } from '../jsonData/npc_dialogs'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
-import { ZONE_1_EMOTE_0, ZONE_1_EMOTE_1 } from '../jsonData/textsTutorialBubble'
+import { ZONE_1_EMOTE_0, ZONE_1_EMOTE_1, ZONE_1_EMOTE_2, ZONE_1_EMOTE_3 } from '../jsonData/textsTutorialBubble'
 
 export class SecondIsland {
   bezier: NPC
@@ -43,14 +43,13 @@ export class SecondIsland {
   emoteMoves: number = 0
   lastState: boolean = false
   tick1: Entity
-  // tick2: Entity
-  // tick3: Entity
+  tick2: Entity
+  tick3: Entity
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.tick1 = engine.addEntity()
-    engine.removeEntity(this.tick1)
-    // this.tick2 = this.gameController.mainInstance.s0_tick_2_01
-    // this.tick3 = this.gameController.mainInstance.s0_tick_3_01
+    this.tick2 = engine.addEntity()
+    this.tick3 = engine.addEntity()
     this.bezier = new NPC(
       Vector3.create(160.0233, 65.64076, 104.139),
       Vector3.create(1, 1, 1),
@@ -104,70 +103,26 @@ export class SecondIsland {
       this.bezier.entity
     )
     this.questIndicator = new QuestIndicator(this.bezier.entity)
-    this.questIndicator.hide()
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
+    this.createEmoteZone()
   }
-  loadTagData() {
-    PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Fence_Art_02, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_POINTER,
-            showFeedback: true,
-            hoverText: 'Talk to Tobor First'
-          }
-        }
-      ]
+  loadTagData() {}
+  createEmoteZone() {
+    const triggerEnt = engine.addEntity()
+    Transform.create(triggerEnt, {
+      position: Transform.getMutable(this.bezier.entity).position,
+      scale: Vector3.create(30, 20, 30)
     })
-    PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_POINTER,
-            showFeedback: true,
-            hoverText: 'Talk to Tobor Before Crossing'
-          }
-        }
-      ]
+    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
+      AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
+      console.log('Enter Emote Zone')
     })
-    engine.addSystem(() => {
-      if (
-        inputSystem.isTriggered(
-          InputAction.IA_POINTER,
-          PointerEventType.PET_DOWN,
-          this.gameController.mainInstance.s0_Fence_Art_02
-        )
-      ) {
-      }
-      if (
-        inputSystem.isTriggered(
-          InputAction.IA_POINTER,
-          PointerEventType.PET_DOWN,
-          this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01
-        )
-      ) {
-      }
-    })
+  }
 
-    this.activeCables(false)
-  }
-  activeCables(bActive: boolean) {
-    if (bActive === true) {
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_ON_01).src =
-        'assets/scene/models/unity_assets/s0_Cable_01_ON_01.glb'
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src = ''
-    } else if (bActive === false) {
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_ON_01).src = ''
-      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_01_OFF_01).src =
-        'assets/scene/models/unity_assets/s0_Cable_01_OFF_01.glb'
-    }
-  }
   startInteract() {
-    // AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.bezier.entity })
+    AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
     openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 0)
     Animator.stopAllAnimations(this.bezier.entity)
     Animator.getClip(this.bezier.entity, 'Talk').playing = true
@@ -180,56 +135,92 @@ export class SecondIsland {
   }
   emoteQuest() {
     console.log('emoteQuest')
-    engine.addSystem(() => {
-      let emoteDetected = false
-
-      for (const [entity] of engine.getEntitiesWith(AvatarEmoteCommand)) {
-        emoteDetected = true
-        break
-      }
-
-      if (emoteDetected && !this.lastState) {
-        this.emoteMoves += 1
-        console.log('PLAYER played an emote')
-        this.checkEmoteMoves()
-      }
-
-      this.lastState = emoteDetected
+    AvatarEmoteCommand.onChange(engine.PlayerEntity, (emote) => {
+      if (!emote) return
+      console.log('Emote played: ', emote.emoteUrn)
+      this.emoteMoves++
+      this.checkEmoteMoves()
     })
   }
-
   checkEmoteMoves() {
     if (this.emoteMoves === 1) {
       console.log('First emote detected')
-      this.bubbleTalk.openBubble(ZONE_1_EMOTE_1, false)
+      this.bubbleTalk.openBubble(ZONE_1_EMOTE_1, true)
       this.addTicks(1)
+      this.spawnParticle()
     } else if (this.emoteMoves === 2) {
       console.log('Second emote detected')
+      this.bubbleTalk.closeBubbleInTime()
+      this.addTicks(2)
+      this.spawnParticle()
+      utils.timers.setTimeout(() => {
+        this.bubbleTalk.openBubble(ZONE_1_EMOTE_2, true)
+      }, 100)
     } else if (this.emoteMoves === 3) {
       console.log('Third emote detected')
-
-      this.emoteMoves = 0
+      this.bubbleTalk.closeBubbleInTime()
+      this.addTicks(3)
+      this.spawnParticle()
+      utils.timers.setTimeout(() => {
+        this.bubbleTalk.openBubble(ZONE_1_EMOTE_3, true)
+      }, 100)
+      utils.timers.setTimeout(() => {
+        this.completeQuestDialog()
+      }, 1000)
     }
   }
   addTicks(number: number) {
     if (number === 1) {
-      this.tick1 = engine.addEntity()
       GltfContainer.create(this.tick1, { src: 'assets/scene/models/unity_assets/s0_tick_1_01.glb' })
       Transform.create(this.tick1, {
         position: Vector3.create(157.366, 66.76084, 104.8572),
         rotation: Quaternion.create(5.825006e-17, -0.0475723, 5.825006e-17, -0.9988678),
-        scale: Vector3.create(2.017242, 0.1470411, 0.06610861)
+        scale: Vector3.create(2.017242, 0.1470411, 0.06610861),
+        parent: this.gameController.mainInstance.s0_Z3_Str_Dancing_Station_Art_01
       })
-      Transform.getMutable(this.tick1).parent = this.gameController.mainInstance.s0_Z3_Str_Dancing_Station_Art_01
-    } else if ((number = 2)) {
-    } else {
+    } else if (number === 2) {
+      GltfContainer.create(this.tick2, { src: 'assets/scene/models/unity_assets/s0_tick_2_01.glb' })
+      Transform.create(this.tick2, {
+        position: Vector3.create(157.5212, 66.75648, 105.5075),
+        rotation: Quaternion.create(4.757887e-17, -0.2023015, 4.757888e-17, -0.9793233),
+        scale: Vector3.create(2.017242, 0.1470411, 0.06610861),
+        parent: this.gameController.mainInstance.s0_Z3_Str_Dancing_Station_Art_01
+      })
+    } else if (number === 3) {
+      GltfContainer.create(this.tick3, { src: 'assets/scene/models/unity_assets/s0_tick_3_01.glb' })
+      Transform.create(this.tick3, {
+        position: Vector3.create(157.8082, 66.75357, 106.1788),
+        rotation: Quaternion.create(4.433242e-17, -0.2454148, 4.433243e-17, -0.9694182),
+        scale: Vector3.create(2.017242, 0.1470411, 0.06610861),
+        parent: this.gameController.mainInstance.s0_Z3_Str_Dancing_Station_Art_01
+      })
     }
+  }
+  completeQuestDialog() {
+    this.bubbleTalk.closeBubbleInTime()
+    // bezier play celebrate animation
+    this.gameController.uiController.emoteUI.spaceContainerVisible = false
+    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
+  }
+  spawnParticle() {
+    const particle = engine.addEntity()
+    GltfContainer.create(particle, { src: 'assets/scene/models/glb_assets/CheckParticles_Art.glb' })
+    const positionY = Transform.getMutable(this.bezier.entity).position.y + 2.5
+    Transform.create(particle, {
+      position: Vector3.create(
+        Transform.getMutable(this.bezier.entity).position.x,
+        positionY,
+        Transform.getMutable(this.bezier.entity).position.z
+      ),
+      scale: Vector3.create(2.5, 2.5, 2.5)
+    })
+    utils.timers.setTimeout(() => {
+      engine.removeEntity(particle)
+    }, 1000)
   }
   completeEmoteQuest() {}
 
   onCloseRewardUI() {}
 
   activateBridge() {}
-
-  followPath(): void {}
 }

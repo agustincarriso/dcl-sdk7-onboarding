@@ -184,12 +184,13 @@ export class sideBubbleTalk {
   openBubble(text: string, farMode: boolean): void {
     if (this.active) return
     this.active = true
+    console.log('activated')
     TextShape.getMutable(this.textEntity).text = text
     if (farMode === true) {
-      //this.farMode()
-
+      TextShape.getMutable(this.textEntity).fontSize = 4.5
+      TextShape.getMutable(this.titleEntity).fontSize = 4.5
       const startScale = Vector3.create(0, 0, 0)
-      const endScale = Vector3.create(0.7, 0.7, 0.7)
+      const endScale = Vector3.create(0.35, 0.35, 0.35)
       const duration = 500
 
       this.animateEntity(this.centerEntity, startScale, endScale, duration)
@@ -225,17 +226,16 @@ export class sideBubbleTalk {
         Vector3.create(1, 1, 1),
         duration
       )
-      // this.defaultMode()
+
       console.log('bubble in defaultMode')
     }
-    console.log('thing')
   }
 
   closeBubbleInTime(): void {
     if (!this.active) return
 
     this.active = false
-    const startScale = Vector3.create(0.7, 0.7, 0.7)
+    const startScale = Vector3.create(0.35, 0.35, 0.35)
     const endScale = Vector3.create(0, 0, 0)
     const duration = 500
 
@@ -258,6 +258,10 @@ export class sideBubbleTalk {
       duration
     )
   }
+  // closeBubble(): void {
+  //   Transform.getMutable(this.centerEntity).scale = Vector3.create(0, 0, 0)
+  //   this.active = false
+  // }
 
   private animateEntity(entity: Entity, startScale: Vector3, endScale: Vector3, duration: number) {
     Tween.createOrReplace(entity, {

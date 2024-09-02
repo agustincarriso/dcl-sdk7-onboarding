@@ -165,7 +165,7 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
-        newRelativePosition: Vector3.create(161.127, 65.7368, 108.0051),
+        newRelativePosition: Vector3.create(184.81, 65.67, 116.87),
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     })

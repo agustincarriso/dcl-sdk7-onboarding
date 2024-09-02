@@ -226,8 +226,7 @@ export class Dialogs {
       },
       {
         text: SECOND_ISLAND_3,
-        portrait: surprisedBezier,
-        isEndOfDialog: true
+        portrait: surprisedBezier
       },
       {
         text: SECOND_ISLAND_4,
@@ -239,7 +238,8 @@ export class Dialogs {
       },
       {
         text: SECOND_ISLAND_6,
-        portrait: talkingBezier
+        portrait: talkingBezier,
+        isEndOfDialog: true
       }
     ]
     this.matDialog = [
