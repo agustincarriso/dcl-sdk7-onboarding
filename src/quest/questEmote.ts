@@ -11,6 +11,7 @@ import * as utils from '@dcl-sdk/utils'
 import { sideBubbleTalk } from '../imports/bubble'
 import { POPUP_STATE } from '../uis/popupUI'
 import { activateSoundPillar2 } from '../imports/components/audio/sounds'
+import { TaskType } from '../uis/widgetTask'
 
 export class QuestEmote {
   gameController: GameController
@@ -133,6 +134,11 @@ export class QuestEmote {
   }
 
   startInteract() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.setText(4, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
     openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 0)
     Animator.stopAllAnimations(this.bezier.entity)
@@ -210,6 +216,13 @@ export class QuestEmote {
     }
   }
   completeQuestDialog() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true,1)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false,0)
+      this.gameController.uiController.widgetTasks.setText(5, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     this.bubbleTalk.closeBubbleInTime()
     // bezier play celebrate animation
     this.gameController.uiController.popUpControls.emoteContainerVisible = false
