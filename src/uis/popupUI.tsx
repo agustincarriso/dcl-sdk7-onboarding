@@ -482,7 +482,6 @@ export class Popup {
             }}
             onMouseDown={() => {
               // Add emote config
-              // this.uiController.gameController.spawnIsland.onCloseRewardUI()
               // this.hide()
             }}
           >
