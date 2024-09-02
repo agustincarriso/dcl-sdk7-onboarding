@@ -28,9 +28,9 @@ export class QuestEmote {
     this.tick2 = engine.addEntity()
     this.tick3 = engine.addEntity()
     this.bezier = new NPC(
-      Vector3.create(160.0233, 65.64076, 104.139),
-      Vector3.create(1, 1, 1),
-      Quaternion.create(0, 0.3281288, 0, 0.944633),
+      Vector3.create(0, -1.12, 0),
+      Vector3.create(1.76666, 0.915751, 1.756506),
+      Quaternion.create(0, 1, 0, -4.371139E-08),
       'assets/scene/models/unity_assets/s0_NPC_FoxAnim_Art_01.glb',
       14,
       () => {
@@ -42,6 +42,7 @@ export class QuestEmote {
         this.startInteract()
       }
     )
+    Transform.getMutable(this.bezier.entity).parent = this.gameController.mainInstance.s0_En_Npc1_01
     Animator.createOrReplace(this.bezier.entity, {
       states: [
         {
@@ -75,12 +76,13 @@ export class QuestEmote {
     this.bubbleTalk = new sideBubbleTalk(this.bezier.npcChild)
     this.bubbleTalk.closeBubbleInTime()
     this.targeterCircle = new FloorCircleTargeter(
-      Vector3.create(0, 0, 0),
+      Vector3.create(0, 0.1, 0),
       Vector3.create(0, 0, 0),
       Quaternion.create(0, 0, 0),
       this.bezier.entity
     )
     this.questIndicator = new QuestIndicator(this.bezier.entity)
+    Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0,2.5,0)
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
