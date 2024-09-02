@@ -95,8 +95,8 @@ export class WidgetTasks {
         this.checkBoxImageVisible2 = visible
         this.checkBoxImageVisible3 = visible
         this.checkImageVisible1 = false
-        this.checkImageVisible1 = false
-        this.checkImageVisible1 = false
+        this.checkImageVisible2 = false
+        this.checkImageVisible3 = false
     }
     this.setMarginPositions()
   }
@@ -104,6 +104,7 @@ export class WidgetTasks {
     switch (index) {
       case 0:
         this.checkImageVisible = visible
+        break
       case 1:
         this.checkImageVisible1 = visible
         break

@@ -2,12 +2,14 @@ import { engine, PointerLock, UiCanvasInformation } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { Label, ReactEcs, UiEntity } from '@dcl/sdk/react-ecs'
 import { UIController } from '../controllers/uiController'
+import { openExternalUrl } from '~system/RestrictedActions'
 
 const lightGray = Color4.create(128 / 255, 128 / 255, 128 / 255, 0.2)
 export enum POPUP_STATE {
-  OneButton,
-  TwoButtons,
-  Tasks
+  OneButton = 0,
+  TwoButtons = 1,
+  Tasks = 2,
+  Control = 3
 }
 export class Popup {
   uiController: UIController
@@ -212,7 +214,7 @@ export class Popup {
             }}
             onMouseDown={() => {
               this.uiController.gameController.spawnIsland.onCloseRewardUI()
-              this.hide()
+              this.hide(POPUP_STATE.Tasks)
             }}
           >
             {/* Text UI */}
@@ -448,9 +450,7 @@ export class Popup {
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
-              // Add emote config
-              // this.uiController.gameController.spawnIsland.onCloseRewardUI()
-              // this.hide()
+              openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
             }}
           >
             {/* Text UI */}
@@ -481,8 +481,8 @@ export class Popup {
               color: Color4.Black()
             }}
             onMouseDown={() => {
-              // Add emote config
-              // this.hide()
+              this.hide(POPUP_STATE.TwoButtons)
+              this.uiController.gameController.questEmote.onCloseRewardUI()
             }}
           >
             {/* Text UI */}
@@ -627,7 +627,7 @@ export class Popup {
   onFocusScreen() {
     PointerLock.onChange(engine.CameraEntity, (pointerLock) => {
       if (!pointerLock) return
-      if (this.isVisible === true) {
+      if (this.isVisible === true || this.emoteVisible === true) {
         if (pointerLock.isPointerLocked === true) {
           this.takeControlCameraEscVisible = true
           this.takeControlCameraVisible = false
@@ -638,13 +638,35 @@ export class Popup {
       }
     })
   }
-  show() {
-    this.isVisible = true
-    this.onFocusScreen()
+  show(popUpState: POPUP_STATE) {
+    switch (popUpState) {
+      case 0:
+      case 1:
+        this.onFocusScreen()
+        this.emoteVisible = true
+        break
+      case 2:
+        this.onFocusScreen()
+        this.isVisible = true
+        break
+      case 3:
+        break
+    }
   }
-  hide() {
-    this.isVisible = false
-    this.takeControlCameraEscVisible = false
-    this.takeControlCameraVisible = false
+  hide(popUpState: POPUP_STATE) {
+    switch (popUpState) {
+      case 0:
+      case 1:
+        this.emoteVisible = false
+        this.takeControlCameraVisible = false
+        break
+      case 2:
+        this.isVisible = false
+        this.takeControlCameraEscVisible = false
+        this.takeControlCameraVisible = false
+        break
+      case 3:
+        break
+    }
   }
 }
