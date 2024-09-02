@@ -32,7 +32,7 @@ import { IndicatorState, QuestIndicator } from '../imports/components/questIndic
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
-import { JUMP } from '../jsonData/textsTutorialBubble'
+import { HELP_BEIZER, JUMP } from '../jsonData/textsTutorialBubble'
 import { point1, point2, point3 } from '../jsonData/npcData'
 
 export class SpawnIsland {
@@ -318,6 +318,7 @@ export class SpawnIsland {
     Animator.stopAllAnimations(this.tobor.entity)
     Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
     this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Multiple)
+    this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false)
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_4__01)

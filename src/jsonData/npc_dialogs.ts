@@ -72,7 +72,6 @@ export class Dialogs {
         isEndOfDialog: true,
         typeSpeed: 30,
         triggeredByNext: () => {
-          this.gameController.spawnIsland.bubbleTalk.openBubble(HELP_BEIZER, false) // Consider move this to the next ui button on click
           this.gameController.uiController.popUpUI.show()
         }
       }
