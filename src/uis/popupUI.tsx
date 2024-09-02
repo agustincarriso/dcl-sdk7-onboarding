@@ -450,7 +450,12 @@ export class Popup {
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
-              openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
+              if (this.uiController.gameController.questEmote.walletConected === true){
+                // claim wearable UI
+              }else{
+                openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
+              }
+             
             }}
           >
             {/* Text UI */}
@@ -641,6 +646,9 @@ export class Popup {
   show(popUpState: POPUP_STATE) {
     switch (popUpState) {
       case 0:
+        this.emoteVisible = true
+        this.takeControlCameraVisible = true
+        this.buttonRightText = "<b>CLAIM EMOTE</b>"
       case 1:
         this.onFocusScreen()
         this.emoteVisible = true
@@ -656,6 +664,8 @@ export class Popup {
   hide(popUpState: POPUP_STATE) {
     switch (popUpState) {
       case 0:
+        this.emoteVisible = false
+        this.takeControlCameraVisible = false
       case 1:
         this.emoteVisible = false
         this.takeControlCameraVisible = false

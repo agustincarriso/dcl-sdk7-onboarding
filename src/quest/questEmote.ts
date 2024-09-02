@@ -25,7 +25,7 @@ export class QuestEmote {
   tick1: Entity
   tick2: Entity
   tick3: Entity
-  walletConected : boolean = false //Replace with the real variable
+  walletConected : boolean = true //Replace with the real variable
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
   constructor(gameController: GameController) {
