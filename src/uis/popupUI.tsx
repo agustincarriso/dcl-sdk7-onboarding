@@ -10,26 +10,36 @@ export enum POPUP_STATE {
   Tasks
 }
 export class Popup {
+  uiController: UIController
   backgroundBig: string = 'assets/ui/UI_Pop_Up_Base.png'
   backgroundBlack: string = 'assets/ui/UI_Tasks_Base_P.png'
+  takeControlCameraEscVisible: boolean = false
+  takeControlCameraVisible: boolean = false
+  ESCLeft: string = 'assets/ui/UI_EscKey.png'
+  takecontrol: string = 'or the right-click mouse \nbutton to take control'
+  takecontrol2Value: string = 'Press'
+  buttonRightImage: string = 'assets/ui/UI_button_red_version_2.png'
+  arrowAttention: string = 'assets/ui/UI_Arrow.png'
+  takecontrolCameraImageText: string = 'Click to take control \nof the camera'
+  takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
+  mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
+  // Tobor
   isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = '<b>Objectives</b>'
   headerText2: string = '<b>Help Mat with the meshes</b>'
   headerText3: string = '<b>Help Kit with the connection</b>'
   headerText4: string = '<b>Show Bezier your moves</b>'
-  buttonRightImage: string = 'assets/ui/UI_button_red_version_2.png'
   buttonRightText: string = '<b>OK</b>'
-  arrowAttention: string = 'assets/ui/UI_Arrow.png'
-  takecontrol2Value: string = 'Press'
-  ESCLeft: string = 'assets/ui/UI_EscKey.png'
-  takecontrol: string = 'or the right-click mouse \nbutton to take control'
-  mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
-  takecontrolCameraImageText: string = 'Click to take control \nof the camera'
-  takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
-  takeControlCameraEscVisible: boolean = false
-  takeControlCameraVisible: boolean = false
-  uiController: UIController
+  // Bezier
+  emoteTitleBig = '<b>Congratulations!</b>'
+  emoteVisible: boolean = false
+  emoteHeaderText1: string = '<b>YOU GOT A NEW EMOTE</b>'
+  emoteImage: string = 'assets/ui/emote_icon.png'
+  imageText: string = "<b>Bezier's dance</b>"
+  buttonLeft: string = '<b>Dismiss</b>'
+  emoteButtonRightText: string = '<b>Get a Wallet</b>'
+  disclaimText: string = "<b>You currently cannot claim this prize as \nyou don't have a connected wallet</b>"
   constructor(uiController: UIController) {
     this.uiController = uiController
   }
@@ -130,7 +140,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
-              textWrap='nowrap'
+              textWrap="nowrap"
             />
           </UiEntity>
           <UiEntity
@@ -158,7 +168,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
-              textWrap='nowrap'
+              textWrap="nowrap"
             />
           </UiEntity>
           <UiEntity
@@ -186,7 +196,7 @@ export class Popup {
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
               color={Color4.Black()}
-              textWrap='nowrap'
+              textWrap="nowrap"
             />
           </UiEntity>
           <UiEntity
@@ -213,6 +223,276 @@ export class Popup {
                 margin: { left: '38%', right: '38%' }
               }}
               value={this.buttonRightText}
+              textAlign="middle-center"
+              fontSize={canvasInfo.height * 0.018}
+              font="sans-serif"
+              color={Color4.White()}
+            />
+          </UiEntity>
+        </UiEntity>
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: '90%',
+            height: canvasInfo.height * 0.114,
+            position: { bottom: '10%', left: '5%' },
+            display: this.takeControlCameraEscVisible ? 'flex' : 'none'
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.backgroundBlack },
+            color: Color4.create(0, 0, 0, 0.5)
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { bottom: '20%', left: '35%', top: '20%' }
+            }}
+            value={this.takecontrol}
+            textAlign="middle-left"
+            fontSize={canvasInfo.height * 0.018}
+            font="sans-serif"
+            color={Color4.White()}
+          />
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { bottom: '20%', left: '5%', top: '20%' }
+            }}
+            value={this.takecontrol2Value}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.018}
+            font="sans-serif"
+            color={Color4.White()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.045,
+              height: canvasInfo.height * 0.035,
+              position: { bottom: '30%', left: '20%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.ESCLeft }
+            }}
+          ></UiEntity>
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.05,
+              height: canvasInfo.height * 0.05,
+              position: { bottom: '24%', right: '4%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.mouseRigth }
+            }}
+          ></UiEntity>
+        </UiEntity>
+        <UiEntity
+          uiTransform={{
+            positionType: 'absolute',
+            width: canvasInfo.height * 0.045,
+            height: canvasInfo.height * 0.061,
+            position: { bottom: '20%', left: '45%' },
+            display: this.takeControlCameraEscVisible ? 'flex' : 'none'
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.arrowAttention }
+          }}
+        ></UiEntity>
+      </UiEntity>
+    )
+  }
+  popupUIEmote(): ReactEcs.JSX.Element {
+    const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
+    return (
+      <UiEntity
+        uiTransform={{
+          flexDirection: 'column',
+          width: canvasInfo.width * 0.25,
+          height: canvasInfo.height,
+          justifyContent: 'flex-end',
+          positionType: 'absolute',
+          position: { top: '0%', left: '40%' },
+          display: this.emoteVisible ? 'flex' : 'none'
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          color: Color4.create(0, 0, 0, 0)
+        }}
+      >
+        <UiEntity
+          uiTransform={{
+            flexDirection: 'row',
+            width: canvasInfo.width * 0.25,
+            height: canvasInfo.height * 0.58,
+            // justifyContent: 'flex-end',
+            positionType: 'absolute',
+            position: { top: '15%', left: '0%' },
+            display: this.emoteVisible ? 'flex' : 'none'
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.backgroundBig }
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { left: '0%', top: '8%' },
+              margin: { left: '30%', right: '30%' }
+            }}
+            value={this.emoteTitleBig}
+            textAlign="middle-left"
+            fontSize={canvasInfo.width * 0.011}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: '75%',
+              height: '0.3%',
+              position: { top: '16%', left: '13%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.backgroundBig },
+              color: lightGray
+            }}
+          ></UiEntity>
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { left: '0%', top: '18%' },
+              margin: { left: '24.5%', right: '24.5%' }
+            }}
+            value={this.emoteHeaderText1}
+            textAlign="middle-center"
+            fontSize={canvasInfo.width * 0.009}
+            font="sans-serif"
+            color={Color4.Gray()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.12,
+              height: canvasInfo.height * 0.12,
+              position: { top: '27%', left: '0%' },
+              margin: { left: '37.5%', right: '37.5%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.backgroundBig },
+              color: lightGray
+            }}
+          >
+            <UiEntity
+              uiTransform={{
+                positionType: 'absolute',
+                width: '90%',
+                height: '90%',
+                position: { top: '0%', left: '0%' },
+                margin: { left: '0%', right: '0%' }
+              }}
+              uiBackground={{
+                textureMode: 'stretch',
+                texture: { src: this.emoteImage }
+              }}
+            ></UiEntity>
+          </UiEntity>
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { bottom: '18%', left: '0%', top: '20%' },
+              margin: { left: '37.5%', right: '37.5%' }
+            }}
+            value={this.imageText}
+            textAlign="middle-center"
+            fontSize={canvasInfo.width * 0.008}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { bottom: '0%', left: '0%', top: '20%' },
+              margin: { left: '20%', right: '20%' }
+            }}
+            value={this.disclaimText}
+            textAlign="middle-center"
+            fontSize={canvasInfo.width * 0.007}
+            font="sans-serif"
+            color={Color4.Red()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.19,
+              height: canvasInfo.height * 0.07,
+              position: { bottom: '21%', left: '0%' },
+              margin: { left: '31%', right: '31%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.buttonRightImage }
+            }}
+            onMouseDown={() => {
+              // Add emote config
+              // this.uiController.gameController.spawnIsland.onCloseRewardUI()
+              // this.hide()
+            }}
+          >
+            {/* Text UI */}
+            <Label
+              uiTransform={{
+                positionType: 'absolute',
+                position: { bottom: '20%', left: '0%', top: '20%' },
+                margin: { left: '20%', right: '20%' }
+              }}
+              value={this.emoteButtonRightText}
+              textAlign="middle-center"
+              fontSize={canvasInfo.height * 0.018}
+              font="sans-serif"
+              color={Color4.White()}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.19,
+              height: canvasInfo.height * 0.07,
+              position: { bottom: '10%', left: '0%' },
+              margin: { left: '31%', right: '31%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.buttonRightImage },
+              color: Color4.Black()
+            }}
+            onMouseDown={() => {
+              // Add emote config
+              // this.hide()
+            }}
+          >
+            {/* Text UI */}
+            <Label
+              uiTransform={{
+                positionType: 'absolute',
+                position: { bottom: '20%', left: '0%', top: '20%' },
+                margin: { left: '30%', right: '30%' }
+              }}
+              value={this.buttonLeft}
               textAlign="middle-center"
               fontSize={canvasInfo.height * 0.018}
               font="sans-serif"
@@ -344,17 +624,17 @@ export class Popup {
       </UiEntity>
     )
   }
-  onFocusScreen(){
+  onFocusScreen() {
     PointerLock.onChange(engine.CameraEntity, (pointerLock) => {
       if (!pointerLock) return
-      if (this.isVisible === true){
-        if (pointerLock.isPointerLocked === true){
+      if (this.isVisible === true) {
+        if (pointerLock.isPointerLocked === true) {
           this.takeControlCameraEscVisible = true
           this.takeControlCameraVisible = false
-        }else{
+        } else {
           this.takeControlCameraEscVisible = false
           this.takeControlCameraVisible = true
-        } 
+        }
       }
     })
   }

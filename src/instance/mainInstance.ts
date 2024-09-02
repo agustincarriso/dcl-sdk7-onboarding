@@ -19,7 +19,7 @@ import { GameController } from '../controllers/gameController'
 import * as npc from 'dcl-npc-toolkit'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
-import { SpawnIsland } from './spawnIsland'
+import { SpawnIsland } from '../quest/questStartIsland'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
