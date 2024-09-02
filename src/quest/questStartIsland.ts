@@ -134,7 +134,7 @@ export class SpawnIsland {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: 'Talk to Tobor Before Crossing'
+            hoverText: 'Talk to Tobor Before Crossing',
           }
         }
       ]
@@ -170,7 +170,8 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
-        newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051),
+        newRelativePosition: Vector3.create(170.59,65.84,116.23),
+        // newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051),
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     },)

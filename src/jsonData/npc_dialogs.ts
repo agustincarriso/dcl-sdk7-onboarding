@@ -33,6 +33,7 @@ import {
   THIRD_ISLAND_6,
   THIRD_ISLAND_7
 } from './textsTutorialPopups'
+import { POPUP_STATE } from '../uis/popupUI'
 
 export class Dialogs {
   public toborDialog: Dialog[]
@@ -80,7 +81,7 @@ export class Dialogs {
         isEndOfDialog: true,
         typeSpeed: 30,
         triggeredByNext: () => {
-          this.gameController.uiController.popUpUI.show()
+          this.gameController.uiController.popUpUI.show(POPUP_STATE.Tasks)
         }
       }
     ]

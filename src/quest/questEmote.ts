@@ -1,4 +1,4 @@
-import { Animator, AvatarEmoteCommand, Entity, GltfContainer, PBAvatarEmoteCommand, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import { Animator, AvatarEmoteCommand, Entity, GltfContainer, InputAction, Material, MeshRenderer, PBAvatarEmoteCommand, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
@@ -6,9 +6,11 @@ import { AudioManager } from '../imports/components/audio/audio.manager'
 import { QuestIndicator } from '../imports/components/questIndicator'
 import { FloorCircleTargeter } from '../imports/components/targeter'
 import { ZONE_1_EMOTE_1, ZONE_1_EMOTE_2, ZONE_1_EMOTE_3 } from '../jsonData/textsTutorialBubble'
-import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { sideBubbleTalk } from '../imports/bubble'
+import { POPUP_STATE } from '../uis/popupUI'
+import { activateSoundPillar2 } from '../imports/components/audio/sounds'
 
 export class QuestEmote {
   gameController: GameController
@@ -22,6 +24,9 @@ export class QuestEmote {
   tick1: Entity
   tick2: Entity
   tick3: Entity
+  walletConected : boolean = false //Replace with the real variable
+  firstTimeClosingRewardUI: boolean = true
+  arrows: Entity[]
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.tick1 = engine.addEntity()
@@ -72,6 +77,7 @@ export class QuestEmote {
       ]
     })
     this.currentEmote = ''
+    this.arrows = []
     this.bezier.activateBillBoard(true)
     this.bubbleTalk = new sideBubbleTalk(this.bezier.npcChild)
     this.bubbleTalk.closeBubbleInTime()
@@ -88,7 +94,32 @@ export class QuestEmote {
     this.loadTagData()
     this.createEmoteZone()
   }
-  loadTagData() {}
+  loadTagData() {
+    PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, {
+      pointerEvents: [
+        {
+          eventType: PointerEventType.PET_DOWN,
+          eventInfo: {
+            button: InputAction.IA_POINTER,
+            showFeedback: true,
+            hoverText: 'Talk to Bezier Before Crossing'
+          }
+        }
+      ]
+    })
+    this.activeCables(false)
+  }
+  activeCables(bActive: boolean) {
+    if (bActive === true) {
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_02_ON_01).src =
+        'assets/scene/models/unity_assets/s0_Cable_02_ON_01.glb'
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_02_OFF_01).src = ''
+    } else if (bActive === false) {
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_02_ON_01).src = ''
+      GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_02_OFF_01).src =
+        'assets/scene/models/unity_assets/s0_Cable_02_OFF_01.glb'
+    }
+  }
   createEmoteZone() {
     const triggerEnt = engine.addEntity()
     Transform.create(triggerEnt, {
@@ -129,12 +160,12 @@ export class QuestEmote {
       console.log('First emote detected')
       this.bubbleTalk.openBubble(ZONE_1_EMOTE_1, true)
       this.addTicks(1)
-      this.spawnParticle()
+      this.spawnParticles()
     } else if (this.emoteMoves === 2) {
       console.log('Second emote detected')
       this.bubbleTalk.closeBubbleInTime()
       this.addTicks(2)
-      this.spawnParticle()
+      this.spawnParticles()
       utils.timers.setTimeout(() => {
         this.bubbleTalk.openBubble(ZONE_1_EMOTE_2, true)
       }, 100)
@@ -142,7 +173,7 @@ export class QuestEmote {
       console.log('Third emote detected')
       this.bubbleTalk.closeBubbleInTime()
       this.addTicks(3)
-      this.spawnParticle()
+      this.spawnParticles()
       utils.timers.setTimeout(() => {
         this.bubbleTalk.openBubble(ZONE_1_EMOTE_3, true)
       }, 100)
@@ -184,7 +215,7 @@ export class QuestEmote {
     this.gameController.uiController.popUpControls.emoteContainerVisible = false
     openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
   }
-  spawnParticle() {
+  spawnParticles() {
     const particle = engine.addEntity()
     GltfContainer.create(particle, { src: 'assets/scene/models/glb_assets/CheckParticles_Art.glb' })
     const positionY = Transform.getMutable(this.bezier.entity).position.y + 2.5
@@ -201,8 +232,80 @@ export class QuestEmote {
     }, 1000)
   }
   completeEmoteQuest() {
-    this.gameController.uiController.popUpUI.emoteVisible = true
+    if (this.walletConected === false){
+      this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
+    } else{
+      this.gameController.uiController.popUpUI.show(POPUP_STATE.OneButton)
+    }
   }
+  activateBridge() {
+    this.getBridgeArrow()
+    PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
+    AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation')
+    utils.timers.setTimeout(() => {
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge On').speed = 1
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge On').shouldReset = false
+      Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge On').loop = false
+      Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge On')
+    }, 1200)
+  }
+  activatePilar() {
+    AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01)
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01, 'Pillar_Anim').speed = 3
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01, 'Pillar_Anim').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01, 'Pillar_Anim').loop = false
+    Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01, 'Pillar_Anim')
+    utils.timers.setTimeout(() => {
+      AudioManager.instance().playTowerActivated(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01)
+      activateSoundPillar2(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01)
+      this.activeCables(true)
+    }, 3000)
+  }
+  onCloseRewardUI() {
+    if(this.firstTimeClosingRewardUI){
+      //Pilar Turn ON
+      this.activatePilar()
+      //Bridge Turn ON
+      this.activateBridge()
+      this.firstTimeClosingRewardUI = false
+  }
+  }
+  getBridgeArrow(){
+    let zOffset = 1.85
+    let scale = 0.3
+    const xOffsets = [-2.3, -0.6, 0.7, 2.3, -2.3, -0.6, 0.7, 2.3]
+    for (let i = 0; i < 9; i++) {
+      const arrow = engine.addEntity()
+      MeshRenderer.setPlane(arrow)
+      Transform.create(arrow, { parent: this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01 })
+      Material.setPbrMaterial(arrow, {
+        texture: Material.Texture.Common({
+          src: 'assets/textures/arrow2.png'
+        }),
+        albedoColor: Color4.Yellow(),
+        emissiveColor: Color4.Yellow(),
+        emissiveIntensity: 5,
+        alphaTexture: Material.Texture.Common({
+          src: 'assets/textures/arrow2.png'
+        })
+      })
+      if (i == 4) zOffset = -1.85
 
-  activateBridge() {}
+      if (i == 8) {
+        Transform.getMutable(arrow).position = Vector3.create(7, 1.6, 0)
+        Transform.getMutable(arrow).scale = Vector3.create(1, 1, 1)
+        Transform.getMutable(arrow).rotation = Quaternion.create(0.5, -0.5, 0.5, 0.5)
+
+      } else {
+        Transform.getMutable(arrow).position = Vector3.create(xOffsets[i], 1.4, zOffset)
+        ;(Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale)),
+          (Transform.getMutable(arrow).rotation = Quaternion.create(0.5, -0.5, 0.5, 0.5))
+      }
+      this.arrows.push(arrow)
+    }
+  }
 }
