@@ -453,6 +453,7 @@ export class Popup {
             }}
             onMouseDown={() => {
               if (this.currentButton === POPUP_STATE.TwoButtons) {
+                this.hide(POPUP_STATE.TwoButtons)
                 this.uiController.gameController.questEmote.onCloseRewardUI()
                 openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
               } else if (this.currentButton === POPUP_STATE.OneButton) {

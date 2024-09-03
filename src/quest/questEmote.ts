@@ -350,6 +350,7 @@ export class QuestEmote {
   }
   giveReward() {
     this.gameController.claim.claimToken()
+    this.onCloseRewardUI()
     //....
   }
   dialogQuestFinished() {

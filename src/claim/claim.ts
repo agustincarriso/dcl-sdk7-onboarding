@@ -44,7 +44,6 @@ export class ClaimTokenRequest {
       style: ui.PromptStyles.LIGHT,
       height: 350
     })
-    this.createOnTheWayUI()
     this.createRetryUI()
     this.createInProgressUI()
     this.claimInProgress.hide()
@@ -84,7 +83,7 @@ export class ClaimTokenRequest {
       xPosition: 100,
       yPosition: -120,
       onMouseDown: () => {
-        console.log('Yeah clicked')
+        this.gameController.questEmote.giveReward()
       }
     })
 
@@ -95,11 +94,11 @@ export class ClaimTokenRequest {
       xPosition: -100,
       yPosition: -120,
       onMouseDown: () => {
-        console.log('Nope clicked')
+        this.retryUI.hide()
       }
     })
   }
-  createOnTheWayUI() {
+  createOnTheWayUI(image: string, id: string) {
     const titleonTheWay = this.onTheWay.addText({
       value: '<b>This item is on its way!</b>',
       size: 18,
@@ -107,7 +106,7 @@ export class ClaimTokenRequest {
       yPosition: 150
     })
     let emoteImage = this.onTheWay.addIcon({
-      image: 'assets/ui/emote_icon.png',
+      image: image,
       xPosition: 0,
       yPosition: 25,
       width: 120,
@@ -120,7 +119,7 @@ export class ClaimTokenRequest {
       buttonSize: 180,
       yPosition: -120,
       onMouseDown: () => {
-        console.log('Yeah clicked')
+        this.onTheWay.hide()
       }
     })
 
@@ -132,7 +131,8 @@ export class ClaimTokenRequest {
       yPosition: -120,
       onMouseDown: () => {
         // agregar URL y Data.id
-        // openExternalUrl({ url: baseUrl + '/reward/?id=' + data.id})
+        const baseUrl = 'https://rewards.decentraland.zone'
+        openExternalUrl({ url: baseUrl + '/reward/?id=' + id})
       }
     })
   }
@@ -270,7 +270,8 @@ export class ClaimTokenRequest {
       this.retryUI.show()
       return false
     } else {
-      console.log('dataaa'+ json.data)
+      console.log('dataaa'+ json.data[0])
+      this.createOnTheWayUI(json.data[0],json.data.id)
       this.onTheWay.show()
       this.gameController.questEmote.dialogQuestFinished()
       this.alreadyClaimed.push(campaign_key)
