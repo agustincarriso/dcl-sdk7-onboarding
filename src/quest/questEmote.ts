@@ -1,4 +1,17 @@
-import { Animator, AvatarEmoteCommand, Entity, GltfContainer, InputAction, Material, MeshRenderer, PBAvatarEmoteCommand, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  AvatarEmoteCommand,
+  Entity,
+  GltfContainer,
+  InputAction,
+  Material,
+  MeshRenderer,
+  PBAvatarEmoteCommand,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  engine
+} from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
@@ -25,7 +38,7 @@ export class QuestEmote {
   tick1: Entity
   tick2: Entity
   tick3: Entity
-  walletConected : boolean = false //Replace with the real variable
+  walletConected: boolean = false //Replace with the real variable
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
   constructor(gameController: GameController) {
@@ -36,7 +49,7 @@ export class QuestEmote {
     this.bezier = new NPC(
       Vector3.create(0, -1.12, 0),
       Vector3.create(1.76666, 0.915751, 1.756506),
-      Quaternion.create(0, 1, 0, -4.371139E-08),
+      Quaternion.create(0, 1, 0, -4.371139e-8),
       'assets/scene/models/unity_assets/s0_NPC_FoxAnim_Art_01.glb',
       14,
       () => {
@@ -46,6 +59,7 @@ export class QuestEmote {
       () => {
         PointerEvents.deleteFrom(this.bezier.npcChild)
         this.startInteract()
+        // this.gameController.claim.claimToken()
       }
     )
     Transform.getMutable(this.bezier.entity).parent = this.gameController.mainInstance.s0_En_Npc1_01
@@ -89,7 +103,7 @@ export class QuestEmote {
       this.bezier.entity
     )
     this.questIndicator = new QuestIndicator(this.bezier.entity)
-    Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0,2.5,0)
+    Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0, 2.5, 0)
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
@@ -134,7 +148,7 @@ export class QuestEmote {
   }
 
   startInteract() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.setText(4, 0)
       this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
@@ -216,10 +230,10 @@ export class QuestEmote {
     }
   }
   completeQuestDialog() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
-    this.gameController.uiController.widgetTasks.showTick(true,1)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
+    this.gameController.uiController.widgetTasks.showTick(true, 1)
     utils.timers.setTimeout(() => {
-      this.gameController.uiController.widgetTasks.showTick(false,0)
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(5, 0)
       this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
     }, 1500)
@@ -245,9 +259,9 @@ export class QuestEmote {
     }, 1000)
   }
   completeEmoteQuest() {
-    if (this.walletConected === false){
+    if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
-    } else{
+    } else {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.OneButton)
     }
   }
@@ -256,7 +270,8 @@ export class QuestEmote {
     PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
     AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').speed = 3
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').shouldReset =
+      false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').loop = false
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation')
     utils.timers.setTimeout(() => {
@@ -279,15 +294,15 @@ export class QuestEmote {
     }, 3000)
   }
   onCloseRewardUI() {
-    if(this.firstTimeClosingRewardUI){
+    if (this.firstTimeClosingRewardUI) {
       //Pilar Turn ON
       this.activatePilar()
       //Bridge Turn ON
       this.activateBridge()
       this.firstTimeClosingRewardUI = false
+    }
   }
-  }
-  getBridgeArrow(){
+  getBridgeArrow() {
     let zOffset = 1.85
     let scale = 0.3
     const xOffsets = [-2.3, -0.6, 0.7, 2.3, -2.3, -0.6, 0.7, 2.3]
@@ -312,7 +327,6 @@ export class QuestEmote {
         Transform.getMutable(arrow).position = Vector3.create(7, 1.6, 0)
         Transform.getMutable(arrow).scale = Vector3.create(1, 1, 1)
         Transform.getMutable(arrow).rotation = Quaternion.create(0.5, -0.5, 0.5, 0.5)
-
       } else {
         Transform.getMutable(arrow).position = Vector3.create(xOffsets[i], 1.4, zOffset)
         ;(Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale)),
