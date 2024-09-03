@@ -8,7 +8,7 @@ const lightGray = Color4.create(128 / 255, 128 / 255, 128 / 255, 0.2)
 export enum POPUP_STATE {
   OneButton = 0,
   TwoButtons = 1,
-  Tasks = 2,
+  Tasks = 2
 }
 export class Popup {
   uiController: UIController
@@ -445,7 +445,7 @@ export class Popup {
               width: canvasInfo.height * 0.19,
               height: canvasInfo.height * 0.07,
               position: { bottom: '21%', left: '0%' },
-              margin: { left: '31%', right: '31%' },
+              margin: { left: '31%', right: '31%' }
             }}
             uiBackground={{
               textureMode: 'stretch',
@@ -493,6 +493,7 @@ export class Popup {
             onMouseDown={() => {
               if (POPUP_STATE.TwoButtons) {
                 this.hide(POPUP_STATE.TwoButtons)
+                this.uiController.gameController.questEmote.onCloseRewardUI()
               } else if (POPUP_STATE.OneButton) {
                 this.hide(POPUP_STATE.OneButton)
               }
@@ -653,7 +654,7 @@ export class Popup {
     })
   }
   show(popUpState: POPUP_STATE) {
-    console.log('show case'+popUpState)
+    console.log('show case' + popUpState)
     switch (popUpState) {
       case 0:
         this.currentButton = 0
@@ -668,7 +669,7 @@ export class Popup {
         this.currentButton = 1
         this.onFocusScreen()
         this.emoteButtonRightText = '<b>Get a Wallet</b>'
-         this.emoteButtonRightMargin = '20%'
+        this.emoteButtonRightMargin = '20%'
         this.emoteVisible = true
         this.buttonLeftVisible = true
         break
@@ -679,7 +680,7 @@ export class Popup {
     }
   }
   hide(popUpState: POPUP_STATE) {
-    console.log('show case'+popUpState)
+    console.log('show case' + popUpState)
     switch (popUpState) {
       case 0:
         this.emoteVisible = false

@@ -73,7 +73,9 @@ export class NPC {
         onClick()
       }
     })
+   
   }
+  
   activateBillBoard(faceUser: boolean){
     if (faceUser === true){
       Billboard.create(this.entity, {billboardMode: BillboardMode.BM_Y})

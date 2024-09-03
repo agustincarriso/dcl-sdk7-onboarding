@@ -268,7 +268,7 @@ export class ClaimTokenRequest {
       console.log('dataaa'+ json)
       this.createOnTheWayUI(json.data[0].image,json.data[0].id)
       this.onTheWay.show()
-      this.gameController.questEmote.dialogQuestFinished()
+      this.gameController.questEmote.setRewardTrue()
       this.alreadyClaimed.push(campaign_key)
     }
   }
