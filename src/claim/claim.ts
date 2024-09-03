@@ -159,7 +159,6 @@ export class ClaimTokenRequest {
     const isClaimed = this.alreadyClaimed.find((item) => item === this.campaign_key)
 
     if (isClaimed) {
-      //this.gameController.ui.alreadyClaimedUI()
       console.log('Already Claim UI')
       return
     }
@@ -221,14 +220,9 @@ export class ClaimTokenRequest {
 
     if (json.ok === false) {
       console.log('ERROR:' + json.error)
-      //   this.gameController.ui.errorUI(
-      //     json.error ? this.gameController.ui.breakLines(json.error, 20) : 'Invalid response'
-      //   )
     }
 
     this.alreadyClaimed.push(campaign_key)
-
-    // this.gameController.ui.confirmationUI(json.data[0].image, json.data[0].token)
   }
   async validateCaptcha(captcha: string, captcha_id: string, campaign: string, campaign_key: string) {
     this.claimInProgress.show()
