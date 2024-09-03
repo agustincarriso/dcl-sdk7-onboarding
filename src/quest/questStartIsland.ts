@@ -10,8 +10,10 @@ import {
   Material,
   MeshRenderer,
   PointerEvents,
+  pointerEventsSystem,
   PointerEventType,
   PointerLock,
+  removeEntityWithChildren,
   Rotate,
   Transform,
   Tween,
@@ -55,7 +57,7 @@ export class SpawnIsland {
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
-        PointerEvents.deleteFrom(this.tobor.npcChild)
+        pointerEventsSystem.removeOnPointerDown(this.tobor.npcChild)
         this.bubbleTalk.closeBubbleInTime()
         this.startInteractQuest()
       }
@@ -170,7 +172,7 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
-        // newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
+        //  newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
@@ -193,6 +195,7 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
+    console.log('Interactive quest tobor')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
@@ -248,20 +251,16 @@ export class SpawnIsland {
           this.tobor.activateBillBoard(true)
           this.targeterCircle.showCircle(true)
           this.dialogAtPilar()
-          PointerEvents.createOrReplace(this.tobor.npcChild, {
-            pointerEvents: [
-              {
-                eventType: PointerEventType.PET_DOWN,
-                eventInfo: {
-                  button: InputAction.IA_POINTER,
-                  showFeedback: true,
-                  hoverText: 'Talk'
-                }
+          pointerEventsSystem.onPointerDown(
+            {
+              entity: this.tobor.npcChild,
+              opts: {
+                button: InputAction.IA_POINTER, 
+                hoverText: 'Talk'
               }
-            ]
-          })
-          engine.addSystem(() => {
-            if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.tobor.npcChild)) {
+            },
+            () => {
+              pointerEventsSystem.removeOnPointerDown(this.tobor.npcChild)
               console.log('CLICKED')
               AudioManager.instance().playOnce('tobor_talk', {
                 volume: 0.6,
@@ -275,7 +274,7 @@ export class SpawnIsland {
                 this.gameController.uiController.widgetTasks.showTick(false, 0)
               }, 2000)
             }
-          })
+          )
           console.log('tobor on pilar')
         }
       }

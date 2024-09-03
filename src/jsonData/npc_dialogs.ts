@@ -18,6 +18,8 @@ import {
   SECOND_ISLAND_4,
   SECOND_ISLAND_5,
   SECOND_ISLAND_6,
+  SECOND_ISLAND_7,
+  SECOND_ISLAND_8,
   START_ISLAND_0,
   START_ISLAND_1,
   START_ISLAND_2,
@@ -93,14 +95,17 @@ export class Dialogs {
     this.bezierDialog = [
       {
         text: SECOND_ISLAND_0,
-        portrait: idleBezier
+        portrait: idleBezier,
+        typeSpeed: 30
       },
       {
         text: SECOND_ISLAND_1,
-        portrait: talkingBezier
+        portrait: talkingBezier,
+        typeSpeed: 30
       },
       {
         text: SECOND_ISLAND_2,
+        typeSpeed: 30,
         portrait: surprisedBezier,
         isEndOfDialog: true,
         triggeredByNext: () => {
@@ -109,25 +114,43 @@ export class Dialogs {
       },
       {
         text: SECOND_ISLAND_3,
-        portrait: surprisedBezier
+        portrait: surprisedBezier,
+        typeSpeed: 30
       },
       {
         text: SECOND_ISLAND_4,
-        portrait: happyBezier
+        portrait: happyBezier,
+        typeSpeed: 30
       },
       {
         text: SECOND_ISLAND_5,
         portrait: happyBezier,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          this.gameController.questEmote.completeEmoteQuest()
-        }
+          this.gameController.questEmote.setWalletConnection()
+        },
+        typeSpeed: 30
       },
       {
         text: SECOND_ISLAND_6,
         portrait: talkingBezier,
-        isEndOfDialog: true
-      }
+        isEndOfDialog: true,
+        typeSpeed: 30
+      },
+      {
+        text: SECOND_ISLAND_7,
+        portrait: talkingBezier,
+        typeSpeed: 30
+      },
+      {
+        text: SECOND_ISLAND_8,
+        portrait: talkingBezier,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questEmote.setWalletConnection()
+        },
+        typeSpeed: 30
+      },
     ]
     this.matDialog = [
       {

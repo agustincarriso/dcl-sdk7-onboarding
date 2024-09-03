@@ -1,11 +1,26 @@
-import { Animator, AvatarEmoteCommand, Entity, GltfContainer, InputAction, Material, MeshRenderer, PBAvatarEmoteCommand, PointerEventType, PointerEvents, Transform, engine } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  AvatarEmoteCommand,
+  Entity,
+  GltfContainer,
+  InputAction,
+  Material,
+  MeshRenderer,
+  PBAvatarEmoteCommand,
+  PointerEventType,
+  PointerEvents,
+  Transform,
+  engine,
+  inputSystem,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
-import { openDialogWindow } from 'dcl-npc-toolkit'
+import { closeDialogWindow, openDialogWindow } from 'dcl-npc-toolkit'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { QuestIndicator } from '../imports/components/questIndicator'
 import { FloorCircleTargeter } from '../imports/components/targeter'
-import { ZONE_1_EMOTE_1, ZONE_1_EMOTE_2, ZONE_1_EMOTE_3 } from '../jsonData/textsTutorialBubble'
+import { ZONE_1_EMOTE_1, ZONE_1_EMOTE_2, ZONE_1_EMOTE_3, ZONE_1_EMOTE_4 } from '../jsonData/textsTutorialBubble'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { sideBubbleTalk } from '../imports/bubble'
@@ -25,7 +40,8 @@ export class QuestEmote {
   tick1: Entity
   tick2: Entity
   tick3: Entity
-  walletConected : boolean = false //Replace with the real variable
+  walletConected: boolean = false
+  hasReward: boolean = false
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
   constructor(gameController: GameController) {
@@ -36,7 +52,7 @@ export class QuestEmote {
     this.bezier = new NPC(
       Vector3.create(0, -1.12, 0),
       Vector3.create(1.76666, 0.915751, 1.756506),
-      Quaternion.create(0, 1, 0, -4.371139E-08),
+      Quaternion.create(0, 1, 0, -4.371139e-8),
       'assets/scene/models/unity_assets/s0_NPC_FoxAnim_Art_01.glb',
       14,
       () => {
@@ -44,10 +60,11 @@ export class QuestEmote {
         Animator.getClip(this.bezier.entity, 'Idle').playing = true
       },
       () => {
-        PointerEvents.deleteFrom(this.bezier.npcChild)
+        pointerEventsSystem.removeOnPointerDown(this.bezier.npcChild)
         this.startInteract()
       }
     )
+
     Transform.getMutable(this.bezier.entity).parent = this.gameController.mainInstance.s0_En_Npc1_01
     Animator.createOrReplace(this.bezier.entity, {
       states: [
@@ -89,7 +106,7 @@ export class QuestEmote {
       this.bezier.entity
     )
     this.questIndicator = new QuestIndicator(this.bezier.entity)
-    Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0,2.5,0)
+    Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0, 2.5, 0)
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
@@ -122,19 +139,20 @@ export class QuestEmote {
     }
   }
   createEmoteZone() {
+    console.log('Zone created')
     const triggerEnt = engine.addEntity()
     Transform.create(triggerEnt, {
-      position: Transform.getMutable(this.bezier.entity).position,
+      position: Transform.get(this.bezier.entity).position,
       scale: Vector3.create(30, 20, 30)
     })
-    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
+    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(30, 20, 30) }], () => {
       AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
       console.log('Enter Emote Zone')
     })
   }
 
   startInteract() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.setText(4, 0)
       this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
@@ -216,17 +234,23 @@ export class QuestEmote {
     }
   }
   completeQuestDialog() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
-    this.gameController.uiController.widgetTasks.showTick(true,1)
+    console.log('here')
+    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
+    this.gameController.uiController.widgetTasks.showTick(true, 1)
     utils.timers.setTimeout(() => {
-      this.gameController.uiController.widgetTasks.showTick(false,0)
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(5, 0)
       this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
     }, 1500)
     this.bubbleTalk.closeBubbleInTime()
-    // bezier play celebrate animation
+    Animator.stopAllAnimations(this.bezier.entity)
+    Animator.getClip(this.bezier.entity, 'Celebrate').playing = true
     this.gameController.uiController.popUpControls.emoteContainerVisible = false
-    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
+    utils.timers.setTimeout(() => {
+      Animator.stopAllAnimations(this.bezier.entity)
+      Animator.getClip(this.bezier.entity, 'Talk').playing = true
+    }, 3000)
   }
   spawnParticles() {
     const particle = engine.addEntity()
@@ -244,10 +268,13 @@ export class QuestEmote {
       engine.removeEntity(particle)
     }, 1000)
   }
-  completeEmoteQuest() {
-    if (this.walletConected === false){
+
+  setWalletConnection() {
+    this.walletConected = this.gameController.claim.setUserData()
+    console.log('wallet connected' + this.walletConected)
+    if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
-    } else{
+    } else {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.OneButton)
     }
   }
@@ -256,7 +283,8 @@ export class QuestEmote {
     PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
     AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').speed = 3
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').shouldReset = false
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').shouldReset =
+      false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').loop = false
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation')
     utils.timers.setTimeout(() => {
@@ -279,15 +307,16 @@ export class QuestEmote {
     }, 3000)
   }
   onCloseRewardUI() {
-    if(this.firstTimeClosingRewardUI){
+    if (this.firstTimeClosingRewardUI) {
       //Pilar Turn ON
       this.activatePilar()
       //Bridge Turn ON
       this.activateBridge()
       this.firstTimeClosingRewardUI = false
+    }
+    this.dialogQuestFinished()
   }
-  }
-  getBridgeArrow(){
+  getBridgeArrow() {
     let zOffset = 1.85
     let scale = 0.3
     const xOffsets = [-2.3, -0.6, 0.7, 2.3, -2.3, -0.6, 0.7, 2.3]
@@ -312,7 +341,6 @@ export class QuestEmote {
         Transform.getMutable(arrow).position = Vector3.create(7, 1.6, 0)
         Transform.getMutable(arrow).scale = Vector3.create(1, 1, 1)
         Transform.getMutable(arrow).rotation = Quaternion.create(0.5, -0.5, 0.5, 0.5)
-
       } else {
         Transform.getMutable(arrow).position = Vector3.create(xOffsets[i], 1.4, zOffset)
         ;(Transform.getMutable(arrow).scale = Vector3.create(scale, scale, scale)),
@@ -320,5 +348,50 @@ export class QuestEmote {
       }
       this.arrows.push(arrow)
     }
+  }
+  giveReward() {
+    this.gameController.claim.claimToken()
+    this.onCloseRewardUI()
+    //....
+  }
+  setRewardTrue() {
+    this.hasReward = true
+    this.dialogQuestFinished()
+  }
+  dialogQuestFinished() {
+    this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: this.bezier.npcChild,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Talk'
+        }
+      },
+      () => {
+        this.bubbleTalk.closeBubbleInTime()
+        if (!this.hasReward) {
+          this.remindPlayerOfReward()
+        } else {
+          this.tellPlayerToFindMat()
+        }
+      }
+    )
+  }
+  remindPlayerOfReward() {
+    pointerEventsSystem.removeOnPointerDown(this.bezier.npcChild)
+    console.log('remind player of reward')
+    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 7)
+    this.bubbleTalk.closeBubbleInTime()
+    Animator.stopAllAnimations(this.bezier.entity)
+    Animator.playSingleAnimation(this.bezier.entity, 'Talk')
+  }
+  tellPlayerToFindMat() {
+    console.log('tell player to find mat')
+    if (this.walletConected === true){
+      openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 6)
+    }
+    PointerEvents.deleteFrom(this.bezier.npcChild)
+    this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
   }
 }
