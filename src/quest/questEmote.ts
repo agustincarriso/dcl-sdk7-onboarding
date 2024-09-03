@@ -385,7 +385,7 @@ export class QuestEmote {
     this.setWalletConnection()
   }
   tellPlayerToFindMat() {
-    PointerEvents.deleteFrom(this.bezier.entity)
+    PointerEvents.deleteFrom(this.bezier.npcChild)
     this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
   }
 }
