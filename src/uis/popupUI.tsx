@@ -684,11 +684,15 @@ export class Popup {
       case 0:
         this.emoteVisible = false
         this.buttonLeftVisible = false
+        this.takeControlCameraEscVisible = false
+        this.takeControlCameraVisible = false
         break
       case 1:
         this.emoteVisible = false
         this.takeControlCameraVisible = false
         this.buttonLeftVisible = false
+        this.takeControlCameraEscVisible = false
+        this.takeControlCameraVisible = false
         break
       case 2:
         this.isVisible = false

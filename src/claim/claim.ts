@@ -83,6 +83,7 @@ export class ClaimTokenRequest {
       xPosition: 100,
       yPosition: -120,
       onMouseDown: () => {
+        this.retryUI.hide()
         this.gameController.questEmote.giveReward()
       }
     })
@@ -264,8 +265,8 @@ export class ClaimTokenRequest {
       this.retryUI.show()
       return false
     } else {
-      console.log('dataaa'+ json.data[0])
-      this.createOnTheWayUI(json.data[0],json.data.id)
+      console.log('dataaa'+ json)
+      this.createOnTheWayUI(json.data[0].image,json.data[0].id)
       this.onTheWay.show()
       this.gameController.questEmote.dialogQuestFinished()
       this.alreadyClaimed.push(campaign_key)
