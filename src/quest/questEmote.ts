@@ -57,9 +57,9 @@ export class QuestEmote {
         Animator.getClip(this.bezier.entity, 'Idle').playing = true
       },
       () => {
-        PointerEvents.deleteFrom(this.bezier.npcChild)
-        this.startInteract()
-        // this.gameController.claim.claimToken()
+        // PointerEvents.deleteFrom(this.bezier.npcChild)
+        // this.startInteract()
+        this.gameController.claim.claimToken()
       }
     )
     Transform.getMutable(this.bezier.entity).parent = this.gameController.mainInstance.s0_En_Npc1_01

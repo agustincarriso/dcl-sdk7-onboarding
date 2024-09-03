@@ -6,6 +6,8 @@ import { getPlayer } from '@dcl/sdk/src/players'
 import { GameController } from '../controllers/gameController'
 import { ClaimConfigInstType, ClaimTokenRequestArgs, USE_CAPTCHA, configEmote } from './config'
 import * as ui from 'dcl-ui-toolkit'
+import { Color4 } from '@dcl/sdk/math'
+import { openExternalUrl } from '~system/RestrictedActions'
 
 export class ClaimTokenRequest {
   inTimeOut: boolean = false
@@ -15,22 +17,123 @@ export class ClaimTokenRequest {
   campaign: ClaimTokenRequestArgs
   campaign_key: string
   claimServer: string
+  claimInProgress: ui.OkPrompt
+  captchaUI: ui.CustomPrompt
+  retryUI: ui.CustomPrompt
+  onTheWay: ui.CustomPrompt
+  walletConnected: boolean = false
+  uiMsg : string = 'An unexpected error occurred: \n'
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.campaign = configEmote
     this.campaign_key = configEmote.campaign_key
     this.claimServer = configEmote.claimServer
+    this.claimInProgress = ui.createComponent(ui.OkPrompt, {
+      text: "Claim in progress",
+      onAccept: () => {
+        console.log('accepted')
+      },
+      acceptLabel: 'Ok',
+      useDarkTheme: false,
+      width: 450,
+      height: 500,
+      startHidden: false,
+    })
+    this.claimInProgress.hide()
+    this.captchaUI = ui.createComponent(ui.CustomPrompt, {
+      style: ui.PromptStyles.LIGHT,
+      height: 350,
+    })
+    this.retryUI = ui.createComponent(ui.CustomPrompt, {
+      style: ui.PromptStyles.LIGHT,
+      height: 350,
+    })
+    this.onTheWay = ui.createComponent(ui.CustomPrompt, {
+      style: ui.PromptStyles.LIGHT,
+      height: 350,
+    })
+  }
+  createRetryUI(){
+    this.retryUI.show()
+    const titleRetryUi = this.retryUI.addText({
+      value: this.uiMsg,
+      xPosition: -140,
+      yPosition: 80,
+      color: Color4.Black(),
+      size: 20
+    })
+    const promptButtonE = this.retryUI.addButton({
+      style: ui.ButtonStyles.E,
+      text: 'Retry',
+      xPosition: 100,
+      yPosition: -120,
+      onMouseDown: () => {
+        console.log('Yeah clicked')
+      },
+    })
+    
+    const promptButtonF = this.retryUI.addButton({
+      style: ui.ButtonStyles.F,
+      buttonSize: 200,
+      text: 'Cancel',
+      xPosition: -100,
+      yPosition: -120,
+      onMouseDown: () => {
+        console.log('Nope clicked')
+      },
+    })
+  }
+  createOnTheWayUI(){
+    this.onTheWay.show()
+    const titleonTheWay = this.onTheWay.addText({
+      value: '<b>This item is on its way!</b>',
+      size: 18,
+      xPosition: -120,
+      yPosition: 150
+    })
+    let emoteImage = this.onTheWay.addIcon({
+      image: 'assets/ui/emote_icon.png',
+      xPosition: 0,
+      yPosition: 25,
+      width:  120,
+      height:  120
+    })
+    const promptButtonE = this.onTheWay.addButton({
+      style: ui.ButtonStyles.E,
+      text: 'OK',
+      xPosition: 80,
+      buttonSize: 180,
+      yPosition: -120,
+      onMouseDown: () => {
+        console.log('Yeah clicked')
+      },
+    })
+    
+    const promptButtonF = this.onTheWay.addButton({
+      style: ui.ButtonStyles.F,
+      buttonSize: 180,
+      text: 'DETAILS',
+      xPosition: -60,
+      yPosition: -120,
+      onMouseDown: () => {
+        // agregar URL y Data.id
+        // openExternalUrl({ url: baseUrl + '/reward/?id=' + data.id})
+      },
+    })
   }
   setUserData() {
     this.userData = getPlayer()
     console.log('user data is', this.userData)
     if (!this.userData || this.userData.isGuest) {
+      this.walletConnected = false
       console.log('UI you are not connected') // The ui currently displaying
       return false
     }
+    this.walletConnected = true
     return true
   }
   async claimToken() {
+    this.claimInProgress.show()
     // prevent more than 1 request per second
     if (this.inTimeOut) return
 
@@ -147,14 +250,62 @@ export class ClaimTokenRequest {
 
     if (json.ok === false) {
       console.log('ERROR:' + json.error)
-      //   this.gameController.ui.errorUI(
-      //     json.error ? this.gameController.ui.breakLines(json.error, 20) : 'Invalid response'
-      //   )
+      this.uiMsg = 'An unexpected error occurred: \n' + json.error
       return false
     }
 
     this.alreadyClaimed.push(campaign_key)
   }
 
-  createCaptchaUI(image: string, id: string, campaing: string, campaingKey: string): void {}
+  createCaptchaUI(image: string, id: string, campaing: string, campaingKey: string): void {
+    this.claimInProgress.hide()
+    const title = this.captchaUI.addText({
+      value: '<b>Please complete this captcha</b>',
+      size: 18,
+      xPosition: -140,
+      yPosition: 150
+    })
+    let captchaImage = this.captchaUI.addIcon({
+      image: image,
+      xPosition: 0,
+      yPosition: 40,
+      width:  280,
+      height:  100
+    })
+    const helpText = this.captchaUI.addText({
+      value: '<b>Enter the BIG GREEN letters*</b>',
+      xPosition: -96,
+      yPosition: -10,
+      color: Color4.create(0.34901960784313724, 0.8274509803921568, 0.5450980392156862, 1),
+      size: 12
+    })
+    const fillInBox = this.captchaUI.addTextBox({
+      placeholder: '                  Fill In',
+      xPosition: 0,
+      yPosition: -70,
+      onChange: (value) => {
+        console.log('textbox changed:', value)
+      },
+    })
+    const promptButtonE = this.captchaUI.addButton({
+      style: ui.ButtonStyles.E,
+      text: 'Submit',
+      xPosition: 100,
+      yPosition: -160,
+      onMouseDown: () => {
+        console.log('Yeah clicked')
+      },
+    })
+    
+    const promptButtonF = this.captchaUI.addButton({
+      style: ui.ButtonStyles.F,
+      buttonSize: 200,
+      text: 'Cancel',
+      xPosition: -100,
+      yPosition: -160,
+      onMouseDown: () => {
+        console.log('Nope clicked')
+      },
+    })
+  }
 }
