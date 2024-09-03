@@ -63,7 +63,8 @@ export class NPC {
           eventType: PointerEventType.PET_DOWN,
           eventInfo: {
             button: InputAction.IA_POINTER,
-            showFeedback: true
+            showFeedback: true,
+            hoverText: 'Talk'
           }
         }
       ]
