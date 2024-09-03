@@ -120,7 +120,7 @@ export class Dialogs {
         portrait: happyBezier,
         isEndOfDialog: true,
         triggeredByNext: () => {
-          this.gameController.questEmote.completeEmoteQuest()
+          this.gameController.questEmote.setWalletConnection()
         }
       },
       {

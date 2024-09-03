@@ -450,7 +450,13 @@ export class Popup {
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
-              openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
+              if (POPUP_STATE.TwoButtons) {
+                this.uiController.gameController.questEmote.onCloseRewardUI()
+                openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
+              } else if (POPUP_STATE.OneButton) {
+                this.hide(POPUP_STATE.OneButton)
+                this.uiController.gameController.questEmote.giveReward()
+              }
             }}
           >
             {/* Text UI */}
@@ -481,8 +487,11 @@ export class Popup {
               color: Color4.Black()
             }}
             onMouseDown={() => {
-              this.hide(POPUP_STATE.TwoButtons)
-              this.uiController.gameController.questEmote.onCloseRewardUI()
+              if (POPUP_STATE.TwoButtons) {
+                this.hide(POPUP_STATE.TwoButtons)
+              } else if (POPUP_STATE.OneButton) {
+                this.hide(POPUP_STATE.OneButton)
+              }
             }}
           >
             {/* Text UI */}
@@ -641,6 +650,11 @@ export class Popup {
   show(popUpState: POPUP_STATE) {
     switch (popUpState) {
       case 0:
+        this.onFocusScreen()
+        this.emoteVisible = true
+        this.emoteButtonRightText = '<b>CLAIM EMOTE<b>'
+        this.disclaimText = ''
+
       case 1:
         this.onFocusScreen()
         this.emoteVisible = true
@@ -656,6 +670,7 @@ export class Popup {
   hide(popUpState: POPUP_STATE) {
     switch (popUpState) {
       case 0:
+        this.emoteVisible = false
       case 1:
         this.emoteVisible = false
         this.takeControlCameraVisible = false
