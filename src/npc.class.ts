@@ -9,6 +9,7 @@ import {
   inputSystem,
   MeshCollider,
   PointerEvents,
+  pointerEventsSystem,
   PointerEventType,
   Transform
 } from '@dcl/sdk/ecs'
@@ -57,24 +58,18 @@ export class NPC {
     Transform.create(this.npcChild, { parent: this.entity })
     Transform.getMutable(this.npcChild).scale = Vector3.create(2, 2, 2)
     MeshCollider.setBox(this.npcChild)
-    PointerEvents.createOrReplace(this.npcChild, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_POINTER,
-            showFeedback: true,
-            hoverText: 'Talk'
-          }
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: this.npcChild,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Talk'
         }
-      ]
-    })
-    engine.addSystem(() => {
-      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.npcChild)) {
+      },
+      () => {
         onClick()
       }
-    })
-   
+    )
   }
   
   activateBillBoard(faceUser: boolean){

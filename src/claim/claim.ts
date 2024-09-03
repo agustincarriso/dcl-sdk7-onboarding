@@ -311,6 +311,7 @@ export class ClaimTokenRequest {
       xPosition: 100,
       yPosition: -160,
       onMouseDown: () => {
+        this.captchaUI.hide()
         this.validateCaptcha(captchaInput, id, campaing, campaingKey)
       }
     })
@@ -322,7 +323,7 @@ export class ClaimTokenRequest {
       xPosition: -100,
       yPosition: -160,
       onMouseDown: () => {
-        console.log('Nope clicked')
+        this.captchaUI.hide()
       }
     })
   }

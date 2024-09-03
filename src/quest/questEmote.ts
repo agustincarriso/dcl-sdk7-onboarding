@@ -60,8 +60,8 @@ export class QuestEmote {
         Animator.getClip(this.bezier.entity, 'Idle').playing = true
       },
       () => {
+        pointerEventsSystem.removeOnPointerDown(this.bezier.npcChild)
         this.startInteract()
-        PointerEvents.deleteFrom(this.bezier.npcChild)
       }
     )
 
@@ -360,7 +360,6 @@ export class QuestEmote {
   }
   dialogQuestFinished() {
     this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
-    PointerEvents.deleteFrom(this.bezier.npcChild)
     pointerEventsSystem.onPointerDown(
       {
         entity: this.bezier.npcChild,
