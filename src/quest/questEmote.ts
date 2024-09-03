@@ -16,7 +16,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
-import { openDialogWindow } from 'dcl-npc-toolkit'
+import { closeDialogWindow, openDialogWindow } from 'dcl-npc-toolkit'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { QuestIndicator } from '../imports/components/questIndicator'
 import { FloorCircleTargeter } from '../imports/components/targeter'
@@ -60,10 +60,11 @@ export class QuestEmote {
         Animator.getClip(this.bezier.entity, 'Idle').playing = true
       },
       () => {
-        PointerEvents.deleteFrom(this.bezier.npcChild)
         this.startInteract()
+        PointerEvents.deleteFrom(this.bezier.npcChild)
       }
     )
+
     Transform.getMutable(this.bezier.entity).parent = this.gameController.mainInstance.s0_En_Npc1_01
     Animator.createOrReplace(this.bezier.entity, {
       states: [
@@ -270,7 +271,7 @@ export class QuestEmote {
 
   setWalletConnection() {
     this.walletConected = this.gameController.claim.setUserData()
-    console.log("wallet connected"+this.walletConected)
+    console.log('wallet connected' + this.walletConected)
     if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
     } else {
@@ -353,23 +354,22 @@ export class QuestEmote {
     this.onCloseRewardUI()
     //....
   }
-  dialogQuestFinished() {
+  setRewardTrue() {
     this.hasReward = true
+    this.dialogQuestFinished()
+  }
+  dialogQuestFinished() {
     this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
-    PointerEvents.createOrReplace(this.bezier.npcChild, {
-      pointerEvents: [
-        {
-          eventType: PointerEventType.PET_DOWN,
-          eventInfo: {
-            button: InputAction.IA_POINTER,
-            showFeedback: true,
-            hoverText: 'Talk'
-          }
+    PointerEvents.deleteFrom(this.bezier.npcChild)
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: this.bezier.npcChild,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Talk'
         }
-      ]
-    })
-    engine.addSystem(() => {
-      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.bezier.npcChild)) {
+      },
+      () => {
         this.bubbleTalk.closeBubbleInTime()
         if (!this.hasReward) {
           this.remindPlayerOfReward()
@@ -377,7 +377,7 @@ export class QuestEmote {
           this.tellPlayerToFindMat()
         }
       }
-    })
+    )
   }
   remindPlayerOfReward() {
     this.bubbleTalk.closeBubbleInTime()
