@@ -18,6 +18,8 @@ import {
   SECOND_ISLAND_4,
   SECOND_ISLAND_5,
   SECOND_ISLAND_6,
+  SECOND_ISLAND_7,
+  SECOND_ISLAND_8,
   START_ISLAND_0,
   START_ISLAND_1,
   START_ISLAND_2,
@@ -127,7 +129,19 @@ export class Dialogs {
         text: SECOND_ISLAND_6,
         portrait: talkingBezier,
         isEndOfDialog: true
-      }
+      },
+      {
+        text: SECOND_ISLAND_7,
+        portrait: talkingBezier,
+      },
+      {
+        text: SECOND_ISLAND_8,
+        portrait: talkingBezier,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questEmote.setWalletConnection()
+        }
+      },
     ]
     this.matDialog = [
       {

@@ -20,11 +20,8 @@ export const SECOND_ISLAND_4 = 'Your next task is to talk to my friend Mat. Heâ€
 export const SECOND_ISLAND_5 = 'But first, let me give you this NFT emote!'
 export const SECOND_ISLAND_6 = 'You can find Mat on the next island.'
 export const SECOND_ISLAND_7 = 'You can find Mat on the next island.'
-export const SECOND_ISLAND_8 = () => {
-  // return CONFIG.CLAIM_NONWEB3_SHOW_DISCLAIMER.emote || CONFIG.PLAYER_IS_WEB3_CONNECTED
-  //   ? 'And by the way you forgot your NFT emote.'
-  //   : 'Good Luck!'
-}
+export const SECOND_ISLAND_8 = 'And by the way you forgot your NFT emote.'
+export const SECOND_ISLAND9 = 'Good Luck!'
 
 // Dialogs  Mat island
 export const THIRD_ISLAND_0 = "Hey, I'm Mat. I have a business in the metaverse selling NFT wearables."

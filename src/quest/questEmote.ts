@@ -379,12 +379,18 @@ export class QuestEmote {
     )
   }
   remindPlayerOfReward() {
+    pointerEventsSystem.removeOnPointerDown(this.bezier.npcChild)
+    console.log('remind player of reward')
+    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 7)
     this.bubbleTalk.closeBubbleInTime()
     Animator.stopAllAnimations(this.bezier.entity)
     Animator.playSingleAnimation(this.bezier.entity, 'Talk')
-    this.setWalletConnection()
   }
   tellPlayerToFindMat() {
+    console.log('tell player to find mat')
+    if (this.walletConected === true){
+      openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 6)
+    }
     PointerEvents.deleteFrom(this.bezier.npcChild)
     this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
   }
