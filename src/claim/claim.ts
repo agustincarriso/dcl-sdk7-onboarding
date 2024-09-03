@@ -17,7 +17,7 @@ export class ClaimTokenRequest {
   campaign: ClaimTokenRequestArgs
   campaign_key: string
   claimServer: string
-  claimInProgress: ui.OkPrompt
+  claimInProgress: ui.CustomPrompt
   captchaUI: ui.CustomPrompt
   retryUI: ui.CustomPrompt
   onTheWay: ui.CustomPrompt
@@ -28,18 +28,10 @@ export class ClaimTokenRequest {
     this.campaign = configEmote
     this.campaign_key = configEmote.campaign_key
     this.claimServer = configEmote.claimServer
-    this.claimInProgress = ui.createComponent(ui.OkPrompt, {
-      text: 'Claim in progress',
-      onAccept: () => {
-        console.log('accepted')
-      },
-      acceptLabel: 'Ok',
-      useDarkTheme: false,
-      width: 450,
-      height: 500,
-      startHidden: false
+    this.claimInProgress = ui.createComponent(ui.CustomPrompt, {
+      style: ui.PromptStyles.LIGHT,
+      height: 350
     })
-
     this.captchaUI = ui.createComponent(ui.CustomPrompt, {
       style: ui.PromptStyles.LIGHT,
       height: 350
@@ -54,10 +46,29 @@ export class ClaimTokenRequest {
     })
     this.createOnTheWayUI()
     this.createRetryUI()
+    this.createInProgressUI()
     this.claimInProgress.hide()
     this.retryUI.hide()
     this.onTheWay.hide()
     this.captchaUI.hide()
+  }
+  createInProgressUI(){
+    const titleonTheWay = this.claimInProgress.addText({
+      value: 'Claim in progress',
+      size: 30,
+      xPosition: -125,
+      yPosition: 50
+    })
+    const promptButtonE = this.claimInProgress.addButton({
+      style: ui.ButtonStyles.E,
+      text: 'OK',
+      xPosition: -10,
+      yPosition: -100,
+      onMouseDown: () => {
+        console.log('Yeah clicked')
+      }
+    })
+
   }
   createRetryUI() {
     const titleRetryUi = this.retryUI.addText({
@@ -259,6 +270,7 @@ export class ClaimTokenRequest {
       this.retryUI.show()
       return false
     } else {
+      console.log('dataaa'+ json.data)
       this.onTheWay.show()
       this.gameController.questEmote.dialogQuestFinished()
       this.alreadyClaimed.push(campaign_key)

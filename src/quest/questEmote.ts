@@ -270,6 +270,7 @@ export class QuestEmote {
 
   setWalletConnection() {
     this.walletConected = this.gameController.claim.setUserData()
+    console.log("wallet connected"+this.walletConected)
     if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
     } else {

@@ -37,6 +37,6 @@ export class UIController {
       this.gameController.claim.onTheWay.render()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
-    this.keyBoardUI.isVisible = false
+    this.keyBoardUI.isVisible = true
   }
 }

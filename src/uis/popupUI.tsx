@@ -1,6 +1,6 @@
 import { engine, PointerLock, UiCanvasInformation } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
-import { Label, ReactEcs, UiEntity } from '@dcl/sdk/react-ecs'
+import { Label, PositionUnit, ReactEcs, UiEntity } from '@dcl/sdk/react-ecs'
 import { UIController } from '../controllers/uiController'
 import { openExternalUrl } from '~system/RestrictedActions'
 
@@ -9,7 +9,6 @@ export enum POPUP_STATE {
   OneButton = 0,
   TwoButtons = 1,
   Tasks = 2,
-  Control = 3
 }
 export class Popup {
   uiController: UIController
@@ -25,6 +24,7 @@ export class Popup {
   takecontrolCameraImageText: string = 'Click to take control \nof the camera'
   takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
   mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
+  currentButton: number = 0
   // Tobor
   isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
@@ -36,11 +36,13 @@ export class Popup {
   // Bezier
   emoteTitleBig = '<b>Congratulations!</b>'
   emoteVisible: boolean = false
+  buttonLeftVisible: boolean = false
   emoteHeaderText1: string = '<b>YOU GOT A NEW EMOTE</b>'
   emoteImage: string = 'assets/ui/emote_icon.png'
   imageText: string = "<b>Bezier's dance</b>"
   buttonLeft: string = '<b>Dismiss</b>'
   emoteButtonRightText: string = '<b>Get a Wallet</b>'
+  emoteButtonRightMargin: PositionUnit = '20%'
   disclaimText: string = "<b>You currently cannot claim this prize as \nyou don't have a connected wallet</b>"
   constructor(uiController: UIController) {
     this.uiController = uiController
@@ -443,17 +445,17 @@ export class Popup {
               width: canvasInfo.height * 0.19,
               height: canvasInfo.height * 0.07,
               position: { bottom: '21%', left: '0%' },
-              margin: { left: '31%', right: '31%' }
+              margin: { left: '31%', right: '31%' },
             }}
             uiBackground={{
               textureMode: 'stretch',
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
-              if (POPUP_STATE.TwoButtons) {
+              if (this.currentButton === POPUP_STATE.TwoButtons) {
                 this.uiController.gameController.questEmote.onCloseRewardUI()
                 openExternalUrl({ url: 'https://docs.decentraland.org/player/blockchain-integration/get-a-wallet/' })
-              } else if (POPUP_STATE.OneButton) {
+              } else if (this.currentButton === POPUP_STATE.OneButton) {
                 this.hide(POPUP_STATE.OneButton)
                 this.uiController.gameController.questEmote.giveReward()
               }
@@ -464,7 +466,7 @@ export class Popup {
               uiTransform={{
                 positionType: 'absolute',
                 position: { bottom: '20%', left: '0%', top: '20%' },
-                margin: { left: '20%', right: '20%' }
+                margin: { left: this.emoteButtonRightMargin, right: this.emoteButtonRightMargin }
               }}
               value={this.emoteButtonRightText}
               textAlign="middle-center"
@@ -479,7 +481,8 @@ export class Popup {
               width: canvasInfo.height * 0.19,
               height: canvasInfo.height * 0.07,
               position: { bottom: '10%', left: '0%' },
-              margin: { left: '31%', right: '31%' }
+              margin: { left: '31%', right: '31%' },
+              display: this.buttonLeftVisible ? 'flex' : 'none'
             }}
             uiBackground={{
               textureMode: 'stretch',
@@ -499,7 +502,8 @@ export class Popup {
               uiTransform={{
                 positionType: 'absolute',
                 position: { bottom: '20%', left: '0%', top: '20%' },
-                margin: { left: '30%', right: '30%' }
+                margin: { left: '30%', right: '30%' },
+                display: this.buttonLeftVisible ? 'flex' : 'none'
               }}
               value={this.buttonLeft}
               textAlign="middle-center"
@@ -648,39 +652,47 @@ export class Popup {
     })
   }
   show(popUpState: POPUP_STATE) {
+    console.log('show case'+popUpState)
     switch (popUpState) {
       case 0:
+        this.currentButton = 0
         this.onFocusScreen()
         this.emoteVisible = true
         this.emoteButtonRightText = '<b>CLAIM EMOTE<b>'
+        this.emoteButtonRightMargin = '15%'
         this.disclaimText = ''
-
+        this.buttonLeftVisible = false
+        break
       case 1:
+        this.currentButton = 1
         this.onFocusScreen()
+        this.emoteButtonRightText = '<b>Get a Wallet</b>'
+         this.emoteButtonRightMargin = '20%'
         this.emoteVisible = true
+        this.buttonLeftVisible = true
         break
       case 2:
         this.onFocusScreen()
         this.isVisible = true
         break
-      case 3:
-        break
     }
   }
   hide(popUpState: POPUP_STATE) {
+    console.log('show case'+popUpState)
     switch (popUpState) {
       case 0:
         this.emoteVisible = false
+        this.buttonLeftVisible = false
+        break
       case 1:
         this.emoteVisible = false
         this.takeControlCameraVisible = false
+        this.buttonLeftVisible = false
         break
       case 2:
         this.isVisible = false
         this.takeControlCameraEscVisible = false
         this.takeControlCameraVisible = false
-        break
-      case 3:
         break
     }
   }
