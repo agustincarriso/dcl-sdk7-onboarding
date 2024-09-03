@@ -11,7 +11,8 @@ import {
   PointerEvents,
   Transform,
   engine,
-  inputSystem
+  inputSystem,
+  pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
@@ -233,6 +234,7 @@ export class QuestEmote {
   }
   completeQuestDialog() {
     console.log('here')
+    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     this.gameController.uiController.widgetTasks.showTick(true, 1)
     utils.timers.setTimeout(() => {
@@ -244,7 +246,6 @@ export class QuestEmote {
     Animator.stopAllAnimations(this.bezier.entity)
     Animator.getClip(this.bezier.entity, 'Celebrate').playing = true
     this.gameController.uiController.popUpControls.emoteContainerVisible = false
-    openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
     utils.timers.setTimeout(() => {
       Animator.stopAllAnimations(this.bezier.entity)
       Animator.getClip(this.bezier.entity, 'Talk').playing = true
