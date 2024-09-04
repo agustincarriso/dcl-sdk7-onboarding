@@ -171,15 +171,23 @@ export class Dialogs {
       {
         text: THIRD_ISLAND_3,
         portrait: happyMat,
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.accetpQuest()
+        },
       },
       {
         text: THIRD_ISLAND_4,
-        portrait: idleMat
+        portrait: idleMat,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.accetpQuest()
+        },
+        isEndOfDialog: true
       },
       {
         text: THIRD_ISLAND_5,
-        portrait: idleMat
+        portrait: idleMat,
+        isEndOfDialog: true
       },
       {
         text: THIRD_ISLAND_6,
