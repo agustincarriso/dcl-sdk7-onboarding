@@ -27,6 +27,8 @@ import { sideBubbleTalk } from '../imports/bubble'
 import { POPUP_STATE } from '../uis/popupUI'
 import { activateSoundPillar2 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
+import { ClaimTokenRequest } from '../claim/claim'
+import { configEmote } from '../claim/config'
 
 export class QuestEmote {
   gameController: GameController
@@ -44,8 +46,10 @@ export class QuestEmote {
   hasReward: boolean = false
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
+  private claim: ClaimTokenRequest
   constructor(gameController: GameController) {
     this.gameController = gameController
+    this.claim = new ClaimTokenRequest(this.gameController,configEmote,configEmote.campaign_key,configEmote.claimServer)
     this.tick1 = engine.addEntity()
     this.tick2 = engine.addEntity()
     this.tick3 = engine.addEntity()
@@ -270,7 +274,7 @@ export class QuestEmote {
   }
 
   setWalletConnection() {
-    this.walletConected = this.gameController.claim.setUserData()
+    this.walletConected = this.claim.setUserData()
     console.log('wallet connected' + this.walletConected)
     if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
@@ -350,7 +354,7 @@ export class QuestEmote {
     }
   }
   giveReward() {
-    this.gameController.claim.claimToken()
+    this.claim.claimToken()
     this.onCloseRewardUI()
     //....
   }

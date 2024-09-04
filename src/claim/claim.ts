@@ -23,11 +23,16 @@ export class ClaimTokenRequest {
   onTheWay: ui.CustomPrompt
   walletConnected: boolean = false
   uiMsg: string = 'An unexpected error occurred: \n'
-  constructor(gameController: GameController) {
+  constructor(
+    gameController: GameController,
+    campaign: ClaimTokenRequestArgs,
+    campaign_key: string,
+    claimServer: string
+  ) {
     this.gameController = gameController
-    this.campaign = configEmote
-    this.campaign_key = configEmote.campaign_key
-    this.claimServer = configEmote.claimServer
+    this.campaign = campaign
+    this.campaign_key = campaign_key
+    this.claimServer = claimServer
     this.claimInProgress = ui.createComponent(ui.CustomPrompt, {
       style: ui.PromptStyles.LIGHT,
       height: 350
@@ -51,7 +56,7 @@ export class ClaimTokenRequest {
     this.onTheWay.hide()
     this.captchaUI.hide()
   }
-  createInProgressUI(){
+  createInProgressUI() {
     const titleonTheWay = this.claimInProgress.addText({
       value: 'Claim in progress',
       size: 30,
@@ -67,7 +72,6 @@ export class ClaimTokenRequest {
         console.log('Yeah clicked')
       }
     })
-
   }
   createRetryUI() {
     const titleRetryUi = this.retryUI.addText({
@@ -133,7 +137,7 @@ export class ClaimTokenRequest {
       onMouseDown: () => {
         // agregar URL y Data.id
         const baseUrl = 'https://rewards.decentraland.zone'
-        openExternalUrl({ url: baseUrl + '/reward/?id=' + id})
+        openExternalUrl({ url: baseUrl + '/reward/?id=' + id })
       }
     })
   }
@@ -265,8 +269,8 @@ export class ClaimTokenRequest {
       this.retryUI.show()
       return false
     } else {
-      console.log('dataaa'+ json)
-      this.createOnTheWayUI(json.data[0].image,json.data[0].id)
+      console.log('dataaa' + json)
+      this.createOnTheWayUI(json.data[0].image, json.data[0].id)
       this.onTheWay.show()
       this.gameController.questEmote.setRewardTrue()
       this.alreadyClaimed.push(campaign_key)
