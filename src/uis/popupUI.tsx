@@ -75,7 +75,7 @@ export class Popup {
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.25,
+            width: canvasInfo.height * 0.48,
             height: canvasInfo.height * 0.58,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
@@ -341,7 +341,7 @@ export class Popup {
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.25,
+            width: canvasInfo.height * 0.48,
             height: canvasInfo.height * 0.58,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
@@ -362,7 +362,7 @@ export class Popup {
             }}
             value={this.emoteTitleBig}
             textAlign="middle-left"
-            fontSize={canvasInfo.width * 0.011}
+            fontSize={canvasInfo.height * 0.021}
             font="sans-serif"
             color={Color4.Black()}
           />
@@ -388,7 +388,7 @@ export class Popup {
             }}
             value={this.emoteHeaderText1}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.009}
+            fontSize={canvasInfo.height * 0.019}
             font="sans-serif"
             color={Color4.Gray()}
           />
@@ -429,7 +429,7 @@ export class Popup {
             }}
             value={this.imageText}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.008}
+            fontSize={canvasInfo.height * 0.017}
             font="sans-serif"
             color={Color4.Black()}
           />
@@ -442,7 +442,7 @@ export class Popup {
             }}
             value={this.disclaimText}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.007}
+            fontSize={canvasInfo.height * 0.014}
             font="sans-serif"
             color={Color4.Red()}
           />
