@@ -27,6 +27,8 @@ import { sideBubbleTalk } from '../imports/bubble'
 import { POPUP_STATE } from '../uis/popupUI'
 import { activateSoundPillar2 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
+import { ClaimTokenRequest } from '../claim/claim'
+import { configEmote } from '../claim/config'
 
 export class QuestEmote {
   gameController: GameController
@@ -44,8 +46,10 @@ export class QuestEmote {
   hasReward: boolean = false
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
+  claim: ClaimTokenRequest
   constructor(gameController: GameController) {
     this.gameController = gameController
+    this.claim = new ClaimTokenRequest(this.gameController,configEmote,configEmote.campaign_key,configEmote.claimServer)
     this.tick1 = engine.addEntity()
     this.tick2 = engine.addEntity()
     this.tick3 = engine.addEntity()
@@ -145,7 +149,7 @@ export class QuestEmote {
       position: Transform.get(this.bezier.entity).position,
       scale: Vector3.create(30, 20, 30)
     })
-    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(30, 20, 30) }], () => {
+    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
       AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
       console.log('Enter Emote Zone')
     })
@@ -270,7 +274,7 @@ export class QuestEmote {
   }
 
   setWalletConnection() {
-    this.walletConected = this.gameController.claim.setUserData()
+    this.walletConected = this.claim.setUserData()
     console.log('wallet connected' + this.walletConected)
     if (this.walletConected === false) {
       this.gameController.uiController.popUpUI.show(POPUP_STATE.TwoButtons)
@@ -350,7 +354,7 @@ export class QuestEmote {
     }
   }
   giveReward() {
-    this.gameController.claim.claimToken()
+    this.claim.claimToken()
     this.onCloseRewardUI()
     //....
   }
@@ -392,7 +396,7 @@ export class QuestEmote {
   }
   tellPlayerToFindMat() {
     console.log('tell player to find mat')
-    if (this.walletConected === true){
+    if (this.walletConected === true) {
       openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 6)
     }
     PointerEvents.deleteFrom(this.bezier.npcChild)

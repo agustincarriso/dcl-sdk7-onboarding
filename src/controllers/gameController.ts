@@ -18,14 +18,11 @@ export class GameController {
   spawnIsland: SpawnIsland
   questEmote: QuestEmote
   dialogs: Dialogs
-  claim: ClaimTokenRequest
-
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
     this.questEmote = new QuestEmote(this)
-    this.claim = new ClaimTokenRequest(this)
   }
 }
