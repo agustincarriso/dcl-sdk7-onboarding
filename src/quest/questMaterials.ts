@@ -10,6 +10,7 @@ export class QuestMaterials {
     this.claim = new ClaimTokenRequest(this.gameController, configVest, configVest.campaign_key, configVest.claimServer)
   }
   loadTagData() {}
+  setUpTriggerHi(){}
   startQuest() {}
   setUpClaim() {}
   spawnBlockToNextIsalnd() {}
