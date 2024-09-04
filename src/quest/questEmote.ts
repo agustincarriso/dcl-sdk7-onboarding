@@ -46,7 +46,7 @@ export class QuestEmote {
   hasReward: boolean = false
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
-  private claim: ClaimTokenRequest
+  claim: ClaimTokenRequest
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.claim = new ClaimTokenRequest(this.gameController,configEmote,configEmote.campaign_key,configEmote.claimServer)
