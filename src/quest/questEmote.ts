@@ -114,7 +114,7 @@ export class QuestEmote {
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
     this.loadTagData()
-    this.createEmoteZone()
+    this.setUpTriggerHi()
   }
   loadTagData() {
     PointerEvents.createOrReplace(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, {
@@ -142,18 +142,27 @@ export class QuestEmote {
         'assets/scene/models/unity_assets/s0_Cable_02_OFF_01.glb'
     }
   }
-  createEmoteZone() {
-    console.log('Zone created')
-    const triggerEnt = engine.addEntity()
-    Transform.create(triggerEnt, {
-      position: Transform.get(this.bezier.entity).position,
-      scale: Vector3.create(30, 20, 30)
+  setUpTriggerHi() {
+    let triggerHi  = engine.addEntity()
+    Transform.create(triggerHi, {
+      position: Transform.get(this.gameController.mainInstance.s0_En_Npc1_01).position,
     })
-    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
-      AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
-      console.log('Enter Emote Zone')
-    })
-  }
+    utils.triggers.addTrigger(triggerHi , 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
+      AudioManager.instance().playOnce("npc_1_salute", { volume: 1, parent: this.bezier.entity })
+      Animator.stopAllAnimations(this.bezier.entity)
+      Animator.playSingleAnimation(this.bezier.entity, 'Hi')
+      utils.timers.setTimeout(() => {
+        Animator.stopAllAnimations(this.bezier.entity)
+        Animator.playSingleAnimation(this.bezier.entity, 'Idle')
+      }, 5000)
+      engine.removeEntity(triggerHi)
+    },
+  ()=>{
+    Animator.playSingleAnimation(this.bezier.entity, 'Idle')
+  })
+
+}
+
 
   startInteract() {
     this.gameController.uiController.widgetTasks.showTick(true, 0)
