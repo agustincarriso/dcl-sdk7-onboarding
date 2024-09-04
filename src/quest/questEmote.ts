@@ -385,6 +385,10 @@ export class QuestEmote {
     this.bubbleTalk.closeBubbleInTime()
     Animator.stopAllAnimations(this.bezier.entity)
     Animator.playSingleAnimation(this.bezier.entity, 'Talk')
+    utils.timers.setTimeout(() => {
+      Animator.stopAllAnimations(this.bezier.entity)
+      Animator.playSingleAnimation(this.bezier.entity, 'Idle')
+    }, 2000)
   }
   tellPlayerToFindMat() {
     console.log('tell player to find mat')
@@ -393,5 +397,9 @@ export class QuestEmote {
     }
     PointerEvents.deleteFrom(this.bezier.npcChild)
     this.bubbleTalk.openBubble(ZONE_1_EMOTE_4, true)
+    utils.timers.setTimeout(() => {
+      Animator.stopAllAnimations(this.bezier.entity)
+      Animator.playSingleAnimation(this.bezier.entity, 'Idle')
+    }, 2000)
   }
 }
