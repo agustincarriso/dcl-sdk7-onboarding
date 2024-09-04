@@ -31,10 +31,10 @@ export class UIController {
       this.popUpControls.emoteUI(),
       this.widgetTasks.widgetTask(),
       this.popUpUI.popupUIEmote(),
-      this.gameController.claim.claimInProgress.render(),
-      this.gameController.claim.captchaUI.render(),
-      this.gameController.claim.retryUI.render(),
-      this.gameController.claim.onTheWay.render()
+      this.gameController.questEmote.claim.claimInProgress.render(),
+      this.gameController.questEmote.claim.captchaUI.render(),
+      this.gameController.questEmote.claim.retryUI.render(),
+      this.gameController.questEmote.claim.onTheWay.render()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true

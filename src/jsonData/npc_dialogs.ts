@@ -4,9 +4,12 @@ import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 import {
   IdleTrebor,
   happyBezier,
+  happyMat,
   happyTrebor,
   idleBezier,
+  idleMat,
   surprisedBezier,
+  surprisedMat,
   talkingBezier,
   talkingTrebor
 } from './npcData'
@@ -150,32 +153,41 @@ export class Dialogs {
           this.gameController.questEmote.setWalletConnection()
         },
         typeSpeed: 30
-      },
+      }
     ]
     this.matDialog = [
       {
-        text: THIRD_ISLAND_0
+        text: THIRD_ISLAND_0,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_1
+        text: THIRD_ISLAND_1,
+        portrait: happyMat
       },
       {
-        text: THIRD_ISLAND_2
+        text: THIRD_ISLAND_2,
+        portrait: surprisedMat
       },
       {
-        text: THIRD_ISLAND_3
+        text: THIRD_ISLAND_3,
+        portrait: happyMat,
+        isEndOfDialog: true
       },
       {
-        text: THIRD_ISLAND_4
+        text: THIRD_ISLAND_4,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_5
+        text: THIRD_ISLAND_5,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_6
+        text: THIRD_ISLAND_6,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_7
+        text: THIRD_ISLAND_7,
+        portrait: idleMat
       }
     ]
   }
