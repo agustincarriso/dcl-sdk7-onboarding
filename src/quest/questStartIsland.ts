@@ -136,7 +136,7 @@ export class SpawnIsland {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: 'Talk to Tobor Before Crossing',
+            hoverText: 'Talk to Tobor Before Crossing'
           }
         }
       ]
@@ -176,7 +176,7 @@ export class SpawnIsland {
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
-    },)
+    })
   }
   startSpawnIsland() {
     //Start ambiental sound
@@ -255,7 +255,7 @@ export class SpawnIsland {
             {
               entity: this.tobor.npcChild,
               opts: {
-                button: InputAction.IA_POINTER, 
+                button: InputAction.IA_POINTER,
                 hoverText: 'Talk'
               }
             },

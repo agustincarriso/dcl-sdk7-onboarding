@@ -145,7 +145,7 @@ export class QuestEmote {
       position: Transform.get(this.bezier.entity).position,
       scale: Vector3.create(30, 20, 30)
     })
-    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(30, 20, 30) }], () => {
+    utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
       AudioManager.instance().playOnce('npc_1_salute', { volume: 0.6, parent: this.bezier.entity })
       console.log('Enter Emote Zone')
     })
@@ -388,7 +388,7 @@ export class QuestEmote {
   }
   tellPlayerToFindMat() {
     console.log('tell player to find mat')
-    if (this.walletConected === true){
+    if (this.walletConected === true) {
       openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 6)
     }
     PointerEvents.deleteFrom(this.bezier.npcChild)
