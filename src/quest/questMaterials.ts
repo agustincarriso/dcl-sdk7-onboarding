@@ -24,6 +24,7 @@ import { sideBubbleTalk } from '../imports/bubble'
 import { HELP_KIT, ZONE_3_COLLECT_0 } from '../jsonData/textsTutorialBubble'
 import { closeDialog } from 'dcl-npc-toolkit/dist/dialog'
 import { ClaimWearableRequest } from '../claim/claimWearable'
+import { POPUP_STATE } from '../uis/popupUI'
 export class QuestMaterials {
   gameController: GameController
   mat: NPC
@@ -197,8 +198,8 @@ export class QuestMaterials {
       {
         entity: collider,
         opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Click'
+          button: InputAction.IA_PRIMARY,
+          hoverText: 'Grab'
         }
       },
       () => {
@@ -233,8 +234,8 @@ export class QuestMaterials {
       {
         entity: collider,
         opts: {
-          button: InputAction.IA_POINTER,
-          hoverText: 'Click'
+          button: InputAction.IA_PRIMARY,
+          hoverText: 'Grab'
         }
       },
       () => {
@@ -338,6 +339,9 @@ export class QuestMaterials {
     this.hasReward = true
     this.afterEndQuestClick()
   }
+  showWearableUI() {
+    this.gameController.uiController.popUpUI.show(POPUP_STATE.Vest)
+  }
   giveReward() {
     this.claim.claimToken()
     if (this.firstTimeClosingRewardUI) {
@@ -384,9 +388,10 @@ export class QuestMaterials {
         if (!this.walletConected) {
           this.dialogEndQuest()
           if (this.walletConected && !this.hasReward) {
+            console.log('Wallet connected not reward')
             this.playerForgotRewardDialog()
             this.bubbleTalk.closeBubbleInTime()
-          } else if (this.hasReward) {
+          } else if (this.walletConected && this.hasReward) {
             this.dialogEndQuest()
           }
         }
@@ -401,6 +406,5 @@ export class QuestMaterials {
     Animator.stopAllAnimations(this.mat.entity)
     Animator.getClip(this.mat.entity, 'Idle').playing = true
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 11)
-    console.log()
   }
 }

@@ -218,7 +218,7 @@ export class Dialogs {
         text: THIRD_ISLAND_9,
         portrait: idleMat,
         triggeredByNext: () => {
-          this.gameController.questMaterial.giveReward()
+          this.gameController.questMaterial.showWearableUI()
         },
         isEndOfDialog: true
       },

@@ -330,6 +330,7 @@ export class ClaimWearableRequest {
       yPosition: -160,
       onMouseDown: () => {
         this.captchaUI.hide()
+        this.gameController.questMaterial.afterEndQuestClick()
       }
     })
   }
