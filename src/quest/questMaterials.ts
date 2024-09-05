@@ -40,7 +40,12 @@ export class QuestMaterials {
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.blocker = engine.addEntity()
-    this.claim = new ClaimWearableRequest(this.gameController, configVest, configVest.campaign_key, configVest.claimServer)
+    this.claim = new ClaimWearableRequest(
+      this.gameController,
+      configVest,
+      configVest.campaign_key,
+      configVest.claimServer
+    )
     this.mat = new NPC(
       Vector3.create(0, -0.91, 0),
       Vector3.create(2.213552, 1.280694, 2.213552),

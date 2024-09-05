@@ -44,6 +44,13 @@ export class Popup {
   emoteButtonRightText: string = '<b>Get a Wallet</b>'
   emoteButtonRightMargin: PositionUnit = '20%'
   disclaimText: string = "<b>You currently cannot claim this prize as \nyou don't have a connected wallet</b>"
+  // Mat
+  matTitleBig = '<b>Congratulations!</b>'
+  matVisible: boolean = false
+  matHeaderText1: string = '<b>YOU GOT A NEW WEARABLE</b>'
+  matImage: string = 'assets/ui/Upperbody.png'
+  matImageText: string = "<b>Mat's Vest</b>"
+  matButtonRightText: string = '<b>Yay!</b>'
   constructor(uiController: UIController) {
     this.uiController = uiController
   }
@@ -68,7 +75,7 @@ export class Popup {
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.25,
+            width: canvasInfo.height * 0.48,
             height: canvasInfo.height * 0.58,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
@@ -334,7 +341,7 @@ export class Popup {
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.25,
+            width: canvasInfo.height * 0.48,
             height: canvasInfo.height * 0.58,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
@@ -355,7 +362,7 @@ export class Popup {
             }}
             value={this.emoteTitleBig}
             textAlign="middle-left"
-            fontSize={canvasInfo.width * 0.011}
+            fontSize={canvasInfo.height * 0.021}
             font="sans-serif"
             color={Color4.Black()}
           />
@@ -381,7 +388,7 @@ export class Popup {
             }}
             value={this.emoteHeaderText1}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.009}
+            fontSize={canvasInfo.height * 0.019}
             font="sans-serif"
             color={Color4.Gray()}
           />
@@ -422,7 +429,7 @@ export class Popup {
             }}
             value={this.imageText}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.008}
+            fontSize={canvasInfo.height * 0.017}
             font="sans-serif"
             color={Color4.Black()}
           />
@@ -435,7 +442,7 @@ export class Popup {
             }}
             value={this.disclaimText}
             textAlign="middle-center"
-            fontSize={canvasInfo.width * 0.007}
+            fontSize={canvasInfo.height * 0.014}
             font="sans-serif"
             color={Color4.Red()}
           />
@@ -591,6 +598,153 @@ export class Popup {
             texture: { src: this.arrowAttention }
           }}
         ></UiEntity>
+      </UiEntity>
+    )
+  }
+  popupUIVest(): ReactEcs.JSX.Element {
+    const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
+    return (
+      <UiEntity
+        uiTransform={{
+          flexDirection: 'column',
+          width: canvasInfo.width * 0.25,
+          height: canvasInfo.height,
+          justifyContent: 'flex-end',
+          positionType: 'absolute',
+          position: { top: '0%', left: '40%' },
+          display: this.matVisible? 'flex' : 'none'
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          color: Color4.create(0, 0, 0, 0)
+        }}
+      >
+        <UiEntity
+          uiTransform={{
+            flexDirection: 'row',
+            width: canvasInfo.height * 0.48,
+            height: canvasInfo.height * 0.58,
+            // justifyContent: 'flex-end',
+            positionType: 'absolute',
+            position: { top: '15%', left: '0%' },
+            display: this.matVisible ? 'flex' : 'none'
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.backgroundBig }
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { left: '0%', top: '8%' },
+              margin: { left: '30%', right: '30%' }
+            }}
+            value={this.matTitleBig}
+            textAlign="middle-left"
+            fontSize={canvasInfo.height * 0.021}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: '75%',
+              height: '0.3%',
+              position: { top: '16%', left: '13%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.backgroundBig },
+              color: lightGray
+            }}
+          ></UiEntity>
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { left: '20%', top: '18%' },
+              margin: { left: '0%', right: '0%' }
+            }}
+            value={this.matHeaderText1}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.019}
+            font="sans-serif"
+            color={Color4.Gray()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.12,
+              height: canvasInfo.height * 0.12,
+              position: { top: '35%', left: '0%' },
+              margin: { left: '37.5%', right: '37.5%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.backgroundBig },
+              color: lightGray
+            }}
+          >
+            <UiEntity
+              uiTransform={{
+                positionType: 'absolute',
+                width: '90%',
+                height: '90%',
+                position: { top: '5%', left: '5%' },
+                margin: { left: '0%', right: '0%' }
+              }}
+              uiBackground={{
+                textureMode: 'stretch',
+                texture: { src: this.matImage }
+              }}
+            ></UiEntity>
+          </UiEntity>
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { bottom: '0%', left: '0%', top: '20%' },
+              margin: { left: '39.5%', right: '39.5%' }
+            }}
+            value={this.matImageText}
+            textAlign="middle-center"
+            fontSize={canvasInfo.height * 0.017}
+            font="sans-serif"
+            color={Color4.Black()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.15,
+              height: canvasInfo.height * 0.07,
+              position: { bottom: '10%', left: '0%' },
+              margin: { left: '35%', right: '35%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.buttonRightImage }
+            }}
+            onMouseDown={() => {
+              // Open claim for mat
+            }}
+          >
+            {/* Text UI */}
+            <Label
+              uiTransform={{
+                positionType: 'absolute',
+                position: { bottom: '20%', left: '0%', top: '20%' },
+                margin: { left: '34%', right: '34%' }
+              }}
+              value={this.matButtonRightText}
+              textAlign="middle-center"
+              fontSize={canvasInfo.height * 0.018}
+              font="sans-serif"
+              color={Color4.White()}
+            />
+          </UiEntity>
+        </UiEntity>
       </UiEntity>
     )
   }
