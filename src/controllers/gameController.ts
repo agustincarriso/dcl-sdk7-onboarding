@@ -11,6 +11,7 @@ import { onEnterScene } from '@dcl/sdk/src/players'
 import { QuestEmote } from '../quest/questEmote'
 import { getUserData } from '~system/UserIdentity'
 import { ClaimTokenRequest } from '../claim/claim'
+import { QuestPuzzle } from '../quest/questPuzzle'
 
 export class GameController {
   mainInstance: MainInstace
@@ -18,11 +19,13 @@ export class GameController {
   spawnIsland: SpawnIsland
   questEmote: QuestEmote
   dialogs: Dialogs
+  questPuzzle: QuestPuzzle
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
     this.questEmote = new QuestEmote(this)
+    this.questPuzzle = new QuestPuzzle(this)
   }
 }

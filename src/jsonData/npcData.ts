@@ -33,3 +33,15 @@ export const surprisedBezier: ImageData = {
 export const happyBezier: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Fox_Happy.png'
 }
+
+// RACOON DATA
+
+export const racoon2Idle: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon2_Idle.png'
+}
+export const racoon2Sourprised: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon2_Sourprised.png'
+}
+export const Racoon2Talking: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon2_Talking.png'
+}
