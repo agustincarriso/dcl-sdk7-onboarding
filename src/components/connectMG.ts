@@ -304,16 +304,16 @@ class Piece {
    */
   checkState() {
     if (this.currentState == this.correctState) {
-      Transform.getMutable(this.puzzle_cables_off).scale = Vector3.create(0, 0, 0)
       Transform.getMutable(this.puzzle_cables_on).scale = Vector3.create(1, 1, 1)
-      Transform.getMutable(this.tubeOFF).scale = Vector3.create(0, 0, 0)
+      Transform.getMutable(this.puzzle_cables_off).scale = Vector3.create(0, 0, 0)
       Transform.getMutable(this.tubeON).scale = Vector3.create(1, 1, 1)
+      Transform.getMutable(this.tubeOFF).scale = Vector3.create(0, 0, 0)
       this.pieceTargeter.showArrow(false)
       return true
     } else {
       Transform.getMutable(this.puzzle_cables_off).scale = Vector3.create(1, 1, 1)
-      Transform.getMutable(this.puzzle_cables_on).scale = Vector3.create(0, 0, 0)
       Transform.getMutable(this.tubeOFF).scale = Vector3.create(1,1,1)
+      Transform.getMutable(this.puzzle_cables_on).scale = Vector3.create(0, 0, 0)
       Transform.getMutable(this.tubeON).scale = Vector3.create(0,0,0)
       this.pieceTargeter.showArrow(true)
       return false
