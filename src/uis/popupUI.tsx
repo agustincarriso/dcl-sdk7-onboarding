@@ -60,7 +60,7 @@ export class Popup {
       <UiEntity
         uiTransform={{
           flexDirection: 'column',
-          width: canvasInfo.width * 0.25,
+          width: canvasInfo.height * 0.46,
           height: canvasInfo.height,
           justifyContent: 'flex-end',
           positionType: 'absolute',
@@ -69,13 +69,13 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0, 0, 0, 0)
+          color: Color4.Red()
         }}
       >
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.height * 0.48,
+            width: '100%',
             height: canvasInfo.height * 0.58,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
@@ -259,11 +259,11 @@ export class Popup {
           <Label
             uiTransform={{
               positionType: 'absolute',
-              position: { bottom: '20%', left: '35%', top: '20%' }
+              position: { bottom: '20%', left: '33%', top: '20%' }
             }}
             value={this.takecontrol}
             textAlign="middle-left"
-            fontSize={canvasInfo.height * 0.018}
+            fontSize={canvasInfo.height * 0.017}
             font="sans-serif"
             color={Color4.White()}
           />
@@ -275,7 +275,7 @@ export class Popup {
             }}
             value={this.takecontrol2Value}
             textAlign="middle-center"
-            fontSize={canvasInfo.height * 0.018}
+            fontSize={canvasInfo.height * 0.017}
             font="sans-serif"
             color={Color4.White()}
           />
@@ -752,13 +752,25 @@ export class Popup {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
     return (
       <UiEntity
+      uiTransform={{
+        positionType: 'absolute',
+        width: canvasInfo.width,
+        height: '15%',
+        position: { bottom: '0%', left: '0%' }
+      }}
+      uiBackground={{
+        textureMode: 'stretch',
+        color: Color4.create(0,0,0,0)
+      }}
+    >
+      <UiEntity
         uiTransform={{
           flexDirection: 'row',
-          width: canvasInfo.width * 0.22,
+          width: canvasInfo.height * 0.46,
           height: canvasInfo.height * 0.13,
           justifyContent: 'flex-end',
           positionType: 'absolute',
-          position: { bottom: '1%', right: '36.5%' },
+          position: { bottom: '2%', left: '36.5%' },
           display: this.takeControlCameraVisible ? 'flex' : 'none'
         }}
         uiBackground={{
@@ -782,14 +794,15 @@ export class Popup {
           uiTransform={{
             positionType: 'absolute',
             width: '50%',
-            height: canvasInfo.height * 0.1,
-            position: { top: '20%', left: '10%' }
+            height: '80%',
+            position: { top: '15%', left: '10%' }
           }}
           uiBackground={{
             textureMode: 'stretch',
             texture: { src: this.takecontrolCameraImage }
           }}
         ></UiEntity>
+      </UiEntity>
       </UiEntity>
     )
   }

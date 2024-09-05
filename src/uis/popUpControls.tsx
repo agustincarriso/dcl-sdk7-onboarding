@@ -11,7 +11,7 @@ export class PopUpControls {
   spaceImage: string = 'assets/ui/UI_Space.png'
   spaceText: string = '<b>Jump</b>'
   //Emote
-  emoteContainerVisible: boolean = true
+  emoteContainerVisible: boolean = false
   emoteText2: string = '<b>Press</b>'
   emoteImage: string = 'assets/ui/UI_B.png'
   emoteText: string = '<b>to open emote menu\nand select a move</b>'
