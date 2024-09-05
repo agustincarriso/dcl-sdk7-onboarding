@@ -35,9 +35,10 @@ export class UIController {
       this.gameController.questEmote.claim.captchaUI.render(),
       this.gameController.questEmote.claim.retryUI.render(),
       this.gameController.questEmote.claim.onTheWay.render(),
-      this.popUpUI.popupUIVest()
+      this.popUpUI.popupUIVest(),
+      this.popUpControls.puzzleUI()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
-    this.keyBoardUI.isVisible = true
+    this.keyBoardUI.isVisible = false
   }
 }

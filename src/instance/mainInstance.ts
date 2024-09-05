@@ -884,7 +884,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_01_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_01_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_01_ON_01.glb'
@@ -908,7 +908,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_02_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_02_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_02_ON_01.glb'
@@ -932,7 +932,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_03_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_03_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_03_ON_01.glb'
@@ -969,7 +969,7 @@ export class MainInstace {
     Transform.create(this.s0_tube_01_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_01_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_01_ON_01.glb'
@@ -1005,7 +1005,7 @@ export class MainInstace {
     Transform.create(this.s0_tube_02_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_02_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_02_ON_01.glb'
@@ -1029,7 +1029,7 @@ export class MainInstace {
     Transform.create(this.s0_tube_03_OFF_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(1,1,1)
     })
     GltfContainer.create(this.s0_tube_03_OFF_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_03_OFF_01.glb'
@@ -1041,7 +1041,7 @@ export class MainInstace {
     Transform.create(this.s0_tube_03_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_03_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_03_ON_01.glb'

@@ -140,6 +140,9 @@ export class QuestPuzzle {
   }
   cameraModeAngleCheck() {
     let cameraMode = checkCameraMode()
+    if(cameraMode === 3){
+      this.gameController.uiController.popUpControls.puzzleContainerVisible = true
+    }
     console.log('camera mode', cameraMode)
     // show UI camera
   }
