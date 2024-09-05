@@ -139,12 +139,9 @@ export class QuestPuzzle {
     this.puzzleQuest()
   }
   cameraModeAngleCheck() {
-    let cameraMode = checkCameraMode()
-    if(cameraMode === 3){
-      this.gameController.uiController.popUpControls.puzzleContainerVisible = true
-    }
-    console.log('camera mode', cameraMode)
-    // show UI camera
+    engine.addSystem(this.gameController.uiController.popUpControls.checkCameraMode)
+    this.gameController.uiController.popUpControls.checkCameraMode()
+    this.gameController.uiController.popUpControls.showPuzzleUIS()
   }
   puzzleQuest() {
     if (this.connect_game.bStarted) return
@@ -180,6 +177,7 @@ export class QuestPuzzle {
         }
       },
       () => {
+        engine.removeSystem(this.gameController.uiController.popUpControls.checkCameraMode)
         pointerEventsSystem.removeOnPointerDown(this.kit.npcChild)
         this.spawnparticles()
         this.questIndicator.hide()
@@ -244,7 +242,6 @@ export class QuestPuzzle {
       this.activeCables(true)
     }, 3000)
   }
-  cleanUpClick() {}
   private activeCables(bActive: boolean) {
     if (bActive === true) {
       GltfContainer.getMutable(this.gameController.mainInstance.s0_Cable_04_ON_01).src =

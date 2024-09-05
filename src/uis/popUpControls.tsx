@@ -1,10 +1,11 @@
-import { UiCanvasInformation, engine } from '@dcl/sdk/ecs'
+import { CameraMode, CameraType, Transform, UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Label, UiEntity } from '@dcl/sdk/react-ecs'
 import { UIController } from '../controllers/uiController'
 
 export class PopUpControls {
   uiController: UIController
+  currentCamera: CameraType | null = null
   //Jump
   spaceContainer: string = 'assets/ui/UI_Tasks_Base_P.png'
   spaceContainerVisible: boolean = false
@@ -19,6 +20,9 @@ export class PopUpControls {
   puzzleContainerVisible: boolean = false
   puzzleImage: string = 'assets/ui/UI_V.png'
   puzzleText: string = '<b>Toggle camera to get\na closer look</b>'
+  puzzleConnectCablesVisible: boolean = false
+  puzzleConnectCablesText: string ="<b>Connect the cables</b>"
+  masterPuzzleVisible: boolean = false
   constructor(uiController: UIController) {
     this.uiController = uiController
   }
@@ -157,7 +161,8 @@ export class PopUpControls {
           positionType: 'absolute',
           width: canvasInfo.width,
           height: '15%',
-          position: { bottom: '0%', left: '0%' }
+          position: { bottom: '0%', left: '0%' },
+          display: this.masterPuzzleVisible? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -207,5 +212,75 @@ export class PopUpControls {
       </UiEntity>
     )
   }
-  switchCamera() {}
+  puzzleUIConnectCables(): ReactEcs.JSX.Element {
+    const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
+    return (
+      <UiEntity
+        uiTransform={{
+          positionType: 'absolute',
+          width: canvasInfo.width,
+          height: '15%',
+          position: { bottom: '0%', left: '0%' },
+          display: this.masterPuzzleVisible? 'flex' : 'none' 
+        }}
+        uiBackground={{
+          textureMode: 'stretch',
+          color: Color4.create(0, 0, 0, 0)
+        }}
+      >
+        <UiEntity
+          uiTransform={{
+            flexDirection: 'row',
+            width: canvasInfo.height * 0.4,
+            height: canvasInfo.height * 0.13,
+            justifyContent: 'flex-end',
+            positionType: 'absolute',
+            position: { bottom: '2%', left: '40%' },
+            display: this.puzzleConnectCablesVisible ? 'flex' : 'none'
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: { src: this.spaceContainer },
+            color: Color4.create(0, 0, 0, 0.5)
+          }}
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { left: '25%', top: '36%' }
+            }}
+            value={this.puzzleConnectCablesText}
+            fontSize={canvasInfo.height * 0.02}
+            font="sans-serif"
+            color={Color4.White()}
+          />
+        </UiEntity>
+      </UiEntity>
+    )
+  }
+  checkCameraMode(){
+    Transform.onChange(engine.CameraEntity,()=>{
+      if (!Transform.has(engine.CameraEntity)) return
+      let cameraEntity = CameraMode.get(engine.CameraEntity)
+      if (cameraEntity.mode == CameraType.CT_THIRD_PERSON) {
+        this.currentCamera = CameraType.CT_THIRD_PERSON
+      } else if (cameraEntity.mode == CameraType.CT_FIRST_PERSON) {
+        this.currentCamera = CameraType.CT_FIRST_PERSON
+      }
+    })
+  } 
+  showPuzzleUIS(){
+    let cameraEntity = CameraMode.get(engine.CameraEntity)
+    this.masterPuzzleVisible = true
+    if(cameraEntity.mode === CameraType.CT_THIRD_PERSON){
+      console.log('3 person')
+      this.puzzleContainerVisible = true
+      this.puzzleConnectCablesVisible = false
+    }else if (cameraEntity.mode === CameraType.CT_FIRST_PERSON) {
+      console.log('1 person')
+      this.puzzleConnectCablesVisible = true
+      this.puzzleContainerVisible = false
+    }   
+  }
 }
