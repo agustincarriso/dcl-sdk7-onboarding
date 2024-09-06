@@ -23,4 +23,4 @@ export const HELP_MAT = "Talk to Mat next."
 
 //Kit Dialogs
 export const ZONE_2_PUZZLE_0 = "Fix connections to restore the energy."
-export const GO_TO_PORTAL = "Tobor wants to talk to you, he’s next to the portals."
+export const GO_TO_PORTAL = "Tobor wants to talk to you,\nhe’s next to the portals."

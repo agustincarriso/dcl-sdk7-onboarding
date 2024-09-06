@@ -3,26 +3,35 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export class ArrowTargeter {
   arrowEntity: Entity
-  constructor(position: Vector3, scale: Vector3, rotation: Quaternion, parent?: Entity, arrowHeight?: number) {
+  constructor(position: Vector3, scale?: Vector3, rotation?: Quaternion, parent?: Entity, arrowHeight?: number) {
     this.arrowEntity = engine.addEntity()
     Transform.create(this.arrowEntity, {
       position,
-      scale,
-      rotation
+      scale:scale||Vector3.create(1, 1, 1),
+      rotation:rotation || Quaternion.fromEulerDegrees(0, 0, 0),
+      parent
     })
-    GltfContainer.create(this.arrowEntity, { src: '' })
-    Transform.getMutable(this.arrowEntity).parent = parent
+    GltfContainer.create(this.arrowEntity, { src: 'assets/scene/models/glb_assets/target_arrow.glb' })
+
+    console.log('targeter created') 
   }
   translate(position: Vector3) {
     Transform.getMutable(this.arrowEntity).position = position
   }
 
   setArrowHeight(height: number) { 
-    Transform.getMutable(this.arrowEntity).position.y = height
+    Transform.getMutable(this.arrowEntity).position.y = height 
   }
 
   showArrow(bShow: boolean) {
+    if (bShow === true) {
+      console.log('targeter show')
     GltfContainer.getMutable(this.arrowEntity).src = 'assets/scene/models/glb_assets/target_arrow.glb'
+    } else {
+      console.log('targeter hide')
+    GltfContainer.getMutable(this.arrowEntity).src = ''
+    }
+  
   }
   delete() {
     engine.removeEntity(this.arrowEntity)

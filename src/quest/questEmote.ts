@@ -252,7 +252,6 @@ export class QuestEmote {
     }
   }
   completeQuestDialog() {
-    console.log('here')
     openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     this.gameController.uiController.widgetTasks.showTick(true, 1)

@@ -20,6 +20,7 @@ import * as npc from 'dcl-npc-toolkit'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 import { SpawnIsland } from '../quest/questStartIsland'
+import { ArrowTargeter } from '../imports/components/targeter'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
@@ -48,7 +49,6 @@ export class MainInstace {
   s0_Cable_03_ON_01: Entity
   s0_Cable_04_OFF_01: Entity
   s0_Cable_04_ON_01: Entity
-  // s0_NPC_Robot_Art_1__01: Entity = engine.addEntity()
   s0_Puzlemachines_01: Entity
   s0_Cables_01: Entity
   s0_Puzle_machines_01: Entity
@@ -67,11 +67,14 @@ export class MainInstace {
   s0_tube_03_01: Entity
   s0_tube_03_OFF_01: Entity
   s0_tube_03_ON_01: Entity
+  tubeArrow_1 : ArrowTargeter
+  tubeArrow_2 : ArrowTargeter
+  tubeArrow_3 : ArrowTargeter
   s0_En_DanceZone_01: Entity
   s0_En_Npc1_01: Entity
   s0_En_Npc2_01: Entity
   s0_En_Npc3_01: Entity
-  s0_NPC_Raccoon02_Art_01: Entity
+  // s0_NPC_Raccoon02_Art_01: Entity
   s0_En_Portal_tobor_01: Entity
   s0_En_Tob_end_stairs_01: Entity
   s0_En_Tob_Pillar_01: Entity
@@ -883,7 +886,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_01_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_01_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_01_ON_01.glb'
@@ -907,7 +910,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_02_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_02_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_02_ON_01.glb'
@@ -931,7 +934,7 @@ export class MainInstace {
     Transform.create(this.s0_Sign_03_ON_01, {
       position: Vector3.create(0, 0, 0),
       rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_Sign_03_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_Sign_03_ON_01.glb'
@@ -942,19 +945,38 @@ export class MainInstace {
     this.s0_tube_01_01 = engine.addEntity()
     Transform.create(this.s0_tube_01_01, {
       position: Vector3.create(98.704, 78.82, 140.141),
-      rotation: Quaternion.create(0, 0.9999142, 0, -0.01309833),
-      scale: Vector3.create(1, 1, 1)
+      rotation: Quaternion.fromEulerDegrees(135,1.5,0),
+      scale: Vector3.create(1, 1, 1),
+      parent: this.s0_Puzlemachines_01
     })
     GltfContainer.create(this.s0_tube_01_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_01_01.glb'
     })
-    Transform.getMutable(this.s0_tube_01_01).parent = this.s0_Puzlemachines_01
+    this.tubeArrow_1 = new ArrowTargeter(
+      Vector3.create(98.79,79.6,140.2),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+    this.tubeArrow_2 = new ArrowTargeter(
+      Vector3.create(99.09,79.4,141.90),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+
+    this.tubeArrow_3 = new ArrowTargeter(
+      Vector3.create(99.9,79.4,143.5),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+    this.tubeArrow_1.showArrow(false)
+    this.tubeArrow_2.showArrow(false)
+    this.tubeArrow_3.showArrow(false)
 
     // Tube_01_OFF
     this.s0_tube_01_OFF_01 = engine.addEntity()
     Transform.create(this.s0_tube_01_OFF_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
       scale: Vector3.create(1, 1, 1)
     })
     GltfContainer.create(this.s0_tube_01_OFF_01, {
@@ -966,8 +988,8 @@ export class MainInstace {
     this.s0_tube_01_ON_01 = engine.addEntity()
     Transform.create(this.s0_tube_01_ON_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_01_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_01_ON_01.glb'
@@ -977,8 +999,8 @@ export class MainInstace {
     // Tube_02
     this.s0_tube_02_01 = engine.addEntity()
     Transform.create(this.s0_tube_02_01, {
-      position: Vector3.create(98.704, 78.82, 140.141),
-      rotation: Quaternion.create(0, 0.9999142, 0, -0.01309833),
+      position: Vector3.create(99.083, 78.621, 141.887),
+      rotation: Quaternion.fromEulerDegrees(180.0, 16.50,-180.0),
       scale: Vector3.create(1, 1, 1)
     })
     GltfContainer.create(this.s0_tube_02_01, {
@@ -990,7 +1012,7 @@ export class MainInstace {
     this.s0_tube_02_OFF_01 = engine.addEntity()
     Transform.create(this.s0_tube_02_OFF_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
       scale: Vector3.create(1, 1, 1)
     })
     GltfContainer.create(this.s0_tube_02_OFF_01, {
@@ -1002,8 +1024,8 @@ export class MainInstace {
     this.s0_tube_02_ON_01 = engine.addEntity()
     Transform.create(this.s0_tube_02_ON_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_02_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_02_ON_01.glb'
@@ -1013,8 +1035,8 @@ export class MainInstace {
     // Tube_03
     this.s0_tube_03_01 = engine.addEntity()
     Transform.create(this.s0_tube_03_01, {
-      position: Vector3.create(98.704, 78.82, 140.141),
-      rotation: Quaternion.create(0, 0.9999142, 0, -0.01309833),
+      position: Vector3.create(99.79, 78.523, 143.532),
+      rotation: Quaternion.fromEulerDegrees(135, 33.09, 180),
       scale: Vector3.create(1, 1, 1)
     })
     GltfContainer.create(this.s0_tube_03_01, {
@@ -1026,8 +1048,8 @@ export class MainInstace {
     this.s0_tube_03_OFF_01 = engine.addEntity()
     Transform.create(this.s0_tube_03_OFF_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
+      scale: Vector3.create(1,1,1)
     })
     GltfContainer.create(this.s0_tube_03_OFF_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_03_OFF_01.glb'
@@ -1038,8 +1060,8 @@ export class MainInstace {
     this.s0_tube_03_ON_01 = engine.addEntity()
     Transform.create(this.s0_tube_03_ON_01, {
       position: Vector3.create(0, 0, 0),
-      rotation: Quaternion.create(0, 1, 0, -4.371139e-8),
-      scale: Vector3.create(1, 1, 1)
+      rotation: Quaternion.create(0, 1, 0, -4.371139E-08),
+      scale: Vector3.create(0,0,0)
     })
     GltfContainer.create(this.s0_tube_03_ON_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_03_ON_01.glb'
@@ -1125,38 +1147,38 @@ export class MainInstace {
       roughness: 0.5
     })
     // NPC_Raccoon02_Art
-    this.s0_NPC_Raccoon02_Art_01 = engine.addEntity()
-    GltfContainer.create(this.s0_NPC_Raccoon02_Art_01, {
-      src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon02_Art_01.glb'
-    })
-    Animator.create(this.s0_NPC_Raccoon02_Art_01, {
-      states: [
-        {
-          clip: 'Idle'
-        },
-        {
-          clip: 'Talk'
-        },
-        {
-          clip: 'Hi'
-        },
-        {
-          clip: 'Celebrate'
-        },
-        {
-          clip: 'Bye'
-        },
-        {
-          clip: 'Dance'
-        }
-      ]
-    })
-    Transform.create(this.s0_NPC_Raccoon02_Art_01, {
-      position: Vector3.create(0, -1.07, 0),
-      rotation: Quaternion.create(0, 0.7446296, 0, -0.6674779),
-      scale: Vector3.create(2.213551, 1.280694, 2.213551)
-    })
-    Transform.getMutable(this.s0_NPC_Raccoon02_Art_01).parent = this.s0_En_Npc3_01
+    // this.s0_NPC_Raccoon02_Art_01 = engine.addEntity()
+    // GltfContainer.create(this.s0_NPC_Raccoon02_Art_01, {
+    //   src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon02_Art_01.glb'
+    // })
+    // Animator.create(this.s0_NPC_Raccoon02_Art_01, {
+    //   states: [
+    //     {
+    //       clip: 'Idle'
+    //     },
+    //     {
+    //       clip: 'Talk'
+    //     },
+    //     {
+    //       clip: 'Hi'
+    //     },
+    //     {
+    //       clip: 'Celebrate'
+    //     },
+    //     {
+    //       clip: 'Bye'
+    //     },
+    //     {
+    //       clip: 'Dance'
+    //     }
+    //   ]
+    // })
+    // Transform.create(this.s0_NPC_Raccoon02_Art_01, {
+    //   position: Vector3.create(0, -1.07, 0),
+    //   rotation: Quaternion.create(0, 0.7446296, 0, -0.6674779),
+    //   scale: Vector3.create(2.213551, 1.280694, 2.213551)
+    // })
+    // Transform.getMutable(this.s0_NPC_Raccoon02_Art_01).parent = this.s0_En_Npc3_01
     // En_Portal_tobor
     this.s0_En_Portal_tobor_01 = engine.addEntity()
     Transform.create(this.s0_En_Portal_tobor_01, {
