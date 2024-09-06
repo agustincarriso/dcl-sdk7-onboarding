@@ -59,7 +59,7 @@ export class WidgetTasks {
   constructor(uiController: UIController) {
     this.uiController = uiController
     this.currentTask = {
-      text: { en: '' },
+      text: { en: '' }, 
       missionInfo: { en: '' },
       fontSize: 0,
       vAlign: '',
@@ -122,7 +122,7 @@ export class WidgetTasks {
       <UiEntity
         uiTransform={{
           flexDirection: 'column',
-          width: canvasInfo.width * 0.2,
+          width: canvasInfo.height * 0.4,
           height: canvasInfo.height,
           justifyContent: 'flex-start',
           positionType: 'absolute',
@@ -131,19 +131,19 @@ export class WidgetTasks {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0, 0, 0, 0)
+          color: Color4.create(0,0,0,0)
         }}
       >
         {/* Multi Task Container */}
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.19,
+            width: '95%',
             height: canvasInfo.height * 0.19,
             justifyContent: 'flex-end',
             positionType: 'relative',
             position: { top: '0%', right: '0%' },
-            margin: { bottom: '3%', top: '25%' },
+            margin: { bottom: '3%', top: '25%', right:'5%' },
             display: this.multiContainerVisible ? 'flex' : 'none'
           }}
           uiBackground={{
@@ -288,12 +288,12 @@ export class WidgetTasks {
         <UiEntity
           uiTransform={{
             flexDirection: 'row',
-            width: canvasInfo.width * 0.19,
+            width: '95%',
             height: canvasInfo.height * 0.118,
             justifyContent: 'flex-end',
             positionType: 'relative',
             position: { top: '0%', right: '0%' },
-            margin: { bottom: '0%', top: this.marginTop },
+            margin: { bottom: '0%', top: this.marginTop, right:'5%' },
             display: this.simpleContainerVisible ? 'flex' : 'none'
           }}
           uiBackground={{

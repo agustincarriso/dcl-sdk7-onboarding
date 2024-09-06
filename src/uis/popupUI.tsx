@@ -70,7 +70,7 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.Red()
+          color: Color4.create(0,0,0,0)
         }}
       >
         <UiEntity
@@ -445,7 +445,7 @@ export class Popup {
             textAlign="middle-center"
             fontSize={canvasInfo.height * 0.014}
             font="sans-serif"
-            color={Color4.Red()}
+            color={Color4.create(0,0,0,0)}
           />
           <UiEntity
             uiTransform={{

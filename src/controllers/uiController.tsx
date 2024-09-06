@@ -6,7 +6,7 @@ import { PointerLock, UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 import { PopUpControls } from '../uis/popUpControls'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import { Popup } from '../uis/popupUI'
-import { WidgetTasks } from '../uis/widgetTask'
+import { TaskType, WidgetTasks } from '../uis/widgetTask'
 
 export class UIController {
   public gameController: GameController
