@@ -61,6 +61,7 @@ export class Dialogs {
   public matDialog: Dialog[]
   public toborBubbles: Dialog[]
   public kitDialog: Dialog[]
+  typeSpeed: number = 45
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -69,17 +70,17 @@ export class Dialogs {
         text: START_ISLAND_0,
         fontSize: 18,
         portrait: IdleTrebor,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: START_ISLAND_1,
         portrait: IdleTrebor,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: START_ISLAND_2,
         portrait: talkingTrebor,
-        typeSpeed: 30,
+        typeSpeed: this.typeSpeed,
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.spawnIsland.startMoveQuest()
@@ -89,18 +90,18 @@ export class Dialogs {
       {
         text: START_ISLAND_3,
         portrait: talkingTrebor,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: START_ISLAND_4,
         portrait: talkingTrebor,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: START_ISLAND_5,
         portrait: happyTrebor,
         isEndOfDialog: true,
-        typeSpeed: 30,
+        typeSpeed: this.typeSpeed,
         triggeredByNext: () => {
           this.gameController.uiController.popUpUI.show(POPUP_STATE.Tasks)
         }
@@ -115,16 +116,16 @@ export class Dialogs {
       {
         text: SECOND_ISLAND_0,
         portrait: idleBezier,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_1,
         portrait: talkingBezier,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_2,
-        typeSpeed: 30,
+        typeSpeed: this.typeSpeed,
         portrait: surprisedBezier,
         isEndOfDialog: true,
         triggeredByNext: () => {
@@ -134,12 +135,12 @@ export class Dialogs {
       {
         text: SECOND_ISLAND_3,
         portrait: surprisedBezier,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_4,
         portrait: happyBezier,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_5,
@@ -148,18 +149,18 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questEmote.setWalletConnection()
         },
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_6,
         portrait: talkingBezier,
         isEndOfDialog: true,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_7,
         portrait: talkingBezier,
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       },
       {
         text: SECOND_ISLAND_8,
@@ -168,21 +169,24 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questEmote.setWalletConnection()
         },
-        typeSpeed: 30
+        typeSpeed: this.typeSpeed
       }
     ]
-    this.matDialog = [
+    ;(this.matDialog = [
       {
         text: THIRD_ISLAND_0,
-        portrait: idleMat
+        portrait: idleMat,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_1,
-        portrait: happyMat
+        portrait: happyMat,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_2,
-        portrait: surprisedMat
+        portrait: surprisedMat,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_3,
@@ -190,7 +194,8 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.questMaterial.accetpQuest()
-        }
+        },
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_4,
@@ -198,16 +203,19 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questMaterial.accetpQuest()
         },
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_5,
         portrait: idleMat,
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_6,
-        portrait: idleMat
+        portrait: idleMat,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_7,
@@ -215,7 +223,8 @@ export class Dialogs {
         isEndOfDialog: true,
         triggeredByNext: () => {
           this.gameController.questMaterial.setWalletConnection()
-        }
+        },
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_8,
@@ -223,7 +232,8 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questMaterial.afterEndQuestClick()
         },
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_9,
@@ -231,73 +241,75 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questMaterial.showWearableUI()
         },
-        isEndOfDialog: true
+        isEndOfDialog: true,
+        typeSpeed: this.typeSpeed
       },
       {
         text: THIRD_ISLAND_10,
-        portrait: idleMat
+        portrait: idleMat,
+        typeSpeed: this.typeSpeed
       },
-      { text: THIRD_ISLAND_11, portrait: idleMat, isEndOfDialog: true },
+      { text: THIRD_ISLAND_11, portrait: idleMat, isEndOfDialog: true, typeSpeed: this.typeSpeed },
       {
         text: THIRD_ISLAND_12,
         portrait: idleMat,
         isEndOfDialog: true,
+        typeSpeed: this.typeSpeed,
         triggeredByNext: () => {
           this.gameController.questMaterial.giveReward()
         }
       }
-    ],
-    this.kitDialog = [
-      {
-        text: FOURTH_ISLAND_0,
-        portrait: racoon2Idle,
-        isEndOfDialog: false,
-        typeSpeed: 30
-      },
-      {
-        text: FOURTH_ISLAND_1,
-        portrait: racoon2Sourprised,
-        isEndOfDialog: false,
-        typeSpeed: 30
-      },
-      {
-        text: FOURTH_ISLAND_2,
-        portrait: Racoon2Talking,
-        isEndOfDialog: true,
-        typeSpeed: 30,
-        triggeredByNext: () => {
-          this.gameController.questPuzzle.accetpQuest()
-          this.gameController.questPuzzle.cameraModeAngleCheck()
+    ]),
+      (this.kitDialog = [
+        {
+          text: FOURTH_ISLAND_0,
+          portrait: racoon2Idle,
+          isEndOfDialog: false,
+          typeSpeed: this.typeSpeed
+        },
+        {
+          text: FOURTH_ISLAND_1,
+          portrait: racoon2Sourprised,
+          isEndOfDialog: false,
+          typeSpeed: this.typeSpeed
+        },
+        {
+          text: FOURTH_ISLAND_2,
+          portrait: Racoon2Talking,
+          isEndOfDialog: true,
+          typeSpeed: this.typeSpeed,
+          triggeredByNext: () => {
+            this.gameController.questPuzzle.accetpQuest()
+            this.gameController.questPuzzle.cameraModeAngleCheck()
+          }
+        },
+        {
+          text: FOURTH_ISLAND_3,
+          portrait: Racoon2Talking,
+          isEndOfDialog: true,
+          typeSpeed: this.typeSpeed
+        },
+        {
+          text: FOURTH_ISLAND_4,
+          portrait: racoon2Sourprised,
+          isEndOfDialog: true,
+          typeSpeed: this.typeSpeed
+        },
+        {
+          text: FOURTH_ISLAND_5,
+          portrait: racoon2Sourprised,
+          isEndOfDialog: false,
+          typeSpeed: this.typeSpeed
+        },
+        {
+          text: FOURTH_ISLAND_6,
+          portrait: Racoon2Talking,
+          isEndOfDialog: true,
+          typeSpeed: this.typeSpeed,
+          triggeredByNext: () => {
+            this.gameController.questPuzzle.dialogQuestFinished()
+          }
         }
-      },
-      {
-        text: FOURTH_ISLAND_3,
-        portrait: Racoon2Talking,
-        isEndOfDialog: true,
-        typeSpeed: 30
-      },
-      {
-        text: FOURTH_ISLAND_4,
-        portrait: racoon2Sourprised,
-        isEndOfDialog: true,
-        typeSpeed: 30
-      },
-      {
-        text: FOURTH_ISLAND_5,
-        portrait: racoon2Sourprised,
-        isEndOfDialog: false,
-        typeSpeed: 30
-      },
-      {
-        text: FOURTH_ISLAND_6,
-        portrait: Racoon2Talking,
-        isEndOfDialog: true,
-        typeSpeed: 30,
-        triggeredByNext: () => {
-          this.gameController.questPuzzle.dialogQuestFinished()
-        }
-
-      },
-    ]
+      ])
   }
 }

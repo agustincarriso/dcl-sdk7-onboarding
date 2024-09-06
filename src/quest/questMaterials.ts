@@ -25,6 +25,7 @@ import { HELP_KIT, ZONE_3_COLLECT_0 } from '../jsonData/textsTutorialBubble'
 import { closeDialog } from 'dcl-npc-toolkit/dist/dialog'
 import { ClaimWearableRequest } from '../claim/claimWearable'
 import { POPUP_STATE } from '../uis/popupUI'
+import { TaskType } from '../uis/widgetTask'
 export class QuestMaterials {
   gameController: GameController
   mat: NPC
@@ -108,6 +109,7 @@ export class QuestMaterials {
       Quaternion.create(0, 0, 0),
       this.gameController.mainInstance.s0_Z3_Quest_BoxMat_art_3__01
     )
+    this.arrow1.showArrow(false)
     this.arrow1.setArrowHeight(2)
     this.arrow2 = new ArrowTargeter(
       Vector3.create(0, 0, 0),
@@ -115,6 +117,7 @@ export class QuestMaterials {
       Quaternion.create(0, 0, 0),
       this.gameController.mainInstance.s0_Z3_Quest_BoxTri_art_3__01
     )
+    this.arrow2.showArrow(false)
     this.arrow2.setArrowHeight(2)
     this.setUpTriggerHi()
     this.loadTagData()
@@ -181,6 +184,12 @@ export class QuestMaterials {
   }
   setQuestStartDialog() {
     AudioManager.instance().playOnce('npc_2_salute', { volume: 0.6, parent: this.mat.entity })
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
+      this.gameController.uiController.widgetTasks.setText(6, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 0)
     Animator.stopAllAnimations(this.mat.entity)
     Animator.getClip(this.mat.entity, 'Talk').playing = true
@@ -284,6 +293,12 @@ export class QuestMaterials {
     }
   }
   pickedAllPieces() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
+      this.gameController.uiController.widgetTasks.setText(7, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 5)
     utils.timers.setTimeout(() => {
       closeDialog(this.mat.entity)
@@ -326,6 +341,13 @@ export class QuestMaterials {
     // add onpointerDown on click trigger
   }
   talkNpcCompleteQuest() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true,2)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
+      this.gameController.uiController.widgetTasks.setText(8, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     this.spawnparticles()
     Animator.stopAllAnimations(this.mat.entity)
     Animator.playSingleAnimation(this.mat.entity, 'Celebrate')

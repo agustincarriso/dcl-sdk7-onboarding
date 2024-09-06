@@ -12,7 +12,6 @@ export class ArrowTargeter {
       parent
     })
     GltfContainer.create(this.arrowEntity, { src: 'assets/scene/models/glb_assets/target_arrow.glb' })
-
     console.log('targeter created') 
   }
   translate(position: Vector3) {

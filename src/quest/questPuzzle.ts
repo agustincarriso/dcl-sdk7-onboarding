@@ -21,6 +21,7 @@ import * as utils from '@dcl-sdk/utils'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { activatePillarSound4, changeGeneratosSound } from '../imports/components/audio/sounds'
+import { TaskType } from '../uis/widgetTask'
 
 export class QuestPuzzle {
   gameController: GameController
@@ -126,6 +127,12 @@ export class QuestPuzzle {
     )
   }
   private setUpInitQuest() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
+      this.gameController.uiController.widgetTasks.setText(9, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
     this.questIndicator.hide()
     this.targeterCircle.showCircle(false)
     openDialogWindow(this.kit.entity, this.gameController.dialogs.kitDialog, 0)
@@ -168,7 +175,14 @@ export class QuestPuzzle {
       }, 1000)
     }
   }
-  private taskTalkSwap() {}
+  private taskTalkSwap() {
+    this.gameController.uiController.widgetTasks.showTick(true,0)
+    utils.timers.setTimeout(() => {
+      this.gameController.uiController.widgetTasks.showTick(false, 0)
+      this.gameController.uiController.widgetTasks.setText(10, 0)
+      this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+    }, 1500)
+  }
   private clicOnNPC2PuzzleCompleted() {
     pointerEventsSystem.onPointerDown(
       {
@@ -179,6 +193,14 @@ export class QuestPuzzle {
         }
       },
       () => {
+        this.gameController.uiController.widgetTasks.showTick(true,0)
+        this.gameController.uiController.widgetTasks.showTick(true,3)
+        utils.timers.setTimeout(() => {
+          this.gameController.uiController.widgetTasks.showTick(false, 0)
+          this.gameController.uiController.widgetTasks.setText(11, 0)
+          this.gameController.uiController.widgetTasks.showTasks(false,TaskType.Multiple)
+          this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
+        }, 2000)
         pointerEventsSystem.removeOnPointerDown(this.kit.npcChild)
         this.spawnparticles()
         this.questIndicator.hide()

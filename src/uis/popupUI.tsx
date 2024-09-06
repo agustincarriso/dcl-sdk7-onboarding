@@ -813,11 +813,11 @@ export class Popup {
       if (!pointerLock) return
       if (this.isVisible === true || this.emoteVisible === true) {
         if (pointerLock.isPointerLocked === true) {
-          this.takeControlCameraEscVisible = true
+          this.takeControlCameraEscVisible = false
           this.takeControlCameraVisible = false
         } else {
           this.takeControlCameraEscVisible = false
-          this.takeControlCameraVisible = true
+          this.takeControlCameraVisible = false
         }
       }
     })
@@ -827,7 +827,7 @@ export class Popup {
     switch (popUpState) {
       case 0:
         this.currentButton = 0
-        this.onFocusScreen()
+        // this.onFocusScreen()
         this.emoteVisible = true
         this.emoteButtonRightText = '<b>CLAIM EMOTE<b>'
         this.emoteButtonRightMargin = '15%'
@@ -836,14 +836,14 @@ export class Popup {
         break
       case 1:
         this.currentButton = 1
-        this.onFocusScreen()
+        // this.onFocusScreen()
         this.emoteButtonRightText = '<b>Get a Wallet</b>'
         this.emoteButtonRightMargin = '20%'
         this.emoteVisible = true
         this.buttonLeftVisible = true
         break
       case 2:
-        this.onFocusScreen()
+        // this.onFocusScreen()
         this.isVisible = true
         break
       case 3:
