@@ -44,6 +44,7 @@ export const racoon2Sourprised: ImageData = {
 }
 export const Racoon2Talking: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Racoon2_Talking.png'
+}
 // MAT DATA
 
 export const idleMat: ImageData = {
