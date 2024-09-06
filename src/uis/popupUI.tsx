@@ -8,7 +8,8 @@ const lightGray = Color4.create(128 / 255, 128 / 255, 128 / 255, 0.2)
 export enum POPUP_STATE {
   OneButton = 0,
   TwoButtons = 1,
-  Tasks = 2
+  Tasks = 2,
+  Vest = 3
 }
 export class Popup {
   uiController: UIController
@@ -612,7 +613,7 @@ export class Popup {
           justifyContent: 'flex-end',
           positionType: 'absolute',
           position: { top: '0%', left: '40%' },
-          display: this.matVisible? 'flex' : 'none'
+          display: this.matVisible ? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -727,7 +728,8 @@ export class Popup {
               texture: { src: this.buttonRightImage }
             }}
             onMouseDown={() => {
-              // Open claim for mat
+              this.hide(POPUP_STATE.Vest)
+              this.uiController.gameController.questMaterial.giveReward()
             }}
           >
             {/* Text UI */}
@@ -844,6 +846,9 @@ export class Popup {
         this.onFocusScreen()
         this.isVisible = true
         break
+      case 3:
+        this.matVisible = true
+        break
     }
   }
   hide(popUpState: POPUP_STATE) {
@@ -866,6 +871,9 @@ export class Popup {
         this.isVisible = false
         this.takeControlCameraEscVisible = false
         this.takeControlCameraVisible = false
+        break
+      case 3:
+        this.matVisible = false
         break
     }
   }

@@ -73,7 +73,6 @@ export class MainInstace {
   s0_En_DanceZone_01: Entity
   s0_En_Npc1_01: Entity
   s0_En_Npc2_01: Entity
-  s0_NPC_Raccoon_Art_01: Entity
   s0_En_Npc3_01: Entity
   // s0_NPC_Raccoon02_Art_01: Entity
   s0_En_Portal_tobor_01: Entity
@@ -1075,19 +1074,19 @@ export class MainInstace {
       rotation: Quaternion.create(0, 0.8192798, 0, 0.5733939),
       scale: Vector3.create(1, 1, 1)
     })
-       // En_Npc1
-       this.s0_En_Npc1_01 = engine.addEntity()
-       MeshCollider.setCylinder(this.s0_En_Npc1_01)
-       Transform.create(this.s0_En_Npc1_01, {
-         position: Vector3.create(160.0233, 66.64076, 104.139),
-         rotation: Quaternion.create(0, 0.3281288, 0, 0.944633),
-         scale: Vector3.create(0.7227439, 1.299883, 0.7050315)
-       })
-       Material.setPbrMaterial(this.s0_En_Npc1_01, {
-         albedoColor: Color4.create(1, 1, 1, 0),
-         metallic: 0,
-         roughness: 0.5
-       })
+    // En_Npc1
+    this.s0_En_Npc1_01 = engine.addEntity()
+    MeshCollider.setCylinder(this.s0_En_Npc1_01)
+    Transform.create(this.s0_En_Npc1_01, {
+      position: Vector3.create(160.0233, 66.64076, 104.139),
+      rotation: Quaternion.create(0, 0.3281288, 0, 0.944633),
+      scale: Vector3.create(0.7227439, 1.299883, 0.7050315)
+    })
+    Material.setPbrMaterial(this.s0_En_Npc1_01, {
+      albedoColor: Color4.create(1, 1, 1, 0),
+      metallic: 0,
+      roughness: 0.5
+    })
     // En_Npc2
     this.s0_En_Npc2_01 = engine.addEntity()
     MeshRenderer.setCylinder(this.s0_En_Npc2_01)
@@ -1102,38 +1101,38 @@ export class MainInstace {
       roughness: 0.5
     })
     // NPC_Raccoon_Art
-    this.s0_NPC_Raccoon_Art_01 = engine.addEntity()
+    // this.s0_NPC_Raccoon_Art_01 = engine.addEntity()
     // GltfContainer.create(this.s0_NPC_Raccoon_Art_01, {
     //   src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon_Art_01.glb'
     // })
-    Animator.create(this.s0_NPC_Raccoon_Art_01, {
-      states: [
-        {
-          clip: 'Idle'
-        },
-        {
-          clip: 'Talk'
-        },
-        {
-          clip: 'Hi'
-        },
-        {
-          clip: 'Celebrate'
-        },
-        {
-          clip: 'Bye'
-        },
-        {
-          clip: 'Dance'
-        }
-      ]
-    })
-    Transform.create(this.s0_NPC_Raccoon_Art_01, {
-      position: Vector3.create(0, -0.91, 0),
-      rotation: Quaternion.create(0, 0.6327581, 0, -0.7743495),
-      scale: Vector3.create(2.213552, 1.280694, 2.213552)
-    })
-    Transform.getMutable(this.s0_NPC_Raccoon_Art_01).parent = this.s0_En_Npc2_01
+    // Animator.create(this.s0_NPC_Raccoon_Art_01, {
+    //   states: [
+    //     {
+    //       clip: 'Idle'
+    //     },
+    //     {
+    //       clip: 'Talk'
+    //     },
+    //     {
+    //       clip: 'Hi'
+    //     },
+    //     {
+    //       clip: 'Celebrate'
+    //     },
+    //     {
+    //       clip: 'Bye'
+    //     },
+    //     {
+    //       clip: 'Dance'
+    //     }
+    //   ]
+    // })
+    // Transform.create(this.s0_NPC_Raccoon_Art_01, {
+    //   position: Vector3.create(0, -0.91, 0),
+    //   rotation: Quaternion.create(0, 0.6327581, 0, -0.7743495),
+    //   scale: Vector3.create(2.213552, 1.280694, 2.213552)
+    // })
+    // Transform.getMutable(this.s0_NPC_Raccoon_Art_01).parent = this.s0_En_Npc2_01
     // En_Npc3
     this.s0_En_Npc3_01 = engine.addEntity()
     MeshRenderer.setCylinder(this.s0_En_Npc3_01)

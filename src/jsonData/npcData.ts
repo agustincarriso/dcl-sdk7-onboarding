@@ -44,4 +44,17 @@ export const racoon2Sourprised: ImageData = {
 }
 export const Racoon2Talking: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Racoon2_Talking.png'
+// MAT DATA
+
+export const idleMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Idle.png'
+}
+export const talkingMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Talking.png'
+}
+export const surprisedMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Sourprised.png'
+}
+export const happyMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Happy.png'
 }
