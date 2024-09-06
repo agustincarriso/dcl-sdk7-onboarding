@@ -287,3 +287,111 @@ export class sideBubbleTalk {
     TextShape.getMutable(this.textEntity).fontSize = 1.9
   }
 }
+export class BubbleDynamic {
+  centerEntity: Entity
+  textEntity: Entity
+  titleEntity: Entity
+  text: string
+  active: boolean = true
+  parent: Entity
+
+  // Sacle factors
+  // Scale factors
+  minScale: Vector3 = Vector3.create(0.25, 0.25, 0.25)
+  maxScale: Vector3 = Vector3.create(1.0, 1.0, 1.0)
+  maxDistance: number = 10000
+
+  textScaleFactor: Vector3 = Vector3.create(1, 1, 1)
+  titleScaleFactor: Vector3 = Vector3.create(1, 1, 1)
+
+  constructor(entity: Entity) {
+    this.text = CLICKME
+    this.centerEntity = engine.addEntity()
+    this.parent = entity
+    Transform.create(this.centerEntity, {
+      position: Vector3.create(0, 0.9, 0),
+      scale: Vector3.create(0.25, 0.25, 0.25),
+      parent: entity
+    })
+    GltfContainer.create(this.centerEntity, { src: 'assets/scene/models/glb_assets/s0_centerbubble_01.glb' })
+
+    //Main Entity
+
+    Transform.getMutable(this.centerEntity).scale = Vector3.create(0.25, 0.25, 0.25)
+    // Text config
+    this.textEntity = engine.addEntity()
+    Transform.create(this.textEntity, { position: Vector3.create(-0.8, 0.8, -0.04), parent: this.centerEntity })
+    TextShape.create(this.textEntity).text = this.text
+    TextShape.getMutable(this.textEntity).fontSize = 1.9
+    TextShape.getMutable(this.textEntity).textColor = Color4.Black()
+    TextShape.getMutable(this.textEntity).textAlign = 1
+
+    // Title config
+    this.titleEntity = engine.addEntity()
+    Transform.create(this.titleEntity, { position: Vector3.create(-1.1, 1.17, -0.04), parent: this.centerEntity })
+    TextShape.create(this.titleEntity).text = '<b>Tobor</b>'
+    TextShape.getMutable(this.titleEntity).fontSize = 1.9
+    TextShape.getMutable(this.titleEntity).textColor = Color4.Black()
+    TextShape.getMutable(this.titleEntity).font = 2
+    Transform.createOrReplace(this.centerEntity, {
+      position: Vector3.create(0, 0.9, 0),
+      scale: Vector3.create(0.25, 0.25, 0.25),
+      parent: this.parent
+    })
+    // engine.addSystem(this.mySystem)
+  }
+
+  respSystem = (dt: number): void => {
+    // Obtener la posición del jugador
+    const playerPos = Transform.get(engine.PlayerEntity).position
+    const bubblePos = Transform.get(this.centerEntity).position
+    const distance = Vector3.distance(playerPos, bubblePos)
+    const scaleFactor = Math.pow(distance / 263, 10)
+    const newScale = Vector3.lerp(this.minScale, this.maxScale, Math.min(scaleFactor, 10))
+    console.log(
+      `Distance: ${distance}, ScaleFactor: ${scaleFactor}, NewScale: (${newScale.x}, ${newScale.y}, ${newScale.z})`
+    )
+
+    Transform.getMutable(this.centerEntity).scale = newScale
+  }
+
+  closeBubbleInTime(): void {
+    if (!this.active) return
+
+    this.active = false
+    const startScale = Vector3.create(0.7, 0.7, 0.7)
+    const endScale = Vector3.create(0, 0, 0)
+    const duration = 500
+
+    this.animateEntity(
+      this.titleEntity,
+      Vector3.multiply(startScale, this.titleScaleFactor),
+      Vector3.multiply(endScale, this.titleScaleFactor),
+      duration
+    )
+    this.animateEntity(
+      this.textEntity,
+      Vector3.multiply(startScale, this.textScaleFactor),
+      Vector3.multiply(endScale, this.textScaleFactor),
+      duration
+    )
+
+    this.animateEntity(
+      this.centerEntity,
+      Vector3.multiply(startScale, Transform.getMutable(this.centerEntity).scale),
+      endScale,
+      duration
+    )
+  }
+
+  private animateEntity(entity: Entity, startScale: Vector3, endScale: Vector3, duration: number) {
+    Tween.createOrReplace(entity, {
+      mode: Tween.Mode.Scale({
+        start: startScale,
+        end: endScale
+      }),
+      duration: duration,
+      easingFunction: EasingFunction.EF_LINEAR
+    })
+  }
+}
