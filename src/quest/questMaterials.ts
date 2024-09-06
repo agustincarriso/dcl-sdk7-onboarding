@@ -143,7 +143,7 @@ export class QuestMaterials {
         entity: this.blocker,
         opts: {
           button: InputAction.IA_POINTER,
-          hoverText: 'Talk to Mat Before Continuing'
+          hoverText: 'Talk to Mat'
         }
       },
       () => {}

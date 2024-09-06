@@ -129,7 +129,7 @@ export class QuestEmote {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: 'Talk to Bezier Before Crossing'
+            hoverText: 'Talk to Bezier'
           }
         }
       ]

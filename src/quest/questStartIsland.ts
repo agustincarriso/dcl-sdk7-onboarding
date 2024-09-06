@@ -136,7 +136,7 @@ export class SpawnIsland {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: 'Talk to Tobor Before Crossing'
+            hoverText: 'Talk to Tobor'
           }
         }
       ]
