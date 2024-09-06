@@ -19,7 +19,7 @@ import { AudioManager } from '../imports/components/audio/audio.manager'
 import * as utils from '@dcl-sdk/utils'
 import { closeDialogWindow, openDialogWindow } from 'dcl-npc-toolkit'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
-import { FloorCircleTargeter } from '../imports/components/targeter'
+import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
 import { sideBubbleTalk } from '../imports/bubble'
 import { HELP_KIT, ZONE_3_COLLECT_0 } from '../jsonData/textsTutorialBubble'
 import { closeDialog } from 'dcl-npc-toolkit/dist/dialog'
@@ -38,6 +38,8 @@ export class QuestMaterials {
   firstTimeClosingRewardUI: boolean = true
   hasReward: boolean = false
   blocker: Entity
+  arrow1: ArrowTargeter
+  arrow2: ArrowTargeter
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.blocker = engine.addEntity()
@@ -100,6 +102,20 @@ export class QuestMaterials {
     )
     this.targeterCircle.showCircle(true)
     this.targeterCircle.setCircleScale(0.4)
+    this.arrow1 = new ArrowTargeter(
+      Vector3.create(0, 0, 0),
+      Vector3.create(4, 4, 4),
+      Quaternion.create(0, 0, 0),
+      this.gameController.mainInstance.s0_Z3_Quest_BoxMat_art_3__01
+    )
+    this.arrow1.setArrowHeight(2)
+    this.arrow2 = new ArrowTargeter(
+      Vector3.create(0, 0, 0),
+      Vector3.create(4, 4, 4),
+      Quaternion.create(0, 0, 0),
+      this.gameController.mainInstance.s0_Z3_Quest_BoxTri_art_3__01
+    )
+    this.arrow2.setArrowHeight(2)
     this.setUpTriggerHi()
     this.loadTagData()
     this.walletConected = this.claim.setUserData()
@@ -176,6 +192,8 @@ export class QuestMaterials {
     Animator.stopAllAnimations(this.mat.entity)
     Animator.getClip(this.mat.entity, 'Idle').playing = true
     this.startQuestCollectMaterials()
+    this.arrow1.showArrow(true)
+    this.arrow2.showArrow(true)
   }
   startQuestCollectMaterials() {
     if (this.quest3Started == false) {
@@ -273,7 +291,7 @@ export class QuestMaterials {
     this.questIndicator.updateStatus(IndicatorState.INTERROGATION)
     this.deliverAllPiecesClick()
   }
-  removeParticleEntity() {}
+
   spawnparticles() {
     const particle = engine.addEntity()
     GltfContainer.create(particle, { src: 'assets/scene/models/glb_assets/CheckParticles_Art.glb' })
@@ -300,15 +318,12 @@ export class QuestMaterials {
         }
       },
       () => {
-        console.log('ui removed')
         this.questIndicator.hide()
         this.talkNpcCompleteQuest()
         pointerEventsSystem.removeOnPointerDown(this.mat.npcChild)
       }
     )
     // add onpointerDown on click trigger
-
-    console.log('give all p')
   }
   talkNpcCompleteQuest() {
     this.spawnparticles()
@@ -349,7 +364,6 @@ export class QuestMaterials {
       this.firstTimeClosingRewardUI = false
     }
   }
-  onCloseRewardUI() {}
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_1__01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_1__01, 'Pillar_Anim').speed = 3
@@ -385,15 +399,17 @@ export class QuestMaterials {
         }
       },
       () => {
+        console.log(this.walletConected, ' this   ', this.hasReward)
         if (!this.walletConected) {
           this.dialogEndQuest()
-          if (this.walletConected && !this.hasReward) {
-            console.log('Wallet connected not reward')
-            this.playerForgotRewardDialog()
-            this.bubbleTalk.closeBubbleInTime()
-          } else if (this.walletConected && this.hasReward) {
-            this.dialogEndQuest()
-          }
+        }
+        if (this.walletConected && !this.hasReward) {
+          console.log('Case Wallet connected but no collect the reward not reward')
+          this.playerForgotRewardDialog()
+          this.bubbleTalk.closeBubbleInTime()
+        } else if (this.walletConected && this.hasReward) {
+          console.log('Case Wallet connected and reward connected  ')
+          this.dialogEndQuest()
         }
       }
     )
