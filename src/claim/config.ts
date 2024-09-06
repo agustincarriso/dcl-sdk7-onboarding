@@ -23,3 +23,9 @@ export const configVest: ClaimTokenRequestArgs = {
   campaign_key:
     'eyJpZCI6IjVmMjA4OGRhLTc4MmYtNDk0OS05YmQyLTcyM2ZiZTRmY2U1NiIsImNhbXBhaWduX2lkIjoiNGYzOTMxMWItOGJkNi00ZGMwLWI0ODEtZDJkMTIzNTBhMWI3In0=.8WlZ55X7hsVaRHK35niEoOxcrCtPNCy7-0HDZ12ikn4='
 }
+export const configCap: ClaimTokenRequestArgs = {
+  claimServer: 'https://rewards.decentraland.org',
+  campaign: '4f39311b-8bd6-4dc0-b481-d2d12350a1b7',
+  campaign_key:
+    'eyJpZCI6IjgwMGJkMmY2LWI3ODYtNDY1Ny1iMTQ1LWZkNTRmNjgyNzAyNCIsImNhbXBhaWduX2lkIjoiNGYzOTMxMWItOGJkNi00ZGMwLWI0ODEtZDJkMTIzNTBhMWI3In0=.wnO73VddYOJPcfVzTenGwID4-02zjonI0wdy7S4dUwY='
+}

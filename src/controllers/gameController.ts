@@ -12,6 +12,7 @@ import { QuestEmote } from '../quest/questEmote'
 import { getUserData } from '~system/UserIdentity'
 import { ClaimTokenRequest } from '../claim/claim'
 import { QuestMaterials } from '../quest/questMaterials'
+import { QuestPortal } from '../quest/questPortals'
 
 export class GameController {
   mainInstance: MainInstace
@@ -19,6 +20,7 @@ export class GameController {
   spawnIsland: SpawnIsland
   questEmote: QuestEmote
   questMaterial: QuestMaterials
+  questPortal: QuestPortal
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
@@ -27,5 +29,6 @@ export class GameController {
     this.dialogs = new Dialogs(this)
     this.questEmote = new QuestEmote(this)
     this.questMaterial = new QuestMaterials(this)
+    this.questPortal = new QuestPortal(this)
   }
 }

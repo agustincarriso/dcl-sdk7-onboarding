@@ -43,7 +43,6 @@ export class SpawnIsland {
   targeterCircle: FloorCircleTargeter
   questIndicator: QuestIndicator
   bubbleTalk: BubbleTalk
-  bubbleDynamic: BubbleDynamic
   arrows: Entity[]
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -104,10 +103,7 @@ export class SpawnIsland {
     })
     this.tobor.activateBillBoard(true)
     this.bubbleTalk = new BubbleTalk(this.tobor.npcChild)
-    //REMOVE THIS
     this.bubbleTalk.closeBubbleInTime()
-    this.bubbleDynamic = new BubbleDynamic(this.tobor.npcChild)
-    engine.addSystem(this.bubbleDynamic.respSystem)
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0, 0),
       Vector3.create(0, 0, 0),
@@ -179,7 +175,8 @@ export class SpawnIsland {
       movePlayerTo({
         // newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
         // newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
-        newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
+        newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
+        // newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     })

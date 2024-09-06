@@ -334,25 +334,29 @@ export class BubbleDynamic {
     TextShape.getMutable(this.titleEntity).textColor = Color4.Black()
     TextShape.getMutable(this.titleEntity).font = 2
     Transform.createOrReplace(this.centerEntity, {
-      position: Vector3.create(0, 0.9, 0),
+      position: Vector3.create(0, 1.8, 0),
       scale: Vector3.create(0.25, 0.25, 0.25),
       parent: this.parent
     })
-    // engine.addSystem(this.mySystem)
   }
 
   respSystem = (dt: number): void => {
-    // Obtener la posición del jugador
     const playerPos = Transform.get(engine.PlayerEntity).position
-    const bubblePos = Transform.get(this.centerEntity).position
-    const distance = Vector3.distance(playerPos, bubblePos)
-    const scaleFactor = Math.pow(distance / 263, 10)
-    const newScale = Vector3.lerp(this.minScale, this.maxScale, Math.min(scaleFactor, 10))
-    console.log(
-      `Distance: ${distance}, ScaleFactor: ${scaleFactor}, NewScale: (${newScale.x}, ${newScale.y}, ${newScale.z})`
-    )
+    const bubblePos = Transform.get(this.parent).position
 
+    const distance = Vector3.distance(playerPos, bubblePos)
+    console.log(`Distance: ${distance}`)
+
+    const minScale = Vector3.create(0.25, 0.25, 0.25)
+    const maxScale = Vector3.create(2, 2, 2)
+
+    const minDistance = 1
+    const maxDistance = 10
+    const clampedDistance = Math.min(Math.max(distance, minDistance), maxDistance)
+    const t = (clampedDistance - minDistance) / (maxDistance - minDistance)
+    const newScale = Vector3.lerp(minScale, maxScale, t)
     Transform.getMutable(this.centerEntity).scale = newScale
+    console.log(newScale)
   }
 
   closeBubbleInTime(): void {
