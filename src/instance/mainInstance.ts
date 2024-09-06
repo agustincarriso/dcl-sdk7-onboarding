@@ -74,7 +74,6 @@ export class MainInstace {
   s0_En_Npc1_01: Entity
   s0_En_Npc2_01: Entity
   s0_En_Npc3_01: Entity
-  // s0_NPC_Raccoon02_Art_01: Entity
   s0_En_Portal_tobor_01: Entity
   s0_En_Tob_end_stairs_01: Entity
   s0_En_Tob_Pillar_01: Entity
@@ -119,7 +118,7 @@ export class MainInstace {
   s0_Z3_Rock_3_art_1__01: Entity
   s0_Z3_Rock_4_art_5__01: Entity
   s0_Z3_Rock_4_art_4__01: Entity
-  // s0_WaterFall_01_Art_01: Entity
+  s0_WaterFall_01_Art_01: Entity
   s0_Z3_Prop_Fence_Art_3__01: Entity
   s0_Z3_Prop_Fence_Art_4__01: Entity
   s0_tree_03_low_1__01: Entity
@@ -238,8 +237,8 @@ export class MainInstace {
   s0_Z3_Stones_2_art_47__01: Entity
   s0_Z3_Rock_3_art_30__01: Entity
   s0_Z3_Rock_3_art_32__01: Entity
-  // s0_WaterFall_01_Art_1__01: Entity //out of boundaries
-  // s0_WaterFall_01_Art_2__01: Entity
+  s0_WaterFall_01_Art_1__01: Entity //out of boundaries
+  s0_WaterFall_01_Art_2__01: Entity
   s0_Z3_Prop_Stairs03_Art_1__01: Entity
   s0_Z3_Prop_Stairs03_Art_2__01: Entity
   s0_Z3_Rock_3_art_33__01: Entity
@@ -771,74 +770,6 @@ export class MainInstace {
       visibleMeshesCollisionMask: 0 // Disable collisions
     })
     Transform.getMutable(this.s0_Cable_04_ON_01).parent = this.s0_Cables_Art_01
-
-    //  NPC_Robot_Art
-    // Animator.createOrReplace(this.s0_NPC_Robot_Art_1__01, {
-    //   states: [
-    //     {
-    //       clip: 'Robot_On',
-    //       playing: false,
-    //       loop: false
-    //     },
-    //     {
-    //       clip: 'Robot_off',
-    //       playing: false,
-    //       loop: false
-    //     },
-    //     {
-    //       clip: 'Walk_End',
-    //       playing: false,
-    //       loop: false
-    //     },
-    //     {
-    //       clip: 'Walk_Loop',
-    //       playing: false,
-    //       loop: false
-    //     },
-    //     {
-    //       clip: 'Walk_Start',
-    //       playing: false,
-    //       loop: false
-    //     },
-    //     {
-    //       clip: 'Robot_Idle',
-    //       playing: true,
-    //       loop: true
-    //     },
-    //     {
-    //       clip: 'Talk',
-    //       playing: false,
-    //       loop: false
-    //     }
-    //   ]
-    // })
-
-    // this.s0_NPC_Robot_Art_1__01 = npc.create(
-    //   {
-    //     position: Vector3.create(218.95, 68.67, 127.08),
-    //     rotation: Quaternion.create(0, 0.5733939, 0, -0.8192798),
-    //     scale: Vector3.create(1, 1, 1)
-    //   },
-    //   {
-    //     type: npc.NPCType.CUSTOM,
-    //     model: 'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
-    //     onActivate: () => {
-    //       console.log('npc activated')
-    //       Animator.playSingleAnimation(this.s0_NPC_Robot_Art_1__01, 'Talk')
-    //     },
-    //     onWalkAway: () => {
-    //       console.log('walked away')
-    //     },
-    //     hoverText: 'Talk',
-    //     idleAnim: 'Robot_Idle',
-    //     faceUser: true,
-    //     portrait: 'assets/ui/portraits/UI_NPC_Character_Robot_Idle.png',
-    //     reactDistance: 14,
-    //     onlyClickTrigger: true
-    //   }
-    // )
-    // MeshCollider.setBox(this.s0_NPC_Robot_Art_1__01)
-
     //Puzle machines
     this.s0_Puzlemachines_01 = engine.addEntity()
     Transform.create(this.s0_Puzlemachines_01, {
@@ -1100,39 +1031,6 @@ export class MainInstace {
       metallic: 0,
       roughness: 0.5
     })
-    // NPC_Raccoon_Art
-    // this.s0_NPC_Raccoon_Art_01 = engine.addEntity()
-    // GltfContainer.create(this.s0_NPC_Raccoon_Art_01, {
-    //   src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon_Art_01.glb'
-    // })
-    // Animator.create(this.s0_NPC_Raccoon_Art_01, {
-    //   states: [
-    //     {
-    //       clip: 'Idle'
-    //     },
-    //     {
-    //       clip: 'Talk'
-    //     },
-    //     {
-    //       clip: 'Hi'
-    //     },
-    //     {
-    //       clip: 'Celebrate'
-    //     },
-    //     {
-    //       clip: 'Bye'
-    //     },
-    //     {
-    //       clip: 'Dance'
-    //     }
-    //   ]
-    // })
-    // Transform.create(this.s0_NPC_Raccoon_Art_01, {
-    //   position: Vector3.create(0, -0.91, 0),
-    //   rotation: Quaternion.create(0, 0.6327581, 0, -0.7743495),
-    //   scale: Vector3.create(2.213552, 1.280694, 2.213552)
-    // })
-    // Transform.getMutable(this.s0_NPC_Raccoon_Art_01).parent = this.s0_En_Npc2_01
     // En_Npc3
     this.s0_En_Npc3_01 = engine.addEntity()
     MeshRenderer.setCylinder(this.s0_En_Npc3_01)
@@ -1147,38 +1045,6 @@ export class MainInstace {
       roughness: 0.5
     })
     // NPC_Raccoon02_Art
-    // this.s0_NPC_Raccoon02_Art_01 = engine.addEntity()
-    // GltfContainer.create(this.s0_NPC_Raccoon02_Art_01, {
-    //   src: 'assets/scene/models/unity_assets/s0_NPC_Raccoon02_Art_01.glb'
-    // })
-    // Animator.create(this.s0_NPC_Raccoon02_Art_01, {
-    //   states: [
-    //     {
-    //       clip: 'Idle'
-    //     },
-    //     {
-    //       clip: 'Talk'
-    //     },
-    //     {
-    //       clip: 'Hi'
-    //     },
-    //     {
-    //       clip: 'Celebrate'
-    //     },
-    //     {
-    //       clip: 'Bye'
-    //     },
-    //     {
-    //       clip: 'Dance'
-    //     }
-    //   ]
-    // })
-    // Transform.create(this.s0_NPC_Raccoon02_Art_01, {
-    //   position: Vector3.create(0, -1.07, 0),
-    //   rotation: Quaternion.create(0, 0.7446296, 0, -0.6674779),
-    //   scale: Vector3.create(2.213551, 1.280694, 2.213551)
-    // })
-    // Transform.getMutable(this.s0_NPC_Raccoon02_Art_01).parent = this.s0_En_Npc3_01
     // En_Portal_tobor
     this.s0_En_Portal_tobor_01 = engine.addEntity()
     Transform.create(this.s0_En_Portal_tobor_01, {
@@ -1742,17 +1608,17 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Z3_Rock_4_art_4__01).parent = this.s0_Z3_COG_01
 
-    // // s0_WaterFall_01_Art_01 //out of boundaries
-    // this.s0_WaterFall_01_Art_01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_01, {
-    //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
-    // })
-    // Transform.create(this.s0_WaterFall_01_Art_01, {
-    //   position: Vector3.create(-38.5, -48.82, 278.49),
-    //   rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
-    //   scale: Vector3.create(1, 1.5479, 1)
-    // })
-    // Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
+    // s0_WaterFall_01_Art_01 //out of boundaries
+    this.s0_WaterFall_01_Art_01 = engine.addEntity()
+    GltfContainer.create(this.s0_WaterFall_01_Art_01, {
+      src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
+    })
+    Transform.create(this.s0_WaterFall_01_Art_01, {
+      position: Vector3.create(-38.5, -48.82, 278.49),
+      rotation: Quaternion.create(0, 0.8777911, 0, -0.4790436),
+      scale: Vector3.create(1, 1.5479, 1)
+    })
+    Transform.getMutable(this.s0_WaterFall_01_Art_01).parent = this.s0_Z3_COG_01
 
     // s0_Z3_Prop_Fence_Art_3__01
     this.s0_Z3_Prop_Fence_Art_3__01 = engine.addEntity()
@@ -2986,31 +2852,31 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Z3_Rock_3_art_32__01).parent = this.s0_Z3_COG_01
     // WaterFall_01_Art (1) out of boundaries
-    // this.s0_WaterFall_01_Art_1__01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_1__01, { src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb' })
-    // Animator.create(this.s0_WaterFall_01_Art_1__01, {
-    //   states: [{ clip: 'Take 001' }]
-    // })
-    // Transform.create(this.s0_WaterFall_01_Art_1__01, {
-    //   position: Vector3.create(240.75, -46.49, 348.94),
-    //   rotation: Quaternion.create(0, 0.4090146, 0, -0.9125279),
-    //   scale: Vector3.create(1, 1.5479, 1)
-    // })
-    // Transform.getMutable(this.s0_WaterFall_01_Art_1__01).parent = this.s0_Z3_COG_01
+    this.s0_WaterFall_01_Art_1__01 = engine.addEntity()
+    GltfContainer.create(this.s0_WaterFall_01_Art_1__01, { src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb' })
+    Animator.create(this.s0_WaterFall_01_Art_1__01, {
+      states: [{ clip: 'Take 001' }]
+    })
+    Transform.create(this.s0_WaterFall_01_Art_1__01, {
+      position: Vector3.create(240.75, -46.49, 348.94),
+      rotation: Quaternion.create(0, 0.4090146, 0, -0.9125279),
+      scale: Vector3.create(1, 1.5479, 1)
+    })
+    Transform.getMutable(this.s0_WaterFall_01_Art_1__01).parent = this.s0_Z3_COG_01
     // WaterFall_01_Art (2)
-    // this.s0_WaterFall_01_Art_2__01 = engine.addEntity()
-    // GltfContainer.create(this.s0_WaterFall_01_Art_2__01, {
-    //   src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
-    // })
-    // Animator.create(this.s0_WaterFall_01_Art_2__01, {
-    //   states: [{ clip: 'Take 001' }]
-    // })
-    // Transform.create(this.s0_WaterFall_01_Art_2__01, {
-    //   position: Vector3.create(281.87, -219.81, 364.51),
-    //   rotation: Quaternion.create(0, 0.1498511, 0, -0.9887086),
-    //   scale: Vector3.create(1, 3.853356, 1)
-    // })
-    // Transform.getMutable(this.s0_WaterFall_01_Art_2__01).parent = this.s0_Z3_COG_01
+    this.s0_WaterFall_01_Art_2__01 = engine.addEntity()
+    GltfContainer.create(this.s0_WaterFall_01_Art_2__01, {
+      src: 'assets/scene/models/unity_assets/s0_WaterFall_01_Art_01.glb'
+    })
+    Animator.create(this.s0_WaterFall_01_Art_2__01, {
+      states: [{ clip: 'Take 001' }]
+    })
+    Transform.create(this.s0_WaterFall_01_Art_2__01, {
+      position: Vector3.create(281.87, -219.81, 364.51),
+      rotation: Quaternion.create(0, 0.1498511, 0, -0.9887086),
+      scale: Vector3.create(1, 3.853356, 1)
+    })
+    Transform.getMutable(this.s0_WaterFall_01_Art_2__01).parent = this.s0_Z3_COG_01
     // Z3_Prop_Stairs03_Art (1)
     this.s0_Z3_Prop_Stairs03_Art_1__01 = engine.addEntity()
     GltfContainer.create(this.s0_Z3_Prop_Stairs03_Art_1__01, {
