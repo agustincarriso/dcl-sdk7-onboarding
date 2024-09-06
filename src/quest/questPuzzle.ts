@@ -137,15 +137,18 @@ export class QuestPuzzle {
     this.connect_game.activatePieces()
     this.bubbleTalk.openBubble(ZONE_2_PUZZLE_0, true)
     this.puzzleQuest()
-  }
+  } 
   cameraModeAngleCheck() {
-    engine.addSystem( this.gameController.uiController.popUpControls.checkCameraMode)
-    this.gameController.uiController.popUpControls.checkCameraMode()
+    // engine.addSystem( this.gameController.uiController.popUpControls.checkCameraMode)
+    this.gameController.uiController.popUpControls.showPuzzlesUis()
+    // this.gameController.uiController.popUpControls.checkCameraMode()
   }
-  puzzleQuest() {
+  puzzleQuest() { 
     if (this.connect_game.bStarted) return
     this.connect_game.startGame()
-    this.connect_game.completeEvent2PuzzleCallback = () => {
+    this.connect_game.completeEvent2PuzzleCallback = () => { 
+      this.gameController.uiController.popUpControls.puzzleConnectCablesVisible = false
+      this.gameController.uiController.popUpControls.endPuzzle = true
       console.log('complete game')
       // //BLA fixed generator
       changeGeneratosSound()

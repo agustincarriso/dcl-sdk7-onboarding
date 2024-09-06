@@ -64,13 +64,13 @@ export class ConnectMiniGame {
     this.puzzle_cable_2_on = this.gameController.mainInstance.s0_Sign_02_ON_01
     this.puzzle_cable_3_off = this.gameController.mainInstance.s0_Sign_03_OFF_01
     this.puzzle_cable_3_on = this.gameController.mainInstance.s0_Sign_03_ON_01
-    this.tubeON_1 = this.gameController.mainInstance.s0_tube_01_ON_01 
-    this.tubeON_2= this.gameController.mainInstance.s0_tube_02_ON_01 
-    this.tubeON_3= this.gameController.mainInstance.s0_tube_03_ON_01 
-    this.tubeOFF_1= this.gameController.mainInstance.s0_tube_01_OFF_01 
-    this.tubeOFF_2= this.gameController.mainInstance.s0_tube_02_OFF_01 
-    this.tubeOFF_3= this.gameController.mainInstance.s0_tube_03_OFF_01
-    
+    this.tubeON_1 = this.gameController.mainInstance.s0_tube_01_ON_01
+    this.tubeON_2 = this.gameController.mainInstance.s0_tube_02_ON_01
+    this.tubeON_3 = this.gameController.mainInstance.s0_tube_03_ON_01
+    this.tubeOFF_1 = this.gameController.mainInstance.s0_tube_01_OFF_01
+    this.tubeOFF_2 = this.gameController.mainInstance.s0_tube_02_OFF_01
+    this.tubeOFF_3 = this.gameController.mainInstance.s0_tube_03_OFF_01
+
     Transform.getMutable(this.puzzle_cable_1_off).scale = Vector3.create(1, 1, 1)
     Transform.getMutable(this.puzzle_cable_1_on).scale = Vector3.create(0, 0, 0)
     Transform.getMutable(this.puzzle_cable_2_off).scale = Vector3.create(1, 1, 1)
@@ -172,7 +172,6 @@ export class ConnectMiniGame {
         if (this.checkallPieces()) {
           console.log('check all pieces')
           this.boardCompleted = true
-
         }
         if (this.boardCompleted) {
           console.log('board completed')
@@ -195,7 +194,6 @@ export class ConnectMiniGame {
     }
     for (let i = 0; i < this.pieces.length; i++) {
       pointerEventsSystem.removeOnPointerDown(this.pieces[i].getEntity())
-      this.pieces[i].pieceTargeter.delete()
     }
     return finish
   }
@@ -217,7 +215,7 @@ class Piece {
   puzzle_cables_off: Entity
   piece: Entity
   gameController: GameController
-  rotationDegrees:number = 45
+  rotationDegrees: number = 45
   tubeON: Entity = engine.addEntity()
   tubeOFF: Entity = engine.addEntity()
   pieceTargeter: ArrowTargeter
@@ -252,7 +250,7 @@ class Piece {
     this.setState(_startState)
   }
 
-  nextState(i: number) { 
+  nextState(i: number) {
     this.currentState++
     const transform = Transform.get(this.piece_box)
     // Crea un cuaternión que represente la rotación adicional de 45 grados alrededor del eje Y
@@ -315,9 +313,9 @@ class Piece {
       return true
     } else {
       Transform.getMutable(this.puzzle_cables_off).scale = Vector3.create(1, 1, 1)
-      Transform.getMutable(this.tubeOFF).scale = Vector3.create(1,1,1)
+      Transform.getMutable(this.tubeOFF).scale = Vector3.create(1, 1, 1)
       Transform.getMutable(this.puzzle_cables_on).scale = Vector3.create(0, 0, 0)
-      Transform.getMutable(this.tubeON).scale = Vector3.create(0,0,0)
+      Transform.getMutable(this.tubeON).scale = Vector3.create(0, 0, 0)
       this.pieceTargeter.showArrow(true)
       return false
     }
