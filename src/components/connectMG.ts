@@ -43,12 +43,17 @@ export class ConnectMiniGame {
   tubeOFF_1: Entity = engine.addEntity()
   tubeOFF_2: Entity = engine.addEntity()
   tubeOFF_3: Entity = engine.addEntity()
-
+  pieceTargeter_1: ArrowTargeter
+  pieceTargeter_2: ArrowTargeter
+  pieceTargeter_3: ArrowTargeter
   bStarted: boolean = false
   piecesActivated: boolean = false
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
+    this.pieceTargeter_1 = this.gameController.mainInstance.tubeArrow_1
+    this.pieceTargeter_2 = this.gameController.mainInstance.tubeArrow_2
+    this.pieceTargeter_3 = this.gameController.mainInstance.tubeArrow_3
     this.getPieces()
   }
 
@@ -87,7 +92,8 @@ export class ConnectMiniGame {
         0,
         this.gameController,
         this.tubeON_1,
-        this.tubeOFF_1
+        this.tubeOFF_1,
+        this.pieceTargeter_1
       )
     )
     this.pieces.push(
@@ -99,7 +105,8 @@ export class ConnectMiniGame {
         0,
         this.gameController,
         this.tubeON_2,
-        this.tubeOFF_2
+        this.tubeOFF_2,
+        this.pieceTargeter_2
       )
     )
     this.pieces.push(
@@ -111,7 +118,8 @@ export class ConnectMiniGame {
         0,
         this.gameController,
         this.tubeON_3,
-        this.tubeOFF_3
+        this.tubeOFF_3,
+        this.pieceTargeter_3
       )
     )
 
@@ -207,12 +215,12 @@ class Piece {
   green_mat: string = '' //Good Position Mat
   puzzle_cables_on: Entity
   puzzle_cables_off: Entity
-  pieceTargeter: ArrowTargeter
   piece: Entity
   gameController: GameController
   rotationDegrees:number = 45
   tubeON: Entity = engine.addEntity()
   tubeOFF: Entity = engine.addEntity()
+  pieceTargeter: ArrowTargeter
   constructor(
     _entity: Entity,
     puzzle_cables_on: Entity,
@@ -221,7 +229,8 @@ class Piece {
     _correctState: number = 2,
     gameController: GameController,
     tubeON: Entity,
-    tubeOFF: Entity
+    tubeOFF: Entity,
+    pieceTargeter: ArrowTargeter
   ) {
     this.piece = engine.addEntity()
     Transform.create(this.piece, {
@@ -237,15 +246,9 @@ class Piece {
     this.puzzle_cables_on = puzzle_cables_on
     this.puzzle_cables_off = puzzle_cables_off
     this.piece_mat = this.red_mat
-    this.pieceTargeter = new ArrowTargeter(
-      Vector3.create(0,0,0),
-      Vector3.create(1,1,1),
-      Quaternion.fromEulerDegrees(0,0,0),
-      this.piece_box
-    )
     this.tubeON = tubeON
     this.tubeOFF = tubeOFF
-    this.pieceTargeter.setArrowHeight(0.8)
+    this.pieceTargeter = pieceTargeter
     this.setState(_startState)
   }
 

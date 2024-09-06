@@ -20,6 +20,7 @@ import * as npc from 'dcl-npc-toolkit'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
 import { SpawnIsland } from '../quest/questStartIsland'
+import { ArrowTargeter } from '../imports/components/targeter'
 
 export class MainInstace {
   s0_Z1_Out_IslandBase2_Art_01: Entity
@@ -48,7 +49,6 @@ export class MainInstace {
   s0_Cable_03_ON_01: Entity
   s0_Cable_04_OFF_01: Entity
   s0_Cable_04_ON_01: Entity
-  // s0_NPC_Robot_Art_1__01: Entity = engine.addEntity()
   s0_Puzlemachines_01: Entity
   s0_Cables_01: Entity
   s0_Puzle_machines_01: Entity
@@ -67,6 +67,9 @@ export class MainInstace {
   s0_tube_03_01: Entity
   s0_tube_03_OFF_01: Entity
   s0_tube_03_ON_01: Entity
+  tubeArrow_1 : ArrowTargeter
+  tubeArrow_2 : ArrowTargeter
+  tubeArrow_3 : ArrowTargeter
   s0_En_DanceZone_01: Entity
   s0_En_Npc1_01: Entity
   s0_En_Npc2_01: Entity
@@ -950,7 +953,25 @@ export class MainInstace {
     GltfContainer.create(this.s0_tube_01_01, {
       src: 'assets/scene/models/unity_assets/s0_tube_01_01.glb'
     })
-    
+    this.tubeArrow_1 = new ArrowTargeter(
+      Vector3.create(98.79,79.6,140.2),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+    this.tubeArrow_2 = new ArrowTargeter(
+      Vector3.create(99.09,79.4,141.90),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+
+    this.tubeArrow_3 = new ArrowTargeter(
+      Vector3.create(99.9,79.4,143.5),
+      Vector3.create(1,1,1),
+      Quaternion.fromEulerDegrees(0,0,0)
+    )
+    this.tubeArrow_1.showArrow(false)
+    this.tubeArrow_2.showArrow(false)
+    this.tubeArrow_3.showArrow(false)
 
     // Tube_01_OFF
     this.s0_tube_01_OFF_01 = engine.addEntity()

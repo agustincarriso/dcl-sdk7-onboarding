@@ -21,8 +21,7 @@ export class PopUpControls {
   puzzleImage: string = 'assets/ui/UI_V.png'
   puzzleText: string = '<b>Toggle camera to get\na closer look</b>'
   puzzleConnectCablesVisible: boolean = false
-  puzzleConnectCablesText: string ="<b>Connect the cables</b>"
-  masterPuzzleVisible: boolean = false
+  puzzleConnectCablesText: string = '<b>Connect the cables</b>'
   constructor(uiController: UIController) {
     this.uiController = uiController
   }
@@ -162,7 +161,7 @@ export class PopUpControls {
           width: canvasInfo.width,
           height: '15%',
           position: { bottom: '0%', left: '0%' },
-          display: this.masterPuzzleVisible? 'flex' : 'none'
+          display: this.puzzleContainerVisible ? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -221,7 +220,7 @@ export class PopUpControls {
           width: canvasInfo.width,
           height: '15%',
           position: { bottom: '0%', left: '0%' },
-          display: this.masterPuzzleVisible? 'flex' : 'none' 
+          display: this.puzzleConnectCablesVisible ? 'flex' : 'none'
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -259,28 +258,17 @@ export class PopUpControls {
       </UiEntity>
     )
   }
-  checkCameraMode(){
-    Transform.onChange(engine.CameraEntity,()=>{
-      if (!Transform.has(engine.CameraEntity)) return
-      let cameraEntity = CameraMode.get(engine.CameraEntity)
-      if (cameraEntity.mode == CameraType.CT_THIRD_PERSON) {
-        this.currentCamera = CameraType.CT_THIRD_PERSON
-      } else if (cameraEntity.mode == CameraType.CT_FIRST_PERSON) {
-        this.currentCamera = CameraType.CT_FIRST_PERSON
-      }
-    })
-  } 
-  showPuzzleUIS(){
+  checkCameraMode() {
+    if (!Transform.has(engine.CameraEntity)) return
     let cameraEntity = CameraMode.get(engine.CameraEntity)
-    this.masterPuzzleVisible = true
-    if(cameraEntity.mode === CameraType.CT_THIRD_PERSON){
-      console.log('3 person')
-      this.puzzleContainerVisible = true
+    if (cameraEntity.mode == CameraType.CT_THIRD_PERSON) {
       this.puzzleConnectCablesVisible = false
-    }else if (cameraEntity.mode === CameraType.CT_FIRST_PERSON) {
-      console.log('1 person')
+      this.puzzleContainerVisible = true
+      console.log('The player is using the 3rd person camera')
+    } else if (cameraEntity.mode == CameraType.CT_FIRST_PERSON) {
+      console.log('The player is using the 1st person camera')
       this.puzzleConnectCablesVisible = true
       this.puzzleContainerVisible = false
-    }   
+    }
   }
 }

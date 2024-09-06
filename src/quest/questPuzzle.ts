@@ -1,5 +1,6 @@
 import {
   Animator,
+  CameraMode,
   engine,
   Entity,
   GltfContainer,
@@ -19,7 +20,6 @@ import { GO_TO_PORTAL, ZONE_2_PUZZLE_0 } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { openDialogWindow } from 'dcl-npc-toolkit'
-import { checkCameraMode } from '../utils/cameraMode'
 import { activatePillarSound4, changeGeneratosSound } from '../imports/components/audio/sounds'
 
 export class QuestPuzzle {
@@ -139,9 +139,8 @@ export class QuestPuzzle {
     this.puzzleQuest()
   }
   cameraModeAngleCheck() {
-    engine.addSystem(this.gameController.uiController.popUpControls.checkCameraMode)
+    engine.addSystem( this.gameController.uiController.popUpControls.checkCameraMode)
     this.gameController.uiController.popUpControls.checkCameraMode()
-    this.gameController.uiController.popUpControls.showPuzzleUIS()
   }
   puzzleQuest() {
     if (this.connect_game.bStarted) return
@@ -177,7 +176,6 @@ export class QuestPuzzle {
         }
       },
       () => {
-        engine.removeSystem(this.gameController.uiController.popUpControls.checkCameraMode)
         pointerEventsSystem.removeOnPointerDown(this.kit.npcChild)
         this.spawnparticles()
         this.questIndicator.hide()
