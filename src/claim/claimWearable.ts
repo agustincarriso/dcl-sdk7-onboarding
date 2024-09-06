@@ -9,7 +9,7 @@ import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 import { openExternalUrl } from '~system/RestrictedActions'
 
-export class ClaimTokenRequest {
+export class ClaimWearableRequest {
   inTimeOut: boolean = false
   alreadyClaimed: string[] = []
   userData: any
@@ -69,7 +69,7 @@ export class ClaimTokenRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clicked')
+        console.log('Yeah clickeeeeeeed')
       }
     })
   }
@@ -88,7 +88,7 @@ export class ClaimTokenRequest {
       yPosition: -120,
       onMouseDown: () => {
         this.retryUI.hide()
-        this.gameController.questEmote.giveReward()
+        this.gameController.questMaterial.giveReward()
       }
     })
 
@@ -125,6 +125,8 @@ export class ClaimTokenRequest {
       yPosition: -120,
       onMouseDown: () => {
         this.onTheWay.hide()
+        this.gameController.questMaterial.setRewardTrue()
+        console.log('eeeeeee')
       }
     })
 
@@ -273,7 +275,6 @@ export class ClaimTokenRequest {
       console.log('dataaa' + json)
       this.createOnTheWayUI(json.data[0].image, json.data[0].id)
       this.onTheWay.show()
-      this.gameController.questEmote.setRewardTrue()
       this.alreadyClaimed.push(campaign_key)
     }
   }
@@ -329,6 +330,7 @@ export class ClaimTokenRequest {
       yPosition: -160,
       onMouseDown: () => {
         this.captchaUI.hide()
+        this.gameController.questMaterial.afterEndQuestClick()
       }
     })
   }

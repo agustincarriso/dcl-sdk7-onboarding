@@ -33,3 +33,18 @@ export const surprisedBezier: ImageData = {
 export const happyBezier: ImageData = {
   path: 'assets/ui/portraits/UI_NPC_Character_Fox_Happy.png'
 }
+
+// MAT DATA
+
+export const idleMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Idle.png'
+}
+export const talkingMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Talking.png'
+}
+export const surprisedMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Sourprised.png'
+}
+export const happyMat: ImageData = {
+  path: 'assets/ui/portraits/UI_NPC_Character_Racoon1_Happy.png'
+}

@@ -35,6 +35,11 @@ export class UIController {
       this.gameController.questEmote.claim.captchaUI.render(),
       this.gameController.questEmote.claim.retryUI.render(),
       this.gameController.questEmote.claim.onTheWay.render(),
+      this.gameController.questMaterial.claim.claimInProgress.render(),
+      this.gameController.questMaterial.claim.captchaUI.render(),
+      this.gameController.questMaterial.claim.retryUI.render(),
+      this.gameController.questMaterial.claim.onTheWay.render(),
+
       this.popUpUI.popupUIVest()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)

@@ -4,9 +4,12 @@ import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
 import {
   IdleTrebor,
   happyBezier,
+  happyMat,
   happyTrebor,
   idleBezier,
+  idleMat,
   surprisedBezier,
+  surprisedMat,
   talkingBezier,
   talkingTrebor
 } from './npcData'
@@ -28,12 +31,17 @@ import {
   START_ISLAND_5,
   THIRD_ISLAND_0,
   THIRD_ISLAND_1,
+  THIRD_ISLAND_10,
+  THIRD_ISLAND_11,
+  THIRD_ISLAND_12,
   THIRD_ISLAND_2,
   THIRD_ISLAND_3,
   THIRD_ISLAND_4,
   THIRD_ISLAND_5,
   THIRD_ISLAND_6,
-  THIRD_ISLAND_7
+  THIRD_ISLAND_7,
+  THIRD_ISLAND_8,
+  THIRD_ISLAND_9
 } from './textsTutorialPopups'
 import { POPUP_STATE } from '../uis/popupUI'
 
@@ -150,32 +158,82 @@ export class Dialogs {
           this.gameController.questEmote.setWalletConnection()
         },
         typeSpeed: 30
-      },
+      }
     ]
     this.matDialog = [
       {
-        text: THIRD_ISLAND_0
+        text: THIRD_ISLAND_0,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_1
+        text: THIRD_ISLAND_1,
+        portrait: happyMat
       },
       {
-        text: THIRD_ISLAND_2
+        text: THIRD_ISLAND_2,
+        portrait: surprisedMat
       },
       {
-        text: THIRD_ISLAND_3
+        text: THIRD_ISLAND_3,
+        portrait: happyMat,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.accetpQuest()
+        }
       },
       {
-        text: THIRD_ISLAND_4
+        text: THIRD_ISLAND_4,
+        portrait: idleMat,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.accetpQuest()
+        },
+        isEndOfDialog: true
       },
       {
-        text: THIRD_ISLAND_5
+        text: THIRD_ISLAND_5,
+        portrait: idleMat,
+        isEndOfDialog: true
       },
       {
-        text: THIRD_ISLAND_6
+        text: THIRD_ISLAND_6,
+        portrait: idleMat
       },
       {
-        text: THIRD_ISLAND_7
+        text: THIRD_ISLAND_7,
+        portrait: idleMat,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.setWalletConnection()
+        }
+      },
+      {
+        text: THIRD_ISLAND_8,
+        portrait: idleMat,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.afterEndQuestClick()
+        },
+        isEndOfDialog: true
+      },
+      {
+        text: THIRD_ISLAND_9,
+        portrait: idleMat,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.showWearableUI()
+        },
+        isEndOfDialog: true
+      },
+      {
+        text: THIRD_ISLAND_10,
+        portrait: idleMat
+      },
+      { text: THIRD_ISLAND_11, portrait: idleMat, isEndOfDialog: true },
+      {
+        text: THIRD_ISLAND_12,
+        portrait: idleMat,
+        isEndOfDialog: true,
+        triggeredByNext: () => {
+          this.gameController.questMaterial.giveReward()
+        }
       }
     ]
   }

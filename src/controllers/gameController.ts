@@ -11,12 +11,14 @@ import { onEnterScene } from '@dcl/sdk/src/players'
 import { QuestEmote } from '../quest/questEmote'
 import { getUserData } from '~system/UserIdentity'
 import { ClaimTokenRequest } from '../claim/claim'
+import { QuestMaterials } from '../quest/questMaterials'
 
 export class GameController {
   mainInstance: MainInstace
   uiController: UIController
   spawnIsland: SpawnIsland
   questEmote: QuestEmote
+  questMaterial: QuestMaterials
   dialogs: Dialogs
   constructor() {
     this.mainInstance = new MainInstace(this)
@@ -24,5 +26,6 @@ export class GameController {
     this.uiController = new UIController(this)
     this.dialogs = new Dialogs(this)
     this.questEmote = new QuestEmote(this)
+    this.questMaterial = new QuestMaterials(this)
   }
 }
