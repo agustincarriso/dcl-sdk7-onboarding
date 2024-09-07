@@ -14,6 +14,12 @@ import {
   talkingTrebor
 } from './npcData'
 import {
+  PORTAL_ISLAND_0,
+  PORTAL_ISLAND_1,
+  PORTAL_ISLAND_2,
+  PORTAL_ISLAND_3,
+  PORTAL_ISLAND_4,
+  PORTAL_ISLAND_5,
   SECOND_ISLAND_0,
   SECOND_ISLAND_1,
   SECOND_ISLAND_2,
@@ -50,6 +56,7 @@ export class Dialogs {
   public bezierDialog: Dialog[]
   public matDialog: Dialog[]
   public toborBubbles: Dialog[]
+  public toborEndDialog: Dialog[]
   gameController: GameController
   constructor(gameController: GameController) {
     this.gameController = gameController
@@ -234,6 +241,50 @@ export class Dialogs {
         triggeredByNext: () => {
           this.gameController.questMaterial.giveReward()
         }
+      }
+    ]
+    this.toborEndDialog = [
+      {
+        text: PORTAL_ISLAND_0,
+        fontSize: 18,
+        portrait: IdleTrebor,
+        typeSpeed: 30
+      },
+      {
+        text: PORTAL_ISLAND_1,
+        portrait: talkingTrebor,
+        typeSpeed: 30
+      },
+      {
+        text: PORTAL_ISLAND_2,
+        portrait: IdleTrebor,
+        typeSpeed: 30,
+        triggeredByNext: () => {
+          this.gameController.questPortal.setWalletConnection()
+        },
+        isEndOfDialog: true
+      },
+
+      {
+        // ???????? //
+        text: PORTAL_ISLAND_3,
+        portrait: talkingTrebor,
+        typeSpeed: 30
+      },
+      {
+        text: PORTAL_ISLAND_4,
+        portrait: talkingTrebor,
+        typeSpeed: 30,
+        triggeredByNext: () => {
+         this.gameController.questPortal.givereward()
+        }
+      },
+      {
+        text: PORTAL_ISLAND_5,
+        portrait: happyTrebor,
+        isEndOfDialog: true,
+        typeSpeed: 30,
+       
       }
     ]
   }

@@ -387,7 +387,6 @@ export class BubbleDynamic {
       duration
     )
   }
-
   private animateEntity(entity: Entity, startScale: Vector3, endScale: Vector3, duration: number) {
     Tween.createOrReplace(entity, {
       mode: Tween.Mode.Scale({
