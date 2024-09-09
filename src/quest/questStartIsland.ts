@@ -102,7 +102,8 @@ export class SpawnIsland {
       ]
     })
     this.tobor.activateBillBoard(true)
-    this.bubbleTalk = new BubbleTalk(this.tobor.npcChild)
+    this.tobor.setChildScaleYAxis(3.1)
+    this.bubbleTalk = new BubbleTalk(this.tobor.bubbleAttach)
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0, 0),
       Vector3.create(0, 0, 0),

@@ -70,6 +70,7 @@ export class QuestPuzzle {
       ]
     })
     this.kit.activateBillBoard(true)
+    this.kit.setChildScaleYAxis(3.1) 
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0.1, 0),
       Vector3.create(0, 0, 0),
@@ -81,7 +82,7 @@ export class QuestPuzzle {
     this.questIndicator = new QuestIndicator(this.kit.entity)
     Transform.getMutable(this.questIndicator.icon).position = Vector3.create(0, 2.1, 0)
     this.connect_game = new ConnectMiniGame(this.gameController)
-    this.bubbleTalk = new sideBubbleTalk(this.kit.npcChild)
+    this.bubbleTalk = new sideBubbleTalk(this.kit.bubbleAttach)
     this.bubbleTalk.closeBubbleInTime()
     this.setUpTriggerHi()
     this.loadTagData()
