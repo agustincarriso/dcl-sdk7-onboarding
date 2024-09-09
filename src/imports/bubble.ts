@@ -345,7 +345,6 @@ export class BubbleDynamic {
     const bubblePos = Transform.get(this.parent).position
 
     const distance = Vector3.distance(playerPos, bubblePos)
-    console.log(`Distance: ${distance}`)
 
     const minScale = Vector3.create(0.25, 0.25, 0.25)
     const maxScale = Vector3.create(2, 2, 2)
