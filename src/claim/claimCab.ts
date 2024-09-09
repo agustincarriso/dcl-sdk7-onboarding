@@ -88,7 +88,7 @@ export class ClaimCapRequest {
       yPosition: -120,
       onMouseDown: () => {
         this.retryUI.hide()
-        this.gameController.questMaterial.giveReward()
+        this.gameController.questPortal.giveReward()
       }
     })
 
@@ -125,8 +125,7 @@ export class ClaimCapRequest {
       yPosition: -120,
       onMouseDown: () => {
         this.onTheWay.hide()
-        this.gameController.questMaterial.setRewardTrue()
-        console.log('eeeeeee')
+        this.gameController.questPortal.setRewardTrue()
       }
     })
 
@@ -330,8 +329,9 @@ export class ClaimCapRequest {
       yPosition: -160,
       onMouseDown: () => {
         this.captchaUI.hide()
-        this.gameController.questMaterial.afterEndQuestClick()
+        this.gameController.questPortal.onCloseRewardUI()
       }
     })
+    console.log('aaaaasdda')
   }
 }

@@ -1,5 +1,5 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { ClaimTokenRequest } from '../claim/claim'
+import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configVest } from '../claim/config'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'

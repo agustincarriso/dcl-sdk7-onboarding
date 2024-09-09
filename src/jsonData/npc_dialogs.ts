@@ -266,25 +266,25 @@ export class Dialogs {
       },
 
       {
-        // ???????? //
         text: PORTAL_ISLAND_3,
         portrait: talkingTrebor,
-        typeSpeed: 30
+        typeSpeed: 30,
+        isEndOfDialog: true
       },
       {
         text: PORTAL_ISLAND_4,
         portrait: talkingTrebor,
         typeSpeed: 30,
         triggeredByNext: () => {
-         this.gameController.questPortal.givereward()
-        }
+          this.gameController.questPortal.giveReward()
+        },
+        isEndOfDialog: true
       },
       {
         text: PORTAL_ISLAND_5,
         portrait: happyTrebor,
         isEndOfDialog: true,
-        typeSpeed: 30,
-       
+        typeSpeed: 30
       }
     ]
   }

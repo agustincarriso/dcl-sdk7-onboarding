@@ -356,7 +356,6 @@ export class BubbleDynamic {
     const t = (clampedDistance - minDistance) / (maxDistance - minDistance)
     const newScale = Vector3.lerp(minScale, maxScale, t)
     Transform.getMutable(this.centerEntity).scale = newScale
-    console.log(newScale)
   }
 
   closeBubbleInTime(): void {

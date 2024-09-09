@@ -27,7 +27,7 @@ import { sideBubbleTalk } from '../imports/bubble'
 import { POPUP_STATE } from '../uis/popupUI'
 import { activateSoundPillar2 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
-import { ClaimTokenRequest } from '../claim/claim'
+import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configEmote } from '../claim/config'
 
 export class QuestEmote {
@@ -46,10 +46,10 @@ export class QuestEmote {
   hasReward: boolean = false
   firstTimeClosingRewardUI: boolean = true
   arrows: Entity[]
-  claim: ClaimTokenRequest
+  claim: ClaimEmoteTokenRequest
   constructor(gameController: GameController) {
     this.gameController = gameController
-    this.claim = new ClaimTokenRequest(
+    this.claim = new ClaimEmoteTokenRequest(
       this.gameController,
       configEmote,
       configEmote.campaign_key,
@@ -148,26 +148,30 @@ export class QuestEmote {
     }
   }
   setUpTriggerHi() {
-    let triggerHi  = engine.addEntity()
+    let triggerHi = engine.addEntity()
     Transform.create(triggerHi, {
-      position: Transform.get(this.gameController.mainInstance.s0_En_Npc1_01).position,
+      position: Transform.get(this.gameController.mainInstance.s0_En_Npc1_01).position
     })
-    utils.triggers.addTrigger(triggerHi , 1, 1, [{ type: 'box', scale: Vector3.create(15, 5, 15) }], () => {
-      AudioManager.instance().playOnce("npc_1_salute", { volume: 1, parent: this.bezier.entity })
-      Animator.stopAllAnimations(this.bezier.entity)
-      Animator.playSingleAnimation(this.bezier.entity, 'Hi')
-      utils.timers.setTimeout(() => {
+    utils.triggers.addTrigger(
+      triggerHi,
+      1,
+      1,
+      [{ type: 'box', scale: Vector3.create(15, 5, 15) }],
+      () => {
+        AudioManager.instance().playOnce('npc_1_salute', { volume: 1, parent: this.bezier.entity })
         Animator.stopAllAnimations(this.bezier.entity)
+        Animator.playSingleAnimation(this.bezier.entity, 'Hi')
+        utils.timers.setTimeout(() => {
+          Animator.stopAllAnimations(this.bezier.entity)
+          Animator.playSingleAnimation(this.bezier.entity, 'Idle')
+        }, 5000)
+        engine.removeEntity(triggerHi)
+      },
+      () => {
         Animator.playSingleAnimation(this.bezier.entity, 'Idle')
-      }, 5000)
-      engine.removeEntity(triggerHi)
-    },
-  ()=>{
-    Animator.playSingleAnimation(this.bezier.entity, 'Idle')
-  })
-
-}
-
+      }
+    )
+  }
 
   startInteract() {
     this.gameController.uiController.widgetTasks.showTick(true, 0)

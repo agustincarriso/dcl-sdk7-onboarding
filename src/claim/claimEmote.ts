@@ -9,7 +9,7 @@ import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 import { openExternalUrl } from '~system/RestrictedActions'
 
-export class ClaimTokenRequest {
+export class ClaimEmoteTokenRequest {
   inTimeOut: boolean = false
   alreadyClaimed: string[] = []
   userData: any

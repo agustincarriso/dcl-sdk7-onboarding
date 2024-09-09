@@ -10,9 +10,10 @@ import { Dialogs } from '../jsonData/npc_dialogs'
 import { onEnterScene } from '@dcl/sdk/src/players'
 import { QuestEmote } from '../quest/questEmote'
 import { getUserData } from '~system/UserIdentity'
-import { ClaimTokenRequest } from '../claim/claim'
+import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { QuestMaterials } from '../quest/questMaterials'
 import { QuestPortal } from '../quest/questPortals'
+import { setPlayerTime } from '../utils/setPlayerTime'
 
 export class GameController {
   mainInstance: MainInstace
@@ -22,6 +23,7 @@ export class GameController {
   questMaterial: QuestMaterials
   questPortal: QuestPortal
   dialogs: Dialogs
+  timeStamp: number
   constructor() {
     this.mainInstance = new MainInstace(this)
     this.spawnIsland = new SpawnIsland(this)
@@ -30,5 +32,6 @@ export class GameController {
     this.questEmote = new QuestEmote(this)
     this.questMaterial = new QuestMaterials(this)
     this.questPortal = new QuestPortal(this)
+    this.timeStamp = setPlayerTime()
   }
 }
