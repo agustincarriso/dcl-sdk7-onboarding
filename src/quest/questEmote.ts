@@ -129,7 +129,7 @@ export class QuestEmote {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: 'Talk to Bezier Before Crossing'
+            hoverText: 'Talk to Bezier'
           }
         }
       ]
@@ -256,7 +256,6 @@ export class QuestEmote {
     }
   }
   completeQuestDialog() {
-    console.log('here')
     openDialogWindow(this.bezier.entity, this.gameController.dialogs.bezierDialog, 3)
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     this.gameController.uiController.widgetTasks.showTick(true, 1)

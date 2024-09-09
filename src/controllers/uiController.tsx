@@ -6,7 +6,7 @@ import { PointerLock, UiCanvasInformation, engine } from '@dcl/sdk/ecs'
 import { PopUpControls } from '../uis/popUpControls'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import { Popup } from '../uis/popupUI'
-import { WidgetTasks } from '../uis/widgetTask'
+import { TaskType, WidgetTasks } from '../uis/widgetTask'
 
 export class UIController {
   public gameController: GameController
@@ -23,6 +23,8 @@ export class UIController {
     this.popUpUI = new Popup(this)
     this.widgetTasks = new WidgetTasks(this)
     this.uiComponent = () => [
+      this.popUpControls.puzzleUI(),
+      this.popUpControls.puzzleUIConnectCables(),
       NpcUtilsUi(),
       this.popUpControls.spaceUI(),
       this.keyBoardUI.mainUi(),
@@ -35,6 +37,7 @@ export class UIController {
       this.gameController.questEmote.claim.captchaUI.render(),
       this.gameController.questEmote.claim.retryUI.render(),
       this.gameController.questEmote.claim.onTheWay.render(),
+      this.popUpUI.popupUIVest(),
       this.gameController.questMaterial.claim.claimInProgress.render(),
       this.gameController.questMaterial.claim.captchaUI.render(),
       this.gameController.questMaterial.claim.retryUI.render(),
