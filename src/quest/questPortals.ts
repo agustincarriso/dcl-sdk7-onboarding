@@ -11,6 +11,7 @@ import { configCap } from '../claim/config'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { getEvents } from '../events/checkApi'
 import { activateLoopSoundPortal } from '../imports/components/audio/sounds'
+import { sendTrak } from '../utils/segment'
 
 export class QuestPortal {
   tobor: NPC
@@ -97,6 +98,7 @@ export class QuestPortal {
 
   robotPortal() {
     this.bubbleDynamic.closeBubbleInTime()
+    sendTrak('z4_quest4_00', this.gameController.timeStamp)
     engine.removeSystem(this.bubbleDynamic.respSystem)
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborEndDialog, 0)
