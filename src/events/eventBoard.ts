@@ -1,7 +1,8 @@
-// import { TriggerComponent, TriggerSphereShape } from '@dcl/ecs-scene-utils'
 // import { splitTextIntoLines, shortenText } from './helperFunctions'
-// import { TextShape, Transform } from '@dcl/sdk/ecs'
+// import { Entity, MaterialComponentDefinitionExtended, MeshCollider, TextShape, Transform, engine } from '@dcl/sdk/ecs'
+// import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 // import { teleportTo } from '~system/RestrictedActions'
+// import { Material } from '@dcl/sdk/ecs'
 // /**
 //  * Class for the event board
 //  *
@@ -21,57 +22,59 @@
 //  * @param events: Array of events
 //  */
 // export class PortalEvents {
-//   boardBase: IEntity
+//   boardBase: Entity
 //   board: Entity
 //   title: Entity
 //   clickPanel: Entity
 //   portalTriggerArea: Entity
-//   inactiveEventMaterial: Material
-//   activeEventMaterial: Material
-//   totalTransMaterial: Material
-//   imageMaterial: any
+//   //   inactiveEventMaterial: MaterialComponentDefinitionExtended
+//   //   activeEventMaterial: MaterialComponentDefinitionExtended
+//   //   totalTransMaterial: MaterialComponentDefinitionExtended
+//   //   imageMaterial: MaterialComponentDefinitionExtended
 //   dots = []
 //   events = []
 
-//   constructor(entity: IEntity, event: any, titleSpot?: Entity) {
+//   constructor(entity: Entity, event: any, titleSpot?: Entity) {
 //     this.events = event
-//     this.materials()
+//     //this.materials()
 
 //     // Create the board
 //     this.boardBase = entity
-//     this.boardBase.getComponent(Transform).scale.y = this.boardBase.getComponent(Transform).scale.y * -1
-//     this.boardBase.addComponentOrReplace(this.imageMaterial)
+//     Transform.getMutable(this.boardBase).scale.y = Transform.get(this.boardBase).scale.y * -1
+//     Material.setPbrMaterial(this.boardBase, {
+//       roughness: 1,
+//       metallic: 0,
+//       specularIntensity: 0
+//     })
 
 //     // Create the title
-//     this.title = new Entity()
-//     this.title.addComponent(new TextShape(''))
-//     this.title.getComponent(TextShape).fontSize = 2
-//     this.title.getComponent(TextShape).font = new Font(Fonts.LiberationSans)
-//     this.title.getComponent(TextShape).color = Color3.White()
-//     this.title.getComponent(TextShape).hTextAlign = 'center'
-//     this.title.getComponent(TextShape).lineCount = 2
-//     this.title.getComponent(TextShape).height = 2
-//     this.title.getComponent(TextShape).width = 8
-//     this.title.addComponent(
-//       new Transform({
-//         position: new Vector3(0, 0, 0.015),
-//         scale: new Vector3(-0.3, 0.3, 0.3)
-//       })
-//     )
-//     //this.title.setParent(this.boardBase)
-//     // With tags title
-//     this.title.setParent(titleSpot)
+//     this.title = engine.addEntity()
+//     TextShape.create(this.title)
+//     TextShape.getMutable(this.title).fontSize = 2
+//     TextShape.getMutable(this.title).font = 2
+//     TextShape.getMutable(this.title).textColor = Color4.White()
+//     TextShape.getMutable(this.title).textAlign = 2
+//     TextShape.getMutable(this.title).lineCount = 2
+//     TextShape.getMutable(this.title).height = 2
+//     TextShape.getMutable(this.title).width = 8
+//     Transform.create(this.title, {
+//       position: Vector3.create(0, 0, 0.015),
+//       scale: Vector3.create(-0.3, 0.3, 0.3),
+//       parent: titleSpot
+//     })
 
 //     // Create the click panel
-//     this.clickPanel = new Entity()
-//     this.clickPanel.addComponent(new BoxShape())
-//     this.clickPanel.addComponent(
-//       new Transform({
-//         position: new Vector3(0, 0, 0.02),
-//         scale: new Vector3(1, 1, 0.2),
-//         rotation: Quaternion.Euler(0, 0, 180)
-//       })
-//     )
+//     this.clickPanel = engine.addEntity()
+//     MeshCollider.setBox(this.clickPanel)
+//     Transform.create(this.clickPanel, {
+//       position: Vector3.create(0, 0, 0.02),
+//       scale: Vector3.create(1, 1, 0.2),
+//       rotation: Quaternion.fromEulerDegrees(0, 0, 180)
+//     })
+//     Material.setPbrMaterial(this.clickPanel, {
+//       albedoColor: Color4.create(0, 0, 0, 0)
+//     })
+
 //     this.clickPanel.addComponent(this.totalTransMaterial)
 //     this.clickPanel.getComponent(BoxShape).visible = false
 //     this.clickPanel.setParent(this.boardBase)
