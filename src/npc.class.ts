@@ -8,6 +8,7 @@ import {
   InputAction,
   inputSystem,
   MeshCollider,
+  MeshRenderer,
   PointerEvents,
   pointerEventsSystem,
   PointerEventType,
@@ -21,6 +22,7 @@ import { FloorCircleTargeter } from './imports/components/targeter'
 export class NPC {
   entity: Entity = engine.addEntity()
   npcChild: Entity = engine.addEntity()
+  bubbleAttach: Entity = engine.addEntity()
   constructor(
     position: Vector3,
     scale: Vector3,
@@ -55,9 +57,14 @@ export class NPC {
         onActivate()
       }
     )
+
+    Transform.create(this.bubbleAttach, { parent: this.entity })
+    Transform.getMutable(this.bubbleAttach).scale = Vector3.create(2, 2, 2)
+
     Transform.create(this.npcChild, { parent: this.entity })
-    Transform.getMutable(this.npcChild).scale = Vector3.create(2, 2, 2)
+    Transform.getMutable(this.npcChild).scale = Vector3.create(1, 3.1, 1)
     MeshCollider.setBox(this.npcChild)
+
     pointerEventsSystem.onPointerDown(
       {
         entity: this.npcChild,
@@ -71,7 +78,9 @@ export class NPC {
       }
     )
   }
-  
+  setChildScaleYAxis(number: number){
+    Transform.getMutable(this.npcChild).scale = Vector3.create(0.8, number, 0.8)
+  }
   activateBillBoard(faceUser: boolean){
     if (faceUser === true){
       Billboard.create(this.entity, {billboardMode: BillboardMode.BM_Y})

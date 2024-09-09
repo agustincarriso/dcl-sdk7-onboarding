@@ -106,7 +106,8 @@ export class QuestEmote {
     this.currentEmote = ''
     this.arrows = []
     this.bezier.activateBillBoard(true)
-    this.bubbleTalk = new sideBubbleTalk(this.bezier.npcChild)
+    this.bezier.setChildScaleYAxis(3.8) 
+    this.bubbleTalk = new sideBubbleTalk(this.bezier.bubbleAttach)
     this.bubbleTalk.closeBubbleInTime()
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0.1, 0),

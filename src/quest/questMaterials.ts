@@ -92,8 +92,9 @@ export class QuestMaterials {
       ]
     })
     this.mat.activateBillBoard(true)
+    this.mat.setChildScaleYAxis(3.1) 
     this.questIndicator = new QuestIndicator(this.mat.entity)
-    this.bubbleTalk = new sideBubbleTalk(this.mat.npcChild)
+    this.bubbleTalk = new sideBubbleTalk(this.mat.bubbleAttach)
     this.bubbleTalk.closeBubbleInTime()
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0, 0),
