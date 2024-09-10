@@ -136,11 +136,10 @@ export class QuestPortal {
     'robottoPortalCsallBack'
     Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01, 'Portal_Activate')
-
+    AudioManager.instance().playMainAmbience(false)
+    activateLoopSoundPortal()
     utils.timers.setTimeout(() => {
       Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
-      AudioManager.instance().playMainAmbience(false)
-      activateLoopSoundPortal()
     }, 13000)
 
     this.displayEvents()
