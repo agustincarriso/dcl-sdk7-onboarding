@@ -103,7 +103,6 @@ export class SpawnIsland {
     })
     this.tobor.activateBillBoard(true)
     this.bubbleTalk = new BubbleTalk(this.tobor.bubbleAttach)
-    this.bubbleTalk.closeBubbleInTime()
     this.tobor.setChildScaleYAxis(3.1)
 
     this.targeterCircle = new FloorCircleTargeter(
