@@ -1,4 +1,4 @@
-import { EasingFunction, Entity, GltfContainer, TextShape, Transform, Tween, engine } from '@dcl/sdk/ecs'
+import { EasingFunction, Entity, GltfContainer, TextAlignMode, TextShape, Transform, Tween, engine } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { CLICKME, ZONE_1_EMOTE_1 } from '../jsonData/textsTutorialBubble'
 
@@ -28,11 +28,11 @@ export class BubbleTalk {
 
     // Text config
     this.textEntity = engine.addEntity()
-    Transform.create(this.textEntity, { position: Vector3.create(-0.8, 0.8, -0.04), parent: this.centerEntity })
+    Transform.create(this.textEntity, { position: Vector3.create(0, 0.8, -0.04), parent: this.centerEntity })
     TextShape.create(this.textEntity).text = this.text
     TextShape.getMutable(this.textEntity).fontSize = 1.6
     TextShape.getMutable(this.textEntity).textColor = Color4.Black()
-    TextShape.getMutable(this.textEntity).textAlign = 5
+    TextShape.getMutable(this.textEntity).textAlign = TextAlignMode.TAM_MIDDLE_CENTER
 
     // Title config
     this.titleEntity = engine.addEntity()
