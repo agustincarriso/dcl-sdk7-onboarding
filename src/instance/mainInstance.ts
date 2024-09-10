@@ -2113,7 +2113,7 @@ export class MainInstace {
       src: 'assets/scene/models/unity_assets/s0_Z3_Quest_BoxMat_art_3__01.glb'
     })
     Animator.create(this.s0_Z3_Quest_BoxMat_art_3__01, {
-      states: [{ clip: 'Box_02_Anim' }, { clip: 'Box_02_Static' }]
+      states: [{ clip: 'Box_02_Anim', speed: 1.6 }, { clip: 'Box_02_Static' }]
     })
     Transform.create(this.s0_Z3_Quest_BoxMat_art_3__01, {
       position: Vector3.create(181.981, 69.778, 151.457),
@@ -2337,7 +2337,8 @@ export class MainInstace {
     Animator.create(this.s0_Z3_Quest_BoxTri_art_3__01, {
       states: [
         {
-          clip: 'Box_01_Anim'
+          clip: 'Box_01_Anim',
+          speed: 1.6
         },
         {
           clip: 'Box_01_Static'
