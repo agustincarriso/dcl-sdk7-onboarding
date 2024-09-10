@@ -244,7 +244,7 @@ export class QuestMaterials {
         engine.removeEntity(collider)
         utils.timers.setTimeout(() => {
           engine.removeEntity(this.gameController.mainInstance.s0_Z3_Quest_BoxMat_art_3__01)
-        }, 5500)
+        }, 3500)
       }
     )
   }
@@ -279,7 +279,7 @@ export class QuestMaterials {
         engine.removeEntity(collider)
         utils.timers.setTimeout(() => {
           engine.removeEntity(this.gameController.mainInstance.s0_Z3_Quest_BoxTri_art_3__01)
-        }, 5500)
+        }, 3500)
       }
     )
   }
