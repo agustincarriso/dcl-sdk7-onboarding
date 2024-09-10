@@ -42,6 +42,12 @@ export class UIController {
       this.gameController.questMaterial.claim.captchaUI.render(),
       this.gameController.questMaterial.claim.retryUI.render(),
       this.gameController.questMaterial.claim.onTheWay.render(),
+      this.gameController.questPortal.claim.claimInProgress.render(),
+      this.gameController.questPortal.claim.captchaUI.render(),
+      this.gameController.questPortal.claim.retryUI.render(),
+      this.gameController.questPortal.claim.onTheWay.render(),
+
+      this.popUpUI.popupUIVest()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
     this.keyBoardUI.isVisible = true

@@ -13,7 +13,7 @@ import { PromptIcon } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/compo
 import { PromptInput } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Input'
 import { PromptButton } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Button'
 
-export class ClaimTokenRequest {
+export class ClaimEmoteTokenRequest {
   inTimeOut: boolean = false
   alreadyClaimed: string[] = []
   userData: any

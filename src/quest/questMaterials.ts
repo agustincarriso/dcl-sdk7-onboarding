@@ -1,5 +1,5 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { ClaimTokenRequest } from '../claim/claim'
+import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configVest } from '../claim/config'
 import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
@@ -26,6 +26,7 @@ import { closeDialog } from 'dcl-npc-toolkit/dist/dialog'
 import { ClaimWearableRequest } from '../claim/claimWearable'
 import { POPUP_STATE } from '../uis/popupUI'
 import { TaskType } from '../uis/widgetTask'
+import { sendTrak } from '../utils/segment'
 export class QuestMaterials {
   gameController: GameController
   mat: NPC
@@ -92,7 +93,7 @@ export class QuestMaterials {
       ]
     })
     this.mat.activateBillBoard(true)
-    this.mat.setChildScaleYAxis(3.1) 
+    this.mat.setChildScaleYAxis(3.1)
     this.questIndicator = new QuestIndicator(this.mat.entity)
     this.bubbleTalk = new sideBubbleTalk(this.mat.bubbleAttach)
     this.bubbleTalk.closeBubbleInTime()
@@ -130,6 +131,7 @@ export class QuestMaterials {
   }
   startQuest() {
     this.setQuestStartDialog()
+    sendTrak('z2_quest2_00', this.gameController.timeStamp)
   }
   setUpClaim() {}
   spawnBlockToNextIsalnd() {
@@ -185,7 +187,7 @@ export class QuestMaterials {
   }
   setQuestStartDialog() {
     AudioManager.instance().playOnce('npc_2_salute', { volume: 0.6, parent: this.mat.entity })
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(6, 0)
@@ -286,15 +288,17 @@ export class QuestMaterials {
     if (this.materialsCollected == 2) {
       this.pickedAllPieces()
       this.bubbleTalk.closeBubbleInTime()
+      sendTrak('z2_quest2_02', this.gameController.timeStamp)
     } else {
       openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 4)
+      sendTrak('z2_quest2_01', this.gameController.timeStamp)
       utils.timers.setTimeout(() => {
         closeDialog(this.mat.entity)
       }, 3000)
     }
   }
   pickedAllPieces() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(7, 0)
@@ -342,8 +346,8 @@ export class QuestMaterials {
     // add onpointerDown on click trigger
   }
   talkNpcCompleteQuest() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
-    this.gameController.uiController.widgetTasks.showTick(true,2)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
+    this.gameController.uiController.widgetTasks.showTick(true, 2)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(8, 0)
@@ -352,6 +356,7 @@ export class QuestMaterials {
     this.spawnparticles()
     Animator.stopAllAnimations(this.mat.entity)
     Animator.playSingleAnimation(this.mat.entity, 'Celebrate')
+    sendTrak('z2_quest2_03', this.gameController.timeStamp)
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 6)
     utils.timers.setTimeout(() => {
       Animator.stopAllAnimations(this.mat.entity)

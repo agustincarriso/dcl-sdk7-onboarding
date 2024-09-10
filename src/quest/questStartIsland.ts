@@ -29,13 +29,14 @@ import { NPC } from '../npc.class'
 import * as utils from '@dcl-sdk/utils'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
-import { BubbleTalk } from '../imports/bubble'
+import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
 import { HELP_BEIZER, JUMP } from '../jsonData/textsTutorialBubble'
 import { point1, point2, point3 } from '../jsonData/npcData'
+import { sendTrak } from '../utils/segment'
 
 export class SpawnIsland {
   tobor: NPC
@@ -102,8 +103,10 @@ export class SpawnIsland {
       ]
     })
     this.tobor.activateBillBoard(true)
-    this.tobor.setChildScaleYAxis(3.1)
     this.bubbleTalk = new BubbleTalk(this.tobor.bubbleAttach)
+    this.bubbleTalk.closeBubbleInTime()
+    this.tobor.setChildScaleYAxis(3.1)
+
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0, 0),
       Vector3.create(0, 0, 0),
@@ -173,16 +176,17 @@ export class SpawnIsland {
     })
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
-        //  newRelativePosition: Vector3.create(103.31,77.61,141.34), // puzzle island
-        //  newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
+        // newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
         // newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
+        // newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
-      }) 
+      })
     })
   }
   startSpawnIsland() {
     //Start ambiental sound
+    sendTrak('z0_quest0_00', this.gameController.timeStamp)
     AudioManager.instance().playMainAmbience(true)
     AudioManager.instance().play('waterfall', { volume: 1, loop: true, position: Vector3.create(226.94, 70, 130.37) })
   }
@@ -198,7 +202,6 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    console.log('Interactive quest tobor')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)
@@ -271,6 +274,7 @@ export class SpawnIsland {
               })
               this.targeterCircle.showCircle(false)
               this.questIndicator.hide()
+              sendTrak('z0_quest0_02', this.gameController.timeStamp)
               openDialogWindow(this.gameController.spawnIsland.tobor.entity, this.gameController.dialogs.toborDialog, 3)
               utils.timers.setTimeout(() => {
                 this.gameController.uiController.widgetTasks.setText(3, 0)
@@ -304,6 +308,7 @@ export class SpawnIsland {
     })
   }
   completeJumpQuest() {
+    sendTrak('z0_quest0_01', this.gameController.timeStamp)
     this.gameController.uiController.popUpControls.spaceContainerVisible = false
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
