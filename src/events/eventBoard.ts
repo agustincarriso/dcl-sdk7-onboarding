@@ -57,7 +57,9 @@ export class PortalEvents {
     this.materials()
     // Create the board
     this.boardBase = entity
-    Transform.getMutable(this.boardBase).scale.y = Transform.get(this.boardBase).scale.y * -1
+    Transform.getMutable(this.boardBase).scale.y = Transform.get(this.boardBase).scale.y
+    Transform.getMutable(this.boardBase).rotation.y = Transform.get(this.boardBase).rotation.y * -1
+    Transform.getMutable(this.boardBase).rotation.w = Transform.get(this.boardBase).rotation.w * -1
     // Create the title
     this.title = engine.addEntity()
     TextShape.create(this.title, { text: '' })
@@ -88,7 +90,6 @@ export class PortalEvents {
     this.createTriggerZone(this.boardBase)
   }
   createTriggerZone(originSpawn: Entity) {
-
     //new DebugPivot(soundTriggerEnt, new Vector3(1,1,1))
     this.originSpawn = originSpawn
   }
@@ -146,27 +147,21 @@ export class PortalEvents {
           eventInfo: {
             button: InputAction.IA_POINTER,
             showFeedback: true,
-            hoverText: (event.title) ? event.title : (event.name) ? event.name : "Teleport to event",
+            hoverText: event.title ? event.title : event.name ? event.name : 'Teleport to event',
             maxDistance: 20
           }
         }
       ]
     })
     engine.addSystem(() => {
-      if (
-        inputSystem.isTriggered(
-          InputAction.IA_POINTER,
-          PointerEventType.PET_DOWN,
-          this.clickPanel
-        )
-      ) {
+      if (inputSystem.isTriggered(InputAction.IA_POINTER, PointerEventType.PET_DOWN, this.clickPanel)) {
         if (event.name) {
-            teleportTo({ worldCoordinates: { x: event.x.toString(), y: event.y.toString() } })
-            hoverText = event.scene_name
+          teleportTo({ worldCoordinates: { x: event.x.toString(), y: event.y.toString() } })
+          hoverText = event.scene_name
         }
         if (event.title) {
-            teleportTo(event.base_position)
-            hoverText = event.title
+          teleportTo(event.base_position)
+          hoverText = event.title
         }
       }
     })
@@ -183,23 +178,23 @@ export class PortalEvents {
       [{ type: 'sphere', radius: 5, position: Vector3.create(0, 0, 0) }],
       () => {
         if (event.name) {
-            teleportTo({ worldCoordinates: { x: event.x.toString(), y: event.y.toString() } })
+          teleportTo({ worldCoordinates: { x: event.x.toString(), y: event.y.toString() } })
         }
         if (event.title) {
-            teleportTo(event.base_position)
+          teleportTo(event.base_position)
         }
       }
     )
     if (events.length > 1) {
-        for (let i = 0; i < this.dots.length; i++) {
-            if (i === currentEvent) {
-                Material.deleteFrom(this.dots[i])
-                Material.setPbrMaterial(this.dots[i],this.activeEventMaterial)
-            } else {
-                Material.deleteFrom(this.dots[i])
-                Material.setPbrMaterial(this.dots[i],this.inactiveEventMaterial)
-            }
+      for (let i = 0; i < this.dots.length; i++) {
+        if (i === currentEvent) {
+          Material.deleteFrom(this.dots[i])
+          Material.setPbrMaterial(this.dots[i], this.activeEventMaterial)
+        } else {
+          Material.deleteFrom(this.dots[i])
+          Material.setPbrMaterial(this.dots[i], this.inactiveEventMaterial)
         }
+      }
     }
   }
 }

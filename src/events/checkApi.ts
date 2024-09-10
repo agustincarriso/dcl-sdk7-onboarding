@@ -43,7 +43,7 @@ type EventPanelData = {
 
 const backupEvent0: EventPanelData = {
   name: 'Genesis Plaza',
-  image: 'assets/thumbnail.jpg',
+  image: 'images/scene-thumbnail.png',
   scene_name: 'Created by Decentraland',
   x: 0,
   y: 0

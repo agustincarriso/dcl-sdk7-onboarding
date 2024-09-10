@@ -200,7 +200,7 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    console.log('Interactive quest tobor')
+    console.log('Interactive quest tobor ')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)

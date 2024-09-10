@@ -1,6 +1,15 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
-import { Animator, Entity, InputAction, MeshCollider, MeshRenderer, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
+import {
+  Animator,
+  Entity,
+  InputAction,
+  MeshCollider,
+  MeshRenderer,
+  Transform,
+  engine,
+  pointerEventsSystem
+} from '@dcl/sdk/ecs'
 import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
 import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
@@ -32,7 +41,7 @@ export class QuestPortal {
   portal3: any
   portal: Entity = engine.addEntity()
   tobor_portal: Entity = engine.addEntity()
-    constructor(gameController: GameController) {
+  constructor(gameController: GameController) {
     this.gameController = gameController
     this.claim = new ClaimCapRequest(this.gameController, configCap, configCap.campaign_key, configCap.claimServer)
     this.randomIndex = [0]
@@ -92,7 +101,7 @@ export class QuestPortal {
       ]
     })
     this.loadTagData()
-    this.tobor.activateBillBoard(true) 
+    this.tobor.activateBillBoard(true)
     this.bubbleTalk = new BubbleTalk(this.tobor.bubbleAttach)
     this.bubbleTalk.closeBubbleInTime()
     this.bubbleDynamic = new BubbleDynamic(this.tobor.entity)
@@ -178,7 +187,7 @@ export class QuestPortal {
       },
       () => {
         this.randomIndex = randomNumbers(event.length)
-        this.portal3.displayEvent(this.portal3.events, this.randomIndex[0])
+        this.portal1.displayEvent(this.portal3.events, this.randomIndex[0])
         AudioManager.instance().playOnce('button_interact', { volume: 0.5, pitch: 1, parent: this.refreshbuttons[1] })
       }
     )
@@ -187,12 +196,12 @@ export class QuestPortal {
         entity: this.refreshbuttons[1],
         opts: {
           button: InputAction.IA_POINTER,
-          hoverText: 'Refresh'
+          hoverText: 'Refrsesh'
         }
       },
       () => {
         this.randomIndex = randomNumbers(event.length)
-        this.portal1.displayEvent(this.portal1.events, this.randomIndex[2])
+        this.portal3.displayEvent(this.portal1.events, this.randomIndex[2])
         AudioManager.instance().playOnce('button_interact', { volume: 0.5, pitch: 1, parent: this.refreshbuttons[0] })
       }
     )
@@ -201,7 +210,7 @@ export class QuestPortal {
       Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
       Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01, 'Portal_On').playing = true
       //Show Planeshapes
-      this.eventpositions.forEach((e) => { 
+      this.eventpositions.forEach((e) => {
         MeshRenderer.setPlane(e)
       })
     }, 6000)
