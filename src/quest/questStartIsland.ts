@@ -178,7 +178,7 @@ export class SpawnIsland {
         // newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
-      }) 
+      })
     })
   }
   startSpawnIsland() {
