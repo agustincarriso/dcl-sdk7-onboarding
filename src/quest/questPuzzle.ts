@@ -22,6 +22,7 @@ import { AudioManager } from '../imports/components/audio/audio.manager'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { activatePillarSound4, changeGeneratosSound } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
+import { sendTrak } from '../utils/segment'
 
 export class QuestPuzzle {
   gameController: GameController
@@ -128,6 +129,7 @@ export class QuestPuzzle {
     )
   }
   private setUpInitQuest() {
+    sendTrak('z3_quest3_00', this.gameController.timeStamp)
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
@@ -154,6 +156,7 @@ export class QuestPuzzle {
   puzzleQuest() {
     if (this.connect_game.bStarted) return
     this.connect_game.startGame()
+    sendTrak('z3_quest3_01', this.gameController.timeStamp)
     this.connect_game.completeEvent2PuzzleCallback = () => {
       this.gameController.uiController.popUpControls.puzzleConnectCablesVisible = false
       this.gameController.uiController.popUpControls.endPuzzle = true
@@ -185,6 +188,7 @@ export class QuestPuzzle {
     }, 1500)
   }
   private clicOnNPC2PuzzleCompleted() {
+    sendTrak('z3_quest3_02', this.gameController.timeStamp)
     pointerEventsSystem.onPointerDown(
       {
         entity: this.kit.npcChild,

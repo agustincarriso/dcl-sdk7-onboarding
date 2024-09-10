@@ -23,6 +23,7 @@ import { activateInitialSoundPortal, activateLoopSoundPortal } from '../imports/
 import { PortalEvents } from '../events/eventBoard'
 import { delay } from '../imports/components/delay'
 import { randomNumbers } from '../utils/globalLibrary'
+import { sendTrak } from '../utils/segment'
 
 export class QuestPortal {
   tobor: NPC
@@ -132,6 +133,7 @@ export class QuestPortal {
 
   robotPortal() {
     this.bubbleDynamic.closeBubbleInTime()
+    sendTrak('z4_quest4_00', this.gameController.timeStamp)
     engine.removeSystem(this.bubbleDynamic.respSystem)
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborEndDialog, 0)

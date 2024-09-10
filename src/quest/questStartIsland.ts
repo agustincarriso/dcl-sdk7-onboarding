@@ -36,6 +36,7 @@ import { activateSoundPillar1 } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
 import { HELP_BEIZER, JUMP } from '../jsonData/textsTutorialBubble'
 import { point1, point2, point3 } from '../jsonData/npcData'
+import { sendTrak } from '../utils/segment'
 
 export class SpawnIsland {
   tobor: NPC
@@ -184,6 +185,7 @@ export class SpawnIsland {
   }
   startSpawnIsland() {
     //Start ambiental sound
+    sendTrak('z0_quest0_00', this.gameController.timeStamp)
     AudioManager.instance().playMainAmbience(true)
     AudioManager.instance().play('waterfall', { volume: 1, loop: true, position: Vector3.create(226.94, 70, 130.37) })
   }
@@ -273,6 +275,7 @@ export class SpawnIsland {
               })
               this.targeterCircle.showCircle(false)
               this.questIndicator.hide()
+              sendTrak('z0_quest0_02', this.gameController.timeStamp)
               openDialogWindow(this.gameController.spawnIsland.tobor.entity, this.gameController.dialogs.toborDialog, 3)
               utils.timers.setTimeout(() => {
                 this.gameController.uiController.widgetTasks.setText(3, 0)
@@ -306,6 +309,7 @@ export class SpawnIsland {
     })
   }
   completeJumpQuest() {
+    sendTrak('z0_quest0_01', this.gameController.timeStamp)
     this.gameController.uiController.popUpControls.spaceContainerVisible = false
     this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
