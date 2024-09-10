@@ -19,7 +19,7 @@ import { ClaimCapRequest } from '../claim/claimCab'
 import { configCap } from '../claim/config'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { getEvents } from '../events/checkApi'
-import { activateLoopSoundPortal } from '../imports/components/audio/sounds'
+import { activateInitialSoundPortal, activateLoopSoundPortal } from '../imports/components/audio/sounds'
 import { PortalEvents } from '../events/eventBoard'
 import { delay } from '../imports/components/delay'
 import { randomNumbers } from '../utils/globalLibrary'
@@ -52,7 +52,7 @@ export class QuestPortal {
       'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
       14,
       () => {
-        console.log('npc activated')
+        console.log('npc activaated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
@@ -131,11 +131,25 @@ export class QuestPortal {
     engine.removeSystem(this.bubbleDynamic.respSystem)
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborEndDialog, 0)
+  }
+  robotToPortalCallBack() {
+    'robottoPortalCsallBack'
     Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01, 'Portal_Activate')
-    activateLoopSoundPortal()
+
+    utils.timers.setTimeout(() => {
+      Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
+      AudioManager.instance().playMainAmbience(false)
+      activateLoopSoundPortal()
+    }, 13000)
+
     this.displayEvents()
+
+    AudioManager.instance().audio.portal_ambiental.setVolumeSmooth(0, 2000)
+
+    activateInitialSoundPortal()
   }
+
   setRewardTrue() {
     this.hasReward = true
     this.onCloseRewardUI()
@@ -145,8 +159,10 @@ export class QuestPortal {
     console.log('wallet connected:' + this.walletConected)
     if (this.walletConected === false) {
       this.bubbleTalk.openBubble(CHOOSE_PORTAL, false)
+      this.robotToPortalCallBack()
     } else {
       utils.timers.setTimeout(() => {
+        this.robotToPortalCallBack()
         openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborEndDialog, 4)
       }, 200)
     }
@@ -167,7 +183,7 @@ export class QuestPortal {
 
     this.randomIndex = randomNumbers(event.length)
     if (event) {
-      console.log('events loaded')
+      console.log('events loaded ')
       this.portal1 = new PortalEvents(this.eventpositions[0], event, this.titleSpots[1])
       this.portal1.displayEvent(this.portal1.events, this.randomIndex[0])
 

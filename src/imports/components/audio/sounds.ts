@@ -267,15 +267,16 @@ const portalLoopClip = 'assets/audio/v3/Portals.mp3'
 
 export function activateLoopSoundPortal() {
   const portals = engine.addEntity()
-  Transform.create(portals, { position: Vector3.create(100, 95, 95) })
+  Transform.create(portals, { position: Vector3.create(117.2279, 80.72495, 113.0214) })
   AudioSource.create(portals, {
     audioClipUrl: portalLoopClip
   })
-  AudioSource.getMutable(portals).loop = true
-  AudioSource.getMutable(portals).volume = 0.5
+  AudioSource.getMutable(portals).loop = false
+  AudioSource.getMutable(portals).volume = 2.5
   AudioSource.playSound(portals, portalLoopClip)
 }
-//#endregion
+
+//#endregions
 
 let cubeDebuggerEnable = false
 const soundEntityes = [
