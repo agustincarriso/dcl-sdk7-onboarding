@@ -175,9 +175,9 @@ export class SpawnIsland {
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
         // newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
-        // newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
-        newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
-        //newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
+        //newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
+        //newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
+        newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
     })
@@ -200,7 +200,7 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    console.log('Interactive quest tobor ')
+    console.log('Interactive  quest tobor ')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)

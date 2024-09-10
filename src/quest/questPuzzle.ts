@@ -49,7 +49,7 @@ export class QuestPuzzle {
       states: [
         {
           clip: 'Idle',
-          loop : true
+          loop: true
         },
         {
           clip: 'Talk',
@@ -70,7 +70,7 @@ export class QuestPuzzle {
       ]
     })
     this.kit.activateBillBoard(true)
-    this.kit.setChildScaleYAxis(3.1) 
+    this.kit.setChildScaleYAxis(3.1)
     this.targeterCircle = new FloorCircleTargeter(
       Vector3.create(0, 0.1, 0),
       Vector3.create(0, 0, 0),
@@ -128,7 +128,7 @@ export class QuestPuzzle {
     )
   }
   private setUpInitQuest() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(9, 0)
@@ -145,16 +145,16 @@ export class QuestPuzzle {
     this.connect_game.activatePieces()
     this.bubbleTalk.openBubble(ZONE_2_PUZZLE_0, true)
     this.puzzleQuest()
-  } 
+  }
   cameraModeAngleCheck() {
     // engine.addSystem( this.gameController.uiController.popUpControls.checkCameraMode)
     this.gameController.uiController.popUpControls.showPuzzlesUis()
     // this.gameController.uiController.popUpControls.checkCameraMode()
   }
-  puzzleQuest() { 
+  puzzleQuest() {
     if (this.connect_game.bStarted) return
     this.connect_game.startGame()
-    this.connect_game.completeEvent2PuzzleCallback = () => { 
+    this.connect_game.completeEvent2PuzzleCallback = () => {
       this.gameController.uiController.popUpControls.puzzleConnectCablesVisible = false
       this.gameController.uiController.popUpControls.endPuzzle = true
       console.log('complete game')
@@ -177,7 +177,7 @@ export class QuestPuzzle {
     }
   }
   private taskTalkSwap() {
-    this.gameController.uiController.widgetTasks.showTick(true,0)
+    this.gameController.uiController.widgetTasks.showTick(true, 0)
     utils.timers.setTimeout(() => {
       this.gameController.uiController.widgetTasks.showTick(false, 0)
       this.gameController.uiController.widgetTasks.setText(10, 0)
@@ -194,12 +194,12 @@ export class QuestPuzzle {
         }
       },
       () => {
-        this.gameController.uiController.widgetTasks.showTick(true,0)
-        this.gameController.uiController.widgetTasks.showTick(true,3)
+        this.gameController.uiController.widgetTasks.showTick(true, 0)
+        this.gameController.uiController.widgetTasks.showTick(true, 3)
         utils.timers.setTimeout(() => {
           this.gameController.uiController.widgetTasks.showTick(false, 0)
           this.gameController.uiController.widgetTasks.setText(11, 0)
-          this.gameController.uiController.widgetTasks.showTasks(false,TaskType.Multiple)
+          this.gameController.uiController.widgetTasks.showTasks(false, TaskType.Multiple)
           this.gameController.uiController.widgetTasks.showTasks(true, TaskType.Simple)
         }, 2000)
         pointerEventsSystem.removeOnPointerDown(this.kit.npcChild)
@@ -234,10 +234,10 @@ export class QuestPuzzle {
       engine.removeEntity(particle)
     }, 1000)
   }
-   dialogQuestFinished() {
-    this.bubbleTalk.openBubble(GO_TO_PORTAL,true)
-    Animator.getClip(this.kit.entity,'Talk').playing = false
-    Animator.getClip(this.kit.entity,'Idle').playing = true
+  dialogQuestFinished() {
+    this.bubbleTalk.openBubble(GO_TO_PORTAL, true)
+    Animator.getClip(this.kit.entity, 'Talk').playing = false
+    Animator.getClip(this.kit.entity, 'Idle').playing = true
     // this.npc3.getComponent(QuestNpc).idleAnimFromTalk()
 
     // //Pilar Anim
@@ -253,6 +253,7 @@ export class QuestPuzzle {
     // getHUD().wgQuest.showTick(0, true)
     // getHUD().wgQuest.setOtherTaskDelay(11, 1)
     // getHUD().wgQuest.show(true)
+    this.gameController.questPortal.initQuestPortal()
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_2__01)

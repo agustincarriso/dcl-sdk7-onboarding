@@ -106,6 +106,10 @@ export class QuestPortal {
     this.bubbleTalk.closeBubbleInTime()
     this.bubbleDynamic = new BubbleDynamic(this.tobor.entity)
     engine.addSystem(this.bubbleDynamic.respSystem)
+    Transform.getMutable(this.tobor.entity).scale = Vector3.create(0, 0, 0)
+  }
+  initQuestPortal() {
+    Transform.getMutable(this.tobor.entity).scale = Vector3.create(1, 1, 1)
   }
   loadTagData() {
     this.portal = this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01
@@ -147,7 +151,7 @@ export class QuestPortal {
   }
   setWalletConnection() {
     this.walletConected = this.claim.setUserData()
-    console.log('wallet connected:' + this.walletConected)
+    console.log('wallet  connected:' + this.walletConected)
     if (this.walletConected === false) {
       this.bubbleTalk.openBubble(CHOOSE_PORTAL, false)
       this.robotToPortalCallBack()
