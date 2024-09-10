@@ -57,9 +57,9 @@ export class PortalEvents {
     this.materials()
     // Create the board
     this.boardBase = entity
-    Transform.getMutable(this.boardBase).scale.y = Transform.get(this.boardBase).scale.y
-    Transform.getMutable(this.boardBase).rotation.y = Transform.get(this.boardBase).rotation.y * -1
-    Transform.getMutable(this.boardBase).rotation.w = Transform.get(this.boardBase).rotation.w * -1
+    Transform.getMutable(this.boardBase).scale.y = Transform.get(this.boardBase).scale.y * -1
+    // Transform.getMutable(this.boardBase).rotation.y = Transform.get(this.boardBase).rotation.y * -1
+    // Transform.getMutable(this.boardBase).rotation.w = Transform.get(this.boardBase).rotation.w * -1
     // Create the title
     this.title = engine.addEntity()
     TextShape.create(this.title, { text: '' })
