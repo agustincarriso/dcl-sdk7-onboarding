@@ -1,11 +1,11 @@
-function randomNumbers(length: number) {
+export function randomNumbers(length: number) {
   var numbers = []
   for (let i = 0; i < length; i++) {
     numbers.push(i)
   }
   return shuffle(numbers)
 }
-function shuffle<T>(array: Array<T>) {
+export function shuffle<T>(array: Array<T>) {
   let currentIndex = array.length,
     randomIndex: number
 

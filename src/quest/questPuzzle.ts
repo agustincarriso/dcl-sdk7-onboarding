@@ -257,6 +257,7 @@ export class QuestPuzzle {
     // getHUD().wgQuest.showTick(0, true)
     // getHUD().wgQuest.setOtherTaskDelay(11, 1)
     // getHUD().wgQuest.show(true)
+    this.gameController.questPortal.initQuestPortal()
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_2__01)

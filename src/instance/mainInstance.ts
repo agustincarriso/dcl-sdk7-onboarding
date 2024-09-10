@@ -1120,11 +1120,11 @@ export class MainInstace {
     })
 
     // En_event_portal
-    this.s0_En_event_portal_01 = engine.addEntity()
+    this.s0_En_event_portal_01 = engine.addEntity() 
     MeshCollider.setPlane(this.s0_En_event_portal_01)
     Transform.create(this.s0_En_event_portal_01, {
       position: Vector3.create(111.53, 83.78, 95.6),
-      rotation: Quaternion.create(0, -0.1771433, 0, 0.984185),
+      rotation: Quaternion.fromEulerDegrees( 0,  -20.4068191, 180),
       scale: Vector3.create(6.002286, 6.072799, 5.779765)
     })
     Material.setPbrMaterial(this.s0_En_event_portal_01, {
@@ -1137,7 +1137,7 @@ export class MainInstace {
     MeshCollider.setPlane(this.s0_En_event_portal_place_01)
     Transform.create(this.s0_En_event_portal_place_01, {
       position: Vector3.create(94, 83.63, 103.94),
-      rotation: Quaternion.create(0, 0.6127018, 0, 0.7903143),
+      rotation: Quaternion.fromEulerDegrees(0,75.5702279,180),
       scale: Vector3.create(6.132771, 6.204816, 5.905412)
     })
     Material.setPbrMaterial(this.s0_En_event_portal_place_01, {
@@ -1151,7 +1151,7 @@ export class MainInstace {
     MeshCollider.setPlane(this.s0_En_event_portal_gen_01)
     Transform.create(this.s0_En_event_portal_gen_01, {
       position: Vector3.create(100.92, 84.46, 96.76),
-      rotation: Quaternion.create(0, 0.2126057, 0, 0.9771381),
+      rotation: Quaternion.fromEulerDegrees(0,24.550193,180),
       scale: Vector3.create(7.704423, 7.794932, 7.418799)
     })
     Material.setPbrMaterial(this.s0_En_event_portal_gen_01, {
@@ -1335,7 +1335,10 @@ export class MainInstace {
     Animator.create(this.s0_Z3_Quest_Portal_Art_01, {
       states: [
         {
-          clip: 'Portal_Activate'
+          clip: 'Portal_Activate',
+          shouldReset: false,
+          speed: 1.1,
+          loop: false
         },
         {
           clip: 'Portal_On'
