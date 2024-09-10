@@ -22,7 +22,7 @@ class Segment {
   constructor(public readonly segmentKey: string) {}
 
   async track(event: string, properties?: Record<string, any>) {
-    const userData = await getPlayer()
+    const userData = getPlayer()
     if (!userData) {
       console.log(`[ignored] track("${event}"${properties ? ', {...}' : ''}): missing userData`)
       return
