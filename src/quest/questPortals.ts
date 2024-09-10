@@ -133,20 +133,12 @@ export class QuestPortal {
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborEndDialog, 0)
   }
   robotToPortalCallBack() {
-    'robottoPortalCsallBack'
     Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01, 'Portal_Activate')
     AudioManager.instance().playMainAmbience(false)
     activateLoopSoundPortal()
-    utils.timers.setTimeout(() => {
-      Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
-    }, 13000)
-
     this.displayEvents()
-
     AudioManager.instance().audio.portal_ambiental.setVolumeSmooth(0, 2000)
-
-    activateInitialSoundPortal()
   }
 
   setRewardTrue() {
@@ -222,8 +214,6 @@ export class QuestPortal {
     )
 
     delay(() => {
-      Animator.stopAllAnimations(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01)
-      Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Portal_Art_01, 'Portal_On').playing = true
       //Show Planeshapes
       this.eventpositions.forEach((e) => {
         MeshRenderer.setPlane(e)

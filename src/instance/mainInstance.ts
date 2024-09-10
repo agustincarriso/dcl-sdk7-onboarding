@@ -1335,7 +1335,10 @@ export class MainInstace {
     Animator.create(this.s0_Z3_Quest_Portal_Art_01, {
       states: [
         {
-          clip: 'Portal_Activate'
+          clip: 'Portal_Activate',
+          shouldReset: false,
+          speed: 1.1,
+          loop: false
         },
         {
           clip: 'Portal_On'
