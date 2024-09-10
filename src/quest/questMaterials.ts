@@ -26,7 +26,7 @@ import { closeDialog } from 'dcl-npc-toolkit/dist/dialog'
 import { ClaimWearableRequest } from '../claim/claimWearable'
 import { POPUP_STATE } from '../uis/popupUI'
 import { TaskType } from '../uis/widgetTask'
-import { sendTrak } from '../utils/segment'
+// import { sendTrak } from '../utils/segment'
 export class QuestMaterials {
   gameController: GameController
   mat: NPC
@@ -131,7 +131,7 @@ export class QuestMaterials {
   }
   startQuest() {
     this.setQuestStartDialog()
-    sendTrak('z2_quest2_00', this.gameController.timeStamp)
+    // sendTrak('z2_quest2_00', this.gameController.timeStamp)
   }
   setUpClaim() {}
   spawnBlockToNextIsalnd() {
@@ -288,10 +288,10 @@ export class QuestMaterials {
     if (this.materialsCollected == 2) {
       this.pickedAllPieces()
       this.bubbleTalk.closeBubbleInTime()
-      sendTrak('z2_quest2_02', this.gameController.timeStamp)
+      // sendTrak('z2_quest2_02', this.gameController.timeStamp)
     } else {
       openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 4)
-      sendTrak('z2_quest2_01', this.gameController.timeStamp)
+      // sendTrak('z2_quest2_01', this.gameController.timeStamp)
       utils.timers.setTimeout(() => {
         closeDialog(this.mat.entity)
       }, 3000)
@@ -356,7 +356,7 @@ export class QuestMaterials {
     this.spawnparticles()
     Animator.stopAllAnimations(this.mat.entity)
     Animator.playSingleAnimation(this.mat.entity, 'Celebrate')
-    sendTrak('z2_quest2_03', this.gameController.timeStamp)
+    // sendTrak('z2_quest2_03', this.gameController.timeStamp)
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 6)
     utils.timers.setTimeout(() => {
       Animator.stopAllAnimations(this.mat.entity)

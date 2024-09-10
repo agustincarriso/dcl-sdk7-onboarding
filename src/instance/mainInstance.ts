@@ -1493,15 +1493,7 @@ export class MainInstace {
     })
     Transform.getMutable(this.s0_Z3_Str_Bridge_Art_1__01).parent = this.s0_Z3_COG_01
     Animator.create(this.s0_Z3_Str_Bridge_Art_1__01, {
-      states: [
-        {
-          clip: 'Bridge On'
-        },
-        {
-          clip: 'Bridge Off'
-        },
-        { clip: 'Bridge Animation' }
-      ]
+      states: [{ clip: 'Bridge On',shouldReset:false, loop: true}, { clip: 'Bridge Off',shouldReset:false, loop: false }, { clip: 'Bridge Animation',shouldReset:false, loop: false }]
     })
     // s0_Z3_Env_Rocks_Source_art_1__01
     this.s0_Z3_Env_Rocks_Source_art_1__01 = engine.addEntity()
@@ -2683,7 +2675,7 @@ export class MainInstace {
       src: 'assets/scene/models/unity_assets/s0_Z3_Str_Bridge_Art_1__01.glb'
     })
     Animator.create(this.s0_Z3_Str_Bridge_Art_01, {
-      states: [{ clip: 'Bridge On' }, { clip: 'Bridge Off' }, { clip: 'Bridge Animation' }]
+      states: [{ clip: 'Bridge On',shouldReset:false, loop: true}, { clip: 'Bridge Off',shouldReset:false, loop: false }, { clip: 'Bridge Animation',shouldReset:false, loop: false }]
     })
     Transform.create(this.s0_Z3_Str_Bridge_Art_01, {
       position: Vector3.create(189.42, 63.11, 120.55),
