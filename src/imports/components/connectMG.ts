@@ -1,21 +1,10 @@
-import {
-  Entity,
-  GltfContainer,
-  InputAction,
-  MeshCollider,
-  MeshRenderer,
-  PBMaterial_PbrMaterial,
-  Transform,
-  engine,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
+import { Entity, InputAction, MeshCollider, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { GameController } from '../controllers/gameController'
-import { AudioManager } from '../imports/components/audio/audio.manager'
-import { delay } from '../imports/components/delay'
-import { ArrowTargeter } from '../imports/components/targeter'
-import { rotate } from '../utils/rotate'
 import { openDialogWindow } from 'dcl-npc-toolkit'
+import { GameController } from '../../controllers/gameController'
+import { AudioManager } from './audio/audio.manager'
+import { delay } from './delay'
+import { ArrowTargeter } from './targeter'
 
 //This is the rotation order of the pieces
 const pieceState = [0, 45, 90, 135, 180, 225, 270, 315]
