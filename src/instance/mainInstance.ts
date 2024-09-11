@@ -1,25 +1,19 @@
 import {
   Animator,
-  CrdtMessageProtocol,
   engine,
   Entity,
   GltfContainer,
   InputAction,
-  inputSystem,
   Material,
   MeshCollider,
   MeshRenderer,
   PointerEvents,
   PointerEventType,
-  TextureWrapMode,
   Transform
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
-import * as npc from 'dcl-npc-toolkit'
-import { openDialogWindow } from 'dcl-npc-toolkit'
 import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
-import { SpawnIsland } from '../quest/questStartIsland'
 import { ArrowTargeter } from '../imports/components/targeter'
 
 export class MainInstace {

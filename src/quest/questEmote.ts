@@ -15,7 +15,6 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
-import { NPC } from '../npc.class'
 import { closeDialogWindow, openDialogWindow } from 'dcl-npc-toolkit'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { QuestIndicator } from '../imports/components/questIndicator'
@@ -30,6 +29,7 @@ import { TaskType } from '../uis/widgetTask'
 import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configEmote } from '../claim/config'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 
 export class QuestEmote {
   gameController: GameController

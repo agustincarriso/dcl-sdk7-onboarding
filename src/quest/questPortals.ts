@@ -11,7 +11,6 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
-import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { CHOOSE_PORTAL, HELP_KIT } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
@@ -24,6 +23,7 @@ import { PortalEvents } from '../events/eventBoard'
 import { delay } from '../imports/components/delay'
 import { randomNumbers } from '../utils/globalLibrary'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 
 export class QuestPortal {
   tobor: NPC
@@ -125,10 +125,7 @@ export class QuestPortal {
   }
   startQuestPortal() {
     this.robotPortal()
-    this.setUpClaim()
   }
-  setUpClaim() {}
-  robotToPortal() {}
 
   robotPortal() {
     this.bubbleDynamic.closeBubbleInTime()

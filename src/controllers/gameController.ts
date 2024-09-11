@@ -1,20 +1,12 @@
-import { movePlayerTo } from '~system/RestrictedActions'
-import { cleanUpScene } from '../utils/cleanupScene'
 import { MainInstace } from '../instance/mainInstance'
-import { Vector3 } from '@dcl/sdk/math'
-import { UIController } from './uiController'
-import { KeyBoardUI } from '../uis/keyboardUI'
-import * as utils from '@dcl-sdk/utils'
-import { SpawnIsland } from '../quest/questStartIsland'
 import { Dialogs } from '../jsonData/npc_dialogs'
-import { onEnterScene } from '@dcl/sdk/src/players'
 import { QuestEmote } from '../quest/questEmote'
-import { getUserData } from '~system/UserIdentity'
-import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
-import { QuestPuzzle } from '../quest/questPuzzle'
 import { QuestMaterials } from '../quest/questMaterials'
 import { QuestPortal } from '../quest/questPortals'
+import { QuestPuzzle } from '../quest/questPuzzle'
+import { SpawnIsland } from '../quest/questStartIsland'
 import { setPlayerTime } from '../utils/setPlayerTime'
+import { UIController } from './uiController'
 
 export class GameController {
   mainInstance: MainInstace
