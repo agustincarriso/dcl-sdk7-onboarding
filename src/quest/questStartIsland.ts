@@ -276,7 +276,7 @@ export class SpawnIsland {
               }, 2000)
             }
           )
-          console.log('tobor on pilar')
+          console.log('tobor on  pilar')
         }
       }
     })
