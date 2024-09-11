@@ -88,9 +88,7 @@ export class BubbleTalk {
         duration
       )
       this.defaultMode()
-      console.log('bubble in defaultMode')
     }
-    console.log('thing')
   }
 
   closeBubbleInTime(): void {

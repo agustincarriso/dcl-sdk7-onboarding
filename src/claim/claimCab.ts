@@ -1,10 +1,9 @@
 import { getRealm } from '~system/Runtime'
 import { signedFetch } from '~system/SignedFetch'
-
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/src/players'
 import { GameController } from '../controllers/gameController'
-import { ClaimConfigInstType, ClaimTokenRequestArgs, USE_CAPTCHA, configEmote } from './config'
+import { ClaimTokenRequestArgs, USE_CAPTCHA, configEmote } from './config'
 import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 import { openExternalUrl } from '~system/RestrictedActions'
@@ -69,7 +68,6 @@ export class ClaimCapRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clickeeeeeeed')
       }
     })
   }

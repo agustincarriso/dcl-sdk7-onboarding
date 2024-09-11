@@ -1,6 +1,5 @@
 import {
   Animator,
-  BackgroundTextureMode,
   EasingFunction,
   engine,
   Entity,
@@ -12,24 +11,19 @@ import {
   PointerEvents,
   pointerEventsSystem,
   PointerEventType,
-  PointerLock,
-  removeEntityWithChildren,
-  Rotate,
   Transform,
   Tween,
   TweenSequence,
   tweenSystem
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
-import * as npc from 'dcl-npc-toolkit'
 import { GameController } from '../controllers/gameController'
 import { openDialogWindow } from 'dcl-npc-toolkit'
-import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
-import { NPC } from '../npc.class'
+import { FloorCircleTargeter } from '../imports/components/targeter'
 import * as utils from '@dcl-sdk/utils'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { addInPlace } from '../utils/addInPlace'
-import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
+import { BubbleTalk } from '../imports/bubble'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { activateSoundPillar1 } from '../imports/components/audio/sounds'
@@ -37,6 +31,7 @@ import { TaskType } from '../uis/widgetTask'
 import { HELP_BEIZER, JUMP } from '../jsonData/textsTutorialBubble'
 import { point1, point2, point3 } from '../jsonData/npcData'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 
 export class SpawnIsland {
   tobor: NPC
@@ -54,7 +49,6 @@ export class SpawnIsland {
       'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
       14,
       () => {
-        console.log('npc activated ')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
@@ -202,7 +196,6 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    console.log('Interactive  quest tobor ')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)

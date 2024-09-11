@@ -4,7 +4,7 @@ import { signedFetch } from '~system/SignedFetch'
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/src/players'
 import { GameController } from '../controllers/gameController'
-import { ClaimConfigInstType, ClaimTokenRequestArgs, USE_CAPTCHA, configEmote } from './config'
+import { ClaimTokenRequestArgs, USE_CAPTCHA } from './config'
 import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 import { openExternalUrl } from '~system/RestrictedActions'
@@ -69,7 +69,6 @@ export class ClaimWearableRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clickeeeeeeed')
       }
     })
   }
@@ -126,7 +125,6 @@ export class ClaimWearableRequest {
       onMouseDown: () => {
         this.onTheWay.hide()
         this.gameController.questMaterial.setRewardTrue()
-        console.log('eeeeeee')
       }
     })
 
@@ -167,7 +165,6 @@ export class ClaimWearableRequest {
     const isClaimed = this.alreadyClaimed.find((item) => item === this.campaign_key)
 
     if (isClaimed) {
-      console.log('Already Claim UI')
       return
     }
 

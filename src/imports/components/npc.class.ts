@@ -1,24 +1,16 @@
-import {
-  Animator,
-  Billboard,
-  BillboardMode,
-  engine,
-  Entity,
-  GltfContainer,
-  InputAction,
-  inputSystem,
-  MeshCollider,
-  MeshRenderer,
-  PointerEvents,
-  pointerEventsSystem,
-  PointerEventType,
-  Transform
-} from '@dcl/sdk/ecs'
 import * as utils from '@dcl-sdk/utils'
+import {
+  Entity,
+  engine,
+  Transform,
+  MeshCollider,
+  pointerEventsSystem,
+  InputAction,
+  Billboard,
+  BillboardMode
+} from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
-import { openDialogWindow } from 'dcl-npc-toolkit'
 import * as npc from 'dcl-npc-toolkit'
-import { FloorCircleTargeter } from './imports/components/targeter'
 export class NPC {
   entity: Entity = engine.addEntity()
   npcChild: Entity = engine.addEntity()
@@ -26,7 +18,7 @@ export class NPC {
   constructor(
     position: Vector3,
     scale: Vector3,
-    rotation: Quaternion, 
+    rotation: Quaternion,
     GLTF: string,
     reactDistance: number,
     onActivate: () => void = () => {},
@@ -42,10 +34,10 @@ export class NPC {
       },
       {
         type: npc.NPCType.CUSTOM,
-        model : GLTF,
+        model: GLTF,
         faceUser: true,
         onActivate: () => {},
-        onWalkAway: () => {},
+        onWalkAway: () => {}
       }
     )
     utils.triggers.addTrigger(
@@ -78,12 +70,12 @@ export class NPC {
       }
     )
   }
-  setChildScaleYAxis(number: number){
+  setChildScaleYAxis(number: number) {
     Transform.getMutable(this.npcChild).scale = Vector3.create(0.8, number, 0.8)
   }
-  activateBillBoard(faceUser: boolean){
-    if (faceUser === true){
-      Billboard.create(this.entity, {billboardMode: BillboardMode.BM_Y})
+  activateBillBoard(faceUser: boolean) {
+    if (faceUser === true) {
+      Billboard.create(this.entity, { billboardMode: BillboardMode.BM_Y })
     } else {
       Billboard.deleteFrom(this.entity)
     }

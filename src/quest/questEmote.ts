@@ -15,7 +15,6 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { GameController } from '../controllers/gameController'
-import { NPC } from '../npc.class'
 import { closeDialogWindow, openDialogWindow } from 'dcl-npc-toolkit'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { QuestIndicator } from '../imports/components/questIndicator'
@@ -30,6 +29,7 @@ import { TaskType } from '../uis/widgetTask'
 import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configEmote } from '../claim/config'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 
 export class QuestEmote {
   gameController: GameController
@@ -66,7 +66,6 @@ export class QuestEmote {
       'assets/scene/models/unity_assets/s0_NPC_FoxAnim_Art_01.glb',
       14,
       () => {
-        console.log('npc activated')
         Animator.getClip(this.bezier.entity, 'Idle').playing = true
       },
       () => {
@@ -206,13 +205,11 @@ export class QuestEmote {
   }
   checkEmoteMoves() {
     if (this.emoteMoves === 1) {
-      console.log('First emote detected')
       sendTrak('z1_quest1_01', this.gameController.timeStamp)
       this.bubbleTalk.openBubble(ZONE_1_EMOTE_1, true)
       this.addTicks(1)
       this.spawnParticles()
     } else if (this.emoteMoves === 2) {
-      console.log('Second emote detected')
       sendTrak('z1_quest1_02', this.gameController.timeStamp)
       this.bubbleTalk.closeBubbleInTime()
       this.addTicks(2)
@@ -221,7 +218,6 @@ export class QuestEmote {
         this.bubbleTalk.openBubble(ZONE_1_EMOTE_2, true)
       }, 100)
     } else if (this.emoteMoves === 3) {
-      console.log('Third emote detected')
       sendTrak('z1_quest1_03', this.gameController.timeStamp)
       this.bubbleTalk.closeBubbleInTime()
       this.addTicks(3)

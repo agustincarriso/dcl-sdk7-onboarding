@@ -11,7 +11,6 @@ import {
   pointerEventsSystem
 } from '@dcl/sdk/ecs'
 import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
-import { NPC } from '../npc.class'
 import { openDialogWindow } from 'dcl-npc-toolkit'
 import { CHOOSE_PORTAL, HELP_KIT } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
@@ -19,11 +18,12 @@ import { ClaimCapRequest } from '../claim/claimCab'
 import { configCap } from '../claim/config'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { getEvents } from '../events/checkApi'
-import { activateInitialSoundPortal, activateLoopSoundPortal } from '../imports/components/audio/sounds'
+import { activateLoopSoundPortal } from '../imports/components/audio/sounds'
 import { PortalEvents } from '../events/eventBoard'
 import { delay } from '../imports/components/delay'
 import { randomNumbers } from '../utils/globalLibrary'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 
 export class QuestPortal {
   tobor: NPC
@@ -53,7 +53,6 @@ export class QuestPortal {
       'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
       14,
       () => {
-        console.log('npc activaated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
@@ -126,10 +125,7 @@ export class QuestPortal {
   }
   startQuestPortal() {
     this.robotPortal()
-    this.setUpClaim()
   }
-  setUpClaim() {}
-  robotToPortal() {}
 
   robotPortal() {
     this.bubbleDynamic.closeBubbleInTime()
@@ -166,7 +162,6 @@ export class QuestPortal {
   }
   giveReward() {
     this.claim.claimToken()
-    // console.log(givingReaward)
   }
   onCloseRewardUI() {
     this.setupFinalDialog()

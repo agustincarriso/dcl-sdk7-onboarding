@@ -1,20 +1,8 @@
-import {
-  Animator,
-  CameraMode,
-  engine,
-  Entity,
-  GltfContainer,
-  InputAction,
-  pointerEventsSystem,
-  TextShape,
-  Transform
-} from '@dcl/sdk/ecs'
+import { Animator, engine, GltfContainer, InputAction, pointerEventsSystem, TextShape, Transform } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
-import { NPC } from '../npc.class'
-import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
+import { FloorCircleTargeter } from '../imports/components/targeter'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
-import { ConnectMiniGame } from '../components/connectMG'
 import { sideBubbleTalk } from '../imports/bubble'
 import { GO_TO_PORTAL, ZONE_2_PUZZLE_0 } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
@@ -23,6 +11,8 @@ import { openDialogWindow } from 'dcl-npc-toolkit'
 import { activatePillarSound4, changeGeneratosSound } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
 import { sendTrak } from '../utils/segment'
+import { ConnectMiniGame } from '../imports/components/connectMG'
+import { NPC } from '../imports/components/npc.class'
 
 export class QuestPuzzle {
   gameController: GameController
@@ -161,18 +151,11 @@ export class QuestPuzzle {
       this.gameController.uiController.popUpControls.puzzleConnectCablesVisible = false
       this.gameController.uiController.popUpControls.endPuzzle = true
       console.log('complete game')
-      // //BLA fixed generator
       changeGeneratosSound()
-      // //Kit look player
-      // this.npc3.getComponent(Transform).lookAt(Camera.instance.worldPosition)
-      // //Stat
       // sendTrak('z3_quest3_01')
       this.bubbleTalk.closeBubbleInTime()
-      // CameraModeManager.instance().removeAllCallbacks()
-      // this.npc3.getComponent(QuestNpc).bubbleTalk.setActive(false)
       utils.timers.setTimeout(() => {
         openDialogWindow(this.kit.entity, this.gameController.dialogs.kitDialog, 4)
-        // getHUD().wgPopUpControls.showCablesImage(false)
         this.taskTalkSwap()
         this.clicOnNPC2PuzzleCompleted()
         this.questIndicator.updateStatus(IndicatorState.INTERROGATION)
@@ -242,21 +225,7 @@ export class QuestPuzzle {
     this.bubbleTalk.openBubble(GO_TO_PORTAL, true)
     Animator.getClip(this.kit.entity, 'Talk').playing = false
     Animator.getClip(this.kit.entity, 'Idle').playing = true
-    // this.npc3.getComponent(QuestNpc).idleAnimFromTalk()
-
-    // //Pilar Anim
     this.activatePilar()
-
-    // //Task Multiple UI
-    // getHUD().wgQuestMultiple.showTick(2)
-    // delay(() => {
-    //   getHUD().wgQuestMultiple.show(false)
-    // }, 2)
-
-    // //Tasks Simple UI
-    // getHUD().wgQuest.showTick(0, true)
-    // getHUD().wgQuest.setOtherTaskDelay(11, 1)
-    // getHUD().wgQuest.show(true)
     this.gameController.questPortal.initQuestPortal()
   }
   activatePilar() {

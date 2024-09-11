@@ -2,7 +2,6 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { ClaimEmoteTokenRequest } from '../claim/claimEmote'
 import { configVest } from '../claim/config'
 import { GameController } from '../controllers/gameController'
-import { NPC } from '../npc.class'
 import {
   Animator,
   Entity,
@@ -27,6 +26,7 @@ import { ClaimWearableRequest } from '../claim/claimWearable'
 import { POPUP_STATE } from '../uis/popupUI'
 import { TaskType } from '../uis/widgetTask'
 import { sendTrak } from '../utils/segment'
+import { NPC } from '../imports/components/npc.class'
 export class QuestMaterials {
   gameController: GameController
   mat: NPC
@@ -133,13 +133,11 @@ export class QuestMaterials {
     this.setQuestStartDialog()
     sendTrak('z2_quest2_00', this.gameController.timeStamp)
   }
-  setUpClaim() {}
   spawnBlockToNextIsalnd() {
     Transform.createOrReplace(this.blocker, {
       position: Vector3.create(149.93, 72.45, 156.78),
       scale: Vector3.create(3, 5, 9)
     })
-    console.log()
     MeshCollider.setBox(this.blocker)
     pointerEventsSystem.onPointerDown(
       {
@@ -156,7 +154,6 @@ export class QuestMaterials {
     engine.removeEntity(this.blocker)
     engine.removeEntity(this.gameController.mainInstance.s0_Fence_Art_01)
   }
-  setBubbleNpc() {}
   setUpTriggerHi() {
     let triggerHi = engine.addEntity()
     Transform.create(triggerHi, {
@@ -343,7 +340,6 @@ export class QuestMaterials {
         pointerEventsSystem.removeOnPointerDown(this.mat.npcChild)
       }
     )
-    // add onpointerDown on click trigger
   }
   talkNpcCompleteQuest() {
     this.gameController.uiController.widgetTasks.showTick(true, 0)
