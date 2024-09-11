@@ -50,6 +50,6 @@ export class UIController {
       this.popUpUI.popupUIVest()
     ]
     ReactEcsRenderer.setUiRenderer(this.uiComponent)
-    this.keyBoardUI.isVisible = true
+    this.keyBoardUI.isVisible = false
   }
 }

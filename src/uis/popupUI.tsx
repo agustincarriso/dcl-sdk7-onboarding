@@ -26,6 +26,7 @@ export class Popup {
   takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
   mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
   currentButton: number = 0
+  closeButton:string = 'assets/ui/close_button.png'
   // Tobor
   isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
@@ -52,6 +53,7 @@ export class Popup {
   matImage: string = 'assets/ui/Upperbody.png'
   matImageText: string = "<b>Mat's Vest</b>"
   matButtonRightText: string = '<b>Yay!</b>'
+  matButtonLeftText: string = '<b>Close</b>'
   constructor(uiController: UIController) {
     this.uiController = uiController
   }
@@ -70,7 +72,7 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0,0,0,0)
+          color: Color4.create(0, 0, 0, 0)
         }}
       >
         <UiEntity
@@ -354,7 +356,7 @@ export class Popup {
             texture: { src: this.backgroundBig }
           }}
         >
-          {/* Text UI */}
+          {/* Text UI */} 
           <Label
             uiTransform={{
               positionType: 'absolute',
@@ -445,7 +447,7 @@ export class Popup {
             textAlign="middle-center"
             fontSize={canvasInfo.height * 0.014}
             font="sans-serif"
-            color={Color4.create(0,0,0,0)}
+            color={Color4.create(0, 0, 0, 0)}
           />
           <UiEntity
             uiTransform={{
@@ -512,7 +514,7 @@ export class Popup {
               uiTransform={{
                 positionType: 'absolute',
                 position: { bottom: '20%', left: '0%', top: '20%' },
-                margin: { left: '30%', right: '30%' },
+                margin: { left: '34%', right: '34%' },
                 display: this.buttonLeftVisible ? 'flex' : 'none'
               }}
               value={this.buttonLeft}
@@ -720,7 +722,7 @@ export class Popup {
               positionType: 'absolute',
               width: canvasInfo.height * 0.15,
               height: canvasInfo.height * 0.07,
-              position: { bottom: '10%', left: '0%' },
+              position: { bottom: '22%', left: '0%' },
               margin: { left: '35%', right: '35%' }
             }}
             uiBackground={{
@@ -746,6 +748,38 @@ export class Popup {
               color={Color4.White()}
             />
           </UiEntity>
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: canvasInfo.height * 0.15,
+              height: canvasInfo.height * 0.07,
+              position: { bottom: '10%', left: '0%' },
+              margin: { left: '35%', right: '35%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.buttonRightImage },
+              color: Color4.Black()
+            }}
+            onMouseDown={() => {
+              this.hide(POPUP_STATE.Vest)
+              this.uiController.gameController.questMaterial.activatePilar()
+            }}
+          >
+            {/* Text UI */}
+            <Label
+              uiTransform={{
+                positionType: 'absolute',
+                position: { bottom: '20%', left: '0%', top: '20%' },
+                margin: { left: '30%', right: '30%' }
+              }}
+              value={this.matButtonLeftText}
+              textAlign="middle-center"
+              fontSize={canvasInfo.height * 0.018}
+              font="sans-serif"
+              color={Color4.White()}
+            />
+          </UiEntity>
         </UiEntity>
       </UiEntity>
     )
@@ -754,57 +788,57 @@ export class Popup {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
     return (
       <UiEntity
-      uiTransform={{
-        positionType: 'absolute',
-        width: canvasInfo.width,
-        height: '15%',
-        position: { bottom: '0%', left: '0%' }
-      }}
-      uiBackground={{
-        textureMode: 'stretch',
-        color: Color4.create(0,0,0,0)
-      }}
-    >
-      <UiEntity
         uiTransform={{
-          flexDirection: 'row',
-          width: canvasInfo.height * 0.46,
-          height: canvasInfo.height * 0.13,
-          justifyContent: 'flex-end',
           positionType: 'absolute',
-          position: { bottom: '2%', left: '36.5%' },
-          display: this.takeControlCameraVisible ? 'flex' : 'none'
+          width: canvasInfo.width,
+          height: '15%',
+          position: { bottom: '0%', left: '0%' }
         }}
         uiBackground={{
           textureMode: 'stretch',
-          texture: { src: this.backgroundBlack },
-          color: Color4.create(0, 0, 0, 0.5)
+          color: Color4.create(0, 0, 0, 0)
         }}
       >
-        {/* Text UI */}
-        <Label
-          uiTransform={{
-            positionType: 'absolute',
-            position: { right: '22%', top: '35%' }
-          }}
-          value={this.takecontrolCameraImageText}
-          fontSize={canvasInfo.height * 0.02}
-          font="sans-serif"
-          color={Color4.White()}
-        />
         <UiEntity
           uiTransform={{
+            flexDirection: 'row',
+            width: canvasInfo.height * 0.46,
+            height: canvasInfo.height * 0.13,
+            justifyContent: 'flex-end',
             positionType: 'absolute',
-            width: '50%',
-            height: '80%',
-            position: { top: '15%', left: '10%' }
+            position: { bottom: '2%', left: '36.5%' },
+            display: this.takeControlCameraVisible ? 'flex' : 'none'
           }}
           uiBackground={{
             textureMode: 'stretch',
-            texture: { src: this.takecontrolCameraImage }
+            texture: { src: this.backgroundBlack },
+            color: Color4.create(0, 0, 0, 0.5)
           }}
-        ></UiEntity>
-      </UiEntity>
+        >
+          {/* Text UI */}
+          <Label
+            uiTransform={{
+              positionType: 'absolute',
+              position: { right: '22%', top: '35%' }
+            }}
+            value={this.takecontrolCameraImageText}
+            fontSize={canvasInfo.height * 0.02}
+            font="sans-serif"
+            color={Color4.White()}
+          />
+          <UiEntity
+            uiTransform={{
+              positionType: 'absolute',
+              width: '50%',
+              height: '80%',
+              position: { top: '15%', left: '10%' }
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: { src: this.takecontrolCameraImage }
+            }}
+          ></UiEntity>
+        </UiEntity>
       </UiEntity>
     )
   }
@@ -832,12 +866,14 @@ export class Popup {
         this.emoteButtonRightText = '<b>CLAIM EMOTE<b>'
         this.emoteButtonRightMargin = '15%'
         this.disclaimText = ''
-        this.buttonLeftVisible = false
+        this.buttonLeftVisible = true
+        this.buttonLeft = '<b>Close<b>'
         break
       case 1:
         this.currentButton = 1
         // this.onFocusScreen()
         this.emoteButtonRightText = '<b>Get a Wallet</b>'
+        this.buttonLeft = '<b>Dismiss<b>'
         this.emoteButtonRightMargin = '20%'
         this.emoteVisible = true
         this.buttonLeftVisible = true
