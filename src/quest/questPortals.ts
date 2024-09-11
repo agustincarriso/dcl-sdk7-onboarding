@@ -19,7 +19,7 @@ import { ClaimCapRequest } from '../claim/claimCab'
 import { configCap } from '../claim/config'
 import { AudioManager } from '../imports/components/audio/audio.manager'
 import { getEvents } from '../events/checkApi'
-import { activateInitialSoundPortal, activateLoopSoundPortal } from '../imports/components/audio/sounds'
+import { activateLoopSoundPortal } from '../imports/components/audio/sounds'
 import { PortalEvents } from '../events/eventBoard'
 import { delay } from '../imports/components/delay'
 import { randomNumbers } from '../utils/globalLibrary'
@@ -53,7 +53,6 @@ export class QuestPortal {
       'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
       14,
       () => {
-        console.log('npc activaated')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
@@ -166,7 +165,6 @@ export class QuestPortal {
   }
   giveReward() {
     this.claim.claimToken()
-    // console.log(givingReaward)
   }
   onCloseRewardUI() {
     this.setupFinalDialog()

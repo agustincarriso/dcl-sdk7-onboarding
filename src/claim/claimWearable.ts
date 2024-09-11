@@ -69,7 +69,6 @@ export class ClaimWearableRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clickeeeeeeed')
       }
     })
   }
@@ -126,7 +125,6 @@ export class ClaimWearableRequest {
       onMouseDown: () => {
         this.onTheWay.hide()
         this.gameController.questMaterial.setRewardTrue()
-        console.log('eeeeeee')
       }
     })
 
@@ -167,7 +165,6 @@ export class ClaimWearableRequest {
     const isClaimed = this.alreadyClaimed.find((item) => item === this.campaign_key)
 
     if (isClaimed) {
-      console.log('Already Claim UI')
       return
     }
 

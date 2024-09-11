@@ -69,7 +69,6 @@ export class ClaimCapRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clickeeeeeeed')
       }
     })
   }

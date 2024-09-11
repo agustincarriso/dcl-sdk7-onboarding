@@ -139,7 +139,6 @@ export class QuestMaterials {
       position: Vector3.create(149.93, 72.45, 156.78),
       scale: Vector3.create(3, 5, 9)
     })
-    console.log()
     MeshCollider.setBox(this.blocker)
     pointerEventsSystem.onPointerDown(
       {

@@ -14,7 +14,6 @@ import { GameController } from '../controllers/gameController'
 import { NPC } from '../npc.class'
 import { ArrowTargeter, FloorCircleTargeter } from '../imports/components/targeter'
 import { IndicatorState, QuestIndicator } from '../imports/components/questIndicator'
-import { ConnectMiniGame } from '../components/connectMG'
 import { sideBubbleTalk } from '../imports/bubble'
 import { GO_TO_PORTAL, ZONE_2_PUZZLE_0 } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
@@ -23,6 +22,7 @@ import { openDialogWindow } from 'dcl-npc-toolkit'
 import { activatePillarSound4, changeGeneratosSound } from '../imports/components/audio/sounds'
 import { TaskType } from '../uis/widgetTask'
 import { sendTrak } from '../utils/segment'
+import { ConnectMiniGame } from '../imports/components/connectMG'
 
 export class QuestPuzzle {
   gameController: GameController

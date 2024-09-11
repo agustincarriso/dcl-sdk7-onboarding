@@ -54,7 +54,6 @@ export class SpawnIsland {
       'assets/scene/models/unity_assets/s0_NPC_Robot_Art_1__01.glb',
       14,
       () => {
-        console.log('npc activated ')
         Animator.getClip(this.tobor.entity, 'Robot_Idle').playing = true
       },
       () => {
@@ -202,7 +201,6 @@ export class SpawnIsland {
     }
   }
   startInteractQuest() {
-    console.log('Interactive  quest tobor ')
     AudioManager.instance().playOnce('tobor_talk', { volume: 0.6, parent: this.tobor.entity })
     openDialogWindow(this.tobor.entity, this.gameController.dialogs.toborDialog, 0)
     Animator.stopAllAnimations(this.tobor.entity)

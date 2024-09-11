@@ -119,7 +119,6 @@ export class ClaimEmoteTokenRequest {
       xPosition: -10,
       yPosition: -100,
       onMouseDown: () => {
-        console.log('Yeah clicked')
       }
     })
   }
