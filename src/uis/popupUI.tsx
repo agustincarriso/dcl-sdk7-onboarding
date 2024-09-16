@@ -387,7 +387,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { left: '0%', top: '18%' },
-              margin: { left: '24.5%', right: '24.5%' }
+              margin: { left: '24%', right: '24%' }
             }}
             value={this.emoteHeaderText1}
             textAlign="middle-center"
@@ -428,7 +428,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { bottom: '18%', left: '0%', top: '20%' },
-              margin: { left: '37.5%', right: '37.5%' }
+              margin: { left: '36.5%', right: '36.5%' }
             }}
             value={this.imageText}
             textAlign="middle-center"
@@ -455,7 +455,7 @@ export class Popup {
               width: canvasInfo.height * 0.19,
               height: canvasInfo.height * 0.07,
               position: { bottom: '21%', left: '0%' },
-              margin: { left: '31%', right: '31%' }
+              margin: { left: '30%', right: '30%' }
             }}
             uiBackground={{
               textureMode: 'stretch',
@@ -492,7 +492,7 @@ export class Popup {
               width: canvasInfo.height * 0.19,
               height: canvasInfo.height * 0.07,
               position: { bottom: '10%', left: '0%' },
-              margin: { left: '31%', right: '31%' },
+              margin: { left: '30%', right: '30%' },
               display: this.buttonLeftVisible ? 'flex' : 'none'
             }}
             uiBackground={{
