@@ -1,6 +1,5 @@
 import { getRealm } from '~system/Runtime'
 import { signedFetch } from '~system/SignedFetch'
-
 import * as utils from '@dcl-sdk/utils'
 import { getPlayer } from '@dcl/sdk/src/players'
 import { GameController } from '../controllers/gameController'

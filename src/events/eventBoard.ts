@@ -34,8 +34,7 @@ import {
   Texture,
   Transform
 } from '@dcl/sdk/ecs'
-import { textQuests } from '../jsonData/tasksTexts'
-import { Color3, Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
+import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { teleportTo } from '~system/RestrictedActions'
 import { splitTextIntoLines } from './helperFunctions'

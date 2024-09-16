@@ -1,18 +1,9 @@
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
-import {
-  Animator,
-  Entity,
-  InputAction,
-  MeshCollider,
-  MeshRenderer,
-  Transform,
-  engine,
-  pointerEventsSystem
-} from '@dcl/sdk/ecs'
+import { Animator, Entity, InputAction, MeshRenderer, Transform, engine, pointerEventsSystem } from '@dcl/sdk/ecs'
 import { BubbleDynamic, BubbleTalk } from '../imports/bubble'
 import { openDialogWindow } from 'dcl-npc-toolkit'
-import { CHOOSE_PORTAL, HELP_KIT } from '../jsonData/textsTutorialBubble'
+import { CHOOSE_PORTAL } from '../jsonData/textsTutorialBubble'
 import * as utils from '@dcl-sdk/utils'
 import { ClaimCapRequest } from '../claim/claimCab'
 import { configCap } from '../claim/config'

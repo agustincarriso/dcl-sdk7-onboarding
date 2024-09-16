@@ -1,4 +1,4 @@
-import { AudioSource, engine, Entity, Transform } from '@dcl/sdk/ecs'
+import { AudioSource, Entity, Transform } from '@dcl/sdk/ecs'
 import { AudioEntity, AudioSourceOptions, PlayAudioOptions } from './audioEntity'
 
 //Add all audio files here

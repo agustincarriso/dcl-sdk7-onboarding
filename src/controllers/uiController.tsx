@@ -1,12 +1,10 @@
 import { GameController } from './gameController'
-import ReactEcs, { ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import { NpcUtilsUi, openDialogWindow } from 'dcl-npc-toolkit'
-import Canvas from '../uis/canvas/Canvas'
-import { PointerLock, UiCanvasInformation, engine } from '@dcl/sdk/ecs'
+import ReactEcs, { ReactEcsRenderer } from '@dcl/sdk/react-ecs'
+import { NpcUtilsUi} from 'dcl-npc-toolkit'
 import { PopUpControls } from '../uis/popUpControls'
 import { KeyBoardUI } from '../uis/keyboardUI'
 import { Popup } from '../uis/popupUI'
-import { TaskType, WidgetTasks } from '../uis/widgetTask'
+import { WidgetTasks } from '../uis/widgetTask'
 
 export class UIController {
   public gameController: GameController

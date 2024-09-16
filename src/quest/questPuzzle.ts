@@ -152,7 +152,6 @@ export class QuestPuzzle {
       this.gameController.uiController.popUpControls.endPuzzle = true
       console.log('complete game')
       changeGeneratosSound()
-      // sendTrak('z3_quest3_01')
       this.bubbleTalk.closeBubbleInTime()
       utils.timers.setTimeout(() => {
         openDialogWindow(this.kit.entity, this.gameController.dialogs.kitDialog, 4)

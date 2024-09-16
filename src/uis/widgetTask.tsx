@@ -59,7 +59,7 @@ export class WidgetTasks {
   constructor(uiController: UIController) {
     this.uiController = uiController
     this.currentTask = {
-      text: { en: '' }, 
+      text: { en: '' },
       missionInfo: { en: '' },
       fontSize: 0,
       vAlign: '',
@@ -68,7 +68,7 @@ export class WidgetTasks {
     this.setText(0, 0)
   }
   setMarginPositions() {
-    console.log('margin positions'+this.simpleContainerVisible+this,this.multiContainerVisible)
+    console.log('margin positions' + this.simpleContainerVisible + this, this.multiContainerVisible)
     if (this.simpleContainerVisible === true && this.multiContainerVisible === true) {
       this.marginTop = '0%'
     } else {
@@ -82,21 +82,21 @@ export class WidgetTasks {
   }
   showTasks(visible: boolean, type: TaskType) {
     this.isVisible = true
-    if (type === TaskType.Simple){
-        this.simpleContainerVisible = visible 
-        this.checkBoxImageVisible = visible
-        this.textUIVisible = visible
-        this.infoUIVisible = visible
-        this.checkImageVisible = false
+    if (type === TaskType.Simple) {
+      this.simpleContainerVisible = visible
+      this.checkBoxImageVisible = visible
+      this.textUIVisible = visible
+      this.infoUIVisible = visible
+      this.checkImageVisible = false
     }
-    if (type === TaskType.Multiple){
-        this.multiContainerVisible = visible
-        this.checkBoxImageVisible1 = visible
-        this.checkBoxImageVisible2 = visible
-        this.checkBoxImageVisible3 = visible
-        this.checkImageVisible1 = false
-        this.checkImageVisible2 = false
-        this.checkImageVisible3 = false
+    if (type === TaskType.Multiple) {
+      this.multiContainerVisible = visible
+      this.checkBoxImageVisible1 = visible
+      this.checkBoxImageVisible2 = visible
+      this.checkBoxImageVisible3 = visible
+      this.checkImageVisible1 = false
+      this.checkImageVisible2 = false
+      this.checkImageVisible3 = false
     }
     this.setMarginPositions()
   }
@@ -131,7 +131,7 @@ export class WidgetTasks {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0,0,0,0)
+          color: Color4.create(0, 0, 0, 0)
         }}
       >
         {/* Multi Task Container */}
@@ -143,7 +143,7 @@ export class WidgetTasks {
             justifyContent: 'flex-end',
             positionType: 'relative',
             position: { top: '0%', right: '0%' },
-            margin: { bottom: '3%', top: '25%', right:'5%' },
+            margin: { bottom: '3%', top: '25%', right: '5%' },
             display: this.multiContainerVisible ? 'flex' : 'none'
           }}
           uiBackground={{
@@ -293,7 +293,7 @@ export class WidgetTasks {
             justifyContent: 'flex-end',
             positionType: 'relative',
             position: { top: '0%', right: '0%' },
-            margin: { bottom: '0%', top: this.marginTop, right:'5%' },
+            margin: { bottom: '0%', top: this.marginTop, right: '5%' },
             display: this.simpleContainerVisible ? 'flex' : 'none'
           }}
           uiBackground={{

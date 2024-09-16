@@ -1,17 +1,7 @@
 //#region lamp
 import { Vector3 } from '@dcl/sdk/math'
 import { AudioManager } from './audio.manager'
-import {
-  AudioSource,
-  engine,
-  Entity,
-  InputAction,
-  MeshRenderer,
-  PointerEvents,
-  pointerEventsSystem,
-  PointerEventType,
-  Transform
-} from '@dcl/sdk/ecs'
+import { AudioSource, engine, Entity, InputAction, MeshRenderer, pointerEventsSystem, Transform } from '@dcl/sdk/ecs'
 
 const music = engine.addEntity()
 const clip = 'assets/audio/music/RAC - Genesis Plaza 1.mp3'
@@ -22,17 +12,6 @@ Transform.create(music, { parent: engine.PlayerEntity })
 AudioSource.getMutable(music).volume = 0.04
 AudioSource.getMutable(music).loop = true
 AudioSource.getMutable(music).playing = true
-
-// onCameraModeChangedObservable.add(({cameraMode}) => {
-//     if(cameraMode == 0){
-//         log("firstPerson")
-//         source.volume = 0.015
-//     }
-//     else{
-//         log("ThirdPerson")
-//         source.volume = 0.04
-//     }
-// })
 
 const lampClip = 'assets/audio/v3/Lamp.wav'
 
@@ -275,8 +254,6 @@ export function activateLoopSoundPortal() {
   AudioSource.getMutable(portals).volume = 2.5
   AudioSource.playSound(portals, portalLoopClip)
 }
-
-//#endregions
 
 let cubeDebuggerEnable = false
 const soundEntityes = [

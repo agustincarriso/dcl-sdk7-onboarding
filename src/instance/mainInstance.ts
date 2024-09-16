@@ -13,7 +13,7 @@ import {
 } from '@dcl/sdk/ecs'
 import { Vector3, Quaternion, Color4 } from '@dcl/sdk/math'
 import { GameController } from '../controllers/gameController'
-import { onEnterScene, onLeaveScene } from '@dcl/sdk/src/players'
+import { onEnterScene } from '@dcl/sdk/src/players'
 import { ArrowTargeter } from '../imports/components/targeter'
 
 export class MainInstace {
@@ -231,7 +231,7 @@ export class MainInstace {
   s0_Z3_Stones_2_art_47__01: Entity
   s0_Z3_Rock_3_art_30__01: Entity
   s0_Z3_Rock_3_art_32__01: Entity
-  s0_WaterFall_01_Art_1__01: Entity //out of boundaries
+  s0_WaterFall_01_Art_1__01: Entity
   s0_WaterFall_01_Art_2__01: Entity
   s0_Z3_Prop_Stairs03_Art_1__01: Entity
   s0_Z3_Prop_Stairs03_Art_2__01: Entity

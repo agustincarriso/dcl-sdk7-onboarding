@@ -6,7 +6,7 @@ import { UIController } from '../controllers/uiController'
 export class PopUpControls {
   uiController: UIController
   currentCamera: CameraType | null = null
-  freezeCamera:boolean = false
+  freezeCamera: boolean = false
   endPuzzle: boolean = false
   //Jump
   spaceContainer: string = 'assets/ui/UI_Tasks_Base_P.png'
@@ -260,21 +260,21 @@ export class PopUpControls {
       </UiEntity>
     )
   }
-  showPuzzlesUis(){
-    Transform.onChange(engine.CameraEntity,()=>{
+  showPuzzlesUis() {
+    Transform.onChange(engine.CameraEntity, () => {
       let cameraEntity = CameraMode.get(engine.CameraEntity)
-      if (this.endPuzzle === true){
+      if (this.endPuzzle === true) {
         this.puzzleConnectCablesVisible = false
         this.puzzleContainerVisible = false
         return
       }
-      if (this.freezeCamera === true){
+      if (this.freezeCamera === true) {
         this.puzzleConnectCablesVisible = true
         this.puzzleContainerVisible = false
         return
       }
       if (cameraEntity.mode == CameraType.CT_THIRD_PERSON) {
-        this.puzzleConnectCablesVisible = false 
+        this.puzzleConnectCablesVisible = false
         this.puzzleContainerVisible = true
       } else if (cameraEntity.mode == CameraType.CT_FIRST_PERSON) {
         this.freezeCamera = true

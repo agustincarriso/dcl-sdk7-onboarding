@@ -26,7 +26,7 @@ export class Popup {
   takecontrolCameraImage: string = 'assets/ui/UI_Control.png'
   mouseRigth: string = 'assets/ui/UI_UnlockMouseRightBtn.png'
   currentButton: number = 0
-  closeButton:string = 'assets/ui/close_button.png'
+  closeButton: string = 'assets/ui/close_button.png'
   // Tobor
   isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
@@ -356,7 +356,7 @@ export class Popup {
             texture: { src: this.backgroundBig }
           }}
         >
-          {/* Text UI */} 
+          {/* Text UI */}
           <Label
             uiTransform={{
               positionType: 'absolute',

@@ -170,8 +170,8 @@ export class SpawnIsland {
     utils.triggers.addTrigger(triggerEnt, 1, 1, [{ type: 'box', scale: Vector3.create(300, 20, 300) }], () => {
       movePlayerTo({
         // newRelativePosition: Vector3.create(170.59,65.84,116.23), // bazier island
-        //newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
-        //newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
+        // newRelativePosition: Vector3.create(167.36, 68.29, 144.91), // mat island
+        // newRelativePosition: Vector3.create(117.2279, 80.72495, 113.0214),
         newRelativePosition: Vector3.create(224.127, 69.7368, 124.0051), // spawn island
         cameraTarget: Vector3.create(219.13, 70.73, 125.91)
       })
@@ -339,7 +339,7 @@ export class SpawnIsland {
     PointerEvents.deleteFrom(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     AudioManager.instance().playBridge(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').speed = 1
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').shouldReset = false 
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').shouldReset = false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').loop = false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On').weight = 0.3
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_01, 'Bridge On')

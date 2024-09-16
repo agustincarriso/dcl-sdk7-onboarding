@@ -1,6 +1,6 @@
-import { followPath, openDialogWindow, type Dialog } from 'dcl-npc-toolkit'
+import { type Dialog } from 'dcl-npc-toolkit'
 import { GameController } from '../controllers/gameController'
-import { CLICKME, HELP_BEIZER, JUMP } from './textsTutorialBubble'
+import { CLICKME } from './textsTutorialBubble'
 import {
   IdleTrebor,
   Racoon2Talking,
