@@ -7,6 +7,10 @@ import { ClaimTokenRequestArgs, USE_CAPTCHA, configEmote } from './config'
 import * as ui from 'dcl-ui-toolkit'
 import { Color4 } from '@dcl/sdk/math'
 import { openExternalUrl } from '~system/RestrictedActions'
+import { PromptInput } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Input'
+import { PromptButton } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Button'
+import { PromptIcon } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Icon'
+import { PromptText } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Text'
 
 export class ClaimCapRequest {
   inTimeOut: boolean = false
@@ -22,6 +26,12 @@ export class ClaimCapRequest {
   onTheWay: ui.CustomPrompt
   walletConnected: boolean = false
   uiMsg: string = 'An unexpected error occurred: \n'
+  captchaTitle: PromptText
+  captchaImage: PromptIcon
+  captchaHelpText: PromptText
+  captchaFillInBox: PromptInput
+  captchaButtonE: PromptButton
+  captchaButtonF: PromptButton
   constructor(
     gameController: GameController,
     campaign: ClaimTokenRequestArgs,
@@ -48,6 +58,46 @@ export class ClaimCapRequest {
       style: ui.PromptStyles.LIGHT,
       height: 350
     })
+    this.captchaTitle = this.captchaUI.addText({
+      value: '',
+      size: 0,
+      xPosition: 0,
+      yPosition: 0
+    })
+    this.captchaImage = this.captchaUI.addIcon({
+      image: '',
+      xPosition: 0,
+      yPosition: 0,
+      width: 0,
+      height: 0
+    })
+    this.captchaHelpText = this.captchaUI.addText({
+      value: '<b>Enter the BIG GREEN letters*</b>',
+      xPosition: -96,
+      yPosition: -10,
+      size: 0
+    })
+    this.captchaFillInBox = this.captchaUI.addTextBox({
+      placeholder: '                  Fill In',
+      xPosition: 0,
+      yPosition: -70,
+      onChange: (value) => {}
+    })
+    this.captchaButtonE = this.captchaUI.addButton({
+      style: ui.ButtonStyles.E,
+      text: '',
+      xPosition: 0,
+      yPosition: 0,
+      onMouseDown: () => {}
+    })
+    this.captchaButtonF = this.captchaUI.addButton({
+      style: ui.ButtonStyles.F,
+      buttonSize: 200,
+      text: '',
+      xPosition: 0,
+      yPosition: 0,
+      onMouseDown: () => {}
+    })
     this.createRetryUI()
     this.createInProgressUI()
     this.claimInProgress.hide()
@@ -67,8 +117,7 @@ export class ClaimCapRequest {
       text: 'OK',
       xPosition: -10,
       yPosition: -100,
-      onMouseDown: () => {
-      }
+      onMouseDown: () => {}
     })
   }
   createRetryUI() {
@@ -279,57 +328,46 @@ export class ClaimCapRequest {
   createCaptchaUI(image: string, id: string, campaing: string, campaingKey: string): void {
     let captchaInput = ''
     this.claimInProgress.hide()
-    const title = this.captchaUI.addText({
-      value: '<b>Please complete this captcha</b>',
-      size: 18,
-      xPosition: -140,
-      yPosition: 150
-    })
-    let captchaImage = this.captchaUI.addIcon({
-      image: image,
-      xPosition: 0,
-      yPosition: 40,
-      width: 280,
-      height: 100
-    })
-    const helpText = this.captchaUI.addText({
-      value: '<b>Enter the BIG GREEN letters*</b>',
-      xPosition: -96,
-      yPosition: -10,
-      color: Color4.create(0.34901960784313724, 0.8274509803921568, 0.5450980392156862, 1),
-      size: 12
-    })
-    const fillInBox = this.captchaUI.addTextBox({
-      placeholder: '                  Fill In',
-      xPosition: 0,
-      yPosition: -70,
-      onChange: (value) => {
-        console.log('textbox changed:', value)
-        captchaInput = value
-      }
-    })
-    const promptButtonE = this.captchaUI.addButton({
-      style: ui.ButtonStyles.E,
-      text: 'Submit',
-      xPosition: 100,
-      yPosition: -160,
-      onMouseDown: () => {
-        this.captchaUI.hide()
-        this.validateCaptcha(captchaInput, id, campaing, campaingKey)
-      }
-    })
 
-    const promptButtonF = this.captchaUI.addButton({
-      style: ui.ButtonStyles.F,
-      buttonSize: 200,
-      text: 'Cancel',
-      xPosition: -100,
-      yPosition: -160,
-      onMouseDown: () => {
-        this.captchaUI.hide()
-        this.gameController.questPortal.onCloseRewardUI()
-      }
-    })
-    console.log('aaaaasdda')
+    this.captchaTitle.value = '<b>Please complete this captcha</b>'
+    this.captchaTitle.size = 18
+    this.captchaTitle.xPosition = -140
+    this.captchaTitle.yPosition = 150
+
+    this.captchaImage.image = image
+    this.captchaImage.xPosition = 0
+    this.captchaImage.yPosition = 40
+    this.captchaImage.width = 280
+    this.captchaImage.height = 100
+
+    this.captchaHelpText.value = '<b>Enter the BIG GREEN letters*</b>'
+    this.captchaHelpText.xPosition = -96
+    this.captchaHelpText.yPosition = -10
+    this.captchaHelpText.color = Color4.create(0.34901960784313724, 0.8274509803921568, 0.5450980392156862, 1)
+    this.captchaHelpText.size = 12
+
+    this.captchaFillInBox.placeholder = '                  Fill In'
+    this.captchaFillInBox.xPosition = 0
+    this.captchaFillInBox.yPosition = -70
+    this.captchaFillInBox.onChange = (value) => {
+      console.log('textbox changed:', value)
+      captchaInput = value
+    }
+
+    this.captchaButtonE.text = 'Submit'
+    this.captchaButtonE.xPosition = 100
+    this.captchaButtonE.yPosition = -160
+    this.captchaButtonE.onMouseDown = () => {
+      this.captchaUI.hide()
+      this.validateCaptcha(captchaInput, id, campaing, campaingKey)
+    }
+
+    this.captchaButtonF.text = 'Cancel'
+    this.captchaButtonF.xPosition = -100
+    this.captchaButtonF.yPosition = -160
+    this.captchaButtonF.onMouseDown = () => {
+      this.captchaUI.hide()
+      this.gameController.questPortal.onCloseRewardUI()
+    }
   }
 }
