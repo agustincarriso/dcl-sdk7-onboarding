@@ -42,6 +42,7 @@ export class QuestMaterials {
   blocker: Entity
   arrow1: ArrowTargeter
   arrow2: ArrowTargeter
+  pilarActivate: boolean = false
   constructor(gameController: GameController) {
     this.gameController = gameController
     this.blocker = engine.addEntity()
@@ -389,6 +390,10 @@ export class QuestMaterials {
     }
   }
   activatePilar() {
+    if (this.pilarActivate === true){
+      return
+    }
+    this.pilarActivate = true
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_1__01)
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_1__01, 'Pillar_Anim').speed = 3
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_1__01, 'Pillar_Anim').shouldReset = false
@@ -439,6 +444,7 @@ export class QuestMaterials {
     )
   }
   playerForgotRewardDialog() {
+    pointerEventsSystem.removeOnPointerDown(this.mat.npcChild)
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 12)
   }
   dialogEndQuest() {
