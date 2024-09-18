@@ -764,6 +764,7 @@ export class Popup {
             onMouseDown={() => {
               this.hide(POPUP_STATE.Vest)
               this.uiController.gameController.questMaterial.activatePilar()
+              this.uiController.gameController.questMaterial.afterEndQuestClick()
             }}
           >
             {/* Text UI */}
