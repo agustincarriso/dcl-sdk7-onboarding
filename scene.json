@@ -447,7 +447,7 @@
 		"ALLOW_TO_MOVE_PLAYER_INSIDE_SCENE"
 	],
   "worldConfiguration": {
-		"name": "cryptonico.dcl.eth",
+		"name": "onboardingdcl.dcl.eth",
     "placesConfig": {
       "optOut": true
     }
