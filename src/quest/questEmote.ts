@@ -313,7 +313,7 @@ export class QuestEmote {
       false
     Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').loop = false
     Animator.playSingleAnimation(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation')
-    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').weight = 0.5
+    Animator.getClip(this.gameController.mainInstance.s0_Z3_Str_Bridge_Art_1__01, 'Bridge Animation').weight = 1
   }
   activatePilar() {
     AudioManager.instance().playTowerCharge(this.gameController.mainInstance.s0_Z3_Quest_Pillar_Art_3__01)
