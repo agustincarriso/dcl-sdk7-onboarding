@@ -305,9 +305,9 @@ export class QuestMaterials {
     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 5)
     utils.timers.setTimeout(() => {
       closeDialog(this.mat.entity)
+      this.deliverAllPiecesClick()
     }, 3000)
     this.questIndicator.updateStatus(IndicatorState.INTERROGATION)
-    this.deliverAllPiecesClick()
   }
 
   spawnparticles() {
