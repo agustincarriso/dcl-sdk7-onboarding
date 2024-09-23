@@ -227,19 +227,6 @@ export class Dialogs {
       {
         text: THIRD_ISLAND_7,
         portrait: idleMat,
-        isEndOfDialog: true,
-        triggeredByNext: () => {
-          this.gameController.questMaterial.setWalletConnection()
-        },
-        typeSpeed: this.typeSpeed
-      },
-      {
-        text: THIRD_ISLAND_8,
-        portrait: idleMat,
-        triggeredByNext: () => {
-          this.gameController.questMaterial.afterEndQuestClick()
-        },
-        isEndOfDialog: true,
         typeSpeed: this.typeSpeed
       },
       {

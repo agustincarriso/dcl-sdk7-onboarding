@@ -362,17 +362,17 @@ export class QuestMaterials {
   }
 
   setWalletConnection() {
-    console.log('wallet connected:' + this.walletConected)
-    if (this.walletConected === false) {
-      utils.timers.setTimeout(() => {
-        openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 8)
-      }, 200)
-      this.activatePilar()
-    } else {
-      utils.timers.setTimeout(() => {
-        openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 9)
-      }, 200)
-    }
+    // console.log('wallet connected:' + this.walletConected)
+    // if (this.walletConected === false) {
+    //   utils.timers.setTimeout(() => {
+    //     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 8)
+    //   }, 200)
+    //   this.activatePilar()
+    // } else {
+    //   utils.timers.setTimeout(() => {
+    //     openDialogWindow(this.mat.entity, this.gameController.dialogs.matDialog, 9)
+    //   }, 200)
+    // }
   }
 
   setRewardTrue() {
@@ -390,7 +390,7 @@ export class QuestMaterials {
     }
   }
   activatePilar() {
-    if (this.pilarActivate === true){
+    if (this.pilarActivate === true) {
       return
     }
     this.pilarActivate = true
