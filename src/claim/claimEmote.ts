@@ -11,6 +11,7 @@ import { PromptText } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/compo
 import { PromptIcon } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Icon'
 import { PromptInput } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Input'
 import { PromptButton } from 'dcl-ui-toolkit/dist/ui-entities/prompts/Prompt/components/Button'
+import { ButtonStyles } from 'dcl-npc-toolkit/dist/types'
 
 export class ClaimEmoteTokenRequest {
   inTimeOut: boolean = false
@@ -84,14 +85,15 @@ export class ClaimEmoteTokenRequest {
       onChange: (value) => {}
     })
     this.captchaButtonE = this.captchaUI.addButton({
-      style: ui.ButtonStyles.E,
+      style: ui.ButtonStyles.RED,
       text: '',
       xPosition: 0,
       yPosition: 0,
       onMouseDown: () => {}
     })
+
     this.captchaButtonF = this.captchaUI.addButton({
-      style: ui.ButtonStyles.F,
+      style: ui.ButtonStyles.DARK,
       buttonSize: 200,
       text: '',
       xPosition: 0,
@@ -355,18 +357,45 @@ export class ClaimEmoteTokenRequest {
       console.log('textbox changed:', value)
       captchaInput = value
     }
+    this.captchaButtonE.imageElement.uiBackground = {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonE.imageElementEdge.uiBackground= {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonE.imageElementCorner.uiBackground = {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonF.imageElement.uiBackground = {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    } 
+    this.captchaButtonF.imageElementEdge.uiBackground= {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    }
+    this.captchaButtonF.imageElementCorner.uiBackground = {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    }
 
     this.captchaButtonE.text = 'Submit'
-    this.captchaButtonE.xPosition = 100
-    this.captchaButtonE.yPosition = -160
+    this.captchaButtonE.xPosition = 90
+    this.captchaButtonE.yPosition = -155
     this.captchaButtonE.onMouseDown = () => {
       this.captchaUI.hide()
       this.validateCaptcha(captchaInput, id, campaing, campaingKey)
     }
 
     this.captchaButtonF.text = 'Cancel'
-    this.captchaButtonF.xPosition = -100
-    this.captchaButtonF.yPosition = -160
+    this.captchaButtonF.xPosition = -110
+    this.captchaButtonF.yPosition = -155
     this.captchaButtonF.onMouseDown = () => {
       this.captchaUI.hide()
     }
