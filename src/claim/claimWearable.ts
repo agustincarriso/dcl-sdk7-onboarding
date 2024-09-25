@@ -84,14 +84,14 @@ export class ClaimWearableRequest {
       onChange: (value) => {}
     })
     this.captchaButtonE = this.captchaUI.addButton({
-      style: ui.ButtonStyles.E,
+      style: ui.ButtonStyles.RED,
       text: '',
       xPosition: 0,
       yPosition: 0,
       onMouseDown: () => {}
     })
     this.captchaButtonF = this.captchaUI.addButton({
-      style: ui.ButtonStyles.F,
+      style: ui.ButtonStyles.DARK,
       buttonSize: 200,
       text: '',
       xPosition: 0,
@@ -354,18 +354,45 @@ export class ClaimWearableRequest {
       console.log('textbox changed:', value)
       captchaInput = value
     }
+    this.captchaButtonE.imageElement.uiBackground = {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonE.imageElementEdge.uiBackground= {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonE.imageElementCorner.uiBackground = {
+      textureMode: 'center',
+      texture: { src: 'assets/ui/UI_button_red_version_2.png'}
+    }
+    this.captchaButtonF.imageElement.uiBackground = {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    } 
+    this.captchaButtonF.imageElementEdge.uiBackground= {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    }
+    this.captchaButtonF.imageElementCorner.uiBackground = {
+      textureMode: 'center',
+      texture: { src: ''},
+      color: Color4.Black()
+    }
 
     this.captchaButtonE.text = 'Submit'
-    this.captchaButtonE.xPosition = 100
-    this.captchaButtonE.yPosition = -160
+    this.captchaButtonE.xPosition = 90
+    this.captchaButtonE.yPosition = -155
     this.captchaButtonE.onMouseDown = () => {
       this.captchaUI.hide()
       this.validateCaptcha(captchaInput, id, campaing, campaingKey)
     }
 
     this.captchaButtonF.text = 'Cancel'
-    this.captchaButtonF.xPosition = -100
-    this.captchaButtonF.yPosition = -160
+    this.captchaButtonF.xPosition = -110
+    this.captchaButtonF.yPosition = -155
     this.captchaButtonF.onMouseDown = () => {
       this.captchaUI.hide()
       this.gameController.questMaterial.afterEndQuestClick()
