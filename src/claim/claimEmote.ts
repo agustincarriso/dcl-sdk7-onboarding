@@ -98,6 +98,7 @@ export class ClaimEmoteTokenRequest {
       yPosition: 0,
       onMouseDown: () => {}
     })
+    this.captchaUI.closeIcon.hide()
     this.createRetryUI()
     this.createInProgressUI()
     this.claimInProgress.hide()
