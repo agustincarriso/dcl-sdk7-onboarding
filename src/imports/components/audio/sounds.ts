@@ -9,6 +9,7 @@ AudioSource.create(music, {
   audioClipUrl: clip
 })
 Transform.create(music, { parent: engine.PlayerEntity })
+Transform.getMutable(music).scale = Vector3.create(0,0,0)
 AudioSource.getMutable(music).volume = 0.04
 AudioSource.getMutable(music).loop = true
 AudioSource.getMutable(music).playing = true
