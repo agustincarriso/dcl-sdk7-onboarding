@@ -23,6 +23,7 @@ import {
   InputAction,
   inputSystem,
   Material,
+  MaterialTransparencyMode,
   MeshCollider,
   PBMaterial,
   PBMaterial_PbrMaterial,
@@ -96,7 +97,8 @@ export class PortalEvents {
     this.imageMaterial = {
       roughness: 1,
       metallic: 0,
-      specularIntensity: 0
+      specularIntensity: 0,
+      transparencyMode: MaterialTransparencyMode.MTM_ALPHA_BLEND
     }
     this.totalTransMaterial = {
       albedoColor: Color4.create(0, 0, 0, 0)
