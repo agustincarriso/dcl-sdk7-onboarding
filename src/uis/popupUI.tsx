@@ -5,6 +5,8 @@ import { UIController } from '../controllers/uiController'
 import { openExternalUrl } from '~system/RestrictedActions'
 
 const lightGray = Color4.create(128 / 255, 128 / 255, 128 / 255, 0.2)
+const transparentLightGray = Color4.create(128 / 255, 128 / 255, 128 / 255, 0.2)
+
 export enum POPUP_STATE {
   OneButton = 0,
   TwoButtons = 1,
@@ -137,11 +139,11 @@ export class Popup {
               position: { top: '32%', left: '0%' },
               margin: { left: '13%', right: '13%' }
             }}
-            uiBackground={{
-              textureMode: 'center',
-              texture: { src: this.backgroundBig },
-              color: lightGray
-            }}
+            // uiBackground={{
+            //   textureMode: 'center',
+            //   texture: { src: this.backgroundBig },
+            //   color: lightGray
+            // }}
           >
             {/* Text UI */}
             <Label
@@ -165,11 +167,11 @@ export class Popup {
               position: { top: '44%', left: '0%' },
               margin: { left: '13%', right: '13%' }
             }}
-            uiBackground={{
-              textureMode: 'center',
-              texture: { src: this.backgroundBig },
-              color: lightGray
-            }}
+            // uiBackground={{
+            //   textureMode: 'center',
+            //   texture: { src: this.backgroundBig },
+            //   color: lightGray
+            // }}
           >
             {/* Text UI */}
             <Label
@@ -193,11 +195,11 @@ export class Popup {
               position: { top: '56%', left: '0%' },
               margin: { left: '13%', right: '13%' }
             }}
-            uiBackground={{
-              textureMode: 'center',
-              texture: { src: this.backgroundBig },
-              color: lightGray
-            }}
+            // uiBackground={{
+            //   textureMode: 'center',
+            //   texture: { src: this.backgroundBig },
+            //   color: lightGray
+            // }}
           >
             {/* Text UI */}
             <Label
