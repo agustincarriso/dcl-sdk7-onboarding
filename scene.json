@@ -448,6 +448,7 @@
 	],
   "worldConfiguration": {
 		"name": "onboardingdcl.dcl.eth",
+      "fixedAdapter": "offline:offline",
     "placesConfig": {
       "optOut": true
     }
