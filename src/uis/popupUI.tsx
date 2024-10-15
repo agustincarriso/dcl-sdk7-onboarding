@@ -68,6 +68,7 @@ export class Popup {
       if (newScaleFactor !== this.scaleFactor) {
         this.scaleFactor = newScaleFactor
       }
+      console.log({ uiCanvasInfo })
       console.log(this.scaleFactor)
     })
   }
