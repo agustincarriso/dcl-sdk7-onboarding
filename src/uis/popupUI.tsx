@@ -68,8 +68,6 @@ export class Popup {
       if (newScaleFactor !== this.scaleFactor) {
         this.scaleFactor = newScaleFactor
       }
-      console.log({ uiCanvasInfo })
-      console.log(this.scaleFactor)
     })
   }
   popupUI(): ReactEcs.JSX.Element {
@@ -233,7 +231,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: canvasInfo.height * 0.16,
-              height: canvasInfo.height * 0.08 * this.scaleFactor,
+              height: canvasInfo.height * 0.08,
               position: { bottom: '13%', left: '35%' }
             }}
             uiBackground={{
@@ -264,7 +262,7 @@ export class Popup {
           uiTransform={{
             positionType: 'absolute',
             width: '90%',
-            height: canvasInfo.height * 0.114 * this.scaleFactor,
+            height: canvasInfo.height * 0.114,
             position: { bottom: '10%', left: '5%' },
             display: this.takeControlCameraEscVisible ? 'flex' : 'none'
           }}
@@ -282,7 +280,7 @@ export class Popup {
             }}
             value={this.takecontrol}
             textAlign="middle-left"
-            fontSize={canvasInfo.height * 0.017 * this.scaleFactor}
+            fontSize={canvasInfo.height * 0.017}
             font="sans-serif"
             color={Color4.White()}
           />
