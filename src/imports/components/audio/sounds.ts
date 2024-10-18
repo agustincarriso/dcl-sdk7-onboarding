@@ -9,7 +9,7 @@ AudioSource.create(music, {
   audioClipUrl: clip
 })
 Transform.create(music, { parent: engine.PlayerEntity })
-Transform.getMutable(music).scale = Vector3.create(0,0,0)
+Transform.getMutable(music).scale = Vector3.create(0, 0, 0)
 AudioSource.getMutable(music).volume = 0.04
 AudioSource.getMutable(music).loop = true
 AudioSource.getMutable(music).playing = true
@@ -23,7 +23,7 @@ AudioSource.create(lamp1, {
 })
 AudioSource.getMutable(lamp1).loop = true
 AudioSource.getMutable(lamp1).volume = 0.008
-AudioSource.playSound(lamp1, clip)
+AudioSource.playSound(lamp1, lampClip)
 
 const lamp2 = engine.addEntity()
 Transform.create(lamp2, { position: Vector3.create(136.87, 77, 149.46) })
@@ -32,7 +32,7 @@ AudioSource.create(lamp2, {
 })
 AudioSource.getMutable(lamp2).loop = true
 AudioSource.getMutable(lamp2).volume = 0.008
-AudioSource.playSound(lamp2, clip)
+AudioSource.playSound(lamp2, lampClip)
 
 const lamp3 = engine.addEntity()
 Transform.create(lamp3, { position: Vector3.create(159.85, 74, 161.82) })
@@ -41,7 +41,7 @@ AudioSource.create(lamp3, {
 })
 AudioSource.getMutable(lamp3).loop = true
 AudioSource.getMutable(lamp3).volume = 0.008
-AudioSource.playSound(lamp3, clip)
+AudioSource.playSound(lamp3, lampClip)
 
 const lamp4 = engine.addEntity()
 Transform.create(lamp4, { position: Vector3.create(164.19, 73, 137.21) })
@@ -50,7 +50,7 @@ AudioSource.create(lamp4, {
 })
 AudioSource.getMutable(lamp4).loop = true
 AudioSource.getMutable(lamp4).volume = 0.008
-AudioSource.playSound(lamp4, clip)
+AudioSource.playSound(lamp4, lampClip)
 
 const lamp5 = engine.addEntity()
 Transform.create(lamp5, { position: Vector3.create(158.51, 71, 108.98) })
@@ -59,7 +59,7 @@ AudioSource.create(lamp5, {
 })
 AudioSource.getMutable(lamp5).loop = true
 AudioSource.getMutable(lamp5).volume = 0.008
-AudioSource.playSound(lamp5, clip)
+AudioSource.playSound(lamp5, lampClip)
 
 const lamp6 = engine.addEntity()
 Transform.create(lamp6, { position: Vector3.create(158.51, 71, 108.98) })
@@ -68,7 +68,7 @@ AudioSource.create(lamp6, {
 })
 AudioSource.getMutable(lamp6).loop = true
 AudioSource.getMutable(lamp6).volume = 0.008
-AudioSource.playSound(lamp6, clip)
+AudioSource.playSound(lamp6, lampClip)
 //#endregion
 //#region windOnLeafs
 
