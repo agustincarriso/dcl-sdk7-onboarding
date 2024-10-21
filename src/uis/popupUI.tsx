@@ -30,7 +30,7 @@ export class Popup {
   currentButton: number = 0
   closeButton: string = 'assets/ui/close_button.png'
   // Tobor
-  isVisible: boolean = false
+  isVisible: boolean = true
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = '<b>Objectives</b>'
   headerText2: string = '<b>Help Mat with the meshes</b>'
@@ -77,8 +77,8 @@ export class Popup {
       <UiEntity
         uiTransform={{
           flexDirection: 'column',
-          width: canvasInfo.height * 0.46,
-          height: canvasInfo.height * this.scaleFactor,
+          width: canvasInfo.height * 0.46 * this.scaleFactor,
+          height: canvasInfo.height,
           justifyContent: 'flex-end',
           positionType: 'absolute',
           position: { top: '0%', left: '40%' },
@@ -86,7 +86,7 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0, 0, 0, 0)
+          color: Color4.create(0,0,0,0)
         }}
       >
         <UiEntity
@@ -96,7 +96,7 @@ export class Popup {
             height: 905 * 0.58 * this.scaleFactor,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
-            position: { top: '15%', left: '0%' },
+            position: { top: '20%', left: '0%' },
             display: this.isVisible ? 'flex' : 'none'
           }}
           uiBackground={{
@@ -230,8 +230,8 @@ export class Popup {
           <UiEntity
             uiTransform={{
               positionType: 'absolute',
-              width: canvasInfo.height * 0.16,
-              height: canvasInfo.height * 0.08,
+              width: canvasInfo.height * 0.16 * this.scaleFactor, 
+              height: canvasInfo.height * 0.08 * this.scaleFactor,
               position: { bottom: '13%', left: '35%' }
             }}
             uiBackground={{
