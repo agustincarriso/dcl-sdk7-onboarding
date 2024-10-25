@@ -12,7 +12,7 @@
   "devDependencies": {
     "@dcl/asset-packs": "^1.20.0",
     "@dcl/js-runtime": "7.6.2",
-    "@dcl/sdk": "^7.6.2"
+    "@dcl/sdk": "^7.6.3"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -25,7 +25,7 @@
     "trailingComma": "none"
   },
   "dependencies": {
-    "dcl-npc-toolkit": "^1.4.0",
+    "dcl-npc-toolkit": "^1.5.0",
     "dcl-ui-toolkit": "^0.10.0"
   },
   "bundledDependencies": [

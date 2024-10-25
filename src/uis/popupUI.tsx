@@ -56,17 +56,29 @@ export class Popup {
   matImageText: string = "<b>Mat's Vest</b>"
   matButtonRightText: string = '<b>Yay!</b>'
   matButtonLeftText: string = '<b>Close</b>'
+  scaleFactor: number
   constructor(uiController: UIController) {
     this.uiController = uiController
+    this.scaleFactor = 1
+
+    engine.addSystem((dt) => {
+      const uiCanvasInfo = UiCanvasInformation.getOrNull(engine.RootEntity)
+      if (!uiCanvasInfo) return
+      const newScaleFactor = Math.min(uiCanvasInfo.width / 1920, uiCanvasInfo.height / 1080)
+      if (newScaleFactor !== this.scaleFactor) {
+        this.scaleFactor = newScaleFactor
+      }
+    })
   }
   popupUI(): ReactEcs.JSX.Element {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
+    // console.log(canvasInfo.height, '----->>> here')
     return (
       <UiEntity
         uiTransform={{
           flexDirection: 'column',
           width: canvasInfo.height * 0.46,
-          height: canvasInfo.height,
+          height: canvasInfo.height * this.scaleFactor,
           justifyContent: 'flex-end',
           positionType: 'absolute',
           position: { top: '0%', left: '40%' },
@@ -81,7 +93,7 @@ export class Popup {
           uiTransform={{
             flexDirection: 'row',
             width: '100%',
-            height: canvasInfo.height * 0.58,
+            height: 905 * 0.58 * this.scaleFactor,
             // justifyContent: 'flex-end',
             positionType: 'absolute',
             position: { top: '15%', left: '0%' },
@@ -97,11 +109,11 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { left: '0%', top: '7%' },
-              margin: { left: '30%', right: '30%' }
+              margin: { left: '31%', right: '31%' }
             }}
             value={this.titleBig}
             textAlign="middle-left"
-            fontSize={canvasInfo.height * 0.024}
+            fontSize={905 * 0.024 * this.scaleFactor}
             font="sans-serif"
             color={Color4.Black()}
           />
@@ -123,11 +135,11 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               position: { left: '0%', top: '18%' },
-              margin: { left: '37%', right: '37%' }
+              margin: { left: '38.5%', right: '38.5%' }
             }}
             value={this.headerText1}
             textAlign="middle-center"
-            fontSize={canvasInfo.height * 0.022}
+            fontSize={905 * 0.022 * this.scaleFactor}
             font="sans-serif"
             color={Color4.Gray()}
           />
@@ -135,9 +147,9 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: '75%',
-              height: canvasInfo.height * 0.06,
+              height: 905 * 0.06 * this.scaleFactor,
               position: { top: '32%', left: '0%' },
-              margin: { left: '13%', right: '13%' }
+              margin: { left: '14.5%', right: '14.5%' }
             }}
             // uiBackground={{
             //   textureMode: 'center',
@@ -146,6 +158,7 @@ export class Popup {
             // }}
           >
             {/* Text UI */}
+
             <Label
               uiTransform={{
                 positionType: 'relative',
@@ -153,7 +166,7 @@ export class Popup {
               }}
               value={this.headerText4}
               textAlign="middle-center"
-              fontSize={canvasInfo.height * 0.018}
+              fontSize={905 * 0.018 * this.scaleFactor}
               font="sans-serif"
               color={Color4.Black()}
               textWrap="nowrap"
@@ -163,14 +176,14 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: '75%',
-              height: canvasInfo.height * 0.06,
+              height: 905 * 0.06 * this.scaleFactor,
               position: { top: '44%', left: '0%' },
-              margin: { left: '13%', right: '13%' }
+              margin: { left: '14%', right: '14%' }
             }}
             // uiBackground={{
             //   textureMode: 'center',
             //   texture: { src: this.backgroundBig },
-            //   color: lightGray
+            //   color: lightGra
             // }}
           >
             {/* Text UI */}
@@ -181,7 +194,7 @@ export class Popup {
               }}
               value={this.headerText2}
               textAlign="middle-center"
-              fontSize={canvasInfo.height * 0.018}
+              fontSize={905 * 0.018 * this.scaleFactor}
               font="sans-serif"
               color={Color4.Black()}
               textWrap="nowrap"
@@ -191,7 +204,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: '75%',
-              height: canvasInfo.height * 0.06,
+              height: 905 * 0.06 * this.scaleFactor,
               position: { top: '56%', left: '0%' },
               margin: { left: '13%', right: '13%' }
             }}
@@ -209,7 +222,7 @@ export class Popup {
               }}
               value={this.headerText3}
               textAlign="middle-center"
-              fontSize={canvasInfo.height * 0.018}
+              fontSize={905 * 0.018 * this.scaleFactor}
               font="sans-serif"
               color={Color4.Black()}
               textWrap="nowrap"
@@ -220,7 +233,7 @@ export class Popup {
               positionType: 'absolute',
               width: canvasInfo.height * 0.16,
               height: canvasInfo.height * 0.08,
-              position: { bottom: '13%', left: '35%' }
+              position: { bottom: '13%', left: '33%' }
             }}
             uiBackground={{
               textureMode: 'stretch',
@@ -236,11 +249,11 @@ export class Popup {
               uiTransform={{
                 positionType: 'absolute',
                 position: { bottom: '20%', left: '0%', top: '20%' },
-                margin: { left: '38%', right: '38%' }
+                margin: { left: '41%', right: '41%' }
               }}
               value={this.buttonRightText}
               textAlign="middle-center"
-              fontSize={canvasInfo.height * 0.018}
+              fontSize={905 * 0.018 * this.scaleFactor}
               font="sans-serif"
               color={Color4.White()}
             />
@@ -280,7 +293,7 @@ export class Popup {
             }}
             value={this.takecontrol2Value}
             textAlign="middle-center"
-            fontSize={canvasInfo.height * 0.017}
+            fontSize={905 * 0.017 * this.scaleFactor}
             font="sans-serif"
             color={Color4.White()}
           />
@@ -288,7 +301,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: canvasInfo.height * 0.045,
-              height: canvasInfo.height * 0.035,
+              height: 905 * 0.035 * this.scaleFactor,
               position: { bottom: '30%', left: '20%' }
             }}
             uiBackground={{
@@ -300,7 +313,7 @@ export class Popup {
             uiTransform={{
               positionType: 'absolute',
               width: canvasInfo.height * 0.05,
-              height: canvasInfo.height * 0.05,
+              height: 905 * 0.05 * this.scaleFactor,
               position: { bottom: '24%', right: '4%' }
             }}
             uiBackground={{
@@ -313,7 +326,7 @@ export class Popup {
           uiTransform={{
             positionType: 'absolute',
             width: canvasInfo.height * 0.045,
-            height: canvasInfo.height * 0.061,
+            height: 905 * 0.061 * this.scaleFactor,
             position: { bottom: '20%', left: '45%' },
             display: this.takeControlCameraEscVisible ? 'flex' : 'none'
           }}
@@ -325,6 +338,7 @@ export class Popup {
       </UiEntity>
     )
   }
+
   popupUIEmote(): ReactEcs.JSX.Element {
     const canvasInfo = UiCanvasInformation.get(engine.RootEntity)
     return (
