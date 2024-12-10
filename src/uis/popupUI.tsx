@@ -30,7 +30,7 @@ export class Popup {
   currentButton: number = 0
   closeButton: string = 'assets/ui/close_button.png'
   // Tobor
-  isVisible: boolean = true
+  isVisible: boolean = false
   titleBig: string = '<b>Getting started!</b>'
   headerText1: string = '<b>Objectives</b>'
   headerText2: string = '<b>Help Mat with the meshes</b>'
@@ -86,7 +86,7 @@ export class Popup {
         }}
         uiBackground={{
           textureMode: 'stretch',
-          color: Color4.create(0,0,0,0)
+          color: Color4.create(0, 0, 0, 0)
         }}
       >
         <UiEntity
@@ -230,7 +230,7 @@ export class Popup {
           <UiEntity
             uiTransform={{
               positionType: 'absolute',
-              width: canvasInfo.height * 0.16 * this.scaleFactor, 
+              width: canvasInfo.height * 0.16 * this.scaleFactor,
               height: canvasInfo.height * 0.08 * this.scaleFactor,
               position: { bottom: '13%', left: '35%' }
             }}
