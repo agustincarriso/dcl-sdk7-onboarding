@@ -12,20 +12,20 @@ export type ClaimTokenRequestArgs = {
 }
 export const configEmote: ClaimTokenRequestArgs = {
   claimServer: 'https://rewards.decentraland.org',
-  campaign: '4f39311b-8bd6-4dc0-b481-d2d12350a1b7',
+  campaign: '2d9f5517-e513-4b9e-bab5-0d46ba2ad614',
   campaign_key:
-    'eyJpZCI6IjJhNjY0NGY4LWIxNzEtNDZlNC05ZDJmLTIzZmYwNzJiNWU3ZSIsImNhbXBhaWduX2lkIjoiNGYzOTMxMWItOGJkNi00ZGMwLWI0ODEtZDJkMTIzNTBhMWI3In0=.WboJjCfelGNKUnq8Lm7bC5J0Zp9Nf54PjLcjd3ZkCVc='
+    'B0FUpe79T9y7h0TlmrKQpy2fVRflE0ueurUNRroq1hQ=.Wv5bHZhAfaPIic2LNJKPjVBEDF8NCKdcPl6hAgTKamM='
 }
 
 export const configVest: ClaimTokenRequestArgs = {
   claimServer: 'https://rewards.decentraland.org',
-  campaign: '4f39311b-8bd6-4dc0-b481-d2d12350a1b7',
+  campaign: '2d9f5517-e513-4b9e-bab5-0d46ba2ad614',
   campaign_key:
-    'eyJpZCI6IjVmMjA4OGRhLTc4MmYtNDk0OS05YmQyLTcyM2ZiZTRmY2U1NiIsImNhbXBhaWduX2lkIjoiNGYzOTMxMWItOGJkNi00ZGMwLWI0ODEtZDJkMTIzNTBhMWI3In0=.8WlZ55X7hsVaRHK35niEoOxcrCtPNCy7-0HDZ12ikn4='
+    'vEiD3FinRpa9HG+xa4U4TS2fVRflE0ueurUNRroq1hQ=.MNH2pcpVpKeEetzqzhY3vPLyLzwpNyLzb7LG7js7dQI='
 }
 export const configCap: ClaimTokenRequestArgs = {
   claimServer: 'https://rewards.decentraland.org',
-  campaign: '4f39311b-8bd6-4dc0-b481-d2d12350a1b7',
+  campaign: '2d9f5517-e513-4b9e-bab5-0d46ba2ad614',
   campaign_key:
-    'eyJpZCI6IjgwMGJkMmY2LWI3ODYtNDY1Ny1iMTQ1LWZkNTRmNjgyNzAyNCIsImNhbXBhaWduX2lkIjoiNGYzOTMxMWItOGJkNi00ZGMwLWI0ODEtZDJkMTIzNTBhMWI3In0=.wnO73VddYOJPcfVzTenGwID4-02zjonI0wdy7S4dUwY='
+    'hP9HkTJyS2KPoiGHNDOEZC2fVRflE0ueurUNRroq1hQ=.VuaWGlUbcypiFTPexU6CHZ8KQpWLL34X7h0ea/G2fxM='
 }
